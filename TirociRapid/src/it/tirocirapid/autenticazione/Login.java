@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Login
+ * Servlet che si occupa di gestire il login degli utenti del sistema 
  */
 @WebServlet("/login")
 public class Login extends HttpServlet {
@@ -68,6 +68,17 @@ public class Login extends HttpServlet {
 	 * @return false se il professore non è presente nel database
 	 */
 	private boolean loginProfessore(String username, String password)
+	{
+		return false;
+	}
+	
+	/**
+	 * 
+	 * @param str rappresenta il contenuto del campo  
+	 * @return true se str è vouta 
+	 * @return false se str è piena
+	 */
+	private boolean isEmptyField(String str)
 	{
 		return false;
 	}

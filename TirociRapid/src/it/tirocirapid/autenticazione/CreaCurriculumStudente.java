@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class CreaCurriculumStudente
+ * Servlet che si occupa della creazione di un curriculum da parte dello studente
  */
 @WebServlet("/inserisci_curriculum")
 public class CreaCurriculumStudente extends HttpServlet {
@@ -41,7 +41,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 	/**
 	 * 
 	 * @param fax Il fax da validare
-	 * @return true se il fax rispecchai il formato
+	 * @return true se il fax rispecchia il formato
 	 * @return false altrimenti
 	 */
 	private boolean validaFax(String fax)
@@ -49,4 +49,26 @@ public class CreaCurriculumStudente extends HttpServlet {
 		return false;
 	}
 
+	/**
+	 * 
+	 * @param str rappresenta il contenuto del campo descrittivo 
+	 * @return true se str è vouta 
+	 * @return false se str è piena
+	 */
+	private boolean isEmptyField(String str)
+	{
+		return false;
+	}
+
+	/**
+	 * 
+	 * @param str rappresenta il contenuto dei compi multi valore
+	 * @return true se str è formattato in modo corretto
+	 * @return false se str non è formattanto in modo corretto
+	 */
+	private boolean validaFormattazioneValoriMultipli(String str)
+	{
+		return false;
+	}
+	
 }
