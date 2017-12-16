@@ -8,4 +8,10 @@ package it.tirocirapid.classes.business;
 public class RichiestaTirocinio {
 
 	private Studente studente;
+	private Tirocinio tiroconio;
+	private Professore tutorInterno;
+	/**
+	 * @inv stato == "" || 
+	 */
+	private String stato;
 }
