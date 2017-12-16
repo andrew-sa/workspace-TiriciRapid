@@ -7,4 +7,5 @@ package it.tirocirapid.classes.business;
  */
 public class RichiestaTirocinio {
 
+	private Studente studente;
 }
