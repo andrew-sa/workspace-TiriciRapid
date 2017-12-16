@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet che si occupa della registrazione dello studente
+ * Servlet che si occupa del recupero password dell'azienda
  */
-@WebServlet("/registrazione_studente")
-public class RegistrazioneStudenteControllo extends HttpServlet {
+@WebServlet("/recupera_password")
+public class RecuperaPasswordAzienda extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RegistrazioneStudenteControllo() {
+    public RecuperaPasswordAzienda() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,26 +37,5 @@ public class RegistrazioneStudenteControllo extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-	
-	/**
-	 * @param password rappresenta l'password dello studente
-	 * @param username rappresenta l'username dello studente 
-	 * @return true se str è vouta 
-	 * @return false se str è piena
-	 */
-	private boolean isStudente(String username, String password)
-	{
-		return false;
-	}
 
-	/**
-	 * 
-	 * @param str rappresenta il contenuto del campo 
-	 * @return true se str è vouta 
-	 * @return false se str è piena
-	 */
-	private boolean isEmptyField(String str)
-	{
-		return false;
-	}
 }
