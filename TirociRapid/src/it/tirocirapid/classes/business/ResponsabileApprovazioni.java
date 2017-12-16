@@ -7,4 +7,8 @@ package it.tirocirapid.classes.business;
  */
 public class ResponsabileApprovazioni extends Professore {
 
+	public ResponsabileApprovazioni() {
+		super();
+	}
+	
 }

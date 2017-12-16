@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class CreaPropostaTirocinio
+ * Servlet che si occupa di inserire una nuova proposta di tirocinio di un'azienda
  */
 @WebServlet("/crea_proposta_tirocinio")
 public class CreaPropostaTirocinio extends HttpServlet {
@@ -36,6 +36,17 @@ public class CreaPropostaTirocinio extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+	}
+	
+	/**
+	 * 
+	 * @param str la stringa da controllare
+	 * @return true se str è vuota
+	 * @return false altrimenti
+	 */
+	private boolean isEmptyField(String str)
+	{
+		return false;
 	}
 
 }

@@ -9,6 +9,9 @@ import java.util.ArrayList;
  */
 public class Azienda {
 	
+	public Azienda() {
+
+	}
 	/**
 	 * @return the partitaIVA
 	 */
@@ -144,6 +147,9 @@ public class Azienda {
 	private String sede;
 	private String numeroTelefono;
 	private ArrayList<Tirocinio> tirociniOfferti;
+	/**
+	 * @invariant stato.equals("accettaRichieste") || stato.equals("nonAccettaRichieste")
+	 */
 	private String stato;
 	private String descrizioneAmbito;
 }

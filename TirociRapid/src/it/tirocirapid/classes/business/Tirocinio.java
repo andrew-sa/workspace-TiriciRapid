@@ -7,6 +7,9 @@ package it.tirocirapid.classes.business;
  */
 public class Tirocinio {
 	
+	public Tirocinio() {
+		
+	}
 	/**
 	 * @return the partitaIVAAzienda
 	 */
@@ -58,5 +61,8 @@ public class Tirocinio {
 	private String partitaIVAAzienda;
 	private String nome;
 	private String offertaFormativa;
+	/**
+	 * @invariant stato.equals("TirProp") || stato.equals("TirConf") || stato.equals("TirRif") || stato.equals("TirNDisp")
+	 */
 	private String stato;
 }

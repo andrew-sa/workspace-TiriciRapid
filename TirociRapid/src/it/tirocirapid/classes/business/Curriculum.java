@@ -9,6 +9,9 @@ import java.util.ArrayList;
  */
 public class Curriculum {
 	
+	public Curriculum() {
+		
+	}
 	/**
 	 * @return the nome
 	 */

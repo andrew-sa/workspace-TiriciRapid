@@ -7,6 +7,9 @@ package it.tirocirapid.classes.business;
  */
 public class Professore {
 	
+	public Professore() {
+		
+	}
 	/**
 	 * @return the username
 	 */
