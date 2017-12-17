@@ -1,4 +1,4 @@
-package it.tirocirapid.tirocinio.proposta;
+package it.tirocirapid.tirocinio.richiesta;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ModificaDatiAzienda
+ * Servlet che gestisce il caricamento della lista dei professori che uno studente può scegliere come tutor interno per la propria richiesta di tirocinio
  */
-@WebServlet("/modifica_dati_azienda")
-public class ModificaDatiAzienda extends HttpServlet {
+@WebServlet("/lista_professori")
+public class CaricaListaProfessori extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ModificaDatiAzienda() {
+    public CaricaListaProfessori() {
         super();
         // TODO Auto-generated constructor stub
     }

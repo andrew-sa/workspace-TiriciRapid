@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet che si occupa della eliminazione di un tirocinio da parte di un'azienda
+ * Servlet che si occupa di caricare i dati di un'azienda
  */
-@WebServlet("/elimina_tirocinio")
-public class EliminaTirocinio extends HttpServlet {
+@WebServlet("/dati_azienda")
+public class CaricaDatiAzienda extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EliminaTirocinio() {
+    public CaricaDatiAzienda() {
         super();
         // TODO Auto-generated constructor stub
     }

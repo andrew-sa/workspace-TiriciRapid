@@ -1,4 +1,4 @@
-package it.tirocirapid.profilo.azienda;
+package it.tirocirapid.tirocinio.richiesta;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet che si occupa della eliminazione di un tirocinio da parte di un'azienda
+ * Servlet che si occupa di gestire il carimento delle aziende
  */
-@WebServlet("/elimina_tirocinio")
-public class EliminaTirocinio extends HttpServlet {
+@WebServlet("/lista_aziende")
+public class CaricaListaAziende extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EliminaTirocinio() {
+    public CaricaListaAziende() {
         super();
         // TODO Auto-generated constructor stub
     }

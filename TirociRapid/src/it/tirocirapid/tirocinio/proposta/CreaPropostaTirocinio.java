@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet che si occupa di inserire una nuova proposta di tirocinio di un'azienda
+ * Servlet che si occupa di gestire l'inseririmento una nuova proposta di tirocinio da parte di un'azienda
  */
 @WebServlet("/crea_proposta_tirocinio")
 public class CreaPropostaTirocinio extends HttpServlet {

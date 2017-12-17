@@ -1,4 +1,4 @@
-package it.tirocirapid.autenticazione;
+package it.tirocirapid.profilo.azienda;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet che si occupa di gestire la registrazione di una nuova azienda
+ * Servlet che si occupa di gestire la modifica dei dati di un'azienda
  */
-@WebServlet("/registrazione_azienda")
-public class RegistrazioneAzienda extends HttpServlet {
+@WebServlet("/modifica_dati_azienda")
+public class ModificaDatiAzienda extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RegistrazioneAzienda() {
+    public ModificaDatiAzienda() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,17 +36,6 @@ public class RegistrazioneAzienda extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-	}
-
-	/**
-	 * 
-	 * @param partitaIVA rappresenta la partita IVA dell'azienda che si sta per registrare 
-	 * @return true se la partitaIVA rispecchia il formato
-	 * @return false altrimenti
-	 */
-	private boolean validaPartitaIVA(String partitaIVA)
-	{
-		return false;
 	}
 	
 	/**
@@ -104,5 +93,5 @@ public class RegistrazioneAzienda extends HttpServlet {
 	{
 		return false;
 	}
-	
+
 }
