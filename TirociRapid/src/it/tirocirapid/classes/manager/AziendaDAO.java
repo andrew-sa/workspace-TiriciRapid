@@ -86,4 +86,10 @@ public class AziendaDAO extends AbstractAziendaManager {
 		return null;
 	}
 
+	@Override
+	public String readPassword(String partitaIVA) throws SQLException, TuplaNotFoundException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

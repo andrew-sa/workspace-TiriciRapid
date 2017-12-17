@@ -14,5 +14,6 @@ public abstract class AbstractAziendaManager {
 	public abstract void update(Azienda toUpdate) throws SQLException, TuplaNotFoundException;
 	public abstract ArrayList<Azienda> readAll() throws SQLException;
 	public abstract String readEmail(String partitaIVA) throws SQLException, TuplaNotFoundException;
+	public abstract String readPassword(String partitaIVA) throws SQLException, TuplaNotFoundException;
 	
 }
