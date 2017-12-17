@@ -1,4 +1,4 @@
-package it.tirocirapid.tirocinio.proposta;
+package it.tirocirapid.tirocinio.richiesta;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet che si occupa di gestire l'inseririmento una nuova proposta di tirocinio da parte di un'azienda
+ * Servlet implementation class EliminaRichiestaTirocinio
  */
-@WebServlet("/crea_proposta_tirocinio")
-public class CreaPropostaTirocinio extends HttpServlet {
+@WebServlet("/elimina_richiesta_tirocinio")
+public class EliminaRichiestaTirocinio extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CreaPropostaTirocinio() {
+    public EliminaRichiestaTirocinio() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,25 +36,6 @@ public class CreaPropostaTirocinio extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
-	}
-	
-	/**
-	 * 
-	 * @param str la stringa da controllare
-	 * @return true se str è vuota
-	 * @return false altrimenti
-	 */
-	private boolean isEmptyField(String str)
-	{
-		return false;
-	}
-	
-	/**
-	 * Questo metodo si occupa di notificare ai Responsabili Approvazioni l'aggiunta di una nuova proposta di tirocinio
-	 */
-	private void inviaEmailResponsabileApprovazioni()
-	{
-		
 	}
 
 }

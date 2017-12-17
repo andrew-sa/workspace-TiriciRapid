@@ -8,8 +8,8 @@ import it.tirocirapid.eccezioni.TuplaNotFoundException;
 
 public abstract class AbstractProfessoreManager {
 
-	public abstract boolean search(String username, String password) throws SQLException;
+	public abstract boolean search(String username, String password) throws SQLException, TuplaNotFoundException;
 	public abstract Professore read(String username) throws SQLException, TuplaNotFoundException;
 	public abstract ArrayList<Professore> readAll() throws SQLException;
-	
+	public abstract String readEmail(String username) throws SQLException, TuplaNotFoundException;
 }

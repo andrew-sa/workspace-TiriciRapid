@@ -37,5 +37,13 @@ public class CreaRichiestaTirocinio extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+	
+	/**
+	 * Questo metodo si occupa di notificare al responsabile azienda l'arrivo di una nuova richeista di tirocinio
+	 */
+	private void inviaEmailResponsabileAzienda(String partitaIVA)
+	{
+		
+	}
 
 }

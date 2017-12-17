@@ -52,5 +52,37 @@ public class ConvalidaRichiestaTirocinio extends HttpServlet {
 	{
 		
 	}
+	
+	/**
+	 * Questo metodo si occupa di notificare il cambiamento di stato allo studente
+	 */
+	private void inviaEmailResponsabileAzienda(String usernameStudente, String statoRichiesta)
+	{
+		
+	}
+	
+	/**
+	 * Questo metodo si occupa di notificare il professore scelto come tutor interno dallo studente
+	 */
+	private void inviaEmailTutorInterno(String usernameProfessore)
+	{
+		
+	}
+	
+	/**
+	 * Questo metodo si occupa di notificare ai Responsabili Approvazioni l'arrivo di una nuova richiesta di tirocinio
+	 */
+	private void inviaEmailResponsabileApprovazioni()
+	{
+		
+	}
+	
+	/**
+	 * Questo metodo si occupa di notificare il responsabile azienda della scelta finale del responsabile approvazioni
+	 */
+	private void inviaEmailResponsabileAzienda(String partitaIVA)
+	{
+		
+	}
 
 }

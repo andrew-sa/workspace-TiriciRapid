@@ -15,12 +15,13 @@ public class ProfessoreDAO extends AbstractProfessoreManager {
 	 * Si occupa dell'interrogazione al database per verificare se il professore con quel username e password è presente nel DB
 	 * @param username rappresenta l'username del professore da cercare
 	 * @param password rappresenta la password del professore da cercare
-	 * @return true se il professore è presente nel DB
-	 * @return false altrimenti
+	 * @return true se esiste un professore avente l'username e la password passati come parametri nel DB
+	 * @return false se esiste un professore avente l'username passato come parametro, ma la password non corrisponde
+	 * @throws TuplaNotFoundException se non esiste un professore avente l'username passato come parametro sul DB
 	 * @throws SQLException
 	 */
 	@Override
-	public boolean search(String username, String password) throws SQLException {
+	public boolean search(String username, String password) throws SQLException, TuplaNotFoundException {
 		// TODO Auto-generated method stub
 		return false;
 	}
@@ -45,6 +46,12 @@ public class ProfessoreDAO extends AbstractProfessoreManager {
 	 */
 	@Override
 	public ArrayList<Professore> readAll() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String readEmail(String username) throws SQLException, TuplaNotFoundException {
 		// TODO Auto-generated method stub
 		return null;
 	}

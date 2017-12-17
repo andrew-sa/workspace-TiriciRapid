@@ -37,5 +37,13 @@ public class ConvalidaPropostaTirocinio extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+	
+	/**
+	 * Questo metodo si occupa di notificare al repsonsabile azienda la scelta del responsabile approvazioni
+	 */
+	private void inviaEmailResponsabileAzienda(String partitaIVA)
+	{
+		
+	}
 
 }

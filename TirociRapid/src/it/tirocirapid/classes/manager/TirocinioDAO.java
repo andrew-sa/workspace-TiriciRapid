@@ -38,12 +38,14 @@ public class TirocinioDAO extends AbstractTirocinioManager {
 
 	/**
 	 * Si occupa dell'interrogazione al database per la modificare lo stoto del tirocinio
-	 * @param toUpdate il tirocinio con lo stato modificato
+	 * @param partitaIVA la partita IVA dell'azienda 
+	 * @param nome il nome del tirocinio
+	 * @param statoToUpdate il nuovo stato della proposta di tirocinio
 	 * @throws TuplaNotFoundException il tirocinio non è presente all'interno del DB 
 	 * @throws SQLException
 	 */
 	@Override
-	public void update(Tirocinio toUpdate) throws SQLException, TuplaNotFoundException {
+	public void update(String partitaIVA, String nome, String statoToUpdate) throws SQLException, TuplaNotFoundException {
 		// TODO Auto-generated method stub
 		
 	}

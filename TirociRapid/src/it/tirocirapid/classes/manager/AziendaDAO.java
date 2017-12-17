@@ -12,6 +12,21 @@ import it.tirocirapid.eccezioni.TuplaNotFoundException;
 public class AziendaDAO extends AbstractAziendaManager {
 	
 	/**
+	 * Si occupa dell'interrogazione al database per verificare se l'azienda con quella partitaIVA e password è presente nel DB
+	 * @param partitaIVA rappresenta la partitaIVA dello azienda da cercare
+	 * @param password rappresenta la password dello azienda da cercare
+	 * @return true se esiste un'azienda avente l'username e la password passati come parametri nel DB
+	 * @return false se esiste un'azienda avente l'username passato come parametro, ma la password non corrisponde
+	 * @throws TuplaNotFoundException se non esiste un'azienda avente l'username passato come parametro sul DB
+	 * @throws SQLException
+	 */
+	@Override
+	public boolean search(String partitaIVA, String password) throws SQLException, TuplaNotFoundException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	/**
 	 * Si occupa dell'interrogazione al database per l'inserimento di un azienda
 	 * @param toCreate l'azienda da inserire
 	 * @throws SQLException

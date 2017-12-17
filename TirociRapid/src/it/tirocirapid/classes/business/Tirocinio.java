@@ -35,6 +35,18 @@ public class Tirocinio {
 		this.nome = nome;
 	}
 	/**
+	 * @return the descrizione
+	 */
+	public String getDescrizione() {
+		return descrizione;
+	}
+	/**
+	 * @param descrizione the descrizione to set
+	 */
+	public void setDescrizione(String descrizione) {
+		this.descrizione = descrizione;
+	}
+	/**
 	 * @return the offertaFormativa
 	 */
 	public String getOffertaFormativa() {
@@ -60,6 +72,7 @@ public class Tirocinio {
 	}
 	private String partitaIVAAzienda;
 	private String nome;
+	private String descrizione;
 	private String offertaFormativa;
 	/**
 	 * @invariant stato.equals("TirProp") || stato.equals("TirConf") || stato.equals("TirRif") || stato.equals("TirNDisp")

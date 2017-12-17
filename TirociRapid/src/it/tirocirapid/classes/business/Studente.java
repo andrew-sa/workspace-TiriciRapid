@@ -47,6 +47,90 @@ public class Studente {
 		this.emailIstituzionale = emailIstituzionale;
 	}
 	/**
+	 * @return the matricola
+	 */
+	public String getMatricola() {
+		return matricola;
+	}
+	/**
+	 * @param matricola the matricola to set
+	 */
+	public void setMatricola(String matricola) {
+		this.matricola = matricola;
+	}
+	/**
+	 * @return the mediaVoti
+	 */
+	public String getMediaVoti() {
+		return mediaVoti;
+	}
+	/**
+	 * @param mediaVoti the mediaVoti to set
+	 */
+	public void setMediaVoti(String mediaVoti) {
+		this.mediaVoti = mediaVoti;
+	}
+	/**
+	 * @return the nome
+	 */
+	public String getNome() {
+		return nome;
+	}
+	/**
+	 * @param nome the nome to set
+	 */
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	/**
+	 * @return the cognome
+	 */
+	public String getCognome() {
+		return cognome;
+	}
+	/**
+	 * @param cognome the cognome to set
+	 */
+	public void setCognome(String cognome) {
+		this.cognome = cognome;
+	}
+	/**
+	 * @return the indirizzo
+	 */
+	public String getIndirizzo() {
+		return indirizzo;
+	}
+	/**
+	 * @param indirizzo the indirizzo to set
+	 */
+	public void setIndirizzo(String indirizzo) {
+		this.indirizzo = indirizzo;
+	}
+	/**
+	 * @return the telefono
+	 */
+	public String getTelefono() {
+		return telefono;
+	}
+	/**
+	 * @param telefono the telefono to set
+	 */
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+	/**
+	 * @return the email
+	 */
+	public String getEmail() {
+		return email;
+	}
+	/**
+	 * @param email the email to set
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	/**
 	 * @return the curriculum
 	 */
 	public Curriculum getCurriculum() {
@@ -61,5 +145,12 @@ public class Studente {
 	private String username;
 	private String password;
 	private String emailIstituzionale;
+	private String matricola;
+	private String mediaVoti;
+	private String nome;
+	private String cognome;
+	private String indirizzo;
+	private String telefono;
+	private String email;
 	private Curriculum curriculum;
 }

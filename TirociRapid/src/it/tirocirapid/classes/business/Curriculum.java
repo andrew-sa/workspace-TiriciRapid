@@ -13,54 +13,6 @@ public class Curriculum {
 		
 	}
 	/**
-	 * @return the nome
-	 */
-	public String getNome() {
-		return nome;
-	}
-	/**
-	 * @param nome the nome to set
-	 */
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	/**
-	 * @return the cognome
-	 */
-	public String getCognome() {
-		return cognome;
-	}
-	/**
-	 * @param cognome the cognome to set
-	 */
-	public void setCognome(String cognome) {
-		this.cognome = cognome;
-	}
-	/**
-	 * @return the indirizzo
-	 */
-	public String getIndirizzo() {
-		return indirizzo;
-	}
-	/**
-	 * @param indirizzo the indirizzo to set
-	 */
-	public void setIndirizzo(String indirizzo) {
-		this.indirizzo = indirizzo;
-	}
-	/**
-	 * @return the telefono
-	 */
-	public String getTelefono() {
-		return telefono;
-	}
-	/**
-	 * @param telefono the telefono to set
-	 */
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
-	}
-	/**
 	 * @return the fax
 	 */
 	public String getFax() {
@@ -72,21 +24,6 @@ public class Curriculum {
 	public void setFax(String fax) {
 		this.fax = fax;
 	}
-	/**
-	 * @return the email
-	 */
-	public String getEmail() {
-		return email;
-	}
-	/**
-	 * @param email the email to set
-	 */
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	/**
-	 * @return the esperienzaLavorativa
-	 */
 	public String getEsperienzaLavorativa() {
 		return esperienzaLavorativa;
 	}
@@ -228,12 +165,7 @@ public class Curriculum {
 	public void setUlterioriInformazioni(String ulterioriInformazioni) {
 		this.ulterioriInformazioni = ulterioriInformazioni;
 	}
-	private String nome;
-	private String cognome;
-	private String indirizzo;
-	private String telefono;
 	private String fax;
-	private String email;
 	private String esperienzaLavorativa;
 	private String istruzioneFormazione;
 	private String capacitaCompetenzePerosanali;

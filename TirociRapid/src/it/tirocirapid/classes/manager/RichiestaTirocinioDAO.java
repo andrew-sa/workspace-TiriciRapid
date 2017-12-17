@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import it.tirocirapid.classes.business.RichiestaTirocinio;
+import it.tirocirapid.eccezioni.BadRequestTirocinioException;
 import it.tirocirapid.eccezioni.TuplaNotFoundException;
 
 /**
@@ -14,10 +15,11 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 	/**
 	 * Si occupa dell'interrogazione al database per l'inserimento di un Richiesta di Tirocinio
 	 * @param toCreate la RichiestaTirocinio da inserire
+	 * @throws BadRequestTirocinioException eccezione che si verifica se lo studente che vuole effettuare la richiesta di tirocinio ha una richiesta di tirocinio già approvata o in fase di approvazione
 	 * @throws SQLException
 	 */
 	@Override
-	public void create(RichiestaTirocinio toCreate) throws SQLException {
+	public void create(RichiestaTirocinio toCreate) throws SQLException, BadRequestTirocinioException {
 		// TODO Auto-generated method stub
 		
 	}
