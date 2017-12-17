@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class EliminaRichiestaTirocinio
+ * Servlet che si occupa di gestire l'eliminazione di una richiesta di tirocinio
  */
 @WebServlet("/elimina_richiesta_tirocinio")
 public class EliminaRichiestaTirocinio extends HttpServlet {

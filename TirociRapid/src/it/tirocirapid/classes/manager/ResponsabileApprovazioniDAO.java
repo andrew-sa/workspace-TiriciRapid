@@ -7,6 +7,7 @@ public class ResponsabileApprovazioniDAO extends AbstractResponsabileApprovazion
 
 	/**
 	 * Si occupa di recupare le email di tutti i responsabili approvazioni dal DB
+	 * @return ArrayList<String> rappresenta l'email dei responsabili approvazioni
 	 * @throws SQLException
 	 */
 	@Override

@@ -1,6 +1,8 @@
 package it.tirocirapid.classes.manager;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+
 import it.tirocirapid.classes.business.Studente;
 import it.tirocirapid.eccezioni.TuplaNotFoundException;
 
@@ -37,6 +39,13 @@ public class StudenteDAO extends AbstractStudenteManager {
 		return null;
 	}
 
+	/**
+	 * Si occupa dell'interrogazione al database per ricavare l'email di uno studente tramite l' username
+	 * @param username l'username dello studente di cui vogliamo sapere l'email
+	 * @return String rappresenta l'email dello studente con quel username 
+	 * @throws TuplaNotFoundException lo studente con l'username specificato non è presente all'interno del DB 
+	 * @throws SQLException
+	 */
 	@Override
 	public String readEmail(String username) throws SQLException, TuplaNotFoundException {
 		// TODO Auto-generated method stub

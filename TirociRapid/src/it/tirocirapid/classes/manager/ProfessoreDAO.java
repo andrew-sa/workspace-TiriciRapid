@@ -50,6 +50,13 @@ public class ProfessoreDAO extends AbstractProfessoreManager {
 		return null;
 	}
 
+	/**
+	 * Si occupa dell'interrogazione al database per ricavare l'email di un professore tramite l'username 
+	 * @param username l'username del professore di cui vogliamo sapere l'email
+	 * @return String rappresenta l'email del professore con quel username
+	 * @throws TuplaNotFoundException l'azienda con la partita IVA specificata non è presente all'interno del DB 
+	 * @throws SQLException
+	 */
 	@Override
 	public String readEmail(String username) throws SQLException, TuplaNotFoundException {
 		// TODO Auto-generated method stub

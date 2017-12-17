@@ -86,6 +86,13 @@ public class AziendaDAO extends AbstractAziendaManager {
 		return null;
 	}
 
+	/**
+	 * Si occupa dell'interrogazione al database per ricavare la password di un' azienda tramite la partita IVA 
+	 * @param partitaIVA la partita IVA dell'azienda di cui vogliamo sapere l'email
+	 * @return String rappresenta la password dell'azienda con quella partita IVA 
+	 * @throws TuplaNotFoundException l'azienda con la partita IVA specificata non è presente all'interno del DB 
+	 * @throws SQLException
+	 */
 	@Override
 	public String readPassword(String partitaIVA) throws SQLException, TuplaNotFoundException {
 		// TODO Auto-generated method stub
