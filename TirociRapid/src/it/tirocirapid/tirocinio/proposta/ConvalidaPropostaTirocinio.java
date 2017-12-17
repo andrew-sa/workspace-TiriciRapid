@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ConvalidaPropostaTirocinio
+ * Servlet che si occupa di gestire la decisione da parte del Responsabile Approvazioni su una proposta di tirocinio da parte di un'azienda
  */
 @WebServlet("/convalida_proposta_tirocinio")
 public class ConvalidaPropostaTirocinio extends HttpServlet {

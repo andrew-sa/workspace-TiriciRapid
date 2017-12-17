@@ -1,4 +1,4 @@
-package it.tirocirapid.profilo.azienda;
+package it.tirocirapid.tirocinio.richiesta;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet che si occupa della eliminazione di un tirocinio da parte di un'azienda
+ * Servlet che si occupa di gestire la decisione da parte del Responsabile Approvazioni, Professore (Tutor), Azienda su una richeista di tirocinio da parte di uno studente
  */
-@WebServlet("/elimina_tirocinio")
-public class EliminaTirocinio extends HttpServlet {
+@WebServlet("/convalida_richiesta_tirocinio")
+public class ConvalidaRichiestaTirocinio extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EliminaTirocinio() {
+    public ConvalidaRichiestaTirocinio() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,6 +36,21 @@ public class EliminaTirocinio extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+	}
+	
+	private void gestioneAzienda(boolean isAccept)
+	{
+		
+	}
+	
+	private void gestioneTutor(boolean isAccept)
+	{
+		
+	}
+	
+	private void gestioneResponsabileApprovazioni(boolean isAccept)
+	{
+		
 	}
 
 }
