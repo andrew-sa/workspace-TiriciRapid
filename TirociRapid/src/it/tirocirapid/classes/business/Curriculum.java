@@ -34,18 +34,6 @@ public class Curriculum {
 		this.esperienzaLavorativa = esperienzaLavorativa;
 	}
 	/**
-	 * @return the istruzioneFormazione
-	 */
-	public String getIstruzioneFormazione() {
-		return istruzioneFormazione;
-	}
-	/**
-	 * @param istruzioneFormazione the istruzioneFormazione to set
-	 */
-	public void setIstruzioneFormazione(String istruzioneFormazione) {
-		this.istruzioneFormazione = istruzioneFormazione;
-	}
-	/**
 	 * @return the capacitaCompetenzePerosanali
 	 */
 	public String getCapacitaCompetenzePerosanali() {
@@ -167,7 +155,6 @@ public class Curriculum {
 	}
 	private String fax;
 	private String esperienzaLavorativa;
-	private String istruzioneFormazione;
 	private String capacitaCompetenzePerosanali;
 	private String madrelingua;
 	private ArrayList<String> altreLigue;

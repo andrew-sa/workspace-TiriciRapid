@@ -119,6 +119,18 @@ public class Studente {
 		this.telefono = telefono;
 	}
 	/**
+	 * @return the istruzioneFormazione
+	 */
+	public String getIstruzioneFormazione() {
+		return istruzioneFormazione;
+	}
+	/**
+	 * @param istruzioneFormazione the istruzioneFormazione to set
+	 */
+	public void setIstruzioneFormazione(String istruzioneFormazione) {
+		this.istruzioneFormazione = istruzioneFormazione;
+	}
+	/**
 	 * @return the email
 	 */
 	public String getEmail() {
@@ -151,6 +163,7 @@ public class Studente {
 	private String cognome;
 	private String indirizzo;
 	private String telefono;
+	private String istruzioneFormazione;
 	private String email;
 	private Curriculum curriculum;
 }
