@@ -1,9 +1,13 @@
 package it.tirocirapid.classes.manager;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import it.tirocirapid.classes.business.Studente;
+import it.tirocirapid.classes.model.Studente;
+import it.tirocirapid.database.DriverManagerConnectionPool;
 import it.tirocirapid.eccezioni.TuplaNotFoundException;
 
 /**
@@ -22,8 +26,40 @@ public class StudenteDAO extends AbstractStudenteManager {
 	 */
 	@Override
 	public boolean search(String username, String password) throws SQLException, TuplaNotFoundException {
-		// TODO Auto-generated method stub
-		return false;
+		
+		Connection con = DriverManagerConnectionPool.getIstance().getConnection();
+		PreparedStatement ps = con.prepareStatement(SEARCH);
+		ps.setString(1, username);
+		ps.setString(2, password);
+		ResultSet rs = ps.executeQuery();
+		if (rs.next())
+		{
+			if (password.equals(rs.getString(2)))
+			{
+				con.commit();
+				rs.close();
+				ps.close();
+				DriverManagerConnectionPool.getIstance().releaseConnection(con);
+				return true;
+			}
+			else
+			{
+				con.commit();
+				rs.close();
+				ps.close();
+				DriverManagerConnectionPool.getIstance().releaseConnection(con);
+				return false;
+			}
+		}
+		else
+		{
+			con.commit();
+			rs.close();
+			ps.close();
+			DriverManagerConnectionPool.getIstance().releaseConnection(con);
+			throw new TuplaNotFoundException();
+		}
+		
 	}
 
 	/**
@@ -51,5 +87,7 @@ public class StudenteDAO extends AbstractStudenteManager {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	private static final String SEARCH = "SELECT Username, Pass FROM studente WHERE Username = ?";
 	
 }

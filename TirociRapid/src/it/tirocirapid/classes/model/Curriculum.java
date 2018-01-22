@@ -1,4 +1,4 @@
-package it.tirocirapid.classes.business;
+package it.tirocirapid.classes.model;
 
 import java.util.ArrayList;
 

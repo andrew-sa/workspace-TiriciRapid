@@ -1,4 +1,4 @@
-package it.tirocirapid.classes.business;
+package it.tirocirapid.classes.model;
 
 /**
  * Bean che rappresenta una richeista di tirocinio all'interno del nostro sistema

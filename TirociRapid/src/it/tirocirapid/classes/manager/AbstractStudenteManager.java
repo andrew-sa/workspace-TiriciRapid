@@ -2,7 +2,7 @@ package it.tirocirapid.classes.manager;
 
 import java.sql.SQLException;
 
-import it.tirocirapid.classes.business.Studente;
+import it.tirocirapid.classes.model.Studente;
 import it.tirocirapid.eccezioni.TuplaNotFoundException;
 
 public abstract class AbstractStudenteManager {

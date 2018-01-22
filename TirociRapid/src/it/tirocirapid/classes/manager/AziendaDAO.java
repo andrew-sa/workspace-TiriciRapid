@@ -1,9 +1,13 @@
 package it.tirocirapid.classes.manager;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import it.tirocirapid.classes.business.Azienda;
+import it.tirocirapid.classes.model.Azienda;
+import it.tirocirapid.database.DriverManagerConnectionPool;
 import it.tirocirapid.eccezioni.TuplaNotFoundException;
 
 /**
@@ -21,9 +25,40 @@ public class AziendaDAO extends AbstractAziendaManager {
 	 * @throws SQLException
 	 */
 	@Override
-	public boolean search(String partitaIVA, String password) throws SQLException, TuplaNotFoundException {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean search(String partitaIVA, String password) throws SQLException, TuplaNotFoundException
+	{
+		Connection con = DriverManagerConnectionPool.getIstance().getConnection();
+		PreparedStatement ps = con.prepareStatement(SEARCH);
+		ps.setString(1, partitaIVA);
+		ps.setString(2, password);
+		ResultSet rs = ps.executeQuery();
+		if (rs.next())
+		{
+			if (password.equals(rs.getString(2)))
+			{
+				con.commit();
+				rs.close();
+				ps.close();
+				DriverManagerConnectionPool.getIstance().releaseConnection(con);
+				return true;
+			}
+			else
+			{
+				con.commit();
+				rs.close();
+				ps.close();
+				DriverManagerConnectionPool.getIstance().releaseConnection(con);
+				return false;
+			}
+		}
+		else
+		{
+			con.commit();
+			rs.close();
+			ps.close();
+			DriverManagerConnectionPool.getIstance().releaseConnection(con);
+			throw new TuplaNotFoundException();
+		}
 	}
 	
 	/**
@@ -57,7 +92,8 @@ public class AziendaDAO extends AbstractAziendaManager {
 	 * @throws SQLException
 	 */
 	@Override
-	public void update(Azienda toUpdate) throws SQLException, TuplaNotFoundException {
+	public void update(Azienda toUpdate) throws SQLException, TuplaNotFoundException
+	{
 		// TODO Auto-generated method stub
 		
 	}
@@ -81,9 +117,29 @@ public class AziendaDAO extends AbstractAziendaManager {
 	 * @throws SQLException
 	 */
 	@Override
-	public String readEmail(String partitaIVA) throws SQLException, TuplaNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+	public String readEmail(String partitaIVA) throws SQLException, TuplaNotFoundException
+	{
+		Connection con = DriverManagerConnectionPool.getIstance().getConnection();
+		PreparedStatement ps = con.prepareStatement(READ_EMAIL);
+		ps.setString(1, partitaIVA);
+		ResultSet rs = ps.executeQuery();
+		if (rs.next())
+		{
+			String email = rs.getString(1);
+			con.commit();
+			rs.close();
+			ps.close();
+			DriverManagerConnectionPool.getIstance().releaseConnection(con);
+			return email;
+		}
+		else
+		{
+			con.commit();
+			rs.close();
+			ps.close();
+			DriverManagerConnectionPool.getIstance().releaseConnection(con);
+			throw new TuplaNotFoundException();
+		}
 	}
 
 	/**
@@ -94,9 +150,32 @@ public class AziendaDAO extends AbstractAziendaManager {
 	 * @throws SQLException
 	 */
 	@Override
-	public String readPassword(String partitaIVA) throws SQLException, TuplaNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+	public String readPassword(String partitaIVA) throws SQLException, TuplaNotFoundException
+	{
+		Connection con = DriverManagerConnectionPool.getIstance().getConnection();
+		PreparedStatement ps = con.prepareStatement(READ_PASSWORD);
+		ps.setString(1, partitaIVA);
+		ResultSet rs = ps.executeQuery();
+		if (rs.next())
+		{
+			String password = rs.getString(1);
+			con.commit();
+			rs.close();
+			ps.close();
+			DriverManagerConnectionPool.getIstance().releaseConnection(con);
+			return password;
+		}
+		else
+		{
+			con.commit();
+			rs.close();
+			ps.close();
+			DriverManagerConnectionPool.getIstance().releaseConnection(con);
+			throw new TuplaNotFoundException();
+		}
 	}
 
+	private static final String SEARCH = "SELECT PartitaIVA, Pass FROM azienda WHERE PartitaIVA = ?";
+	private static final String READ_EMAIL = "SELECT Email FROM azienda WHERE PartitaIVA = ?";
+	private static final String READ_PASSWORD = "SELECT Pass FROM azienda WHERE PartitaIVA = ?";
 }

@@ -1,4 +1,4 @@
-package it.tirocirapid.classes.business;
+package it.tirocirapid.classes.model;
 
 /**
  * Bean che rappresenta uno studente all'interno del nostro sistema

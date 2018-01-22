@@ -3,7 +3,7 @@ package it.tirocirapid.classes.manager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import it.tirocirapid.classes.business.RichiestaTirocinio;
+import it.tirocirapid.classes.model.RichiestaTirocinio;
 import it.tirocirapid.eccezioni.BadRequestTirocinioException;
 import it.tirocirapid.eccezioni.TuplaNotFoundException;
 

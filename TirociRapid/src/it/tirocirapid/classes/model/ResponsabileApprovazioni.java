@@ -1,4 +1,4 @@
-package it.tirocirapid.classes.business;
+package it.tirocirapid.classes.model;
 
 /**
  * Bean che rappresenta un responsabile approvazioni all'interno del nostro sistema

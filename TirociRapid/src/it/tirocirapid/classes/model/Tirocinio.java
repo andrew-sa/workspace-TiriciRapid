@@ -1,4 +1,4 @@
-package it.tirocirapid.classes.business;
+package it.tirocirapid.classes.model;
 
 /**
  * Bean che rappresenta una proposta di tirocinio di un'azienda all'interno del nostro sistema
