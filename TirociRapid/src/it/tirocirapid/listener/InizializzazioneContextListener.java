@@ -33,11 +33,26 @@ public class InizializzazioneContextListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent arg0)
     { 
     	HashMap<String, String> userTypes = new HashMap<>();
-    	userTypes.put("Studente", "Studente"); //chiave, valore
-    	userTypes.put("Professore", "Professore");
-    	userTypes.put("ResponsabileApprovazioni", "ResponsabileApprovazioni");
-    	userTypes.put("ResponsabileAzienda", "ResponsabileAzienda");
+    	userTypes.put("Stud", "Studente"); //chiave, valore
+    	userTypes.put("Prof", "Professore");
+    	userTypes.put("RespAppr", "ResponsabileApprovazioni");
+    	userTypes.put("RespAz", "ResponsabileAzienda");
     	arg0.getServletContext().setAttribute("userTypes", userTypes);
+    	
+    	HashMap<String, String> statesAzienda = new HashMap<>();
+    	statesAzienda.put("Disponibile", "AccettaRichieste");
+    	statesAzienda.put("NoNDisponibile", "NonAccettaRichieste");
+    	arg0.getServletContext().setAttribute("statesAzienda", statesAzienda);
+    	
+    	HashMap<Integer, String> statesPropTir = new HashMap<>();
+    	statesPropTir.put(1, "TirProp");
+    	statesPropTir.put(2, "TirConf");
+    	statesPropTir.put(0, "TirRif");
+    	statesPropTir.put(3, "TirNDisp");
+    	arg0.getServletContext().setAttribute("statesPropTir", statesPropTir);
+    	
+//    	HashMap<Integer, String> statesReqTir = new HashMap<>();
+    	
     	System.out.println("INIZIALIZZAZIONE");
     }
 	

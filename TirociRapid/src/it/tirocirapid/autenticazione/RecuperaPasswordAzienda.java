@@ -94,6 +94,13 @@ public class RecuperaPasswordAzienda extends HttpServlet {
 		doGet(request, response);
 	}
 	
+	/**
+	 * 
+	 * @param emailAzienda
+	 * @param passwordRecuperata
+	 * @throws AddressException
+	 * @throws MessagingException
+	 */
 	private void inviaEmail(String emailAzienda, String passwordRecuperata) throws AddressException, MessagingException
 	{
 		String host = "smtp.gmail.com";
@@ -130,7 +137,8 @@ public class RecuperaPasswordAzienda extends HttpServlet {
 	
 	/**
 	 * 
-	 * @param str rappresenta il contenuto del campo  
+	 * @param orig la stringa da controllare
+	 * @param replacement la stringa da restituire nel caso orig fosse vuota o nulla  
 	 * @return orig se orig non è ne nulla e ne vuota
 	 * @return replacement se orig è nulla o vuota
 	 */

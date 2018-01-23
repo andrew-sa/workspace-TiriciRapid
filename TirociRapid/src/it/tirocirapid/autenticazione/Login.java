@@ -68,7 +68,7 @@ public class Login extends HttpServlet {
 					{
 						UserLoggato user = new UserLoggato();
 						user.setId(username);
-						user.setTipo(userTypes.get("Studente"));
+						user.setTipo(userTypes.get("Stud"));
 						session.setAttribute("user", user);
 						response.sendRedirect(getServletContext().getContextPath() + "/"); //Alla home Studente
 					}
@@ -119,7 +119,7 @@ public class Login extends HttpServlet {
 					{
 						UserLoggato user = new UserLoggato();
 						user.setId(username);
-						user.setTipo(userTypes.get("Professore"));
+						user.setTipo(userTypes.get("Prof"));
 						session.setAttribute("user", user);
 						response.sendRedirect(getServletContext().getContextPath() + "/"); //Alla home Professore
 					}
@@ -127,7 +127,7 @@ public class Login extends HttpServlet {
 					{
 						UserLoggato user = new UserLoggato();
 						user.setId(username);
-						user.setTipo(userTypes.get("ResponsabileApprovazioni"));
+						user.setTipo(userTypes.get("RespAppr"));
 						session.setAttribute("user", user);
 						response.sendRedirect(getServletContext().getContextPath() + "/"); //Alla home RespnsabileApprovazioni
 					}
@@ -179,7 +179,7 @@ public class Login extends HttpServlet {
 					{
 						UserLoggato user = new UserLoggato();
 						user.setId(partitaIVA);
-						user.setTipo(userTypes.get("ResponsabileAzienda"));
+						user.setTipo(userTypes.get("RespAz"));
 						session.setAttribute("user", user);
 						response.sendRedirect(getServletContext().getContextPath() + "/"); //Alla home ResponsabileAzienda
 					}
@@ -273,7 +273,8 @@ public class Login extends HttpServlet {
 
 	/**
 	 * 
-	 * @param str rappresenta il contenuto del campo  
+	 * @param orig la stringa da controllare
+	 * @param replacement la stringa da restituire nel caso orig fosse vuota o nulla  
 	 * @return orig se orig non è ne nulla e ne vuota
 	 * @return replacement se orig è nulla o vuota
 	 */

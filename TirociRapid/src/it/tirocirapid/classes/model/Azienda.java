@@ -148,7 +148,7 @@ public class Azienda {
 	private String numeroTelefono;
 	private ArrayList<Tirocinio> tirociniOfferti;
 	/**
-	 * @invariant stato.equals("accettaRichieste") || stato.equals("nonAccettaRichieste")
+	 * @invariant stato.equals("AccettaRichieste") || stato.equals("NonAccettaRichieste")
 	 */
 	private String stato;
 	private String descrizioneAmbito;

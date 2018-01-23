@@ -4,10 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import it.tirocirapid.classes.model.Azienda;
 import it.tirocirapid.database.DriverManagerConnectionPool;
+import it.tirocirapid.eccezioni.DuplicateKeyException;
+import it.tirocirapid.eccezioni.InsertFailedException;
 import it.tirocirapid.eccezioni.TuplaNotFoundException;
 
 /**
@@ -65,11 +68,64 @@ public class AziendaDAO extends AbstractAziendaManager {
 	 * Si occupa dell'interrogazione al database per l'inserimento di un azienda
 	 * @param toCreate l'azienda da inserire
 	 * @throws SQLException
+	 * @throws InsertFailedException 
 	 */
 	@Override
-	public void create(Azienda toCreate) throws SQLException {
-		// TODO Auto-generated method stub
+	public void create(Azienda toCreate) throws SQLException, InsertFailedException
+	{
+		Connection con = DriverManagerConnectionPool.getIstance().getConnection();
+		if (isNewKey(toCreate.getPartitaIVA(), con))
+		{
+			PreparedStatement ps = con.prepareStatement(CREATE);
+			ps.setString(1, toCreate.getPartitaIVA());
+			ps.setString(2, toCreate.getNome());
+			ps.setString(3, toCreate.getSede());
+			ps.setString(4, toCreate.getDescrizioneAmbito());
+			ps.setString(5, toCreate.getNumeroTelefono());
+			ps.setString(6, toCreate.getEmail());
+			ps.setString(7, toCreate.getPassword());
+			ps.setString(8, toCreate.getStato());
+			int i = ps.executeUpdate();
+			con.commit();
+			ps.close();
+			DriverManagerConnectionPool.getIstance().releaseConnection(con);
+			if (i != 1)
+			{
+				throw new InsertFailedException("Si &egrave; verifacato un errore durante il salvataggio nel database");
+			}
+		}
+		else
+		{
+			DriverManagerConnectionPool.getIstance().releaseConnection(con);
+			throw new DuplicateKeyException("La partitaIVA inserita &egrave; gi&agrave; presente nel database");
+		}
 		
+	}
+	
+	/**
+	 * 
+	 * @param partitaIVA la partitaIVA dell'azienda da inserire
+	 * @param con la connessione al database
+	 * @throws SQLException
+	 */
+	private static boolean isNewKey(String partitaIVA, Connection con) throws SQLException
+	{
+		Statement stm = con.createStatement();
+		ResultSet rs = stm.executeQuery(READ_ALL_KEY);
+		while (rs.next())
+		{
+			if (rs.getString(1).equalsIgnoreCase(partitaIVA))
+			{
+				con.commit();
+				rs.close();
+				stm.close();
+				return false;
+			}
+		}
+		con.commit();
+		rs.close();
+		stm.close();
+		return true;
 	}
 
 	/**
@@ -178,4 +234,6 @@ public class AziendaDAO extends AbstractAziendaManager {
 	private static final String SEARCH = "SELECT PartitaIVA, Pass FROM azienda WHERE PartitaIVA = ?";
 	private static final String READ_EMAIL = "SELECT Email FROM azienda WHERE PartitaIVA = ?";
 	private static final String READ_PASSWORD = "SELECT Pass FROM azienda WHERE PartitaIVA = ?";
+	private static final String CREATE = "INSERT INTO azienda(PartitaIVA, Nome, Sede, DescrizioneAmbito, NumeroTelefono, Email, Pass, Stato) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+	private static final String READ_ALL_KEY = "SELECT PartitaIVA FROM azienda";
 }
