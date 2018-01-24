@@ -88,9 +88,35 @@ public class TirocinioDAO extends AbstractTirocinioManager {
 	 * @throws SQLException
 	 */
 	@Override
-	public Tirocinio read(String partitaIVA, String nome) throws SQLException, TuplaNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+	public Tirocinio read(String partitaIVA, String nome) throws SQLException, TuplaNotFoundException
+	{
+		Connection con = DriverManagerConnectionPool.getIstance().getConnection();
+		PreparedStatement ps = con.prepareStatement(READ);
+		ps.setString(1, partitaIVA);
+		ps.setString(2, nome);
+		ResultSet rs = ps.executeQuery();
+		if (rs.next())
+		{
+			Tirocinio tirocinio = new Tirocinio();
+			tirocinio.setNome(nome);
+			tirocinio.setPartitaIVAAzienda(partitaIVA);
+			tirocinio.setStato(rs.getString(3));
+			tirocinio.setOffertaFormativa(rs.getString(4));
+			tirocinio.setDescrizione(rs.getString(5));
+			con.commit();
+			rs.close();
+			ps.close();
+			DriverManagerConnectionPool.getIstance().releaseConnection(con);
+			return tirocinio;
+		}
+		else
+		{
+			con.commit();
+			rs.close();
+			ps.close();
+			DriverManagerConnectionPool.getIstance().releaseConnection(con);
+			throw new TuplaNotFoundException("Il tirocinio selezionato non &egrave; presente nel database");
+		}
 	}
 
 	/**
@@ -102,9 +128,21 @@ public class TirocinioDAO extends AbstractTirocinioManager {
 	 * @throws SQLException
 	 */
 	@Override
-	public void update(String partitaIVA, String nome, String statoToUpdate) throws SQLException, TuplaNotFoundException {
-		// TODO Auto-generated method stub
-		
+	public void update(String partitaIVA, String nome, String statoToUpdate) throws SQLException, TuplaNotFoundException
+	{
+		Connection con = DriverManagerConnectionPool.getIstance().getConnection();
+		PreparedStatement ps = con.prepareStatement(UPDATE);
+		ps.setString(1, statoToUpdate);
+		ps.setString(2, partitaIVA);
+		ps.setString(3, nome);
+		int i = ps.executeUpdate();
+		con.commit();
+		ps.close();
+		DriverManagerConnectionPool.getIstance().releaseConnection(con);
+		if (i != 1)
+		{
+			throw new TuplaNotFoundException("Il tirocinio selezionato non &egrave; presente nel database");
+		}
 	}
 
 	/**
@@ -135,5 +173,7 @@ public class TirocinioDAO extends AbstractTirocinioManager {
 	
 	private static final String CREATE = "INSERT INTO tirocinio(PartitaIVA, Nome, Descirzione, OffertaFormativa, Stato) VALUES (?, ?, ?, ?, ?)";
 	private static final String READ_ALL_KEY_BY_AZIENDA = "SELECT Nome FROM azienda WHERE PartitaIVA = ?";
+	private static final String READ = "SELECT * FROM tirocinio WHERE PartitaIVA = ? AND Nome = ?";
+	private static final String UPDATE = "UPDATE tirocinio SET Stato = ? WHERE PartitaIVA = ? AND Nome = ?";
 
 }
