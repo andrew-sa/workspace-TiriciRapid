@@ -81,17 +81,17 @@ public class Login extends HttpServlet {
 				}
 				catch (TuplaNotFoundException e)
 				{
+					e.printStackTrace();
 					request.setAttribute("errore", "Lo studente non esiste");
 					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata di login Studente
 					dispatcher.forward(request, response);
-					e.printStackTrace();
 				}
 				catch (SQLException e)
 				{
+					e.printStackTrace();
 					request.setAttribute("errore", "Si &egrave; verificato un errore durante l'interazione col database, si prega di riprovare");
 					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata di login Studente
-					dispatcher.forward(request, response);
-					e.printStackTrace();	
+					dispatcher.forward(request, response);	
 				}
 			}
 		}
@@ -140,17 +140,17 @@ public class Login extends HttpServlet {
 				}
 				catch (TuplaNotFoundException e)
 				{
+					e.printStackTrace();
 					request.setAttribute("errore", "Il professore non esiste");
 					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata di login Professore
 					dispatcher.forward(request, response);
-					e.printStackTrace();
 				}
 				catch (SQLException e)
 				{
+					e.printStackTrace();
 					request.setAttribute("errore", "Si &egrave; verificato un errore durante l'interazione col database, si prega di riprovare");
 					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata di login Professore
-					dispatcher.forward(request, response);
-					e.printStackTrace();	
+					dispatcher.forward(request, response);	
 				}
 			}
 
@@ -192,17 +192,17 @@ public class Login extends HttpServlet {
 				}
 				catch (TuplaNotFoundException e)
 				{
+					e.printStackTrace();
 					request.setAttribute("errore", "L'azienda non esiste");
 					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata di login ResponsabileAzienda
 					dispatcher.forward(request, response);
-					e.printStackTrace();
 				}
 				catch (SQLException e)
 				{
+					e.printStackTrace();
 					request.setAttribute("errore", "Si &egrave; verificato un errore durante l'interazione col database, si prega di riprovare");
 					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata di login ResponsabileAzienda
-					dispatcher.forward(request, response);
-					e.printStackTrace();	
+					dispatcher.forward(request, response);	
 				}
 			}
 		}

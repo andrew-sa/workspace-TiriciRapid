@@ -41,16 +41,15 @@ public class CaricaListaAziende extends HttpServlet {
 		try 
 		{
 			ArrayList<Azienda> aziende = managerAzienda.readAll();
-			request.setAttribute("aziende", aziende);
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata della ListaAziende
-			dispatcher.forward(request, response);	
+			request.setAttribute("aziende", aziende);	
 		} 
 		catch (SQLException e) 
 		{
+			request.setAttribute("errore", "Si &egrave; verificato un errore durante l'interazione col database, si prega di riprovare");
 			e.printStackTrace();
-			String referer = request.getHeader("Referer");
-			response.sendRedirect(referer);
 		}
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata della ListaAziende
+		dispatcher.forward(request, response);
 	}
 
 	/**

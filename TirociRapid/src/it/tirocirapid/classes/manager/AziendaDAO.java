@@ -160,9 +160,30 @@ public class AziendaDAO extends AbstractAziendaManager {
 	 * @throws SQLException
 	 */
 	@Override
-	public ArrayList<Azienda> readAll() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Azienda> readAll() throws SQLException
+	{
+		ArrayList<Azienda> aziende = new ArrayList<>();
+		Connection con = DriverManagerConnectionPool.getIstance().getConnection();
+		Statement stm = con.createStatement();
+		ResultSet rs = stm.executeQuery(READ_ALL);
+		while (rs.next())
+		{
+			Azienda azienda = new Azienda();
+			azienda.setPartitaIVA(rs.getString(1));
+			azienda.setNome(rs.getString(2));
+			azienda.setSede(rs.getString(3));
+			azienda.setDescrizioneAmbito(rs.getString(4));
+			azienda.setNumeroTelefono(rs.getString(5));
+			azienda.setEmail(rs.getString(6));
+			azienda.setPassword(rs.getString(7));
+			azienda.setStato(rs.getString(8));
+			aziende.add(azienda);
+		}
+		con.commit();
+		rs.close();
+		stm.close();
+		DriverManagerConnectionPool.getIstance().releaseConnection(con);
+		return aziende;
 	}
 
 	/**
@@ -236,4 +257,5 @@ public class AziendaDAO extends AbstractAziendaManager {
 	private static final String READ_PASSWORD = "SELECT Pass FROM azienda WHERE PartitaIVA = ?";
 	private static final String CREATE = "INSERT INTO azienda(PartitaIVA, Nome, Sede, DescrizioneAmbito, NumeroTelefono, Email, Pass, Stato) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String READ_ALL_KEY = "SELECT PartitaIVA FROM azienda";
+	private static final String READ_ALL = "SELECT * FROM azienda";
 }

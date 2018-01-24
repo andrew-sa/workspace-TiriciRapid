@@ -92,7 +92,8 @@ public class ProfessoreDAO extends AbstractProfessoreManager {
 	 * @throws SQLException
 	 */
 	@Override
-	public ArrayList<Professore> readAll() throws SQLException {
+	public ArrayList<Professore> readAll() throws SQLException
+	{
 		// TODO Auto-generated method stub
 		return null;
 	}
