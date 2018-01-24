@@ -51,7 +51,15 @@ public class InizializzazioneContextListener implements ServletContextListener {
     	statesPropTir.put(3, "TirNDisp");
     	arg0.getServletContext().setAttribute("statesPropTir", statesPropTir);
     	
-//    	HashMap<Integer, String> statesReqTir = new HashMap<>();
+    	HashMap<Integer, String> statesReqTir = new HashMap<>();
+    	statesReqTir.put(1, "ConfAz");
+    	statesReqTir.put(2, "ScelTut");
+    	statesReqTir.put(3, "ConfTut");
+    	statesReqTir.put(4, "ConfResp");
+    	statesReqTir.put(5, "Acc");
+    	statesReqTir.put(6, "RifResp");
+    	statesReqTir.put(7, "RifTut");
+    	statesReqTir.put(0, "RifAz");
     	
     	System.out.println("INIZIALIZZAZIONE");
     }
