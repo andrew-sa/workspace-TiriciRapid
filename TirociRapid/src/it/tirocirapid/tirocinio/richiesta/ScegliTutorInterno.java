@@ -15,6 +15,7 @@ import it.tirocirapid.classes.manager.AbstractRichiestaTirocinioManager;
 import it.tirocirapid.classes.model.Professore;
 import it.tirocirapid.classes.model.RichiestaTirocinio;
 import it.tirocirapid.classes.model.UserLoggato;
+import it.tirocirapid.eccezioni.InsertFailedException;
 import it.tirocirapid.eccezioni.TuplaNotFoundException;
 import it.tirocirapid.factory.AbstractManagerFactory;
 import it.tirocirapid.factory.DAOFactory;
@@ -70,7 +71,7 @@ public class ScegliTutorInterno extends HttpServlet {
 				e.printStackTrace();
 				request.setAttribute("errore", "Si &egrave; verificato un errore durante l'interazione col database, si prega di riprovare");
 			}
-			catch (TuplaNotFoundException e)
+			catch (TuplaNotFoundException | InsertFailedException e)
 			{
 				e.printStackTrace();
 				request.setAttribute("errore", e.getMessage());

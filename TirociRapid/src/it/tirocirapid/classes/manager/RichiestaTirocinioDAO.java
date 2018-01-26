@@ -97,9 +97,9 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 	{
 		Connection con = DriverManagerConnectionPool.getIstance().getConnection();
 		PreparedStatement ps = con.prepareStatement(READ);
-		ps.setString(3, nomeTirocinio);
+		ps.setString(1, nomeTirocinio);
 		ps.setString(2, partitaIVAAzienda);
-		ps.setString(1, usernameStudente);
+		ps.setString(3, usernameStudente);
 		ResultSet rs = ps.executeQuery();
 		if (rs.next())
 		{
@@ -129,10 +129,21 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 	 * @throws SQLException
 	 */
 	@Override
-	public void update(RichiestaTirocinio toUpdate) throws MySQLIntegrityConstraintViolationException, SQLException, TuplaNotFoundException
+	public void update(RichiestaTirocinio toUpdate) throws MySQLIntegrityConstraintViolationException, SQLException, InsertFailedException
 	{
-		// TODO Auto-generated method stub
-		
+		Connection con = DriverManagerConnectionPool.getIstance().getConnection();
+		PreparedStatement ps = con.prepareStatement(UPDATE);
+		ps.setString(1, toUpdate.getTirocinio().getNome());
+		ps.setString(2, toUpdate.getTirocinio().getPartitaIVAAzienda());
+		ps.setString(3, toUpdate.getStudente().getUsername());
+		int i = ps.executeUpdate();
+		con.commit();
+		ps.close();
+		DriverManagerConnectionPool.getIstance().releaseConnection(con);
+		if (i != 1)
+		{
+			throw new InsertFailedException("Impossibile aggiornare la richiesta di tirocinio selezionata");
+		}
 	}
 
 	/**
@@ -212,5 +223,6 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 	private static final String READ_ALL_STATES_BY_STUDENTE = "SELECT Stato FROM richiestatirocinio WHERE Studente = ?";
 	private static final String DELETE = "DELETE FROM richiestatirocinio WHERE Nome = ? AND PartitaIVA = ? AND Username = ?";
 	private static final String READ = "SELECT * FROM richiestatirocinio WHERE Nome = ? AND PartitaIVA = ? AND Username = ?";
+	private static final String UPDATE = "UPDATE tirocinio SET Stato = ? WHERE Nome = ? AND PartitaIVA = ? AND Username = ?";
 
 }
