@@ -35,7 +35,6 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 		Connection con = DriverManagerConnectionPool.getIstance().getConnection();
 		if (isGoodRequest(toCreate.getStudente().getUsername(), states, con))
 		{
-			
 			PreparedStatement ps = con.prepareStatement(CREATE);
 			ps.setString(1, toCreate.getTirocinio().getPartitaIVAAzienda());
 			ps.setString(2, toCreate.getTirocinio().getNome());
@@ -96,7 +95,31 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 	@Override
 	public RichiestaTirocinio read(String usernameStudente, String partitaIVAAzienda, String nomeTirocinio) throws SQLException, TuplaNotFoundException
 	{
-		return null;
+		Connection con = DriverManagerConnectionPool.getIstance().getConnection();
+		PreparedStatement ps = con.prepareStatement(READ);
+		ps.setString(3, nomeTirocinio);
+		ps.setString(2, partitaIVAAzienda);
+		ps.setString(1, usernameStudente);
+		ResultSet rs = ps.executeQuery();
+		if (rs.next())
+		{
+			RichiestaTirocinio reqTir = new RichiestaTirocinio();
+			reqTir.setTirocinio(rs.getString(2), rs.getString(1));
+			reqTir.setStudente(rs.getString(4));
+			reqTir.setStato(rs.getString(3));
+			rs.close();
+			ps.close();
+			DriverManagerConnectionPool.getIstance().releaseConnection(con);
+			return reqTir;
+		}
+		else
+		{
+			con.commit();
+			rs.close();
+			ps.close();
+			DriverManagerConnectionPool.getIstance().releaseConnection(con);
+			throw new TuplaNotFoundException("La richiesta di tirocinio selezionata non &egrave; presente nel database");
+		}
 	}
 
 	/**
@@ -188,5 +211,6 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 	private static final String CREATE = "INSERT INTO richiestatirocinio(Nome, PartitaIVA, Stato, Username) VALUES (?, ?, ?, ?)";
 	private static final String READ_ALL_STATES_BY_STUDENTE = "SELECT Stato FROM richiestatirocinio WHERE Studente = ?";
 	private static final String DELETE = "DELETE FROM richiestatirocinio WHERE Nome = ? AND PartitaIVA = ? AND Username = ?";
+	private static final String READ = "SELECT * FROM richiestatirocinio WHERE Nome = ? AND PartitaIVA = ? AND Username = ?";
 
 }
