@@ -55,3 +55,26 @@
 	border-bottom-color: #00627d;
 }
 }
+
+
+
+
+/*TABELLA TIROCINIO*/
+
+
+	.tabelle {
+		display: table;
+	}
+	.parametri-tirocinio {
+		display: table-row;
+		font-size: medium;
+		margin-left: 1em;
+	}
+	.elemento-parametri-tirocinio {
+	
+		display: table-cell;
+		padding-left: 1em;
+		font-size: medium;
+		margin-left: 1em;
+		padding-right: 1em;
+	}

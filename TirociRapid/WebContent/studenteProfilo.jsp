@@ -56,6 +56,7 @@
 			<div class="elemento-parametri-studente"> Capacita competenze tecniche:</div> 
 			<div class="elemento-parametri-studente"> bla asdnbncsj jk wuyg jwdbsj fcbcaj  dvsj zud jhg fduavzsjd cnuywyye hgsge fawg esu </div>
 			</div>
+			
 			<div class="parametri-studente">
 			<div class="elemento-parametri-studente"> Capacita competenze artistiche: </div> 
 			<div class="elemento-parametri-studente"> bla </div>
