@@ -45,8 +45,8 @@ public class CaricaListaAziende extends HttpServlet {
 		} 
 		catch (SQLException e) 
 		{
-			request.setAttribute("errore", "Si &egrave; verificato un errore durante l'interazione col database, si prega di riprovare");
 			e.printStackTrace();
+			request.setAttribute("errore", "Si &egrave; verificato un errore durante l'interazione col database, si prega di riprovare");
 		}
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata della ListaAziende
 		dispatcher.forward(request, response);

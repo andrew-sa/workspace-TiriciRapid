@@ -1,11 +1,20 @@
 package it.tirocirapid.classes.manager;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 import it.tirocirapid.classes.model.RichiestaTirocinio;
+import it.tirocirapid.database.DriverManagerConnectionPool;
 import it.tirocirapid.eccezioni.BadRequestTirocinioException;
+import it.tirocirapid.eccezioni.InsertFailedException;
 import it.tirocirapid.eccezioni.TuplaNotFoundException;
+
+import java.util.HashMap;
+
+import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 
 /**
  * Model che contiene le query per la creazione, lettura, update e cancellazione dell'oggetto RichiestaTirocinio dal DB.
@@ -15,13 +24,64 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 	/**
 	 * Si occupa dell'interrogazione al database per l'inserimento di un Richiesta di Tirocinio
 	 * @param toCreate la RichiestaTirocinio da inserire
+	 * @param states i possibili stati della richiesta di tiroicnio
 	 * @throws BadRequestTirocinioException eccezione che si verifica se lo studente che vuole effettuare la richiesta di tirocinio ha una richiesta di tirocinio già approvata o in fase di approvazione
 	 * @throws SQLException
+	 * @throws InsertFailedException 
 	 */
 	@Override
-	public void create(RichiestaTirocinio toCreate) throws SQLException, BadRequestTirocinioException {
-		// TODO Auto-generated method stub
-		
+	public void create(RichiestaTirocinio toCreate, HashMap<Integer, String> states) throws SQLException, BadRequestTirocinioException, InsertFailedException
+	{
+		Connection con = DriverManagerConnectionPool.getIstance().getConnection();
+		if (isGoodRequest(toCreate.getStudente().getUsername(), states, con))
+		{
+			
+			PreparedStatement ps = con.prepareStatement(CREATE);
+			ps.setString(1, toCreate.getTirocinio().getPartitaIVAAzienda());
+			ps.setString(2, toCreate.getTirocinio().getNome());
+			ps.setString(3, states.get(1));
+			ps.setString(4, toCreate.getStudente().getUsername());
+			int i = ps.executeUpdate();
+			con.commit();
+			ps.close();
+			DriverManagerConnectionPool.getIstance().releaseConnection(con);
+			if (i != 1)
+			{
+				throw new InsertFailedException("Si &egrave; verifacato un errore durante il salvataggio sul database");
+			}
+		}
+		else
+		{
+			DriverManagerConnectionPool.getIstance().releaseConnection(con);
+			throw new BadRequestTirocinioException("Hai gi&agrave; una richiesta di tirocinio in fase di convalidazione");
+		}
+	}
+	
+	/**
+	 * 
+	 * @param username l'username dello studente che sta effettuando la richiesta
+	 * @param states i possibili stati della richiesta di tiroicnio
+	 * @param con la connessione al database
+	 * @throws SQLException
+	 */
+	private static boolean isGoodRequest(String usename, HashMap<Integer, String> states, Connection con) throws SQLException
+	{
+		PreparedStatement ps = con.prepareStatement(READ_ALL_STATES_BY_STUDENTE);
+		ResultSet rs = ps.executeQuery();
+		while (rs.next())
+		{
+			if (!(rs.getString(1).equals(states.get(-1)) || rs.getString(1).equals(states.get(-4))))
+			{
+				con.commit();
+				rs.close();
+				ps.close();
+				return false;
+			}
+		}
+		con.commit();
+		rs.close();
+		ps.close();
+		return true;
 	}
 
 	/**
@@ -34,9 +94,8 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 	 * @throws SQLException
 	 */
 	@Override
-	public RichiestaTirocinio read(String usernameStudente, String partitaIVAAzienda, String nomeTirocinio)
-			throws SQLException, TuplaNotFoundException {
-		// TODO Auto-generated method stub
+	public RichiestaTirocinio read(String usernameStudente, String partitaIVAAzienda, String nomeTirocinio) throws SQLException, TuplaNotFoundException
+	{
 		return null;
 	}
 
@@ -47,7 +106,8 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 	 * @throws SQLException
 	 */
 	@Override
-	public void update(RichiestaTirocinio toUpdate) throws SQLException, TuplaNotFoundException {
+	public void update(RichiestaTirocinio toUpdate) throws MySQLIntegrityConstraintViolationException, SQLException, TuplaNotFoundException
+	{
 		// TODO Auto-generated method stub
 		
 	}
@@ -61,10 +121,21 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 	 * @throws SQLException
 	 */
 	@Override
-	public void delete(String usernameStudente, String partitaIVAAzienda, String nomeTirocinio)
-			throws SQLException, TuplaNotFoundException {
-		// TODO Auto-generated method stub
-		
+	public void delete(String usernameStudente, String partitaIVAAzienda, String nomeTirocinio) throws MySQLIntegrityConstraintViolationException, SQLException, TuplaNotFoundException
+	{
+		Connection con = DriverManagerConnectionPool.getIstance().getConnection();	
+		PreparedStatement ps = con.prepareStatement(DELETE);
+		ps.setString(1, nomeTirocinio);
+		ps.setString(2, partitaIVAAzienda);
+		ps.setString(3, usernameStudente);
+		int i = ps.executeUpdate();
+		con.commit();
+		ps.close();
+		DriverManagerConnectionPool.getIstance().releaseConnection(con);
+		if (i != 1)
+		{
+			throw new TuplaNotFoundException("La richiesta di tirocinio selezionata non &egrave; presente nel database");
+		}
 	}
 
 	/**
@@ -113,5 +184,9 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	private static final String CREATE = "INSERT INTO richiestatirocinio(Nome, PartitaIVA, Stato, Username) VALUES (?, ?, ?, ?)";
+	private static final String READ_ALL_STATES_BY_STUDENTE = "SELECT Stato FROM richiestatirocinio WHERE Studente = ?";
+	private static final String DELETE = "DELETE FROM richiestatirocinio WHERE Nome = ? AND PartitaIVA = ? AND Username = ?";
 
 }

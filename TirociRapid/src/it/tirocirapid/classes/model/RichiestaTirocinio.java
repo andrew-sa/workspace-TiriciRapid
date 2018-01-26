@@ -26,14 +26,14 @@ public class RichiestaTirocinio {
 	/**
 	 * @return the tiroconio
 	 */
-	public Tirocinio getTiroconio() {
-		return tiroconio;
+	public Tirocinio getTirocinio() {
+		return tirocinio;
 	}
 	/**
-	 * @param tiroconio the tiroconio to set
+	 * @param tirocinio the tiroconio to set
 	 */
-	public void setTiroconio(Tirocinio tiroconio) {
-		this.tiroconio = tiroconio;
+	public void setTiroconio(Tirocinio tirocinio) {
+		this.tirocinio = tirocinio;
 	}
 	/**
 	 * @return the tutorInterno
@@ -59,8 +59,31 @@ public class RichiestaTirocinio {
 	public void setStato(String stato) {
 		this.stato = stato;
 	}
+	
+	public void setStudente(String username)
+	{
+		Studente studente = new Studente();
+		studente.setEmail(username);
+		this.studente = studente;
+	}
+	
+	public void setTirocinio(String partitaIVAAzienda, String nomeTirocinio)
+	{
+		Tirocinio tirocinio = new Tirocinio();
+		tirocinio.setPartitaIVAAzienda(partitaIVAAzienda);
+		tirocinio.setNome(nomeTirocinio);
+		this.tirocinio = tirocinio;
+	}
+	
+	public void setTutorInterno(String username)
+	{
+		Professore professore = new Professore();
+		professore.setUsername(username);
+		tutorInterno = professore;
+	}
+	
 	private Studente studente;
-	private Tirocinio tiroconio;
+	private Tirocinio tirocinio;
 	private Professore tutorInterno;
 	/**
 	 * @invariant stato.equals("ConfAz") || stato.equals("RifAz") || stato.equals("ScelTut") || stato.equals("ConfTut") || stato.equals("RifTut") || stato.equals("ConfResp") || stato.equals("RifResp") || stato.equals("Acc")

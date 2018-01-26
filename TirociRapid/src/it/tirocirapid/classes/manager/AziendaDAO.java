@@ -91,7 +91,7 @@ public class AziendaDAO extends AbstractAziendaManager {
 			DriverManagerConnectionPool.getIstance().releaseConnection(con);
 			if (i != 1)
 			{
-				throw new InsertFailedException("Si &egrave; verifacato un errore durante il salvataggio nel database");
+				throw new InsertFailedException("Si &egrave; verifacato un errore durante il salvataggio sul database");
 			}
 		}
 		else

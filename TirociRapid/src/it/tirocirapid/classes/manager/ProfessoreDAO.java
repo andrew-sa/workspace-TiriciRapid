@@ -4,8 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
+import it.tirocirapid.classes.model.Azienda;
 import it.tirocirapid.classes.model.Professore;
 import it.tirocirapid.database.DriverManagerConnectionPool;
 import it.tirocirapid.eccezioni.TuplaNotFoundException;
@@ -94,8 +96,25 @@ public class ProfessoreDAO extends AbstractProfessoreManager {
 	@Override
 	public ArrayList<Professore> readAll() throws SQLException
 	{
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Professore> professori = new ArrayList<>();
+		Connection con = DriverManagerConnectionPool.getIstance().getConnection();
+		Statement stm = con.createStatement();
+		ResultSet rs = stm.executeQuery(READ_ALL);
+		while (rs.next())
+		{
+			Professore professore = new Professore();
+			professore.setNome(rs.getString(1));
+			professore.setCognome(rs.getString(2));
+			professore.setEmailIstituzionale(rs.getString(3));
+			professore.setTelefono(rs.getString(4));
+			professore.setAmbito(rs.getString(5));
+			professori.add(professore);
+		}
+		con.commit();
+		rs.close();
+		stm.close();
+		DriverManagerConnectionPool.getIstance().releaseConnection(con);
+		return professori;
 	}
 
 	/**
@@ -112,5 +131,5 @@ public class ProfessoreDAO extends AbstractProfessoreManager {
 	}
 	
 	private static final String SEARCH = "SELECT Username, Pass, Tipo FROM profesore WHERE Username = ?";
-
+	private static final String READ_ALL = "SELECT Nome, Cognome, EmailIstituzionale, Telefono, Ambito FROM professore";
 }

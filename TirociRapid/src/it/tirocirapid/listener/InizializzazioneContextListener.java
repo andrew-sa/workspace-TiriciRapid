@@ -57,9 +57,9 @@ public class InizializzazioneContextListener implements ServletContextListener {
     	statesReqTir.put(3, "ConfTut");
     	statesReqTir.put(4, "ConfResp");
     	statesReqTir.put(5, "Acc");
-    	statesReqTir.put(6, "RifResp");
-    	statesReqTir.put(7, "RifTut");
-    	statesReqTir.put(0, "RifAz");
+    	statesReqTir.put(-4, "RifResp");
+    	statesReqTir.put(-3, "RifTut");
+    	statesReqTir.put(-1, "RifAz");
     	
     	System.out.println("INIZIALIZZAZIONE");
     }

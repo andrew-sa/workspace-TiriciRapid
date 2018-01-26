@@ -41,7 +41,7 @@ public class TirocinioDAO extends AbstractTirocinioManager {
 			DriverManagerConnectionPool.getIstance().releaseConnection(con);
 			if (i != 1)
 			{
-				throw new InsertFailedException("Si &egrave; verifacato un errore durante il salvataggio nel database");
+				throw new InsertFailedException("Si &egrave; verifacato un errore durante il salvataggio sul database");
 			}
 		}
 		else
@@ -172,7 +172,7 @@ public class TirocinioDAO extends AbstractTirocinioManager {
 	}
 	
 	private static final String CREATE = "INSERT INTO tirocinio(PartitaIVA, Nome, Descirzione, OffertaFormativa, Stato) VALUES (?, ?, ?, ?, ?)";
-	private static final String READ_ALL_KEY_BY_AZIENDA = "SELECT Nome FROM azienda WHERE PartitaIVA = ?";
+	private static final String READ_ALL_KEY_BY_AZIENDA = "SELECT Nome FROM tirocinio WHERE PartitaIVA = ?";
 	private static final String READ = "SELECT * FROM tirocinio WHERE PartitaIVA = ? AND Nome = ?";
 	private static final String UPDATE = "UPDATE tirocinio SET Stato = ? WHERE PartitaIVA = ? AND Nome = ?";
 

@@ -10,6 +10,11 @@ public class Professore {
 	public Professore() {
 		
 	}
+	
+	public Professore(String username)
+	{
+		this.username = username;
+	}
 	/**
 	 * @return the username
 	 */

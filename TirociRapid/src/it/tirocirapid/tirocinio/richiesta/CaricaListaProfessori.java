@@ -42,16 +42,15 @@ public class CaricaListaProfessori extends HttpServlet {
 		try 
 		{
 			ArrayList<Professore> professori = managerProfessore.readAll();
-			request.setAttribute("professori", professori);
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata della ListaProfessori
-			dispatcher.forward(request, response);	
+			request.setAttribute("professori", professori);	
 		} 
 		catch (SQLException e) 
 		{
 			e.printStackTrace();
-			String referer = request.getHeader("Referer");
-			response.sendRedirect(referer);
+			request.setAttribute("errore", "Si &egrave; verificato un errore durante l'interazione col database, si prega di riprovare");
 		}
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata della ListaProfessori
+		dispatcher.forward(request, response);
 	}
 
 	/**
