@@ -27,9 +27,9 @@
 		<div class="container">
 
 			<ul class="nav nav-tabs">
-				<li role="presentation" id="attiva" S><a href="#">Richieste</a></li>
-				<li role="presentation"><a href="#">Aziende</a></li>
-				<li role="presentation"><a href="#">Professori</a></li>
+				<li role="presentation"><a href="#">Richieste</a></li>
+				<li role="presentation"id="attiva"><a href="#">Aggiungi Tirocinio</a></li>
+				<li role="presentation"><a href="#">Visualizza Tirocini</a></li>
 				<li role="presentation"><a href="#">Profilo</a></li>
 				<li role="presentation" class="navbar-right"><a href="#">Logout &nbsp<i class="fa fa-power-off" ></i></a></li>
 	
