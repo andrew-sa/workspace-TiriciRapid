@@ -1,0 +1,49 @@
+@charset "ISO-8859-1";
+
+
+#bottone-accetta-tirocinante-azienda {
+	background-color: #006600;
+	border-color: white;
+	color: white;
+}
+
+#bottone-rifiuta-tirocinante-azienda {
+	
+	background-color: #cc0000;
+	border-color: white;
+	color: white;
+}
+#bottone-rifiuta-tirocinante-azienda:hover {
+	background-color: red;
+	box-shadow: 0em 0em 0em 0.1em white inset;
+	color: white;
+}
+#bottone-accetta-tirocinante-azienda:hover {
+	background-color: green;
+	box-shadow: 0em 0em 0em 0.1em white inset;
+	color: white;
+}
+
+
+.col-md-3
+{
+	width:auto; 
+}
+
+.col-md-9.cta-contents
+{
+	border-right-style: solid;
+	border-right-width: thin;
+	border-right-color: #00627d;
+}
+
+@media screen and (max-width: 991px)
+{
+	.col-md-9.cta-contents
+{
+	border-right-width: 0em;
+	border-bottom-width: thin;
+	border-bottom-style: solid;
+	border-bottom-color: #00627d;
+}
+}

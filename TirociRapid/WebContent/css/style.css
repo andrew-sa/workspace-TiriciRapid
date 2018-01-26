@@ -1,0 +1,111 @@
+html {
+  position: relative;  /*SORVONO PER IL FOOTER*/
+  min-height: 100%;
+}
+
+body {
+	padding-top: 0px;
+	/*position: relative;*/
+	/* Margin bottom by footer height */
+ 	 margin-bottom: 60px;
+ 	 background-color: #f9f9f9;
+}
+
+.carousel-inner >.item{
+	min-height: 200px;
+	background-size: cover;
+	background-position: center center;
+}
+ 
+
+
+
+
+
+/*Slider*/
+.left.carousel-control
+{
+	visibility: hidden;
+}
+.right.carousel-control
+{
+	visibility: hidden;
+}
+
+/*Effetti nav */
+.nav-tabs
+{
+	padding: 0.3em;
+	border-bottom: 0px;	
+}
+.nav-tabs > li.active > a:hover
+{
+	border-radius: 0.7em;
+	background-color: #cc7a00;
+}
+.nav-tabs > li > a:hover {
+	border-radius: 0.7em;
+	background-color: #cc7a00;
+	color: white;
+	
+}
+.nav-tabs > li.active {
+	
+	border-radius: 0.7em;
+	background-color: #cc7a00;
+	color: white;
+}
+
+.nav > li > a:focus, .nav > li > a:hover {
+    background-color: #cc7a00;
+    color: white;
+    border-radius: 0.7em;
+}
+
+#attiva > a
+{
+	border-radius: 0.7em;
+	color:white;
+	background-color: #cc7a00;
+}
+
+/*FORM*/
+
+
+
+
+#inputEmail, #inputPassword, .btn.btn-lg.btn-primary.btn-block.btn-signin
+{
+	width: 100%;
+}
+
+.form-signin
+{
+	width: 60%;
+	margin-left: 20%;
+	margin-right: 20%;
+	padding-bottom: 4em;
+}
+
+
+/*FOOTER*/
+.footer {
+	padding:0.7em;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  
+  background-color: #f90;
+}
+
+.footer > div{
+	text-align: center;
+	color: #23527c;
+}
+
+
+@media screen and (max-width: 1000px)
+{
+	
+}
