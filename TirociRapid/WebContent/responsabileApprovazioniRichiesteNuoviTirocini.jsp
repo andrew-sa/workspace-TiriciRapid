@@ -16,25 +16,7 @@
 
 	<%@ include file="slider.html"%>
 
-	<nav class="navbar navbar-default"
-		style="background-color: #f90; margin-top: 20px">
-	<div class="container">
-
-		<ul class="nav nav-tabs">
-
-			<li role="presentation" ><a href="responsabileApprovazioniRichiestaDiTutorato.jsp">Richieste di
-					tutorato</a></li>
-					<li role="presentation" id="attiva"><a href="#">Richieste nuovi tirocini</a></li>
-					<li role="presentation" ><a href="#">Conferma finale</a></li>
-					<li role="presentation" ><a href="#">Aziende</a></li>
-			<li role="presentation" class="navbar-right"><a href="#">Logout
-					&nbsp<i class="fa fa-power-off"></i>
-			</a></li>
-
-		</ul>
-	</div>
-
-	</nav>
+	<%@ include file="nav_responsabile_approvazioni.html"%>
 	<div class="container">
 		<div class="col-sm-12">
 
