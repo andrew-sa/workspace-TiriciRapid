@@ -22,22 +22,7 @@
 <%@ include file="slider.html" %>
 
 
-	<nav class="navbar navbar-default"
-		style="background-color: #f90; margin-top: 20px">
-		<div class="container">
-
-			<ul class="nav nav-tabs">
-				<li role="presentation"><a href="#">Richieste</a></li>
-				<li role="presentation"id="attiva"><a href="#">Aggiungi Tirocinio</a></li>
-				<li role="presentation"><a href="#">Visualizza Tirocini</a></li>
-				<li role="presentation"><a href="#">Profilo</a></li>
-				<li role="presentation" class="navbar-right"><a href="#">Logout &nbsp<i class="fa fa-power-off" ></i></a></li>
-	
-			</ul>	
-
-		</div>
-		<!-- /.container-fluid -->
-	</nav>
+	<%@ include file="nav_azienda.html" %>
 
 <div class="container">
 	<div class="row">
