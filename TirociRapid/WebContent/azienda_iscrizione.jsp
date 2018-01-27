@@ -22,7 +22,7 @@
 <%@ include file="slider.html" %>
 
 </body>
-<%@ include file="nav_studente.html"%>
+<%@ include file="nav_azienda.html"%>
 
 <div class="container">
 	<div class="row">
