@@ -24,22 +24,7 @@
 <%@ include file="slider.html" %>
 
 
-	<nav class="navbar navbar-default"
-		style="background-color: #f90; margin-top: 20px">
-		<div class="container">
-
-			<ul class="nav nav-tabs">
-				<li role="presentation" id="attiva" S><a href="#">Richieste</a></li>
-				<li role="presentation"><a href="#">Aziende</a></li>
-				<li role="presentation"><a href="#">Professori</a></li>
-				<li role="presentation"><a href="#">Profilo</a></li>
-				<li role="presentation" class="navbar-right"><a href="#">Logout &nbsp<i class="fa fa-power-off" ></i></a></li>
-	
-			</ul>	
-
-		</div>
-		<!-- /.container-fluid -->
-	</nav>
+	<%@ include file="nav_studente.html"%>
 
 <div class="container">
 	<div class="row">
