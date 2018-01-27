@@ -81,9 +81,12 @@
 		display: block;
 		padding-left: 1em;
 		font-size: medium;
-		margin-left: 1em;
 		border-style:solid;
-		border-width: 0.05em;
+		border-width: 0.3em;
+		border-right-width: 0.1em;
+		border-left-width: 0em;
+		border-top-width: 0em;
+		border-radius:1em;
 		
 		border-color: #00627d;
 	}

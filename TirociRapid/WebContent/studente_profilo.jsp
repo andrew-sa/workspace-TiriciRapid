@@ -20,7 +20,6 @@
 
 	<div class="container">
 	
-	
 		<div id="profilo-curriculum">
 		
 		<h3 style="text-align: center;"><span>Curriculum </span></h3>

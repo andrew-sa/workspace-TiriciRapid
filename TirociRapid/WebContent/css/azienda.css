@@ -1,6 +1,5 @@
 @charset "ISO-8859-1";
 
-
 #bottone-accetta-tirocinante-azienda {
 	background-color: #006600;
 	border-color: white;
@@ -8,42 +7,106 @@
 }
 
 #bottone-rifiuta-tirocinante-azienda {
-	
 	background-color: #cc0000;
 	border-color: white;
 	color: white;
 }
+
 #bottone-rifiuta-tirocinante-azienda:hover {
 	background-color: red;
 	box-shadow: 0em 0em 0em 0.1em white inset;
 	color: white;
 }
+
 #bottone-accetta-tirocinante-azienda:hover {
 	background-color: green;
 	box-shadow: 0em 0em 0em 0.1em white inset;
 	color: white;
 }
 
-
-.col-md-3
-{
-	width:auto; 
+.col-md-3 {
+	width: auto;
 }
 
-.col-md-9.cta-contents
-{
+.col-md-9.cta-contents {
 	border-right-style: solid;
 	border-right-width: thin;
 	border-right-color: #00627d;
 }
 
-@media screen and (max-width: 991px)
-{
-	.col-md-9.cta-contents
-{
-	border-right-width: 0em;
-	border-bottom-width: thin;
-	border-bottom-style: solid;
-	border-bottom-color: #00627d;
+@media screen and (max-width: 991px) {
+	.col-md-9.cta-contents {
+		border-right-width: 0em;
+		border-bottom-width: thin;
+		border-bottom-style: solid;
+		border-bottom-color: #00627d;
+	}
 }
+
+@media screen and (min-width: 1024px) {
+	#azienda-profilo {
+		
+		width: 80%;
+		margin-left: 10%;
+		color: #fff;
+		background-color: #32a3c2;
+		border-color: #00627d;
+		border-style: solid;
+		border-width: 0.2em;
+		border-radius: 1em;
+		margin-top: 2.5em;
+		padding-bottom: 5em;
+	}
+	
+	.tabelle {
+		display: table;
+	}
+	.parametri-azienda {
+		display: table-row;
+		font-size: medium;
+		margin-left: 1em;
+	}
+	.elemento-parametri-azienda {
+		
+		display: table-cell;
+		padding-left: 10em;
+		font-size: medium;
+		margin-left: 1em;
+		padding-right: 1em;
+	}
+	
+	#bottone-dati-aziendali
+	{
+	margin-bottom:5em;
+	width: 100%;
+	}
+}
+
+@media screen and (max-width: 1024px) {
+
+	#azienda-profilo {
+		width: 100%;
+		color: #fff;
+		background-color: #32a3c2;
+		border-color: #00627d;
+		border-style: solid;
+		border-width: 0.2em;
+		border-radius: 1em;
+		margin-bottom: 5em;
+		margin-top: 2.5em;
+	}
+	.parametri-azienda {
+		display: table-row;
+		display: block;
+		padding-left: 1em;
+		font-size: medium;
+		border-style:solid;
+		border-width: 0.3em;
+		border-right-width: 0.1em;
+		border-left-width: 0em;
+		border-top-width: 0em;
+		border-radius: 1em;
+		border-color: #00627d;
+	}
+	
 }
