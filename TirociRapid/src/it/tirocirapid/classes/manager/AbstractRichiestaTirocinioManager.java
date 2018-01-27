@@ -15,7 +15,9 @@ public abstract class AbstractRichiestaTirocinioManager {
 	
 	public abstract void create(RichiestaTirocinio toCreate, HashMap<Integer, String> states) throws SQLException, BadRequestTirocinioException, InsertFailedException;
 	public abstract RichiestaTirocinio read(String usernameStudente, String partitaIVAAzienda, String nomeTirocinio) throws SQLException, TuplaNotFoundException;
-	public abstract void update(RichiestaTirocinio toUpdate) throws MySQLIntegrityConstraintViolationException, SQLException, InsertFailedException;
+	public abstract void updateStato(RichiestaTirocinio toUpdate) throws SQLException, InsertFailedException;
+	public abstract void updateAddTutor(RichiestaTirocinio toUpdate) throws MySQLIntegrityConstraintViolationException, SQLException, InsertFailedException;
+	public abstract void updateRemoveTutor(RichiestaTirocinio toUpdate) throws SQLException, InsertFailedException;
 	public abstract void delete(String usernameStudente, String partitaIVAAzienda, String nomeTirocinio) throws MySQLIntegrityConstraintViolationException, SQLException, TuplaNotFoundException;
 	public abstract ArrayList<RichiestaTirocinio> readAllRichiesteStudente(String usernameStudente) throws SQLException;
 	public abstract ArrayList<RichiestaTirocinio> readAllRichiesteAzienda(String partitaIVA) throws SQLException;
