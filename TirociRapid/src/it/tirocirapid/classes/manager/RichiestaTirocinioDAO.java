@@ -154,7 +154,7 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 		ps.setString(1, toUpdate.getTirocinio().getNome());
 		ps.setString(2, toUpdate.getTirocinio().getPartitaIVAAzienda());
 		ps.setString(3, toUpdate.getStudente().getUsername());
-		ps.setString(1, toUpdate.getTutorInterno().getUsername());
+		ps.setString(4, toUpdate.getTutorInterno().getUsername());
 		int i = ps.executeUpdate();
 		if (i != 1)
 		{
@@ -185,7 +185,37 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 	@Override
 	public void updateRemoveTutor(RichiestaTirocinio toUpdate) throws SQLException, InsertFailedException
 	{
-		
+		Connection con = DriverManagerConnectionPool.getIstance().getConnection();
+		PreparedStatement ps = con.prepareStatement(DELETE_NOMINARE);
+		ps.setString(1, toUpdate.getTirocinio().getNome());
+		ps.setString(2, toUpdate.getTirocinio().getPartitaIVAAzienda());
+		ps.setString(3, toUpdate.getStudente().getUsername());
+		ps.setString(4, toUpdate.getTutorInterno().getUsername());
+		int i = ps.executeUpdate();
+		if (i != 1)
+		{
+			con.rollback();
+			ps.close();
+			DriverManagerConnectionPool.getIstance().releaseConnection(con);
+			throw new InsertFailedException("Impossibile aggiornare la richiesta di tirocinio selezionata");
+		}
+		else
+		{
+			try
+			{
+				updateStato(toUpdate);
+				con.commit();
+				ps.close();
+				DriverManagerConnectionPool.getIstance().releaseConnection(con);
+			}
+			catch (SQLException | InsertFailedException e)
+			{
+				con.rollback();
+				ps.close();
+				DriverManagerConnectionPool.getIstance().releaseConnection(con);
+				throw new InsertFailedException("Impossibile aggiornare la richiesta di tirocinio selezionata");
+			}
+		}
 	}
 
 	/**
@@ -266,6 +296,7 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 	private static final String DELETE = "DELETE FROM richiestatirocinio WHERE Nome = ? AND PartitaIVA = ? AND Username = ?";
 	private static final String READ = "SELECT * FROM richiestatirocinio WHERE Nome = ? AND PartitaIVA = ? AND Username = ?";
 	private static final String UPDATE = "UPDATE tirocinio SET Stato = ? WHERE Nome = ? AND PartitaIVA = ? AND Username = ?";
-	private static final String CREATE_NOMINARE = "INSERT INTO convalidare(Nome, PartitaIVA, UsernameStudente, UsernameProfessore) VALUES (?, ?, ?, ?)";
+	private static final String CREATE_NOMINARE = "INSERT INTO nominare(Nome, PartitaIVA, UsernameStudente, UsernameProfessore) VALUES (?, ?, ?, ?)";
+	private static final String DELETE_NOMINARE = "DELETE FROM nominare WHERE Nome = ? AND PartitaIVA = ? AND UsernameStudente = ? AND UsernameProfessore = ?";
 
 }

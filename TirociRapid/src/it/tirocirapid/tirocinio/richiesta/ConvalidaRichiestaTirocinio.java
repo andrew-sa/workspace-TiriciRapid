@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import it.tirocirapid.classes.manager.AbstractAziendaManager;
 import it.tirocirapid.classes.manager.AbstractProfessoreManager;
+import it.tirocirapid.classes.manager.AbstractResponsabileApprovazioniManager;
 import it.tirocirapid.classes.manager.AbstractRichiestaTirocinioManager;
 import it.tirocirapid.classes.manager.AbstractStudenteManager;
 import it.tirocirapid.classes.model.RichiestaTirocinio;
@@ -185,18 +186,26 @@ public class ConvalidaRichiestaTirocinio extends HttpServlet {
 	{
 		if (reqTir.getStato().equals(statesReqTir.get(3))) // stato == "ConfTut"
 		{
+			String subjectResponsabileApprovazioni = "TirociRapid: Nuova richiesta di tirocinio dallo studente " + reqTir.getStudente().getEmail();
+			String subjectStudente = "TirociRapid: Aggiornamento stato richiesta tirocinio";
+			String messageTextResponsabileApprovazioni = "Lo studente " + reqTir.getStudente().getUsername() + " vorrebbe effettuare il tirocinio " + reqTir.getTirocinio().getNome() + " presso l'azienda " + reqTir.getTirocinio().getPartitaIVAAzienda() + "./n";
+			String messageTextStudente = "";
 			AbstractManagerFactory factory = new DAOFactory();
 			AbstractRichiestaTirocinioManager managerRichiestaTirocinio = factory.createRichiestaTirocinioManager();
 			if (isAccept)
 			{
 				reqTir.setStato(statesReqTir.get(4)); // stato = "ConfResp"
 				managerRichiestaTirocinio.updateStato(reqTir);
+				messageTextStudente = "Il professore da te scelto come tutor interno per il tirocinio " + reqTir.getTirocinio().getNome() + "ha ACCETTATO." + "/n/n" + "In attesa della CONVALIDA da parte del Responsabile Approvazioni." + "/n";
+				inviaEmailResponsabileApprovazioni(subjectResponsabileApprovazioni, messageTextResponsabileApprovazioni);
 			}
 			else
 			{
 				reqTir.setStato(statesReqTir.get(-3)); // stato = "RifTut"
 				managerRichiestaTirocinio.updateRemoveTutor(reqTir);
+				messageTextStudente = "Il professore da te scelto come tutor interno per il tirocinio " + reqTir.getTirocinio().getNome() + "ha RIFIUTATO." + "/n/n" + "SCEGLI un nuovo Professore come Tutor Interno." + "/n";
 			}
+			inviaEmailStudente(reqTir.getStudente().getEmail(), subjectStudente, messageTextStudente);
 		}
 		else
 		{
@@ -209,21 +218,27 @@ public class ConvalidaRichiestaTirocinio extends HttpServlet {
 		if (reqTir.getStato().equals(statesReqTir.get(4))) // stato == "ConfResp"
 		{
 			String subject = "TirociRapid: Decisione finale richiesta tirocinio studente " + reqTir.getStudente().getEmail();
+			String subjectStudente = "TirociRapid: Decisione finale richiesta tirocinio";
 			String messageText = "";
+			String messageTextStudente = "";
 			if (isAccept)
 			{
 				reqTir.setStato(statesReqTir.get(5)); // stato = "Acc"
 				messageText = "La richiesta effettuata dallo studente " + reqTir.getStudente().getEmail() + " per il tirocinio " + reqTir.getTirocinio().getNome() + " è stata APPROVATA definitivamente." + "\n";
+				messageTextStudente = "La richiesta effettuata da te per il tirocinio " + reqTir.getTirocinio().getNome() + " è stata APPROVATA definitivamente." + "\n";
 			}
 			else
 			{
 				reqTir.setStato(statesReqTir.get(-4)); // stato = "RifResp"
 				messageText = "La richiesta effettuata dallo studente " + reqTir.getStudente().getEmail() + " per il tirocinio " + reqTir.getTirocinio().getNome() + " è stata RIFIUTATA definitivamente." + "\n";
+				messageTextStudente = "La richiesta effettuata da te per il tirocinio " + reqTir.getTirocinio().getNome() + " è stata RIFIUTATA definitivamente." + "\n";
 			}
 			AbstractManagerFactory factory = new DAOFactory();
 			AbstractRichiestaTirocinioManager managerRichiestaTirocinio = factory.createRichiestaTirocinioManager();
 			managerRichiestaTirocinio.updateStato(reqTir);
 			inviaEmailResponsabileAzienda(reqTir.getTirocinio().getPartitaIVAAzienda(), subject, messageText);
+			inviaEmailTutorInterno(reqTir.getTutorInterno().getUsername(), subject, messageText);
+			inviaEmailStudente(reqTir.getStudente().getUsername(), subjectStudente, messageTextStudente);
 		}
 		else
 		{
@@ -330,9 +345,52 @@ public class ConvalidaRichiestaTirocinio extends HttpServlet {
 	/**
 	 * Questo metodo si occupa di notificare ai Responsabili Approvazioni l'arrivo di una nuova richiesta di tirocinio
 	 */
-	private void inviaEmailResponsabileApprovazioni()
+	private void inviaEmailResponsabileApprovazioni(String subject, String messageText)
 	{
-		
+		try
+		{
+			AbstractManagerFactory factory = new DAOFactory();
+			AbstractResponsabileApprovazioniManager managerResponsabileApprovazioni = factory.createResponsabileApprovazioniManager();
+			ArrayList<String> emails = managerResponsabileApprovazioni.readEmailAll();
+			
+			String host = "smtp.gmail.com";
+			String from = "tirocirapid@gmail.com";
+//			String subject = "Recupero password per TirocRapid"; 
+//			String messageText = "La password per accedere a TirociRapid è:\n" + passwordRecuperata + "\n";
+			final String username = "tirocirapid@gmail.com";
+			final String password = "TirociRapid2018";
+			
+			Properties properties = new Properties();
+			properties.put("mail.smtp.auth", "true");
+			properties.put("mail.smtp.starttls.enable", "true");
+			properties.put("mail.smtp.host", host);
+			properties.put("mail.smtp.port", "587");
+			Session sessionMail = Session.getInstance(properties, new javax.mail.Authenticator() {
+				
+				protected PasswordAuthentication getPasswordAuthentication()
+				{
+					return new PasswordAuthentication(username, password);
+				}
+				
+			  });
+	 
+			for (String to : emails)
+			{
+				Message message = new MimeMessage(sessionMail);
+				sessionMail.setDebug(true);
+				message.setFrom(new InternetAddress(from));
+				message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
+				message.setSubject(subject);
+				message.setText(messageText);
+				
+				Transport.send(message);
+			}
+		}
+		catch (SQLException | MessagingException e)
+		{
+			e.printStackTrace();
+			// do nothing
+		}
 	}
 	
 	/**
