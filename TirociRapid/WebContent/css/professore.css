@@ -1,3 +1,70 @@
+/*css lista aziende*/
+@media screen and (min-width: 1024px) {
+	#responsabile-approvazione-azienda-profilo {
+		
+		width: 80%;
+		margin-left: 10%;
+		color: #fff;
+		background-color: #32a3c2;
+		border-color: #00627d;
+		border-style: solid;
+		border-width: 0.2em;
+		border-radius: 1em;
+		margin-top: 2.5em;
+	
+	}
+	
+	.tabella-info-azienda {
+		display: table;
+	}
+	.parametri-azienda {
+		display: table-row;
+		font-size: medium;
+		margin-left: 1em;
+	}
+	.elemento-parametri-azienda {
+		
+		display: table-cell;
+		padding-left: 10em;
+		font-size: medium;
+		margin-left: 1em;
+		padding-right: 1em;
+	}
+	
+}
+
+@media screen and (max-width: 1024px) {
+
+	#responsabile-approvazione-azienda-profilo {
+		width: 100%;
+		color: #fff;
+		background-color: #32a3c2;
+		border-color: #00627d;
+		border-style: solid;
+		border-width: 0.2em;
+		border-radius: 1em;
+		margin-bottom: 5em;
+		margin-top: 2.5em;
+	}
+	.parametri-azienda {
+		display: table-row;
+		display: block;
+		padding-left: 1em;
+		font-size: medium;
+		border-style:solid;
+		border-width: 0.3em;
+		border-right-width: 0.1em;
+		border-left-width: 0em;
+		border-top-width: 0em;
+		border-radius: 1em;
+		border-color: #00627d;
+	}
+	
+}
+/*fine css lista aziende*/
+
+
+
 .bottoni-conferma-professore {
 	background-color: white;
 	color: black;
