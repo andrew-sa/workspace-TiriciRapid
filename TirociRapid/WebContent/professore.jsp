@@ -33,7 +33,7 @@
 							</p>
 							<h3>Azienda:</h3>
 							<p>
-								Nome &nbsp; sede &emsp;
+								Partita IVA&emsp;
 								<button class="bottoni-conferma-professore">Visualizza
 									informazioni azienda</button>
 							</p>

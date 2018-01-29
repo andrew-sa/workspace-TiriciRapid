@@ -32,7 +32,7 @@
 							</p>
 							<h3>Azienda:</h3>
 							<p>
-								Nome &nbsp; sede &emsp;
+								Partita IVA &emsp;
 								<a href="visualizza_informazioni_azienda.jsp"> <button class="bottoni-conferma-professore" >Visualizza
 									informazioni azienda</button></a>
 							</p>
