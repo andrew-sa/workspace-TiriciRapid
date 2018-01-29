@@ -110,6 +110,14 @@
   </div>
 </div>
 
+<!-- Madrelingua-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="madreLingua">Madrelingua </label>  
+  <div class="col-md-4">
+  <input id="madreLingua" name="madreLingua" type="text"  class="form-control input-md"  maxlength="20" >
+     
+  </div>
+</div>
 
 
 <!-- Altre Lingue-->
@@ -117,16 +125,6 @@
   <label class="col-md-4 control-label" for="altreLingue">Altre Lingue </label>  
   <div class="col-md-4">
   <input id="altreLingue" name="altreLingue" type="text"  class="form-control input-md"  maxlength="100" >    
-  </div>
-</div>
-
-
-<!-- Madre Lingua-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="madreLingua">Madre Lingua </label>  
-  <div class="col-md-4">
-  <input id="madreLingua" name="madreLingua" type="text"  class="form-control input-md"  maxlength="20" >
-     
   </div>
 </div>
 
