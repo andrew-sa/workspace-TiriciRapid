@@ -16,7 +16,7 @@
 </head>
 <body>
 
-	<%@include file ="slider.html"  %>
+	<%@include file ="slider.jsp"  %>
 
 
 	<nav class="navbar navbar-default"
@@ -54,7 +54,7 @@
 	</div>
 	<!-- /container -->
 
-	<%@include file ="footer.html"  %>
+	<%@include file ="footer.jsp"  %>
 
 
 

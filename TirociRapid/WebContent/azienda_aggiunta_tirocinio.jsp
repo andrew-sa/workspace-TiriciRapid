@@ -18,10 +18,10 @@
 </head>
 <body>
 
-<%@ include file="slider.html" %>
+<%@ include file="slider.jsp" %>
 
 
-	<%@ include file="nav_azienda.html" %>
+	<%@ include file="nav_azienda.jsp" %>
 
 <div class="container">
 	<div class="row">
@@ -77,7 +77,7 @@
 	</div>
 </div>
 
-	<%@include file ="footer.html" %>
+	<%@include file ="footer.jsp" %>
 
 
 </body>

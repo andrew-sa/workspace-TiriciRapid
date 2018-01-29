@@ -13,8 +13,8 @@
 </head>
 <body>
 	<div class="container">
-		<%@ include file="slider.html"%>
-		<%@ include file="nav_responsabile_approvazioni.html"%>
+		<%@ include file="slider.jsp"%>
+		<%@ include file="nav_responsabile_approvazioni.jsp"%>
 		<div id="responsabile-approvazione-azienda-profilo">
 
 			<h2 style="text-align: center;">
@@ -85,6 +85,6 @@
 		</div>
 
 	</div>
-	<%@include file="footer.html"%>
+	<%@include file="footer.jsp"%>
 </body>
 </html>

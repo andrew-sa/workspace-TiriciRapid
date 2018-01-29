@@ -13,8 +13,8 @@
 </head>
 <body>
 
-	<%@ include file="slider.html"%>
-	<%@ include file="nav_responsabile_approvazioni.html"%>
+	<%@ include file="slider.jsp"%>
+	<%@ include file="nav_responsabile_approvazioni.jsp"%>
 	
 		<div class="container">
 
@@ -62,6 +62,6 @@
 		</div>
 		
 	</div>
-	<%@include file="footer.html"%>
+	<%@include file="footer.jsp"%>
 </body>
 </html>
