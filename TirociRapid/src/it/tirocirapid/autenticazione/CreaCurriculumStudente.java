@@ -13,14 +13,14 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/inserisci_curriculum")
 public class CreaCurriculumStudente extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public CreaCurriculumStudente() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public CreaCurriculumStudente() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -34,11 +34,11 @@ public class CreaCurriculumStudente extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		
+
+
+
 	}
-	
+
 	/**
 	 * 
 	 * @param fax Il fax da validare
@@ -71,5 +71,5 @@ public class CreaCurriculumStudente extends HttpServlet {
 	{
 		return false;
 	}
-	
+
 }
