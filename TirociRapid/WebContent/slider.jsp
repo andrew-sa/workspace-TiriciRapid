@@ -13,12 +13,12 @@
 	<!-- Wrapper for slides -->
 	<div class="carousel-inner" role="listbox">
 		<div class="item active"
-			style="background-image: url('images/logo.png'); background-repeat: no-repeat; background-size: 300px 200px;">
+			style="background-image: url('images/logo_unisa.png'); background-repeat: no-repeat; background-size: 300px 200px;">
 
 			<div class="carousel-caption"></div>
 		</div>
 		<div class="item"
-			style="background-image: url('images/logoTiroci.png'); background-repeat: no-repeat; background-size: 300px 200px;">
+			style="background-image: url('images/logo_tirocirapid.png'); background-repeat: no-repeat; background-size: 300px 200px;">
 
 			<div class="carousel-caption"></div>
 		</div>
