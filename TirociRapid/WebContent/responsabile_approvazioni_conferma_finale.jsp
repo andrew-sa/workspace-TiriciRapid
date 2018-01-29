@@ -37,14 +37,15 @@
 							<h3>Azienda:</h3>
 							<p>
 								Nome &nbsp; sede &emsp;
-								<a href="visualizza_informazioni_azienda.jsp"><button class="bottoni-conferma-professore" >Visualizza
+								<a href="visualizza_informazioni_azienda.jsp"> <button class="bottoni-conferma-professore" >Visualizza
 									informazioni azienda</button></a>
 							</p>
 							<h3>Tirocinio:</h3>
 							<p>
 								Nome &emsp;
-								<button class="bottoni-conferma-professore">Visualizza
-									informazioni tirocinio</button>
+								
+								<a href="visualizza_informazioni_tirocinio.jsp"><button class="bottoni-conferma-professore">Visualizza
+									informazioni tirocinio</button> </a>
 							</p>
 						</div>
 					</div>
