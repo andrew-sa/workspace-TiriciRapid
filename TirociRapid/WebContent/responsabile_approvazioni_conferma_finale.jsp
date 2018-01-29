@@ -37,8 +37,8 @@
 							<h3>Azienda:</h3>
 							<p>
 								Nome &nbsp; sede &emsp;
-								<button class="bottoni-conferma-professore">Visualizza
-									informazioni azienda</button>
+								<a href="visualizza_informazioni_azienda.jsp"><button class="bottoni-conferma-professore" >Visualizza
+									informazioni azienda</button></a>
 							</p>
 							<h3>Tirocinio:</h3>
 							<p>
