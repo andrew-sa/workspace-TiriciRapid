@@ -1,0 +1,80 @@
+#contenitore_login {
+	margin-top: 2.5em;
+	margin-left: 25%;
+	width: 50%;
+	background-color: #f9f9f9;
+	text-align: center;
+	margin-bottom: 4em;
+}
+
+#username, #password {
+	padding-left: 1em;
+	border-color: #00627d;
+	border-width: 0.1em;
+	height: 3em;
+	border-style: solid;
+	width: 100%;
+	border-radius: 0.4em;
+	margin-bottom: 0.4em;
+}
+
+#username:focus, #password:focus {
+	padding-left: 1em;
+	border-top-color: #05d6fa;
+	border-right-color: #05d6fa;
+	border-left-color: #05d6fa;
+	border-width: 0.1em;
+	height: 3em;
+	border-style: solid;
+	width: 100%;
+	border-radius: 0.4em;
+}
+
+#pulsante_login {
+	color: white;
+	border-color: #008db3;
+	border-width: 0.2em;
+	border-style: solid;
+	border-radius: 0.4em;
+	font-size: large;
+	height: 3.5em;
+	background-color: #008db3;
+	width: 100%;
+}
+
+#pulsante_login:hover {
+	border-width: 0.1em;
+	border-color: #05d6fa;
+}
+
+#password_dimenticata
+{
+	margin-top:1em;
+	color: #008db3;
+	text-align: left;
+	margin-bottom: 2em;
+}
+
+
+
+/*R E S P O N S I V E*/
+@media ( max-width : 750px) {
+	#contenitore_login {
+		margin-top: 2.5em;
+		margin-left: 10%;
+		width: 80%;
+		background-color: #f9f9f9;
+		text-align: center;
+		margin-bottom: 4em;
+	}
+	#username, #password {
+		padding-left: 1em;
+		border-color: #00627d;
+		border-width: 0.1em;
+		height: 3em;
+		border-style: solid;
+		width: 100%;
+		border-radius: 0.4em;
+		margin-bottom: 0.4em;
+	}
+}
