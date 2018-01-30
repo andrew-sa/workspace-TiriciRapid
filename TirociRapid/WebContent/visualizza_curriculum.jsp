@@ -12,9 +12,11 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
+
+	<%@ include file="slider.jsp"%>
+	<%@ include file="nav_responsabile_approvazioni.jsp"%>
+	
 	<div class="container">
-		<%@ include file="slider.jsp"%>
-		<%@ include file="nav_responsabile_approvazioni.jsp"%>
 		<div id="responsabile-approvazione-azienda-profilo">
 
 			<h2 style="text-align: center;">
