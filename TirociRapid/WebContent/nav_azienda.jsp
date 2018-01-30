@@ -4,13 +4,10 @@
 	<div class="container">
 
 		<ul class="nav nav-tabs">
-			<li role="presentation" ><a class="attiva"
-				href="azienda_richieste.jsp">Richieste</a></li>
-			<li role="presentation"><a href="azienda_aggiunta_tirocinio.jsp">Aggiungi
-					Tirocinio</a></li>
-			<li role="presentation"><a
-				href="azienda_visualizza_tirocini.jsp">Visualizza Tirocini</a></li>
-			<li role="presentation"><a href="azienda_profilo.jsp">Profilo</a></li>
+			<li role="presentation"><a id="item_richieste_azienda" href="azienda_richieste.jsp">Richieste</a></li>
+			<li role="presentation"><a id="item_aggiungi_tirocinio_azienda"  href="azienda_aggiunta_tirocinio.jsp">Aggiungi Tirocinio</a></li>
+			<li role="presentation"><a id="item_visualizza_tirocini_azienda"  href="azienda_visualizza_tirocini.jsp">Visualizza Tirocini</a></li>
+			<li role="presentation"><a id="item_profilo_azienda" href="azienda_profilo.jsp">Profilo</a></li>
 			<li role="presentation" class="navbar-right"><a href="#">Logout
 					&nbsp;<i class="fa fa-power-off"></i>
 			</a></li>

@@ -1,8 +1,6 @@
 function selectedItemStudente()
 {
 	var path = location.pathname;
-
-	
 	switch(path)
 	{
 		case "/TirociRapid/studente_aziende.jsp":
