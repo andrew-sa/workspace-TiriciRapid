@@ -1,5 +1,5 @@
 @charset "ISO-8859-1";
 .errorform{
-	color: red; 
-	/*visibility: hidden;*/
+	color: red;
+	font-weight: bold;
 }
