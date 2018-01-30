@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -16,27 +16,26 @@
 </head>
 <body>
 
-	<%@include file ="slider.jsp"  %>
+	<%@include file="slider.jsp"%>
 
 
 	<nav class="navbar navbar-default"
 		style="background-color: #f90; margin-top: 20px">
-		<div class="container">
+	<div class="container">
 
-			<ul class="nav nav-tabs">
-				<li role="presentation" id="attiva"><a href="#">Studente</a></li>
-				<li role="presentation"><a href="#">Azienda</a></li>
-				<li role="presentation"><a href="#">Professore</a></li>
-			</ul>
+		<ul class="nav nav-tabs">
+			<li role="presentation" id="attiva"><a href="#">Studente</a></li>
+			<li role="presentation"><a href="#">Azienda</a></li>
+			<li role="presentation"><a href="#">Professore</a></li>
+		</ul>
 
-		</div>
-		<!-- /.container-fluid -->
-	</nav>
+	</div>
+	<!-- /.container-fluid --> </nav>
 
 	<div class="container2">
 		<div class="card card-container">
 
-			<form class="form-signin">
+			<form class="form-signin" onsubmit="return validateLogin(this)">
 				<span id="reauth-email" class="reauth-email"></span> <input
 					type="email" id="inputEmail" class="form-control"
 					placeholder="Esse3 Username" required autofocus> <input
@@ -53,8 +52,8 @@
 		<!-- /card-container -->
 	</div>
 	<!-- /container -->
-
-	<%@include file ="footer.jsp"  %>
+	<script type="text/javascript" src="js/formcheck.js"></script>
+	<%@include file="footer.jsp"%>
 
 
 

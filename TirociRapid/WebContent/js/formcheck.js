@@ -19,6 +19,21 @@ function checkEmpty(form) {
 		return true;
 	}
 }
+function validateLogin(form){
+	resetInput(form);
+	var flag = 0;
+	for (let i = 0; i < form.length; i++) {
+		if (form[i].value.trim() === "" && (form[i].type === "text" || form[i].type === "password")) {
+			form[i].setAttribute('placeholder', "Non puoi lasciare vuoto");
+			flag = 1;
+		}
+	}
+	if (flag == 1) {
+		return false;
+	} else {
+		return true;
+	}
+}
 function validateRegistrazione(form) {
 	var contr = 0;
 	resetInput(form);
