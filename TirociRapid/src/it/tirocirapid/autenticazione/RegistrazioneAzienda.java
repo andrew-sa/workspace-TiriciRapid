@@ -73,7 +73,7 @@ public class RegistrazioneAzienda extends HttpServlet {
 //			return;
 //		}
 		
-		String replacement = "";
+		final String replacement = "";
 		Azienda azienda = new Azienda();
 		azienda.setStato(((HashMap<String, String>) request.getServletContext().getAttribute("statesAzienda")).get("Disponibile"));
 		for (String param: parametri)

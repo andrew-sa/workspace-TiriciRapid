@@ -57,7 +57,7 @@ public class StudenteDAO extends AbstractStudenteManager {
 			rs.close();
 			ps.close();
 			DriverManagerConnectionPool.getIstance().releaseConnection(con);
-			throw new TuplaNotFoundException();
+			throw new TuplaNotFoundException("Lo studente selezionato non &egrave; presente nel database");
 		}
 		
 	}

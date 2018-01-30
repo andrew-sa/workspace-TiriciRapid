@@ -36,14 +36,14 @@ public class Curriculum {
 	/**
 	 * @return the capacitaCompetenzePerosanali
 	 */
-	public String getCapacitaCompetenzePerosanali() {
-		return capacitaCompetenzePerosanali;
+	public String getCapacitaCompetenzePersonali() {
+		return capacitaCompetenzePersonali;
 	}
 	/**
 	 * @param capacitaCompetenzePerosanali the capacitaCompetenzePerosanali to set
 	 */
-	public void setCapacitaCompetenzePerosanali(String capacitaCompetenzePerosanali) {
-		this.capacitaCompetenzePerosanali = capacitaCompetenzePerosanali;
+	public void setCapacitaCompetenzePersonali(String capacitaCompetenzePersonali) {
+		this.capacitaCompetenzePersonali = capacitaCompetenzePersonali;
 	}
 	/**
 	 * @return the madrelingua
@@ -60,62 +60,62 @@ public class Curriculum {
 	/**
 	 * @return the altreLigue
 	 */
-	public ArrayList<String> getAltreLigue() {
-		return altreLigue;
+	public String getAltreLingue() {
+		return altreLingue;
 	}
 	/**
 	 * @param altreLigue the altreLigue to set
 	 */
-	public void setAltreLigue(ArrayList<String> altreLigue) {
-		this.altreLigue = altreLigue;
+	public void setAltreLingue(String altreLingue) {
+		this.altreLingue = altreLingue;
 	}
 	/**
 	 * @return the capicitaCompetenzeRelazionali
 	 */
-	public String getCapicitaCompetenzeRelazionali() {
-		return capicitaCompetenzeRelazionali;
+	public String getCapacitaCompetenzeRelazionali() {
+		return capacitaCompetenzeRelazionali;
 	}
 	/**
 	 * @param capicitaCompetenzeRelazionali the capicitaCompetenzeRelazionali to set
 	 */
-	public void setCapicitaCompetenzeRelazionali(String capicitaCompetenzeRelazionali) {
-		this.capicitaCompetenzeRelazionali = capicitaCompetenzeRelazionali;
+	public void setCapacitaCompetenzeRelazionali(String capacitaCompetenzeRelazionali) {
+		this.capacitaCompetenzeRelazionali = capacitaCompetenzeRelazionali;
 	}
 	/**
 	 * @return the capicitaCompetenzeOrganizzative
 	 */
-	public String getCapicitaCompetenzeOrganizzative() {
-		return capicitaCompetenzeOrganizzative;
+	public String getCapacitaCompetenzeOrganizzative() {
+		return capacitaCompetenzeOrganizzative;
 	}
 	/**
 	 * @param capicitaCompetenzeOrganizzative the capicitaCompetenzeOrganizzative to set
 	 */
-	public void setCapicitaCompetenzeOrganizzative(String capicitaCompetenzeOrganizzative) {
-		this.capicitaCompetenzeOrganizzative = capicitaCompetenzeOrganizzative;
+	public void setCapacitaCompetenzeOrganizzative(String capacitaCompetenzeOrganizzative) {
+		this.capacitaCompetenzeOrganizzative = capacitaCompetenzeOrganizzative;
 	}
 	/**
 	 * @return the capicitaCompetenzeTecniche
 	 */
-	public String getCapicitaCompetenzeTecniche() {
-		return capicitaCompetenzeTecniche;
+	public String getCapacitaCompetenzeTecniche() {
+		return capacitaCompetenzeTecniche;
 	}
 	/**
 	 * @param capicitaCompetenzeTecniche the capicitaCompetenzeTecniche to set
 	 */
-	public void setCapicitaCompetenzeTecniche(String capicitaCompetenzeTecniche) {
-		this.capicitaCompetenzeTecniche = capicitaCompetenzeTecniche;
+	public void setCapacitaCompetenzeTecniche(String capacitaCompetenzeTecniche) {
+		this.capacitaCompetenzeTecniche = capacitaCompetenzeTecniche;
 	}
 	/**
 	 * @return the capicitaCompetenzeArtistiche
 	 */
-	public String getCapicitaCompetenzeArtistiche() {
-		return capicitaCompetenzeArtistiche;
+	public String getCapacitaCompetenzeArtistiche() {
+		return capacitaCompetenzeArtistiche;
 	}
 	/**
 	 * @param capicitaCompetenzeArtistiche the capicitaCompetenzeArtistiche to set
 	 */
-	public void setCapicitaCompetenzeArtistiche(String capicitaCompetenzeArtistiche) {
-		this.capicitaCompetenzeArtistiche = capicitaCompetenzeArtistiche;
+	public void setCapacitaCompetenzeArtistiche(String capacitaCompetenzeArtistiche) {
+		this.capacitaCompetenzeArtistiche = capacitaCompetenzeArtistiche;
 	}
 	/**
 	 * @return the altreCapacitaCompetenze
@@ -132,13 +132,13 @@ public class Curriculum {
 	/**
 	 * @return the patenti
 	 */
-	public ArrayList<String> getPatenti() {
+	public String getPatenti() {
 		return patenti;
 	}
 	/**
 	 * @param patenti the patenti to set
 	 */
-	public void setPatenti(ArrayList<String> patenti) {
+	public void setPatenti(String patenti) {
 		this.patenti = patenti;
 	}
 	/**
@@ -155,14 +155,14 @@ public class Curriculum {
 	}
 	private String fax;
 	private String esperienzaLavorativa;
-	private String capacitaCompetenzePerosanali;
+	private String capacitaCompetenzePersonali;
 	private String madrelingua;
-	private ArrayList<String> altreLigue;
-	private String capicitaCompetenzeRelazionali;
-	private String capicitaCompetenzeOrganizzative;
-	private String capicitaCompetenzeTecniche;
-	private String capicitaCompetenzeArtistiche;
+	private String altreLingue;
+	private String capacitaCompetenzeRelazionali;
+	private String capacitaCompetenzeOrganizzative;
+	private String capacitaCompetenzeTecniche;
+	private String capacitaCompetenzeArtistiche;
 	private String altreCapacitaCompetenze;
-	private ArrayList<String> patenti;
+	private String patenti;
 	private String ulterioriInformazioni;
 }

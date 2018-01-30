@@ -60,7 +60,7 @@ public class RecuperaPasswordAzienda extends HttpServlet {
 			}
 			catch (SQLException e)
 			{
-				request.setAttribute("successo", "Si &egrave; verificato un errore durante l'interazione col database, si prega di riprovare");
+				request.setAttribute("errore", "Si &egrave; verificato un errore durante l'interazione col database, si prega di riprovare");
 				e.printStackTrace();
 			}
 			catch (TuplaNotFoundException e)
@@ -83,7 +83,9 @@ public class RecuperaPasswordAzienda extends HttpServlet {
 		}
 		else
 		{
-			
+			request.setAttribute("errore", "Devi inserire la partitaIVA dell'azienda");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata di RecuperaPasswordAzienda
+			dispatcher.forward(request, response);
 		}
 	}
 
