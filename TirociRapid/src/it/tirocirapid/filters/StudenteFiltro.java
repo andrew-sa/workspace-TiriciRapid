@@ -17,15 +17,15 @@ import javax.servlet.http.HttpSession;
 import it.tirocirapid.classes.model.UserLoggato;
 
 /**
- * Servlet Filter implementation class ResponsabileAziendaFiltro
+ * Servlet Filter implementation class StudenteFiltro
  */
-@WebFilter("/ResponsabileAziendaFiltro")
-public class ResponsabileAziendaFiltro implements Filter {
+@WebFilter("/StudenteFiltro")
+public class StudenteFiltro implements Filter {
 
     /**
      * Default constructor. 
      */
-    public ResponsabileAziendaFiltro() {
+    public StudenteFiltro() {
         // TODO Auto-generated constructor stub
     }
 
@@ -45,9 +45,9 @@ public class ResponsabileAziendaFiltro implements Filter {
 		HttpSession session = req.getSession();
 		HashMap<String, String> userTypes = (HashMap<String, String>) request.getServletContext().getAttribute("userTypes");
 		
-		if (!((UserLoggato) session.getAttribute("user")).equals(userTypes.get("RespAz")))
+		if (!((UserLoggato) session.getAttribute("user")).equals(userTypes.get("Stud")))
 		{
-			request.setAttribute("errore", "Per poter accedere a questa sezione devi essere autenticato come Responsabile Azienda");
+			request.setAttribute("errore", "Per poter accedere a questa sezione devi essere autenticato come Studente");
 			RequestDispatcher dispatcher = req.getRequestDispatcher("/"); //LoginAzienda
 			dispatcher.forward(request, response);
 		}

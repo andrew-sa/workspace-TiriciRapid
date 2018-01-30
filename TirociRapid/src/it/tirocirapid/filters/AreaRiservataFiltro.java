@@ -1,8 +1,6 @@
 package it.tirocirapid.filters;
 
 import java.io.IOException;
-import java.util.HashMap;
-
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -14,18 +12,21 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import it.tirocirapid.classes.model.UserLoggato;
-
 /**
- * Servlet Filter implementation class ResponsabileAziendaFiltro
+ * Servlet Filter implementation class AreaRiservataFiltro
  */
-@WebFilter("/ResponsabileAziendaFiltro")
-public class ResponsabileAziendaFiltro implements Filter {
+@WebFilter(
+		servletNames = { 
+				"CaricaProfiloStudente", 
+				"CaricaDatiAzienda", 
+				"CaricaTirociniAzienda"
+		})
+public class AreaRiservataFiltro implements Filter {
 
     /**
      * Default constructor. 
      */
-    public ResponsabileAziendaFiltro() {
+    public AreaRiservataFiltro() {
         // TODO Auto-generated constructor stub
     }
 
@@ -43,12 +44,10 @@ public class ResponsabileAziendaFiltro implements Filter {
 	{
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpSession session = req.getSession();
-		HashMap<String, String> userTypes = (HashMap<String, String>) request.getServletContext().getAttribute("userTypes");
-		
-		if (!((UserLoggato) session.getAttribute("user")).equals(userTypes.get("RespAz")))
+		if (session.getAttribute("user") == null)
 		{
-			request.setAttribute("errore", "Per poter accedere a questa sezione devi essere autenticato come Responsabile Azienda");
-			RequestDispatcher dispatcher = req.getRequestDispatcher("/"); //LoginAzienda
+			request.setAttribute("errore", "Per poter accedere a questa sezione devi essere autenticato");
+			RequestDispatcher dispatcher = req.getRequestDispatcher("/"); //Login
 			dispatcher.forward(request, response);
 		}
 		else

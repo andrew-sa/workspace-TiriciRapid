@@ -47,7 +47,7 @@ public class CurriculumDAO extends AbstractCurriculumManager {
 		DriverManagerConnectionPool.getIstance().releaseConnection(con);
 		if (i != 1)
 		{
-			throw new InsertFailedException("Si &egrave; verifacato un errore durante il salvataggio sul database");
+			throw new InsertFailedException("Impossibile salvare il curriculum nel database");
 		}
 	}
 
@@ -61,8 +61,38 @@ public class CurriculumDAO extends AbstractCurriculumManager {
 	@Override
 	public Curriculum read(String usernameStudente) throws SQLException, TuplaNotFoundException
 	{
-		// TODO Auto-generated method stub
-		return null;
+		Connection con = DriverManagerConnectionPool.getIstance().getConnection();
+		PreparedStatement ps = con.prepareStatement(READ);
+		ResultSet rs = ps.executeQuery();
+		if (rs.next())
+		{
+			Curriculum curriculum = new Curriculum();
+			curriculum.setFax(rs.getString(2));
+			curriculum.setCapacitaCompetenzeRelazionali(rs.getString(3));
+			curriculum.setCapacitaCompetenzeTecniche(rs.getString(4));
+			curriculum.setCapacitaCompetenzeArtistiche(rs.getString(5));
+			curriculum.setCapacitaCompetenzePersonali(rs.getString(6));
+			curriculum.setCapacitaCompetenzeOrganizzative(rs.getString(7));
+			curriculum.setAltreCapacitaCompetenze(rs.getString(8));
+			curriculum.setEsperienzaLavorativa(rs.getString(9));
+			curriculum.setMadrelingua(rs.getString(10));
+			curriculum.setAltreLingue(rs.getString(11));
+			curriculum.setPatenti(rs.getString(12));
+			curriculum.setUlterioriInformazioni(rs.getString(13));
+			con.commit();
+			rs.close();
+			ps.close();
+			DriverManagerConnectionPool.getIstance().releaseConnection(con);
+			return curriculum;
+		}
+		else
+		{
+			con.commit();
+			rs.close();
+			ps.close();
+			DriverManagerConnectionPool.getIstance().releaseConnection(con);
+			throw new TuplaNotFoundException("Il curriculum cercato non &egrave; presente nel database");
+		}
 	}
 
 	/**
@@ -74,8 +104,29 @@ public class CurriculumDAO extends AbstractCurriculumManager {
 	@Override
 	public void update(Curriculum toUpdate, String usernameStudente) throws SQLException, InsertFailedException
 	{
-		// TODO Auto-generated method stub
-		
+		Connection con = DriverManagerConnectionPool.getIstance().getConnection();
+		PreparedStatement ps = con.prepareStatement(UPDATE);
+		ps.setString(1, usernameStudente);
+		ps.setString(2, toUpdate.getFax());
+		ps.setString(3, toUpdate.getCapacitaCompetenzeRelazionali());
+		ps.setString(4, toUpdate.getCapacitaCompetenzeTecniche());
+		ps.setString(5, toUpdate.getCapacitaCompetenzeArtistiche());
+		ps.setString(6, toUpdate.getCapacitaCompetenzePersonali());
+		ps.setString(7, toUpdate.getCapacitaCompetenzeOrganizzative());
+		ps.setString(8, toUpdate.getAltreCapacitaCompetenze());
+		ps.setString(9, toUpdate.getEsperienzaLavorativa());
+		ps.setString(10, toUpdate.getMadrelingua());
+		ps.setString(11, toUpdate.getAltreLingue());
+		ps.setString(12, toUpdate.getPatenti());
+		ps.setString(13, toUpdate.getUlterioriInformazioni());
+		int i = ps.executeUpdate();
+		con.commit();
+		ps.close();
+		DriverManagerConnectionPool.getIstance().releaseConnection(con);
+		if (i != 1)
+		{
+			throw new InsertFailedException("Impossibile salvare le modifiche al curriculum nel database");
+		}
 	}
 
 	/**
@@ -110,5 +161,10 @@ public class CurriculumDAO extends AbstractCurriculumManager {
 	
 	private static final String CREATE = "INSERT INTO curriculum VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String SEARCH = "SELECT * FROM curriculum WHERE Username = ?";
+	private static final String READ = "SELECT * FROM curriculum WHERE Username = ?";
+	private static final String UPDATE = "UPDATE tirocinio SET Fax = ?, CapacitaCompetenzeRelazionali = ?, "
+			+ "CapacitaCompetenzeTecniche = ?, CapacitaCompetenzeArtistiche = ?, CapacitaCompetenzePersonali = ?, "
+			+ "CapacitaCompetenzeOrganizzative = ?, AltreCapacitaCompetenze = ?, EsperienzaLavorativa = ?, "
+			+ "Madrelingua = ?, AltreLingue = ?, Patenti = ?, UlterioriInformazioni = ? WHERE Username = ?";
 
 }

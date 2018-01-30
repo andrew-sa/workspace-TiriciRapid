@@ -41,23 +41,22 @@ public class CaricaProfiloStudente extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
+//		String referer = request.getHeader("Referer");
+		final String replacement = "";
 		HttpSession session = request.getSession();
-		String referer = request.getHeader("Referer");
 		HashMap<String, String> userTypes =  (HashMap<String, String>) request.getServletContext().getAttribute("userTypes");
 		UserLoggato user = (UserLoggato) session.getAttribute("user");
-		
-		AbstractManagerFactory factory = new DAOFactory();
-		AbstractStudenteManager managerStudente = factory.createStudenteManager();
-		Studente studente;
-		AbstractCurriculumManager managerCurriculum = factory.createCurriculumManager();
-		Curriculum  curriculum;
 		if(user.getTipo().equals(userTypes.get("Stud")))
 		{
 			try 
 			{
-				studente = managerStudente.read(user.getId());
-				curriculum = managerCurriculum.read(user.getId());
+				AbstractManagerFactory factory = new DAOFactory();
+				AbstractStudenteManager managerStudente = factory.createStudenteManager();
+				Studente studente = managerStudente.read(user.getId());
+				AbstractCurriculumManager managerCurriculum = factory.createCurriculumManager();
+				Curriculum  curriculum = managerCurriculum.read(user.getId());
 				request.setAttribute("studente", studente);
 				request.setAttribute("curriculum", curriculum);
 			} 
@@ -69,22 +68,51 @@ public class CaricaProfiloStudente extends HttpServlet {
 			catch (TuplaNotFoundException e) 
 			{
 				e.printStackTrace();
-				request.setAttribute("errore", "Lo studente cercato non &egrave; presente nel database");
+				request.setAttribute("errore", "Lo studente cercato non &egrave; registrato alla piattaforma");
 			}
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata del profilo dello studente
 			dispatcher.forward(request, response);
 		}
+		else if (!replaceIfMissing(request.getParameter("username"), replacement).equals(replacement))
+		{
+			String username = request.getParameter("username");
+			try 
+			{
+				AbstractManagerFactory factory = new DAOFactory();
+				AbstractStudenteManager managerStudente = factory.createStudenteManager();
+				Studente studente = managerStudente.read(username);
+				AbstractCurriculumManager managerCurriculum = factory.createCurriculumManager();
+				Curriculum  curriculum = managerCurriculum.read(username);
+				request.setAttribute("studente", studente);
+				request.setAttribute("curriculum", curriculum);
+			} 
+			catch (SQLException e)
+			{
+				e.printStackTrace();
+				request.setAttribute("errore", "Si &egrave; verificato un errore durante l'interazione col database, si prega di riprovare");
+			}
+			catch (TuplaNotFoundException e) 
+			{
+				e.printStackTrace();
+				request.setAttribute("errore", "Lo studente cercato non &egrave; registrato alla piattaforma");
+			}
+//			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata del profilo dello studente
+//			dispatcher.forward(request, response);
+		}
 		else
 		{
-			response.sendRedirect(referer);
+//			response.sendRedirect(referer);
+			request.setAttribute("errore", "Non hai selezionato alcun studente");
 		}
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata del profilo dello studente
+		dispatcher.forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
 		doGet(request, response);
 	}
 	
