@@ -4,7 +4,7 @@
 	<div class="container">
 
 		<ul class="nav nav-tabs">
-			<li role="presentation" id="attiva"><a
+			<li role="presentation" ><a class="attiva"
 				href="azienda_richieste.jsp">Richieste</a></li>
 			<li role="presentation"><a href="azienda_aggiunta_tirocinio.jsp">Aggiungi
 					Tirocinio</a></li>

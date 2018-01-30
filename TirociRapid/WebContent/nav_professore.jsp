@@ -5,7 +5,7 @@
 
 		<ul class="nav nav-tabs">
 
-			<li role="presentation" id="attiva"><a href="professore.jsp">Richieste
+			<li role="presentation"><a class="attiva" href="professore.jsp">Richieste
 					di tutorato</a></li>
 			<li role="presentation" class="navbar-right"><a href="#">Logout
 					&nbsp<i class="fa fa-power-off"></i>

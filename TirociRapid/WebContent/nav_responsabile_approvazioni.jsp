@@ -5,7 +5,7 @@
 
 		<ul class="nav nav-tabs">
 
-			<li role="presentation" id="attiva"><a
+			<li role="presentation"><a class="attiva"
 				href="responsabile_approvazioni_richieste_di_tutorato.jsp">Richieste
 					di tutorato</a></li>
 			<li role="presentation"><a

@@ -44,7 +44,7 @@ public class CaricaProfiloStudente extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String referer = request.getHeader("Referer");
-		HashMap<String, String> userTypes = (HashMap<String, String>) request.getServletContext().getAttribute("userTypes");
+		HashMap<String, String> userTypes =  (HashMap<String, String>) request.getServletContext().getAttribute("userTypes");
 		UserLoggato user = (UserLoggato) session.getAttribute("user");
 		
 		AbstractManagerFactory factory = new DAOFactory();

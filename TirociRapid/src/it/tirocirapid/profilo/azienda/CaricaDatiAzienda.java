@@ -48,7 +48,7 @@ public class CaricaDatiAzienda extends HttpServlet {
 		AbstractAziendaManager managerAzienda = factory.createAziendaManager();
 		Azienda azienda;
 		
-		if((user != null) && (request.getParameter("partitaIVA")!=null))
+		if((user != null) && (request.getParameter("partitaIVA")!=null)) //Se l'utente non è un respoonsabile azienda 
 		{
 			try 
 			{
@@ -68,7 +68,7 @@ public class CaricaDatiAzienda extends HttpServlet {
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata dell' azienda singola
 			dispatcher.forward(request, response);
 		}
-		else if(user.getTipo().equals(userTypes.get("RespAz")))
+		else if(user.getTipo().equals(userTypes.get("RespAz")))    //Se l'utente è un respoonsabile azienda 
 		{
 			try 
 			{
