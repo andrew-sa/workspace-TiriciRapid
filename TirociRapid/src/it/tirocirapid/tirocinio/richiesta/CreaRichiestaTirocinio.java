@@ -71,7 +71,7 @@ public class CreaRichiestaTirocinio extends HttpServlet {
 			try
 			{
 				managerRichiestaTirocinio.create(reqTir, states);
-				request.setAttribute("successo", "Si &egrave; verificato un errore durante l'interazione col database, si prega di riprovare");
+				request.setAttribute("successo", "La richiesta di tirocinio &egrave; stato creata con successo");
 				try
 				{
 					inviaEmailResponsabileAzienda(partitaIVA, nomeTirocinio, username);

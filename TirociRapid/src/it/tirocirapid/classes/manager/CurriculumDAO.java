@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
+
 import it.tirocirapid.classes.model.Curriculum;
 import it.tirocirapid.database.DriverManagerConnectionPool;
 import it.tirocirapid.eccezioni.InsertFailedException;
@@ -22,9 +24,31 @@ public class CurriculumDAO extends AbstractCurriculumManager {
 	 * @throws SQLException
 	 */
 	@Override
-	public void create(Curriculum toCreate, String usernameStudente) throws SQLException {
-		// TODO Auto-generated method stub
-		
+	public void create(Curriculum toCreate, String usernameStudente) throws MySQLIntegrityConstraintViolationException, SQLException, InsertFailedException
+	{
+		Connection con = DriverManagerConnectionPool.getIstance().getConnection();
+		PreparedStatement ps = con.prepareStatement(CREATE);
+		ps.setString(1, usernameStudente);
+		ps.setString(2, toCreate.getFax());
+		ps.setString(3, toCreate.getCapacitaCompetenzeRelazionali());
+		ps.setString(4, toCreate.getCapacitaCompetenzeTecniche());
+		ps.setString(5, toCreate.getCapacitaCompetenzeArtistiche());
+		ps.setString(6, toCreate.getCapacitaCompetenzePersonali());
+		ps.setString(7, toCreate.getCapacitaCompetenzeOrganizzative());
+		ps.setString(8, toCreate.getAltreCapacitaCompetenze());
+		ps.setString(9, toCreate.getEsperienzaLavorativa());
+		ps.setString(10, toCreate.getMadrelingua());
+		ps.setString(11, toCreate.getAltreLingue());
+		ps.setString(12, toCreate.getPatenti());
+		ps.setString(13, toCreate.getUlterioriInformazioni());
+		int i = ps.executeUpdate();
+		con.commit();
+		ps.close();
+		DriverManagerConnectionPool.getIstance().releaseConnection(con);
+		if (i != 1)
+		{
+			throw new InsertFailedException("Si &egrave; verifacato un errore durante il salvataggio sul database");
+		}
 	}
 
 	/**
@@ -35,7 +59,8 @@ public class CurriculumDAO extends AbstractCurriculumManager {
 	 * @throws SQLException
 	 */
 	@Override
-	public Curriculum read(String username) throws SQLException, TuplaNotFoundException {
+	public Curriculum read(String usernameStudente) throws SQLException, TuplaNotFoundException
+	{
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -47,7 +72,8 @@ public class CurriculumDAO extends AbstractCurriculumManager {
 	 * @throws SQLException
 	 */
 	@Override
-	public void update(Curriculum toUpdate) throws SQLException, InsertFailedException {
+	public void update(Curriculum toUpdate, String usernameStudente) throws SQLException, InsertFailedException
+	{
 		// TODO Auto-generated method stub
 		
 	}
@@ -82,6 +108,7 @@ public class CurriculumDAO extends AbstractCurriculumManager {
 		}
 	}
 	
+	private static final String CREATE = "INSERT INTO curriculum VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String SEARCH = "SELECT * FROM curriculum WHERE Username = ?";
 
 }

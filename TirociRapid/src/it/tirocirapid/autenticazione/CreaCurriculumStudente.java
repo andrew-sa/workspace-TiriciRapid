@@ -1,6 +1,7 @@
 package it.tirocirapid.autenticazione;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
@@ -12,8 +13,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
+
+import it.tirocirapid.classes.manager.AbstractCurriculumManager;
 import it.tirocirapid.classes.model.Curriculum;
-import it.tirocirapid.tirocinio.proposta.Servlet;
+import it.tirocirapid.eccezioni.InsertFailedException;
+import it.tirocirapid.factory.AbstractManagerFactory;
+import it.tirocirapid.factory.DAOFactory;
 
 /**
  * Servlet che si occupa della creazione di un curriculum da parte dello studente
@@ -86,7 +92,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 		Curriculum curriculum = new Curriculum();
 		for (String param: parametri)
 		{
-			if (!param.equals(parametri.get(0)) && replaceIfMissing(request.getParameter(param), replacement).equals(replacement))
+			if (!param.equals(parametri.get(1)) && replaceIfMissing(request.getParameter(param), replacement).equals(replacement))
 			{
 				request.setAttribute("errore", "Il campo " + param + " &egrave; obbligatorio");
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //CreaCurriculum
@@ -201,7 +207,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 				}
 				else
 				{
-					request.setAttribute("errore", "Il campo " + param + " deve contenere dai 6 ai 20 caratteri alfanumerici");
+					request.setAttribute("errore", "Il campo " + param + " non pu&ograve; superare 20 caratteri");
 					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //CreaCurriculum
 					dispatcher.forward(request, response);
 					return;
@@ -215,7 +221,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 				}
 				else
 				{
-					request.setAttribute("errore", "Il campo " + param + " deve contenere dai 6 ai 20 caratteri alfanumerici");
+					request.setAttribute("errore", "Le lingue del campo " + param + " devono essere superate da una virgola e il contenuto non deve superare i 100 caratteri");
 					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //CreaCurriculum
 					dispatcher.forward(request, response);
 					return;
@@ -225,7 +231,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 			{
 				if (validaPatenti(request.getParameter(param).toUpperCase()))
 				{
-					curriculum.setPatenti(request.getParameter(param.toUpperCase()));
+					curriculum.setPatenti(removeLastToken(request.getParameter(param.toUpperCase())));
 				}
 				else
 				{
@@ -257,6 +263,36 @@ public class CreaCurriculumStudente extends HttpServlet {
 				return;
 			}
 		} //fine ciclo for
+		try
+		{
+			AbstractManagerFactory factory = new DAOFactory();
+			AbstractCurriculumManager managerCurriculum = factory.createCurriculumManager();
+			managerCurriculum.create(curriculum, request.getParameter("username"));
+			request.setAttribute("successo", "La registrazione &egrave; avvenuta con successo.<br/>Ora puoi effettuare il login");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //LoginStudente
+			dispatcher.forward(request, response);
+		}
+		catch (MySQLIntegrityConstraintViolationException e)
+		{
+			e.printStackTrace();
+			request.setAttribute("errore", "L'username dello studente immesso non &egrave; presente nel database");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //CreaCurriculum
+			dispatcher.forward(request, response);
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+			request.setAttribute("errore", "Si &egrave; verificato un errore durante l'interazione col database, si prega di riprovare");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //CreaCurriculum
+			dispatcher.forward(request, response);
+		}
+		catch (InsertFailedException e)
+		{
+			e.printStackTrace();
+			request.setAttribute("errore", e.getMessage());
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //CreaCurriculum
+			dispatcher.forward(request, response);
+		}
 	}
 
 	/**
@@ -267,7 +303,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 	 */
 	private boolean validaFax(String fax)
 	{
-		if (fax.equals("") || fax == null)
+		if (fax.trim().equals("") || fax == null)
 		{
 			return true;
 		}
@@ -299,17 +335,31 @@ public class CreaCurriculumStudente extends HttpServlet {
 		return (esperienzaLavorativa.length() <= 200);
 	}
 	
-	private boolean validaPatenti(String patenti)
+	private boolean validaPatenti(String strPatenti)
 	{
-		String[] p = patenti.split(",");
+		String[] p = strPatenti.split(TOKEN);
 		for (int i = 0; i < p.length; i++)
 		{
-			if (!this.patenti.contains(p))
+			if (!patenti.contains(p))
 			{
 				return false;
 			}
 		}
 		return true;
+	}
+	
+	private boolean validaMadrelingua(String madrelingua)
+	{
+		return (Pattern.matches("[A-Za-z]{20}", madrelingua) && (madrelingua.length() <= 20));
+	}
+	
+	private boolean validaAltreLingue(String altreLingue)
+	{
+		if (!altreLingue.trim().endsWith(TOKEN))
+		{
+			altreLingue.concat(TOKEN);
+		}
+		return Pattern.matches("([A-Za-z\\s],)+", altreLingue);
 	}
 	
 	/**
@@ -322,17 +372,27 @@ public class CreaCurriculumStudente extends HttpServlet {
 	{
 		return (ulterioriInformazioni.length() <= 200);
 	}
-
-	/**
-	 * 
-	 * @param str rappresenta il contenuto dei compi multi valore
-	 * @return true se str è formattato in modo corretto
-	 * @return false se str non è formattanto in modo corretto
-	 */
-	private boolean validaFormattazioneValoriMultipli(String str)
+	
+	private String removeLastToken(String str)
 	{
-		return false;
+		str = str.trim();
+		if (str.endsWith(TOKEN))
+		{
+			str = str.substring(0, str.length() - 2);
+		}
+		return str;
 	}
+
+//	/**
+//	 * 
+//	 * @param str rappresenta il contenuto dei compi multi valore
+//	 * @return true se str è formattato in modo corretto
+//	 * @return false se str non è formattanto in modo corretto
+//	 */
+//	private boolean validaFormattazioneValoriMultipli(String str)
+//	{
+//		return false;
+//	}
 	
 	/**
 	 * 
@@ -351,5 +411,6 @@ public class CreaCurriculumStudente extends HttpServlet {
 	
 	private static ArrayList<String> parametri;
 	private static ArrayList<String> patenti;
+	private static final String TOKEN = ",";
 	
 }
