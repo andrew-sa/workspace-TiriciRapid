@@ -30,7 +30,7 @@
 							<p>
 								<span class="parametri-azienda">Ambito:</span> blabladaskjhbasdn
 								vkjfadfbvk ajhndfvlk,n dfvlk jnaafhbvn, ansskjvf adgadbmkajb
-								vtffubla
+								vtffubla tfytcb
 							</p>
 							<p>
 								<span class="parametri-azienda">Sede:</span> blablabla
