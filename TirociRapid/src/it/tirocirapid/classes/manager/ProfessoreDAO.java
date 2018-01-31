@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import it.tirocirapid.classes.model.Azienda;
 import it.tirocirapid.classes.model.Professore;
 import it.tirocirapid.database.DriverManagerConnectionPool;
 import it.tirocirapid.eccezioni.TuplaNotFoundException;
@@ -27,8 +26,8 @@ public class ProfessoreDAO extends AbstractProfessoreManager {
 	 * @throws SQLException
 	 */
 	@Override
-	public int search(String username, String password) throws SQLException, TuplaNotFoundException {
-		
+	public int search(String username, String password) throws SQLException, TuplaNotFoundException
+	{
 		Connection con = DriverManagerConnectionPool.getIstance().getConnection();
 		PreparedStatement ps = con.prepareStatement(SEARCH);
 		ps.setString(1, username);
@@ -72,7 +71,6 @@ public class ProfessoreDAO extends AbstractProfessoreManager {
 			DriverManagerConnectionPool.getIstance().releaseConnection(con);
 			throw new TuplaNotFoundException();
 		}
-		
 	}
 
 	/**
@@ -83,9 +81,35 @@ public class ProfessoreDAO extends AbstractProfessoreManager {
 	 * @throws SQLException
 	 */
 	@Override
-	public Professore read(String username) throws SQLException, TuplaNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+	public Professore read(String username) throws SQLException, TuplaNotFoundException
+	{
+		Connection con = DriverManagerConnectionPool.getIstance().getConnection();
+		PreparedStatement ps = con.prepareStatement(READ);
+		ps.setString(1, username);
+		ResultSet rs = ps.executeQuery();
+		if (rs.next())
+		{
+			Professore professore = new Professore();
+			professore.setUsername(username);
+			professore.setNome(rs.getString(1));
+			professore.setCognome(rs.getString(2));
+			professore.setEmailIstituzionale(rs.getString(3));
+			professore.setTelefono(rs.getString(4));
+			professore.setAmbito(rs.getString(5));
+			con.commit();
+			rs.close();
+			ps.close();
+			DriverManagerConnectionPool.getIstance().releaseConnection(con);
+			return professore;
+		}
+		else
+		{
+			con.commit();
+			rs.close();
+			ps.close();
+			DriverManagerConnectionPool.getIstance().releaseConnection(con);
+			throw new TuplaNotFoundException("Il professore selezionato non &egrave; presente nel database");
+		}
 	}
 
 	/**
@@ -125,11 +149,33 @@ public class ProfessoreDAO extends AbstractProfessoreManager {
 	 * @throws SQLException
 	 */
 	@Override
-	public String readEmail(String username) throws SQLException, TuplaNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+	public String readEmail(String username) throws SQLException, TuplaNotFoundException
+	{
+		Connection con = DriverManagerConnectionPool.getIstance().getConnection();
+		PreparedStatement ps = con.prepareStatement(READ_EMAIL);
+		ps.setString(1, username);
+		ResultSet rs = ps.executeQuery();
+		if (rs.next())
+		{
+			String email = rs.getString(1);
+			con.commit();
+			rs.close();
+			ps.close();
+			DriverManagerConnectionPool.getIstance().releaseConnection(con);
+			return email;
+		}
+		else
+		{
+			con.commit();
+			rs.close();
+			ps.close();
+			DriverManagerConnectionPool.getIstance().releaseConnection(con);
+			throw new TuplaNotFoundException("Il professore selezionato non &egrave; presente nel database");
+		}
 	}
 	
 	private static final String SEARCH = "SELECT Username, Pass, Tipo FROM profesore WHERE Username = ?";
+	private static final String READ = "SELECT Nome, Cognome, EmailIstituzionale, Telefono, Ambito FROM professore WHERE Username = ?";
 	private static final String READ_ALL = "SELECT Nome, Cognome, EmailIstituzionale, Telefono, Ambito FROM professore";
+	private static final String READ_EMAIL = "SELECT EmailIstituzionale FROM professore WHERE Username = ?";
 }

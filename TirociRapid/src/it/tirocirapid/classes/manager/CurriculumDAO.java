@@ -63,6 +63,7 @@ public class CurriculumDAO extends AbstractCurriculumManager {
 	{
 		Connection con = DriverManagerConnectionPool.getIstance().getConnection();
 		PreparedStatement ps = con.prepareStatement(READ);
+		ps.setString(1, usernameStudente);
 		ResultSet rs = ps.executeQuery();
 		if (rs.next())
 		{
@@ -162,7 +163,7 @@ public class CurriculumDAO extends AbstractCurriculumManager {
 	private static final String CREATE = "INSERT INTO curriculum VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String SEARCH = "SELECT * FROM curriculum WHERE Username = ?";
 	private static final String READ = "SELECT * FROM curriculum WHERE Username = ?";
-	private static final String UPDATE = "UPDATE tirocinio SET Fax = ?, CapacitaCompetenzeRelazionali = ?, "
+	private static final String UPDATE = "UPDATE curriculum SET Fax = ?, CapacitaCompetenzeRelazionali = ?, "
 			+ "CapacitaCompetenzeTecniche = ?, CapacitaCompetenzeArtistiche = ?, CapacitaCompetenzePersonali = ?, "
 			+ "CapacitaCompetenzeOrganizzative = ?, AltreCapacitaCompetenze = ?, EsperienzaLavorativa = ?, "
 			+ "Madrelingua = ?, AltreLingue = ?, Patenti = ?, UlterioriInformazioni = ? WHERE Username = ?";

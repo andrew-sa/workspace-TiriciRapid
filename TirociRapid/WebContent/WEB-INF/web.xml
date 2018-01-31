@@ -9,4 +9,116 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  <listener>
+    <listener-class>it.tirocirapid.listener.InizializzazioneContextListener</listener-class>
+  </listener>
+  
+  <filter>
+    <filter-name>AreaVisitatoreFiltro</filter-name>
+    <filter-class>it.tirocirapid.filters.AreaVisitatoreFiltro</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>AreaVisitatoreFiltro</filter-name>
+    <url-pattern>/inserisci_curriculum</url-pattern>
+    <url-pattern>/login</url-pattern>
+    <url-pattern>/recupera_password</url-pattern>
+    <url-pattern>/registrazione_azienda</url-pattern>
+    <url-pattern>/registrazione_studente</url-pattern>
+  </filter-mapping>
+  
+  <filter>
+    <filter-name>AreaRiservataFiltro</filter-name>
+    <filter-class>it.tirocirapid.filters.AreaRiservataFiltro</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>AreaRiservataFiltro</filter-name>
+    <url-pattern>/logout</url-pattern>
+    <url-pattern>/dati_azienda</url-pattern>
+    <url-pattern>/tirocini_azienda</url-pattern>
+    <url-pattern>/elimina_tirocinio</url-pattern>
+    <url-pattern>/modifica_dati_azienda</url-pattern>
+    <url-pattern>/profilo_studente</url-pattern>
+    <url-pattern>/modifica_curriculum</url-pattern>
+    <url-pattern>/convalida_proposta_tirocinio</url-pattern>
+    <url-pattern>/lista_aziende</url-pattern>
+    <url-pattern>/lista_professori</url-pattern>
+    <url-pattern>/convalida_richiesta_tirocinio</url-pattern>
+    <url-pattern>/invia_richiesta</url-pattern>
+    <url-pattern>/elimina_richiesta_tirocinio</url-pattern>
+    <url-pattern>/scegli_tutor</url-pattern>
+    <!--<url-pattern>/</url-pattern>
+    <url-pattern>/</url-pattern>
+    <url-pattern>/</url-pattern>
+    <url-pattern>/</url-pattern>
+    <url-pattern>/</url-pattern>
+    <url-pattern>/</url-pattern>
+    <url-pattern>/</url-pattern>
+    <url-pattern>/</url-pattern>
+    <url-pattern>/</url-pattern>
+    <url-pattern>/</url-pattern>
+    <url-pattern>/</url-pattern>
+    <url-pattern>/</url-pattern>
+    <url-pattern>/</url-pattern>-->
+  </filter-mapping>
+  
+  <filter>
+    <filter-name>NonProfessoreFiltro</filter-name>
+    <filter-class>it.tirocirapid.filters.NonProfessoreFiltro</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>NonProfessoreFiltro</filter-name>
+    <url-pattern>/tirocini_azienda</url-pattern>
+    <url-pattern>/elimina_tirocinio</url-pattern>
+    <url-pattern>/modifica_dati_azienda</url-pattern>
+    <url-pattern>/modifica_curriculum</url-pattern>
+    <url-pattern>/convalida_proposta_tirocinio</url-pattern>
+    <url-pattern>/lista_aziende</url-pattern>
+    <url-pattern>/lista_professori</url-pattern>
+    <url-pattern>/invia_richiesta</url-pattern>
+    <url-pattern>/elimina_richiesta_tirocinio</url-pattern>
+    <url-pattern>/scegli_tutor</url-pattern>
+  </filter-mapping>
+  
+  <filter>
+    <filter-name>NonResponsabileApprovazioniFiltro</filter-name>
+    <filter-class>it.tirocirapid.filters.NonResponsabileApprovazioniFiltro</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>NonResponsabileApprovazioniFiltro</filter-name>
+    <url-pattern>/elimina_tirocinio</url-pattern>
+    <url-pattern>/modifica_dati_azienda</url-pattern>
+    <url-pattern>/modifica_curriculum</url-pattern>
+    <url-pattern>/lista_professori</url-pattern>
+    <url-pattern>/invia_richiesta</url-pattern>
+    <url-pattern>/elimina_richiesta_tirocinio</url-pattern>
+    <url-pattern>/scegli_tutor</url-pattern>
+  </filter-mapping>
+  
+  <filter>
+    <filter-name>NonResponsabileAziendaFiltro</filter-name>
+    <filter-class>it.tirocirapid.filters.NonResponsabileAziendaFiltro</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>NonResponsabileAziendaFiltro</filter-name>
+    <url-pattern>/modifica_curriculum</url-pattern>
+    <url-pattern>/convalida_proposta_tirocinio</url-pattern>
+    <url-pattern>/lista_aziende</url-pattern>
+    <url-pattern>/lista_professori</url-pattern>
+    <url-pattern>/invia_richiesta</url-pattern>
+    <url-pattern>/elimina_richiesta_tirocinio</url-pattern>
+    <url-pattern>/scegli_tutor</url-pattern>
+  </filter-mapping>
+  
+  <filter>
+    <filter-name>NonStudenteFiltro</filter-name>
+    <filter-class>it.tirocirapid.filters.NonStudenteFiltro</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>NonStudenteFiltro</filter-name>
+    <url-pattern>/elimina_tirocinio</url-pattern>
+    <url-pattern>/modifica_dati_azienda</url-pattern>
+    <url-pattern>/convalida_proposta_tirocinio</url-pattern>
+    <url-pattern>/convalida_richiesta_tirocinio</url-pattern>
+  </filter-mapping>
 </web-app>

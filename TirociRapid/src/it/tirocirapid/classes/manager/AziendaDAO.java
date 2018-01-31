@@ -99,7 +99,6 @@ public class AziendaDAO extends AbstractAziendaManager {
 			DriverManagerConnectionPool.getIstance().releaseConnection(con);
 			throw new DuplicateKeyException("La partitaIVA inserita &egrave; gi&agrave; presente nel database");
 		}
-		
 	}
 	
 	/**
@@ -136,9 +135,37 @@ public class AziendaDAO extends AbstractAziendaManager {
 	 * @throws SQLException
 	 */
 	@Override
-	public Azienda read(String partitaIVA) throws SQLException, TuplaNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+	public Azienda read(String partitaIVA) throws SQLException, TuplaNotFoundException
+	{
+		Connection con = DriverManagerConnectionPool.getIstance().getConnection();
+		PreparedStatement ps = con.prepareStatement(READ);
+		ps.setString(1, partitaIVA);
+		ResultSet rs = ps.executeQuery();
+		if (rs.next())
+		{
+			Azienda azienda = new Azienda();
+			azienda.setPartitaIVA(rs.getString(1));
+			azienda.setNome(rs.getString(2));
+			azienda.setSede(rs.getString(3));
+			azienda.setDescrizioneAmbito(rs.getString(4));
+			azienda.setNumeroTelefono(rs.getString(5));
+			azienda.setEmail(rs.getString(6));
+			azienda.setPassword(rs.getString(7));
+			azienda.setStato(rs.getString(8));
+			con.commit();
+			rs.close();
+			ps.close();
+			DriverManagerConnectionPool.getIstance().releaseConnection(con);
+			return azienda;
+		}
+		else
+		{
+			con.commit();
+			rs.close();
+			ps.close();
+			DriverManagerConnectionPool.getIstance().releaseConnection(con);
+			throw new TuplaNotFoundException("L'azienda cercata non &egrave; presente nel database");
+		}
 	}
 
 	/**
@@ -148,10 +175,25 @@ public class AziendaDAO extends AbstractAziendaManager {
 	 * @throws SQLException
 	 */
 	@Override
-	public void update(Azienda toUpdate) throws SQLException, TuplaNotFoundException
+	public void update(Azienda toUpdate) throws SQLException, InsertFailedException
 	{
-		// TODO Auto-generated method stub
-		
+		Connection con = DriverManagerConnectionPool.getIstance().getConnection();
+		PreparedStatement ps = con.prepareStatement(UPDATE);
+		ps.setString(1, toUpdate.getNome());
+		ps.setString(2, toUpdate.getSede());
+		ps.setString(3, toUpdate.getDescrizioneAmbito());
+		ps.setString(4, toUpdate.getNumeroTelefono());
+		ps.setString(5, toUpdate.getEmail());
+		ps.setString(6, toUpdate.getStato());
+		ps.setString(7, toUpdate.getPartitaIVA());
+		int i = ps.executeUpdate();
+		con.commit();
+		ps.close();
+		DriverManagerConnectionPool.getIstance().releaseConnection(con);
+		if (i != 1)
+		{
+			throw new InsertFailedException("Impossibile salvare le modifiche al curriculum nel database");
+		}
 	}
 
 	/**
@@ -215,7 +257,7 @@ public class AziendaDAO extends AbstractAziendaManager {
 			rs.close();
 			ps.close();
 			DriverManagerConnectionPool.getIstance().releaseConnection(con);
-			throw new TuplaNotFoundException();
+			throw new TuplaNotFoundException("L'azienda selezionata non &egrave; presente nel database");
 		}
 	}
 
@@ -248,14 +290,36 @@ public class AziendaDAO extends AbstractAziendaManager {
 			rs.close();
 			ps.close();
 			DriverManagerConnectionPool.getIstance().releaseConnection(con);
-			throw new TuplaNotFoundException();
+			throw new TuplaNotFoundException("L'azienda selezionata non &egrave; presente nel database");
+		}
+	}
+	
+	@Override
+	public void updateStato(String partitaIVA, String statoToUpdate) throws SQLException, InsertFailedException
+	{
+		Connection con = DriverManagerConnectionPool.getIstance().getConnection();
+		PreparedStatement ps = con.prepareStatement(UPDATE_STATO);
+		ps.setString(1, statoToUpdate);
+		ps.setString(2, partitaIVA);
+		int i = ps.executeUpdate();
+		con.commit();
+		ps.close();
+		DriverManagerConnectionPool.getIstance().releaseConnection(con);
+		if (i != 1)
+		{
+			throw new InsertFailedException("Impossibile aggiornare lo stato dell'azienda");
 		}
 	}
 
 	private static final String SEARCH = "SELECT PartitaIVA, Pass FROM azienda WHERE PartitaIVA = ?";
+	private static final String READ = "SELECT * FROM azienda WHERE PartitaIVA = ?";
 	private static final String READ_EMAIL = "SELECT Email FROM azienda WHERE PartitaIVA = ?";
 	private static final String READ_PASSWORD = "SELECT Pass FROM azienda WHERE PartitaIVA = ?";
 	private static final String CREATE = "INSERT INTO azienda(PartitaIVA, Nome, Sede, DescrizioneAmbito, NumeroTelefono, Email, Pass, Stato) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String READ_ALL_KEY = "SELECT PartitaIVA FROM azienda";
 	private static final String READ_ALL = "SELECT * FROM azienda";
+	private static final String UPDATE = "UPDATE azienda SET Nome = ?, Sede = ?, DescrizioneAmbito = ?, NumeroTelefono = ? "
+			+ "Email = ?, Stato = ? WHERE PartitaIVA = ?";
+	private static final String UPDATE_STATO = "UPDATE azienda SET Stato = ? WHERE PartitaIVA = ?";
+	
 }

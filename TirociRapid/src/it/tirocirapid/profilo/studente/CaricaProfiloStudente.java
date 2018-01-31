@@ -12,10 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import it.tirocirapid.classes.manager.AbstractAziendaManager;
 import it.tirocirapid.classes.manager.AbstractCurriculumManager;
 import it.tirocirapid.classes.manager.AbstractStudenteManager;
-import it.tirocirapid.classes.model.Azienda;
 import it.tirocirapid.classes.model.Curriculum;
 import it.tirocirapid.classes.model.Studente;
 import it.tirocirapid.classes.model.UserLoggato;
@@ -44,21 +42,16 @@ public class CaricaProfiloStudente extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 //		String referer = request.getHeader("Referer");
-		final String replacement = "";
 		HttpSession session = request.getSession();
 		HashMap<String, String> userTypes =  (HashMap<String, String>) request.getServletContext().getAttribute("userTypes");
 		UserLoggato user = (UserLoggato) session.getAttribute("user");
-		if(user.getTipo().equals(userTypes.get("Stud")))
+		final String replacement = "";
+		if (user.getTipo().equals(userTypes.get("Stud")))
 		{
 			try 
 			{
-				AbstractManagerFactory factory = new DAOFactory();
-				AbstractStudenteManager managerStudente = factory.createStudenteManager();
-				Studente studente = managerStudente.read(user.getId());
-				AbstractCurriculumManager managerCurriculum = factory.createCurriculumManager();
-				Curriculum  curriculum = managerCurriculum.read(user.getId());
+				Studente studente = caricaDatiStudente(user.getId());
 				request.setAttribute("studente", studente);
-				request.setAttribute("curriculum", curriculum);
 			} 
 			catch (SQLException e)
 			{
@@ -70,21 +63,16 @@ public class CaricaProfiloStudente extends HttpServlet {
 				e.printStackTrace();
 				request.setAttribute("errore", "Lo studente cercato non &egrave; registrato alla piattaforma");
 			}
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata del profilo dello studente
-			dispatcher.forward(request, response);
+//			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata del profilo dello studente
+//			dispatcher.forward(request, response);
 		}
 		else if (!replaceIfMissing(request.getParameter("username"), replacement).equals(replacement))
 		{
-			String username = request.getParameter("username");
+//			String username = request.getParameter("username");
 			try 
 			{
-				AbstractManagerFactory factory = new DAOFactory();
-				AbstractStudenteManager managerStudente = factory.createStudenteManager();
-				Studente studente = managerStudente.read(username);
-				AbstractCurriculumManager managerCurriculum = factory.createCurriculumManager();
-				Curriculum  curriculum = managerCurriculum.read(username);
+				Studente studente = caricaDatiStudente(request.getParameter("username"));
 				request.setAttribute("studente", studente);
-				request.setAttribute("curriculum", curriculum);
 			} 
 			catch (SQLException e)
 			{
@@ -114,6 +102,17 @@ public class CaricaProfiloStudente extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		doGet(request, response);
+	}
+	
+	protected Studente caricaDatiStudente(String username) throws SQLException, TuplaNotFoundException
+	{
+		AbstractManagerFactory factory = new DAOFactory();
+		AbstractStudenteManager managerStudente = factory.createStudenteManager();
+		Studente studente = managerStudente.read(username);
+		AbstractCurriculumManager managerCurriculum = factory.createCurriculumManager();
+		Curriculum curriculum = managerCurriculum.read(username);
+		studente.setCurriculum(curriculum);
+		return studente;
 	}
 	
 	/**

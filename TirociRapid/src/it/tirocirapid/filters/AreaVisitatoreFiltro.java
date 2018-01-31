@@ -17,15 +17,15 @@ import javax.servlet.http.HttpSession;
 import it.tirocirapid.classes.model.UserLoggato;
 
 /**
- * Servlet Filter implementation class ResponsabileAziendaFiltro
+ * Servlet Filter implementation class AreaVisitatoreFiltro
  */
-@WebFilter("/ResponsabileAziendaFiltro")
-public class ResponsabileAziendaFiltro implements Filter {
+//@WebFilter("/AreaVisitatoreFiltro")
+public class AreaVisitatoreFiltro implements Filter {
 
     /**
      * Default constructor. 
      */
-    public ResponsabileAziendaFiltro() {
+    public AreaVisitatoreFiltro() {
         // TODO Auto-generated constructor stub
     }
 
@@ -43,12 +43,29 @@ public class ResponsabileAziendaFiltro implements Filter {
 	{
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpSession session = req.getSession();
-		HashMap<String, String> userTypes = (HashMap<String, String>) request.getServletContext().getAttribute("userTypes");
-		
-		if (!((UserLoggato) session.getAttribute("user")).equals(userTypes.get("RespAz")))
+		if (session.getAttribute("user") != null)
 		{
-			request.setAttribute("errore", "Per poter accedere a questa sezione devi essere autenticato come Responsabile Azienda");
-			RequestDispatcher dispatcher = req.getRequestDispatcher("/"); //LoginAzienda
+			UserLoggato user = (UserLoggato) session.getAttribute("user");
+			HashMap<String, String> userTypes = (HashMap<String, String>) request.getServletContext().getAttribute("userTypes");
+			String page = "/";
+			if (user.getTipo().equals(userTypes.get("Stud")))
+			{
+				page = "/"; //HomeStudente
+			}
+			else if (user.getTipo().equals(userTypes.get("Prof")))
+			{
+				page = "/"; //HomeProfessore
+			}
+			else if (user.getTipo().equals(userTypes.get("RespAppr")))
+			{
+				page = "/"; //HomeResponsabileApprovazioni
+			}
+			else if (user.getTipo().equals(userTypes.get("RespAz")))
+			{
+				page = "/"; //HomeResponsabileAzienda
+			}
+			request.setAttribute("errore", "Questa sezione &egrave; accedibile solo se non si &egrave; autenticati");
+			RequestDispatcher dispatcher = req.getRequestDispatcher(page);
 			dispatcher.forward(request, response);
 		}
 		else

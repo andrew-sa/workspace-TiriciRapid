@@ -15,12 +15,12 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet Filter implementation class AreaRiservataFiltro
  */
-@WebFilter(
-		servletNames = { 
-				"CaricaProfiloStudente", 
-				"CaricaDatiAzienda", 
-				"CaricaTirociniAzienda"
-		})
+//@WebFilter(
+//		servletNames = { 
+//				"CaricaProfiloStudente", 
+//				"CaricaDatiAzienda", 
+//				"CaricaTirociniAzienda"
+//		})
 public class AreaRiservataFiltro implements Filter {
 
     /**

@@ -54,7 +54,7 @@ public class RecuperaPasswordAzienda extends HttpServlet {
 				String password = managerAzienda.readEmail(partitaIVA);
 				inviaEmail(email, password);
 				request.setAttribute("successo", "La email di recupero password &egrave; stata inviata con successo");
-				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata di LoginAzienda
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login.jsp"); //Alla schermata di LoginAzienda
 				dispatcher.forward(request, response);
 				return;
 			}
@@ -78,13 +78,13 @@ public class RecuperaPasswordAzienda extends HttpServlet {
 				request.setAttribute("errore", "Si &egrave; verificato un errore nell'invio della email di recupero password");
 				e.printStackTrace();
 			}
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata di RecuperaPasswordAzienda
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login.jsp"); //Alla schermata di RecuperaPasswordAzienda
 			dispatcher.forward(request, response);
 		}
 		else
 		{
 			request.setAttribute("errore", "Devi inserire la partitaIVA dell'azienda");
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata di RecuperaPasswordAzienda
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login.jsp"); //Alla schermata di RecuperaPasswordAzienda
 			dispatcher.forward(request, response);
 		}
 	}

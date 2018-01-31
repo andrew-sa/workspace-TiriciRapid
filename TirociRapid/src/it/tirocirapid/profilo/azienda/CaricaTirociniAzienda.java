@@ -13,9 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import it.tirocirapid.classes.manager.AbstractAziendaManager;
 import it.tirocirapid.classes.manager.AbstractTirocinioManager;
-import it.tirocirapid.classes.model.Azienda;
 import it.tirocirapid.classes.model.Tirocinio;
 import it.tirocirapid.classes.model.UserLoggato;
 import it.tirocirapid.eccezioni.TuplaNotFoundException;
@@ -25,7 +23,7 @@ import it.tirocirapid.factory.DAOFactory;
 /**
  * Servlet che si occupa di caricare i tiricini di un'azienda
  */
-@WebServlet("/tiricini_azienda")
+@WebServlet("/tirocini_azienda")
 public class CaricaTirociniAzienda extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -40,22 +38,18 @@ public class CaricaTirociniAzienda extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
 		HttpSession session = request.getSession();
-		String referer = request.getHeader("Referer");
+//		String referer = request.getHeader("Referer");
 		HashMap<String, String> userTypes = (HashMap<String, String>) request.getServletContext().getAttribute("userTypes");
 		UserLoggato user = (UserLoggato) session.getAttribute("user");
-		
-		AbstractManagerFactory factory = new DAOFactory();
-		AbstractTirocinioManager managerTirocinio = factory.createTirocinioManager();
-		ArrayList<Tirocinio> tirocini;
-		
-		if((user != null) && (request.getParameter("partitaIVA")!=null)) //STUDENTE
+		final String replacement = "";
+		if (user.getTipo().equals(userTypes.get("RespAz")))
 		{
 			try 
 			{
-				tirocini = managerTirocinio.readAllTirociniAzienda(request.getParameter("partitaIVA"));
+				ArrayList<Tirocinio> tirocini = caricaTirociniAzienda(user.getId());
 				request.setAttribute("tirocini", tirocini);
 			} 
 			catch (SQLException e)
@@ -66,16 +60,14 @@ public class CaricaTirociniAzienda extends HttpServlet {
 			catch (TuplaNotFoundException e) 
 			{
 				e.printStackTrace();
-				request.setAttribute("errore", "Non sono presenti tirocini di questa azienda");
+				request.setAttribute("errore", "L'azienda " + user.getId() + " non offre tirocini");
 			}
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata dei tirocini di questa azienda scelta dallo studente
-			dispatcher.forward(request, response);
 		}
-		else if(user.getTipo().equals(userTypes.get("RespAz")))
+		else if (!replaceIfMissing(request.getParameter("partitaIVA"), replacement).equals(replacement))
 		{
 			try 
 			{
-				tirocini = managerTirocinio.readAllTirociniAzienda(user.getId());
+				ArrayList<Tirocinio> tirocini = caricaTirociniAzienda(request.getParameter("partitaIVA"));
 				request.setAttribute("tirocini", tirocini);
 			} 
 			catch (SQLException e)
@@ -88,22 +80,29 @@ public class CaricaTirociniAzienda extends HttpServlet {
 				e.printStackTrace();
 				request.setAttribute("errore", "Non sono presenti tirocini di questa azienda");
 			}
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata di tutti i tirocini dell'azienda attualmente loggata
-			dispatcher.forward(request, response);
 		}
 		else
 		{
-			
-			response.sendRedirect(referer);
+//			response.sendRedirect(referer);
+			request.setAttribute("errore", "Non hai selezionato alcuna azienda");
 		}
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/visualizza_tirocini_azienda.jsp"); //Schermata listaTirociniAzienda
+		dispatcher.forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
 		doGet(request, response);
+	}
+	
+	private ArrayList<Tirocinio> caricaTirociniAzienda(String partitaIVA) throws SQLException, TuplaNotFoundException
+	{
+		AbstractManagerFactory factory = new DAOFactory();
+		AbstractTirocinioManager managerTirocinio = factory.createTirocinioManager();
+		return managerTirocinio.readAllTirociniAzienda(partitaIVA);
 	}
 	
 	/**

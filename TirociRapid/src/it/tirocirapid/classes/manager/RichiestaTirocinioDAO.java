@@ -20,6 +20,19 @@ import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
  * Model che contiene le query per la creazione, lettura, update e cancellazione dell'oggetto RichiestaTirocinio dal DB.
  */
 public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
+	
+	public RichiestaTirocinioDAO()
+	{
+		HashMap<Integer, String> statesReqTir = new HashMap<>();
+    	statesReqTir.put(1, "ConfAz");
+    	statesReqTir.put(2, "ScelTut");
+    	statesReqTir.put(3, "ConfTut");
+    	statesReqTir.put(4, "ConfResp");
+    	statesReqTir.put(5, "Acc");
+    	statesReqTir.put(-4, "RifResp");
+    	statesReqTir.put(-3, "RifTut");
+    	statesReqTir.put(-1, "RifAz");
+	}
 
 	/**
 	 * Si occupa dell'interrogazione al database per l'inserimento di un Richiesta di Tirocinio
@@ -107,6 +120,7 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 			reqTir.setTirocinio(rs.getString(2), rs.getString(1));
 			reqTir.setStudente(rs.getString(4));
 			reqTir.setStato(rs.getString(3));
+			reqTir.setTutorInterno(readTutorInterno(reqTir));
 			rs.close();
 			ps.close();
 			DriverManagerConnectionPool.getIstance().releaseConnection(con);
@@ -245,50 +259,155 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 	}
 
 	/**
-	 * Si occupa dell'interrogazione al database per ricavare tutte le richieti di tirocinio presenti per un determinato studente
+	 * Si occupa dell'interrogazione al database per ricavare tutte le richieste di tirocinio presenti per un determinato studente
 	 * @param usernameStudente l'username dello studente
 	 * @return ArrayList<RichiestaTirocinio> rappresenta le richiesti presenti nel DB di uno studente 
 	 * @throws SQLException
 	 */
 	@Override
-	public ArrayList<RichiestaTirocinio> readAllRichiesteStudente(String usernameStudente) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<RichiestaTirocinio> readAllRichiesteStudente(String usernameStudente) throws SQLException
+	{
+		ArrayList<RichiestaTirocinio> richieste = new ArrayList<>();
+		Connection con = DriverManagerConnectionPool.getIstance().getConnection();
+		PreparedStatement ps = con.prepareStatement(READ_ALL_BY_STUDENTE);
+		ps.setString(1, usernameStudente);
+		ResultSet rs = ps.executeQuery();
+		while (rs.next())
+		{
+			RichiestaTirocinio reqTir = new RichiestaTirocinio();
+			reqTir.setTirocinio(rs.getString(2), rs.getString(1));
+			reqTir.setStato(rs.getString(3));
+			reqTir.setStudente(rs.getString(4));
+			reqTir.setTutorInterno(readTutorInterno(reqTir));
+			richieste.add(reqTir);
+		}
+		con.commit();
+		rs.close();
+		ps.close();
+		DriverManagerConnectionPool.getIstance().releaseConnection(con);
+		return richieste;
 	}
 
 	/**
-	 * Si occupa dell'interrogazione al database per ricavare tutte le richieti di tirocinio presenti per una determinata azienda
+	 * Si occupa dell'interrogazione al database per ricavare tutte le richieste di tirocinio presenti per una determinata azienda
 	 * @param partitaIVA la partita iva dell'azienda 
 	 * @return ArrayList<RichiestaTirocinio> rappresenta le richiesti presenti nel DB di un'azienda
 	 * @throws SQLException
 	 */
 	@Override
-	public ArrayList<RichiestaTirocinio> readAllRichiesteAzienda(String partitaIVA) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<RichiestaTirocinio> readAllRichiesteAzienda(String partitaIVA) throws SQLException
+	{
+		ArrayList<RichiestaTirocinio> richieste = new ArrayList<>();
+		Connection con = DriverManagerConnectionPool.getIstance().getConnection();
+		PreparedStatement ps = con.prepareStatement(READ_ALL_BY_AZIENDA);
+		ps.setString(1, partitaIVA);
+		ResultSet rs = ps.executeQuery();
+		while (rs.next())
+		{
+			RichiestaTirocinio reqTir = new RichiestaTirocinio();
+			reqTir.setTirocinio(rs.getString(2), rs.getString(1));
+			reqTir.setStato(rs.getString(3));
+			reqTir.setStudente(rs.getString(4));
+			reqTir.setTutorInterno(readTutorInterno(reqTir));
+			richieste.add(reqTir);
+		}
+		con.commit();
+		rs.close();
+		ps.close();
+		DriverManagerConnectionPool.getIstance().releaseConnection(con);
+		return richieste;
 	}
 
 	/**
-	 * Si occupa dell'interrogazione al database per ricavare tutte le richieti di tirocinio presenti per una determinato tutor
+	 * Si occupa dell'interrogazione al database per ricavare tutte le richieste di tirocinio presenti per una determinato tutor
 	 * @param  usernameProfessore rappresenta l'username del professore
 	 * @return ArrayList<RichiestaTirocinio> rappresenta le richiesti presenti nel DB di un tutor
 	 * @throws SQLException
+	 * @throws TuplaNotFoundException se una richiesta di tirocinio dove è presente il professore come tutor interno non è presente sul database (non dovrebbe avvenire mai)
 	 */
 	@Override
-	public ArrayList<RichiestaTirocinio> readAllRichiesteTutor(String usernameProfessore) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<RichiestaTirocinio> readAllRichiesteTutor(String usernameProfessore) throws SQLException, TuplaNotFoundException
+	{
+		ArrayList<RichiestaTirocinio> richieste = new ArrayList<>();
+		Connection con = DriverManagerConnectionPool.getIstance().getConnection();
+		PreparedStatement ps = con.prepareStatement(READ_ALL_NOMINARE_BY_TUTOR_INTERNO);
+		ps.setString(1, usernameProfessore);
+		ResultSet rs = ps.executeQuery();
+		while (rs.next())
+		{
+			RichiestaTirocinio reqTir = read(rs.getString(3), rs.getString(2), rs.getString(1));
+			richieste.add(reqTir);
+		}
+		con.commit();
+		rs.close();
+		ps.close();
+		DriverManagerConnectionPool.getIstance().releaseConnection(con);
+		return richieste;
 	}
 
 	/**
-	 * Si occupa dell'interrogazione al database per ricavare tutte le richieti del responsabile approvazione
+	 * Si occupa dell'interrogazione al database per ricavare tutte le richieste del responsabile approvazione
 	 * @return ArrayList<RichiestaTirocinio> rappresenta le richiesti presenti nel DB del responsabile approvazione
 	 * @throws SQLException
 	 */
 	@Override
-	public ArrayList<RichiestaTirocinio> readAllRichiesteInAttesaResponsabileApprovazione() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<RichiestaTirocinio> readAllRichiesteInAttesaResponsabileApprovazione() throws SQLException
+	{
+		ArrayList<RichiestaTirocinio> richieste = new ArrayList<>();
+		Connection con = DriverManagerConnectionPool.getIstance().getConnection();
+		PreparedStatement ps = con.prepareStatement(READ_ALL_FOR_RESPONSABILE_APPROVAZIONI);
+		ps.setString(1, statesReqTir.get(4));
+		ResultSet rs = ps.executeQuery();
+		while (rs.next())
+		{
+			RichiestaTirocinio reqTir = new RichiestaTirocinio();
+			reqTir.setTirocinio(rs.getString(2), rs.getString(1));
+			reqTir.setStato(rs.getString(3));
+			reqTir.setStudente(rs.getString(4));
+			reqTir.setTutorInterno(readTutorInterno(reqTir));
+			richieste.add(reqTir);
+		}
+		con.commit();
+		rs.close();
+		ps.close();
+		DriverManagerConnectionPool.getIstance().releaseConnection(con);
+		return richieste;
+	}
+	
+	private String readTutorInterno(RichiestaTirocinio reqTir) throws SQLException
+	{
+		String usernameProfessore = null;
+		Connection con = DriverManagerConnectionPool.getIstance().getConnection();
+		PreparedStatement ps = con.prepareStatement(READ_NOMINARE);
+		ps.setString(1, reqTir.getTirocinio().getNome());
+		ps.setString(2, reqTir.getTirocinio().getPartitaIVAAzienda());
+		ps.setString(3, reqTir.getStudente().getUsername());
+		ResultSet rs = ps.executeQuery();
+		if (rs.next())
+		{
+			usernameProfessore = rs.getString(1);
+		}
+		con.commit();
+		rs.close();
+		ps.close();
+		DriverManagerConnectionPool.getIstance().releaseConnection(con);
+		return usernameProfessore;
+	}
+	
+	public int countByTirocinio(String nomeTirocinio, String partitaIVAAzienda) throws SQLException
+	{
+		Connection con = DriverManagerConnectionPool.getIstance().getConnection();
+		PreparedStatement ps = con.prepareStatement(COUNT_BY_TIROCINIO);
+		ps.setString(1, nomeTirocinio);
+		ps.setString(2, partitaIVAAzienda);
+		ResultSet rs = ps.executeQuery();
+		rs.next();
+		int count = rs.getInt(1);
+		con.commit();
+		rs.close();
+		ps.close();
+		DriverManagerConnectionPool.getIstance().releaseConnection(con);
+		return count;
 	}
 	
 	private static final String CREATE = "INSERT INTO richiestatirocinio(Nome, PartitaIVA, Stato, Username) VALUES (?, ?, ?, ?)";
@@ -298,5 +417,11 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 	private static final String UPDATE = "UPDATE tirocinio SET Stato = ? WHERE Nome = ? AND PartitaIVA = ? AND Username = ?";
 	private static final String CREATE_NOMINARE = "INSERT INTO nominare(Nome, PartitaIVA, UsernameStudente, UsernameProfessore) VALUES (?, ?, ?, ?)";
 	private static final String DELETE_NOMINARE = "DELETE FROM nominare WHERE Nome = ? AND PartitaIVA = ? AND UsernameStudente = ? AND UsernameProfessore = ?";
-
+	private static final String READ_NOMINARE = "SELECT UsernameProfessore FROM nominare WHERE Nome = ? AND PartitaIVA = ? AND UsernameStudente = ?";
+	private static final String READ_ALL_BY_STUDENTE = "SELECT * FROM richiestatirocinio WHERE Studente = ?";
+	private static final String READ_ALL_BY_AZIENDA = "SELECT * FROM richiestatirocinio WHERE PartitaIVA = ?";
+	private static final String READ_ALL_NOMINARE_BY_TUTOR_INTERNO = "SELECT * FROM nominare WHERE UsernameProfessore = ?";
+	private static final String READ_ALL_FOR_RESPONSABILE_APPROVAZIONI = "SELECT * FROM richiestatirocinio WHERE Stato = ?";
+	private static final String COUNT_BY_TIROCINIO = "SELECT COUNT(*) FROM richiestatirocinio WHERE Nome = ? AND PartitaIVA = ?";
+	private HashMap<Integer, String> statesReqTir;
 }

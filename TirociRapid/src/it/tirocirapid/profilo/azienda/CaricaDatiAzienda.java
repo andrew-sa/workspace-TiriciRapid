@@ -37,22 +37,18 @@ public class CaricaDatiAzienda extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
 		HttpSession session = request.getSession();
-		String referer = request.getHeader("Referer");
+//		String referer = request.getHeader("Referer");
 		HashMap<String, String> userTypes = (HashMap<String, String>) request.getServletContext().getAttribute("userTypes");
 		UserLoggato user = (UserLoggato) session.getAttribute("user");
-		
-		AbstractManagerFactory factory = new DAOFactory();
-		AbstractAziendaManager managerAzienda = factory.createAziendaManager();
-		Azienda azienda;
-		
-		if((user != null) && (request.getParameter("partitaIVA")!=null)) //Se l'utente non è un respoonsabile azienda 
+		final String replacement = "";
+		if(user.getTipo().equals(userTypes.get("RespAz"))) //Se l'utente è un respoonsabile azienda 
 		{
 			try 
 			{
-				azienda = managerAzienda.read(request.getParameter("partitaIVA"));
+				Azienda azienda = caricaDatiAzienda(user.getId());
 				request.setAttribute("azienda", azienda);
 			} 
 			catch (SQLException e)
@@ -65,14 +61,12 @@ public class CaricaDatiAzienda extends HttpServlet {
 				e.printStackTrace();
 				request.setAttribute("errore", "L'azienda cercata non &egrave; presente nel database");
 			}
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata dell' azienda singola
-			dispatcher.forward(request, response);
 		}
-		else if(user.getTipo().equals(userTypes.get("RespAz")))    //Se l'utente è un respoonsabile azienda 
+		else if (!replaceIfMissing(request.getParameter("partitaIVA"), replacement).equals(replacement))
 		{
 			try 
 			{
-				azienda = managerAzienda.read(user.getId());
+				Azienda azienda = caricaDatiAzienda(request.getParameter("partitaIVA"));
 				request.setAttribute("azienda", azienda);
 			} 
 			catch (SQLException e)
@@ -85,22 +79,30 @@ public class CaricaDatiAzienda extends HttpServlet {
 				e.printStackTrace();
 				request.setAttribute("errore", "L'azienda cercata non &egrave; presente nel database");
 			}
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata del profilo dell' azienda
-			dispatcher.forward(request, response);
 		}
 		else
 		{
-			response.sendRedirect(referer);
+//			response.sendRedirect(referer);
+			request.setAttribute("errore", "Non hai selezionato alcuna azienda");
 		}
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/visualizza_informazioni_azienda.jsp"); //Schermata datiAzienda
+		dispatcher.forward(request, response);
 		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
 		doGet(request, response);
+	}
+	
+	private Azienda caricaDatiAzienda(String partitaIVA) throws SQLException, TuplaNotFoundException
+	{
+		AbstractManagerFactory factory = new DAOFactory();
+		AbstractAziendaManager managerAzienda = factory.createAziendaManager();
+		return managerAzienda.read(partitaIVA);
 	}
 	
 	/**

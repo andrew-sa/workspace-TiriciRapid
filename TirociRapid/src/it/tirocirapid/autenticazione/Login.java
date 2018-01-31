@@ -51,13 +51,13 @@ public class Login extends HttpServlet {
 			if (replaceIfMissing(username, "").equals(""))
 			{
 				request.setAttribute("errore", "Il campo username &egrave; obbligatorio");
-				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata di login Studente
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login.jsp"); //Alla schermata di login Studente
 				dispatcher.forward(request, response);
 			}
 			else if (replaceIfMissing(password, "").equals(""))
 			{
 				request.setAttribute("errore", "Il campo password &egrave; obbligatorio");
-				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata di login Studente
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login.jsp"); //Alla schermata di login Studente
 				dispatcher.forward(request, response);
 			}
 			else
@@ -70,12 +70,12 @@ public class Login extends HttpServlet {
 						user.setId(username);
 						user.setTipo(userTypes.get("Stud"));
 						session.setAttribute("user", user);
-						response.sendRedirect(getServletContext().getContextPath() + "/"); //Alla home Studente
+						response.sendRedirect(getServletContext().getContextPath() + "/studente_richieste.jsp"); //Alla home Studente
 					}
 					else
 					{
 						request.setAttribute("errore", "L'username e la password non corrispondono");
-						RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata di login Studente
+						RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login.jsp"); //Alla schermata di login Studente
 						dispatcher.forward(request, response);
 					}
 				}
@@ -83,14 +83,14 @@ public class Login extends HttpServlet {
 				{
 					e.printStackTrace();
 					request.setAttribute("errore", "Lo studente non esiste");
-					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata di login Studente
+					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login.jsp"); //Alla schermata di login Studente
 					dispatcher.forward(request, response);
 				}
 				catch (SQLException e)
 				{
 					e.printStackTrace();
 					request.setAttribute("errore", "Si &egrave; verificato un errore durante l'interazione col database, si prega di riprovare");
-					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata di login Studente
+					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login.jsp"); //Alla schermata di login Studente
 					dispatcher.forward(request, response);	
 				}
 			}
@@ -102,13 +102,13 @@ public class Login extends HttpServlet {
 			if (replaceIfMissing(username, "").equals(""))
 			{
 				request.setAttribute("errore", "Il campo username &egrave; obbligatorio");
-				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata di login Professore
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login.jsp"); //Alla schermata di login Professore
 				dispatcher.forward(request, response);
 			}
 			else if (replaceIfMissing(password, "").equals(""))
 			{
 				request.setAttribute("errore", "Il campo password &egrave; obbligatorio");
-				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata di login Professore
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login.jsp"); //Alla schermata di login Professore
 				dispatcher.forward(request, response);
 			}
 			else
@@ -121,7 +121,7 @@ public class Login extends HttpServlet {
 						user.setId(username);
 						user.setTipo(userTypes.get("Prof"));
 						session.setAttribute("user", user);
-						response.sendRedirect(getServletContext().getContextPath() + "/"); //Alla home Professore
+						response.sendRedirect(getServletContext().getContextPath() + "/professore.jsp"); //Alla home Professore
 					}
 					else if (loginProfessore(username, password) == 2)
 					{
@@ -129,12 +129,12 @@ public class Login extends HttpServlet {
 						user.setId(username);
 						user.setTipo(userTypes.get("RespAppr"));
 						session.setAttribute("user", user);
-						response.sendRedirect(getServletContext().getContextPath() + "/"); //Alla home RespnsabileApprovazioni
+						response.sendRedirect(getServletContext().getContextPath() + "/responsabile_approvazioni_conferma_finale.jsp"); //Alla home RespnsabileApprovazioni
 					}
 					else
 					{
 						request.setAttribute("errore", "L'username e la password non corrispondono");
-						RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata di login Professore
+						RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login.jsp"); //Alla schermata di login Professore
 						dispatcher.forward(request, response);
 					}
 				}
@@ -142,14 +142,14 @@ public class Login extends HttpServlet {
 				{
 					e.printStackTrace();
 					request.setAttribute("errore", "Il professore non esiste");
-					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata di login Professore
+					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login.jsp"); //Alla schermata di login Professore
 					dispatcher.forward(request, response);
 				}
 				catch (SQLException e)
 				{
 					e.printStackTrace();
 					request.setAttribute("errore", "Si &egrave; verificato un errore durante l'interazione col database, si prega di riprovare");
-					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata di login Professore
+					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login.jsp"); //Alla schermata di login Professore
 					dispatcher.forward(request, response);	
 				}
 			}
@@ -162,13 +162,13 @@ public class Login extends HttpServlet {
 			if (replaceIfMissing(partitaIVA, "").equals(""))
 			{
 				request.setAttribute("errore", "Il campo partitaIVA &egrave; obbligatorio");
-				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata di login ResponsabileAzienda
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login.jsp"); //Alla schermata di login ResponsabileAzienda
 				dispatcher.forward(request, response);
 			}
 			else if (replaceIfMissing(password, "").equals(""))
 			{
 				request.setAttribute("errore", "Il campo password &egrave; obbligatorio");
-				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata di login ResponsabileAzienda
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login.jsp"); //Alla schermata di login ResponsabileAzienda
 				dispatcher.forward(request, response);
 			}
 			else
@@ -181,12 +181,12 @@ public class Login extends HttpServlet {
 						user.setId(partitaIVA);
 						user.setTipo(userTypes.get("RespAz"));
 						session.setAttribute("user", user);
-						response.sendRedirect(getServletContext().getContextPath() + "/"); //Alla home ResponsabileAzienda
+						response.sendRedirect(getServletContext().getContextPath() + "/azienda_richieste"); //Alla home ResponsabileAzienda
 					}
 					else
 					{
 						request.setAttribute("errore", "La partitaIVA e la password non corrispondono");
-						RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata di login ResponsabileAzienda
+						RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login.jsp"); //Alla schermata di login ResponsabileAzienda
 						dispatcher.forward(request, response);
 					}
 				}
@@ -194,21 +194,21 @@ public class Login extends HttpServlet {
 				{
 					e.printStackTrace();
 					request.setAttribute("errore", "L'azienda non esiste");
-					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata di login ResponsabileAzienda
+					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login.jsp"); //Alla schermata di login ResponsabileAzienda
 					dispatcher.forward(request, response);
 				}
 				catch (SQLException e)
 				{
 					e.printStackTrace();
 					request.setAttribute("errore", "Si &egrave; verificato un errore durante l'interazione col database, si prega di riprovare");
-					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata di login ResponsabileAzienda
+					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login.jsp"); //Alla schermata di login ResponsabileAzienda
 					dispatcher.forward(request, response);	
 				}
 			}
 		}
-		else
+		else //non si dovrebbe verificare mai
 		{
-			//Do nothing
+			//do nothing
 			if (referer != null)
 				response.sendRedirect(referer);
 			else
@@ -220,8 +220,8 @@ public class Login extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
 		doGet(request, response);
 	}
 

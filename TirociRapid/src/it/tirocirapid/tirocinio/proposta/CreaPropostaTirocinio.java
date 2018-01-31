@@ -220,13 +220,13 @@ public class CreaPropostaTirocinio extends HttpServlet {
 			} 
 			catch (SQLException e) 
 			{
-				request.setAttribute("errore", "Si &egrave; verificato un errore durante l'interazione col database, si prega di riprovare");
 				e.printStackTrace();
+				request.setAttribute("errore", "Si &egrave; verificato un errore durante l'interazione col database, si prega di riprovare");
 			} 
 			catch (InsertFailedException e) 
 			{
-				request.setAttribute("errore", e.getMessage());
 				e.printStackTrace();
+				request.setAttribute("errore", e.getMessage());
 			}
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //InserisciTircinio
 			dispatcher.forward(request, response);

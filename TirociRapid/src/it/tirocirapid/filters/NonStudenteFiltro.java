@@ -1,6 +1,8 @@
 package it.tirocirapid.filters;
 
 import java.io.IOException;
+import java.util.HashMap;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -12,16 +14,18 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import it.tirocirapid.classes.model.UserLoggato;
+
 /**
- * Servlet Filter implementation class CreaPropostaTirocinioFiltro
+ * Servlet Filter implementation class StudenteFiltro
  */
-@WebFilter("/CreaPropostaTirocinioFiltro")
-public class CreaPropostaTirocinioFiltro implements Filter {
+//@WebFilter("/NonStudenteFiltro")
+public class NonStudenteFiltro implements Filter {
 
     /**
      * Default constructor. 
      */
-    public CreaPropostaTirocinioFiltro() {
+    public NonStudenteFiltro() {
         // TODO Auto-generated constructor stub
     }
 
@@ -39,9 +43,11 @@ public class CreaPropostaTirocinioFiltro implements Filter {
 	{
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpSession session = req.getSession();
-		if (session.getAttribute("user") == null && session.getAttribute("azienda") == null)
+		HashMap<String, String> userTypes = (HashMap<String, String>) request.getServletContext().getAttribute("userTypes");
+		
+		if (((UserLoggato) session.getAttribute("user")).equals(userTypes.get("Stud")))
 		{
-			request.setAttribute("errore", "Per poter proporre un nuovo tirocinio devi autenticarti come Responsabile Azienda");
+			request.setAttribute("errore", "Per poter accedere a questa sezione devi essere autenticato come Studente");
 			RequestDispatcher dispatcher = req.getRequestDispatcher("/"); //LoginAzienda
 			dispatcher.forward(request, response);
 		}

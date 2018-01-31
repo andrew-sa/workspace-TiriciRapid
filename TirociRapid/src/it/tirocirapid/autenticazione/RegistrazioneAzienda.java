@@ -81,7 +81,7 @@ public class RegistrazioneAzienda extends HttpServlet {
 			if (replaceIfMissing(request.getParameter(param), replacement).equals(replacement))
 			{
 				request.setAttribute("errore", "Il campo " + param + " &egrave; obbligatorio");
-				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //RegistrazioneAzienda
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/azienda_iscrizione.jsp"); //RegistrazioneAzienda
 				dispatcher.forward(request, response);
 				return;
 			}
@@ -96,7 +96,7 @@ public class RegistrazioneAzienda extends HttpServlet {
 				else
 				{
 					request.setAttribute("errore", "Il campo " + param + " non pu&ograve; superare 50 caratteri");
-					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //RegistrazioneAzienda
+					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/azienda_iscrizione.jsp"); //RegistrazioneAzienda
 					dispatcher.forward(request, response);
 					return;
 				}
@@ -114,7 +114,7 @@ public class RegistrazioneAzienda extends HttpServlet {
 				else
 				{
 					request.setAttribute("errore", "Il campo " + param + " deve contenere 11 cifre");
-					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //RegistrazioneAzienda
+					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/azienda_iscrizione.jsp"); //RegistrazioneAzienda
 					dispatcher.forward(request, response);
 					return;
 				}
@@ -128,7 +128,7 @@ public class RegistrazioneAzienda extends HttpServlet {
 				else
 				{
 					request.setAttribute("errore", "Il campo " + param + " non &egrave; nel formato corretto (x@x.x)");
-					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //RegistrazioneAzienda
+					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/azienda_iscrizione.jsp"); //RegistrazioneAzienda
 					dispatcher.forward(request, response);
 					return;
 				}
@@ -142,7 +142,7 @@ public class RegistrazioneAzienda extends HttpServlet {
 				else
 				{
 					request.setAttribute("errore", "Il campo " + param + " deve contenere 10 cifre");
-					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //RegistrazioneAzienda
+					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/azienda_iscrizione.jsp"); //RegistrazioneAzienda
 					dispatcher.forward(request, response);
 					return;
 				}
@@ -156,7 +156,7 @@ public class RegistrazioneAzienda extends HttpServlet {
 				else
 				{
 					request.setAttribute("errore", "Il campo " + param + " non pu&ograve; superare 500 caratteri");
-					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //RegistrazioneAzienda
+					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/azienda_iscrizione.jsp"); //RegistrazioneAzienda
 					dispatcher.forward(request, response);
 					return;
 				}
@@ -170,7 +170,7 @@ public class RegistrazioneAzienda extends HttpServlet {
 				else
 				{
 					request.setAttribute("errore", "Il campo " + param + " deve contenere dai 6 ai 20 caratteri alfanumerici");
-					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //RegistrazioneAzienda
+					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/azienda_iscrizione.jsp"); //RegistrazioneAzienda
 					dispatcher.forward(request, response);
 					return;
 				}
@@ -180,7 +180,7 @@ public class RegistrazioneAzienda extends HttpServlet {
 				if (!validaConfermaPassword(request.getParameter(param), request.getParameter(parametri.get(6))))
 				{
 					request.setAttribute("errore", "Le password non corrispondono");
-					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //RegistrazioneAzienda
+					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/azienda_iscrizione.jsp"); //RegistrazioneAzienda
 					dispatcher.forward(request, response);
 					return;
 				}
@@ -188,7 +188,7 @@ public class RegistrazioneAzienda extends HttpServlet {
 			else //Non si verifica mai
 			{
 				request.setAttribute("errore", "Si &egrave; verificato un errore, si prega di riprovare");
-				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //RegistrazioneAzienda
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/azienda_iscrizione.jsp"); //RegistrazioneAzienda
 				dispatcher.forward(request, response);
 				return;
 			}
@@ -201,7 +201,7 @@ public class RegistrazioneAzienda extends HttpServlet {
 //			request.setAttribute("partitaIVA", azienda.getPartitaIVA());
 //			request.setAttribute("registrazione", true);
 		request.getSession().setAttribute("azienda", azienda);
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //AggiungiTirocinio
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/azienda_aggiunta_tirocinio.jsp"); //AggiungiTirocinio
 		dispatcher.forward(request, response);
 //			return;
 //		}

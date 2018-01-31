@@ -1,7 +1,7 @@
 package it.tirocirapid.eccezioni;
 
 /**
- * Questa eccezzione si verifica quando si prova a caricare una tupla nel database ma l'inserimento fallisce
+ * Questa eccezzione si verifica quando si prova a caricare/modificare/eliminare una tupla nel database ma l'operazione fallisce
  * @author Andrea
  *
  */
