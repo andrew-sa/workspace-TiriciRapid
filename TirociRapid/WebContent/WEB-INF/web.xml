@@ -9,11 +9,9 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  
   <listener>
     <listener-class>it.tirocirapid.listener.InizializzazioneContextListener</listener-class>
   </listener>
-  
   <filter>
     <filter-name>AreaVisitatoreFiltro</filter-name>
     <filter-class>it.tirocirapid.filters.AreaVisitatoreFiltro</filter-class>
@@ -26,7 +24,6 @@
     <url-pattern>/registrazione_azienda</url-pattern>
     <url-pattern>/registrazione_studente</url-pattern>
   </filter-mapping>
-  
   <filter>
     <filter-name>AreaRiservataFiltro</filter-name>
     <filter-class>it.tirocirapid.filters.AreaRiservataFiltro</filter-class>
@@ -47,21 +44,7 @@
     <url-pattern>/invia_richiesta</url-pattern>
     <url-pattern>/elimina_richiesta_tirocinio</url-pattern>
     <url-pattern>/scegli_tutor</url-pattern>
-    <!--<url-pattern>/</url-pattern>
-    <url-pattern>/</url-pattern>
-    <url-pattern>/</url-pattern>
-    <url-pattern>/</url-pattern>
-    <url-pattern>/</url-pattern>
-    <url-pattern>/</url-pattern>
-    <url-pattern>/</url-pattern>
-    <url-pattern>/</url-pattern>
-    <url-pattern>/</url-pattern>
-    <url-pattern>/</url-pattern>
-    <url-pattern>/</url-pattern>
-    <url-pattern>/</url-pattern>
-    <url-pattern>/</url-pattern>-->
   </filter-mapping>
-  
   <filter>
     <filter-name>NonProfessoreFiltro</filter-name>
     <filter-class>it.tirocirapid.filters.NonProfessoreFiltro</filter-class>
@@ -79,7 +62,6 @@
     <url-pattern>/elimina_richiesta_tirocinio</url-pattern>
     <url-pattern>/scegli_tutor</url-pattern>
   </filter-mapping>
-  
   <filter>
     <filter-name>NonResponsabileApprovazioniFiltro</filter-name>
     <filter-class>it.tirocirapid.filters.NonResponsabileApprovazioniFiltro</filter-class>
@@ -94,7 +76,6 @@
     <url-pattern>/elimina_richiesta_tirocinio</url-pattern>
     <url-pattern>/scegli_tutor</url-pattern>
   </filter-mapping>
-  
   <filter>
     <filter-name>NonResponsabileAziendaFiltro</filter-name>
     <filter-class>it.tirocirapid.filters.NonResponsabileAziendaFiltro</filter-class>
@@ -109,7 +90,6 @@
     <url-pattern>/elimina_richiesta_tirocinio</url-pattern>
     <url-pattern>/scegli_tutor</url-pattern>
   </filter-mapping>
-  
   <filter>
     <filter-name>NonStudenteFiltro</filter-name>
     <filter-class>it.tirocirapid.filters.NonStudenteFiltro</filter-class>

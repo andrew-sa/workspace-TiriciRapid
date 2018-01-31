@@ -23,7 +23,7 @@ import it.tirocirapid.factory.DAOFactory;
 /**
  * Servlet che si occupa di gestire il login degli utenti del sistema 
  */
-@WebServlet("/login")
+//@WebServlet("/login")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -115,7 +115,8 @@ public class Login extends HttpServlet {
 			{
 				try
 				{
-					if (loginProfessore(username, password) == 1)
+					int risultatoLoginProfessore = loginProfessore(username, password);
+					if (risultatoLoginProfessore == 1)
 					{
 						UserLoggato user = new UserLoggato();
 						user.setId(username);
@@ -123,7 +124,7 @@ public class Login extends HttpServlet {
 						session.setAttribute("user", user);
 						response.sendRedirect(getServletContext().getContextPath() + "/professore.jsp"); //Alla home Professore
 					}
-					else if (loginProfessore(username, password) == 2)
+					else if (risultatoLoginProfessore == 2)
 					{
 						UserLoggato user = new UserLoggato();
 						user.setId(username);
