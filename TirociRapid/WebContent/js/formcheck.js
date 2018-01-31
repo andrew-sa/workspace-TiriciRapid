@@ -23,7 +23,9 @@ function validateLogin(form){
 	resetInput(form);
 	var flag = 0;
 	for (let i = 0; i < form.length; i++) {
-		if (form[i].value.trim() === "" && (form[i].type === "text" || form[i].type === "password")) {
+		if (form[i].value.trim() === "" && (form[i].type === "text" || form[i].type === "password")) 
+		{
+			document.getElementById(i).innerHTML = "Non puoi lasciare vuoto";
 			form[i].setAttribute('placeholder', "Non puoi lasciare vuoto");
 			flag = 1;
 		}
@@ -34,14 +36,15 @@ function validateLogin(form){
 		return true;
 	}
 }
+
 function validateRegistrazione(form) {
 	var contr = 0;
 	resetInput(form);
-	
+
 
 	if (!(form["partitaIVA"].value.trim().match(/^[0-9]{11}$/))) {
 		form["partitaIVA"].setAttribute("title",
-				"La partita Iva \u00E8 formata da 11 numeri");
+		"La partita Iva \u00E8 formata da 11 numeri");
 		document.getElementById(1).innerHTML = "La partita Iva deve essere formata da 11 numeri";
 		contr = 1
 	}
@@ -52,33 +55,33 @@ function validateRegistrazione(form) {
 	}
 	if (!((form["descrizioneAmbito"].value.trim().length) <= 500)) {
 		form["descrizioneAmbito"].setAttribute("title",
-				"Stai inviando troppi dati");
+		"Stai inviando troppi dati");
 		document.getElementById(4).innerHTML = "Stai inviando troppi dati";
 		contr = 1
 	}
 	if (!(form["numeroTelefono"].value.trim().match(/^[0-9]{10}$/))) {
 		form["numeroTelefono"].setAttribute("title",
-				"Il numero di telefono deve essere formato da 10 numeri");
+		"Il numero di telefono deve essere formato da 10 numeri");
 		document.getElementById(5).innerHTML = "Il numero di telefono deve essere formato da 10 numeri";
 		contr = 1
 	}
 	if (!(form["email"].value.trim()
 			.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})$/))) {
 		form["email"]
-				.setAttribute("title",
-						"L'e-mail non \u00E8 nel formato corretto. Es: nome@dominio.it");
+		.setAttribute("title",
+		"L'e-mail non \u00E8 nel formato corretto. Es: nome@dominio.it");
 		document.getElementById(6).innerHTML = "L'e-mail non \u00E8 nel formato corretto. Es: nome@dominio.it";
 		contr = 1
 	}
 	if (!(form["password"].value.trim().match(/^[A-Za-z0-9]{6,20}$/))) {
 		form["password"].setAttribute("title",
-				"La password inserita non \u00E8 nel formato corretto");
+		"La password inserita non \u00E8 nel formato corretto");
 		document.getElementById(7).innerHTML = "La password inserita non \u00E8 nel formato corretto";
 		contr = 1
 	}
 	if (!(form["confPassword"].value.trim() === form["password"].value.trim())) {
 		form["confPassword"]
-				.setAttribute("title", "Le password non combaciano");
+		.setAttribute("title", "Le password non combaciano");
 		document.getElementById(8).innerHTML = "Le password non combaciano";
 		contr = 1
 	}
