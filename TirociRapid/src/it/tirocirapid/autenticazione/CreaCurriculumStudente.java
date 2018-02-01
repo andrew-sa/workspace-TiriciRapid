@@ -350,7 +350,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 	
 	private boolean validaMadrelingua(String madrelingua)
 	{
-		return (Pattern.matches("[A-Za-z]{20}", madrelingua) && (madrelingua.length() <= 20));
+		return (Pattern.matches("[A-Za-z]{2,20}", madrelingua));
 	}
 	
 	private boolean validaAltreLingue(String altreLingue)
