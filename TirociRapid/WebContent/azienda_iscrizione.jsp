@@ -12,13 +12,12 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+<script type="text/javascript" src="js/formcheck.js"></script>
+<script type="text/javascript" src="js/selected_item_azienda.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/script.js" type="text/javascript"></script>
 </head>
-<body>
+<body onload="selectedItemAzienda();">
 
 	<%@ include file="slider.jsp"%>
 

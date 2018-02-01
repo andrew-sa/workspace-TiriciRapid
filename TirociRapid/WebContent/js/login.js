@@ -34,7 +34,7 @@ function readResultLogin()
 		document.body.style.cursor = "auto";
 	}
 } 
-
+ 
 function sendRequestLogin(form)
 {
 	inAttesa = true;

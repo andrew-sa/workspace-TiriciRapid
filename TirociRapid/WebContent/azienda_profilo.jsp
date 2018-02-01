@@ -9,11 +9,14 @@
 <link rel="stylesheet" href="css/azienda.css">
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script type="text/javascript" src="js/formcheck.js"></script>
+<script type="text/javascript" src="js/selected_item_azienda.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
 
 </head>
-<body>
+<body onload="selectedItemAzienda();">
 	<%@ include file="slider.jsp"%>
 
 	<%@ include file="nav_azienda.jsp"%>

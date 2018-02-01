@@ -23,9 +23,9 @@
 	<div id ="contenitore_login">
 	<form  onsubmit="sendRequestLogin(this);">
 	<input id ="tipo" type="hidden" name="type" value="studente">
-	<div><input name="identificativo" type="text" id ="username" placeholder="Esse3 Username"></div> 
+	<div><input name="id" type="text" id ="username" placeholder="Esse3 Username"></div> 
 	<div><input name="password" type="password" id = "password" placeholder="Password"></div> 
-	<button id = "pulsante_login" type="submit">Entra</button>
+	<button id = "pulsante_login" type="submit" onclick="sendRequestLogin(this);">Entra</button>
 	
 	</form>
 	<div id="password_dimenticata" style="visibility: hidden;"><a href="#">Password dimenticata?</a></div>

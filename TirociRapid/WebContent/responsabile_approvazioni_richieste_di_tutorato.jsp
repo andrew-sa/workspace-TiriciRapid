@@ -10,8 +10,11 @@
 <link rel="stylesheet" href="css/professore.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script type="text/javascript" src="js/selected_item_responsabile_approvazioni.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
+
 </head>
-<body>
+<body onload="selectedItemResponsabileApprovazioni();">
 
 	<%@ include file="slider.jsp"%>
 	<%@ include file="nav_responsabile_approvazioni.jsp"%>
