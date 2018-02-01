@@ -49,6 +49,10 @@ public class LoginAjax extends HttpServlet {
 		
 		response.setContentType("text/xml");
 		PrintWriter out = response.getWriter();
+		out.println("<!DOCTYPE result [");
+		out.println("<!ENTITY egrave \"è\">");
+		out.println("]>");
+		
 		out.println("<result>");
 		
 		if (replaceIfMissing(tipo, replacement).equals(replacement))

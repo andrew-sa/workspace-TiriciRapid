@@ -1,3 +1,9 @@
+<%@page import="it.tirocirapid.classes.manager.AbstractStudenteManager"%>
+<%@page import="it.tirocirapid.factory.DAOFactory"%>
+<%@page import="it.tirocirapid.factory.AbstractManagerFactory"%>
+<%@page import="it.tirocirapid.classes.model.Studente"%>
+<%@page import="it.tirocirapid.classes.model.UserLoggato"%>
+<%@page import="it.tirocirapid.classes.manager.StudenteDAO"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -18,6 +24,15 @@
 	<%@ include file="slider.jsp"%>
 
 	<%@ include file="nav_studente.jsp"%>
+
+
+
+	<%if(session.getAttribute("user")!=null){
+		UserLoggato user = (UserLoggato) session.getAttribute("user");
+		AbstractManagerFactory factory = new DAOFactory();
+		AbstractStudenteManager managerStudente = factory.createStudenteManager();
+		Studente studente = managerStudente.read(user.getId());	%>
+	
 
 	<div class="container">
 	
@@ -92,7 +107,7 @@
 		
 		<div class="parametri-studente">
 			<div class="elemento-parametri-studente"> Nome: </div> 
-			<div class="elemento-parametri-studente"> bla </div>
+			<div class="elemento-parametri-studente"> <%=studente.getNome()%> </div>
 			</div>
 		
 			<div class="parametri-studente">
@@ -130,7 +145,7 @@
 			</div>
 			<div class="parametri-studente">
 			<div class="elemento-parametri-studente"> Email istituzionale: </div> 
-			<div class="elemento-parametri-studente"> bla </div>
+			<div class="elemento-parametri-studente"> bljjjgaya </div>
 			</div>
 			<div class="parametri-studente">
 			<div class="elemento-parametri-studente"> Media voti: </div> 
@@ -138,7 +153,7 @@
 			</div>
 			
 			
-		
+		<%} %>
 		
 		</div>
 	</div>
