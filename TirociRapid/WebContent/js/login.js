@@ -25,22 +25,23 @@ function readResultLogin()
 		else if(tipi.length > 0)//Il login è avvenuto con successo
 		{
 			
-			var tipo = tipi[0].innerHTML;
-			var tipobell = tipo.replace('\n', '');
-			alert(tipobell.length);
-			if(tipobell == "Studente")
+			var s = tipi[0].innerHTML;
+			var tipo = s.replace('\n', '');
+			tipo = tipo.replace('\n', '');
+			
+			if(tipo == "Studente")
 			{
 				window.location.href="studente_profilo.jsp";
 			}
-			else if(tipi[0].innerHTML== "ResponsabileAzienda")
+			else if(tipo == "ResponsabileAzienda")
 			{
 				window.location.href = "azienda_profilo.jsp";
 			}
-			else if(tipi[0].innerHTML=="Professore")
+			else if(tipo =="Professore")
 			{
 				window.location.href = "professore.jsp";
 			}
-			else if(tipi[0].innerHTML=="ResponsabileApprovazioni")
+			else if(tipo =="ResponsabileApprovazioni")
 			{
 				window.location.href = "responsabile_approvazioni_richieste_di_tutorato.jsp";
 			}
