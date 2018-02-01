@@ -75,7 +75,7 @@
 						<textarea onkeyup="maxlength(this,500,'conta3')"
 							style="resize: none;"id="descrizioneAmbito"
 							name="descrizioneAmbito" class="form-control input-md" rows="4"
-							cols="50">  </textarea>
+							cols="50"></textarea>
 						Hai a disposizione ancora <span id='conta3'>500</span> caratteri:<br />
 					</div>
 					<p id="4" class="col-md-4 errorform" >

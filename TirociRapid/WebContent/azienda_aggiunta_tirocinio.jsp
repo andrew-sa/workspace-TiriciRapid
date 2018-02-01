@@ -21,59 +21,52 @@
 <%@ include file="slider.jsp" %>
 
 
-	<%@ include file="nav_azienda.jsp" %>
+<%@ include file="nav_azienda.jsp" %>
 
 <div class="container">
 	<div class="row">
 		<form class="form-horizontal">
-<fieldset>
-
-
-
-
-
-
-<!-- Form Name -->
-<legend>Tirocinio:</legend>
-
-<!-- Nome-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="nome">Nome</label>  
-  <div class="col-md-4">
-  <input id="nome" name="nome" type="text"  class="form-control input-md"  maxlength="50" >
-  </div>
-</div>
-
-<!-- Offerta Formativa input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="offertaFormativa">Offerta Formativa </label>  
-  <div class="col-md-4">
-  <textarea onkeyup="maxlength(this,500,'conta1')" style="resize: none;" id="offertaFormativa"  name="offertaFormativa"  class="form-control input-md"  rows="4" cols="50" >  </textarea>     
-    Hai a disposizione ancora <span id='conta1'>500</span> caratteri:<br/>
-  </div>
-</div>
-
-<!-- Descrizione-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="descrizione">Descrizione </label>  
-  <div class="col-md-4">
-  <textarea onkeyup="maxlength(this,500,'conta2')" style="resize: none;" id="descrizione"  name="descrizione"  class="form-control input-md"  rows="4" cols="50">  </textarea>     
-  Hai a disposizione ancora <span id='conta2'>500</span> caratteri:<br/>
-  </div>
-</div>
-
-
-<!-- Button -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="submit"></label>
-  <div class="col-md-4">
-    <button id="submit" name="submit" class="btn btn-primary">Aggiungi Tirocinio</button>
-  </div>
-</div>
-
-</fieldset>
-</form>
-
+		<fieldset>
+		<!-- Form Name -->
+		<legend>Tirocinio:</legend>
+		
+		<!-- Nome-->
+		<div class="form-group">
+		  <label class="col-md-4 control-label" for="nome">Nome</label>  
+		  <div class="col-md-4">
+		  <input id="nome" name="nome" type="text"  class="form-control input-md"  maxlength="50" >
+		  </div>
+		</div>
+		
+		<!-- Offerta Formativa input-->
+		<div class="form-group">
+		  <label class="col-md-4 control-label" for="offertaFormativa">Offerta Formativa</label>  
+		  <div class="col-md-4">
+		  <textarea onkeyup="maxlength(this,500,'conta1')" style="resize: none;" id="offertaFormativa"  name="offertaFormativa"  class="form-control input-md"  rows="4" cols="50" ></textarea>     
+		    Hai a disposizione ancora <span id='conta1'>500</span> caratteri:<br/>
+		  </div>
+		</div>
+		
+		<!-- Descrizione-->
+		<div class="form-group">
+		  <label class="col-md-4 control-label" for="descrizione">Descrizione </label>  
+		  <div class="col-md-4">
+		  <textarea onkeyup="maxlength(this,500,'conta2')" style="resize: none;" id="descrizione"  name="descrizione"  class="form-control input-md"  rows="4" cols="50"></textarea>     
+		  Hai a disposizione ancora <span id='conta2'>500</span> caratteri:<br/>
+		  </div>
+		</div>
+		
+		
+		<!-- Button -->
+		<div class="form-group">
+		  <label class="col-md-4 control-label" for="submit"></label>
+		  <div class="col-md-4">
+		    <button id="submit" name="submit" class="btn btn-primary">Aggiungi Tirocinio</button>
+		  </div>
+		</div>
+		
+		</fieldset>
+	</form>
 	</div>
 </div>
 

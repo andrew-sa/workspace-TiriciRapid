@@ -50,7 +50,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="capacitaCompetenzeRelazionali">Capacita' Competenze Relazionali </label>  
   <div class="col-md-4">
-  <textarea onkeyup="maxlength(this,200,'conta1')" style="resize: none;" id="capacitaCompetenzeRelazionali"  name="capacitaCompetenzeRelazionali"  class="form-control input-md"  rows="4" cols="50" >  </textarea>     
+  <textarea onkeyup="maxlength(this,200,'conta1')" style="resize: none;" id="capacitaCompetenzeRelazionali"  name="capacitaCompetenzeRelazionali"  class="form-control input-md"  rows="4" cols="50" ></textarea>     
     Hai a disposizione ancora <span id='conta1'>200</span> caratteri:<br/>
   </div>
 </div>
@@ -59,7 +59,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="capacitaCompetenzeTecniche">Capacita' Competenze Tecniche </label>  
   <div class="col-md-4">
-  <textarea onkeyup="maxlength(this,200,'conta2')" style="resize: none;" id="capacitaCompetenzeTecniche"  name="capacitaCompetenzeTecniche"  class="form-control input-md"  rows="4" cols="50">  </textarea>     
+  <textarea onkeyup="maxlength(this,200,'conta2')" style="resize: none;" id="capacitaCompetenzeTecniche"  name="capacitaCompetenzeTecniche"  class="form-control input-md"  rows="4" cols="50"></textarea>     
   Hai a disposizione ancora <span id='conta2'>200</span> caratteri:<br/>
   </div>
 </div>
@@ -68,7 +68,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="capacitaCompetenzeArtistiche">Capacita' Competenze Artistiche </label>  
   <div class="col-md-4">
-	<textarea onkeyup="maxlength(this,200,'conta3')" style="resize: none;" id="capacitaCompetenzeArtistiche"  name="capacitaCompetenzeArtistiche"  class="form-control input-md"  rows="4" cols="50">  </textarea>     
+	<textarea onkeyup="maxlength(this,200,'conta3')" style="resize: none;" id="capacitaCompetenzeArtistiche"  name="capacitaCompetenzeArtistiche"  class="form-control input-md"  rows="4" cols="50"></textarea>     
   	Hai a disposizione ancora <span id='conta3'>200</span> caratteri:<br/>
   </div>
 </div>
@@ -77,7 +77,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="capacitaCompetenzePersonali">Capacita' Competenze Personali </label>  
   <div class="col-md-4">
-	<textarea  onkeyup="maxlength(this,200,'conta4')" style="resize: none;" id="capacitaCompetenzePersonali"  name="capacitaCompetenzePersonali"  class="form-control input-md"  rows="4" cols="50">  </textarea> 
+	<textarea  onkeyup="maxlength(this,200,'conta4')" style="resize: none;" id="capacitaCompetenzePersonali"  name="capacitaCompetenzePersonali"  class="form-control input-md"  rows="4" cols="50"></textarea> 
     Hai a disposizione ancora <span id='conta4'>200</span> caratteri:<br/>
   </div>
 </div>
@@ -86,7 +86,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="capacitaCompetenzeOrganizzative">Capacita' Competenze Organizzative </label>  
   <div class="col-md-4">
-  <textarea onkeyup="maxlength(this,200,'conta5')" style="resize: none;" id="capacitaCompetenzeOrganizzative"  name="capacitaCompetenzeOrganizzative"  class="form-control input-md"  rows="4" cols="50">  </textarea> 
+  <textarea onkeyup="maxlength(this,200,'conta5')" style="resize: none;" id="capacitaCompetenzeOrganizzative"  name="capacitaCompetenzeOrganizzative"  class="form-control input-md"  rows="4" cols="50"></textarea> 
   Hai a disposizione ancora <span id='conta5'>200</span> caratteri:<br/>
   </div>
 </div>
@@ -95,7 +95,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="altreCapacitaCompetenze">Altre Capacita' Competenze </label>  
   <div class="col-md-4">
-  <textarea onkeyup="maxlength(this,200,'conta6')" style="resize: none;" id="altreCapacitaCompetenze"  name="altreCapacitaCompetenze"  class="form-control input-md"  rows="4" cols="50">  </textarea>
+  <textarea onkeyup="maxlength(this,200,'conta6')" style="resize: none;" id="altreCapacitaCompetenze"  name="altreCapacitaCompetenze"  class="form-control input-md"  rows="4" cols="50"></textarea>
   Hai a disposizione ancora <span id='conta6'>200</span> caratteri:<br/>
   </div>
 </div>
@@ -105,7 +105,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="esperienzaLavorativa">Esperienza Lavorativa </label>  
   <div class="col-md-4">
-  <textarea onkeyup="maxlength(this,200,'conta7')"style="resize: none;" id="esperienzaLavorativa"  name="esperienzaLavorativa"  class="form-control input-md"  rows="4" cols="50"> </textarea>
+  <textarea onkeyup="maxlength(this,200,'conta7')"style="resize: none;" id="esperienzaLavorativa"  name="esperienzaLavorativa"  class="form-control input-md"  rows="4" cols="50"></textarea>
      Hai a disposizione ancora <span id='conta7'>200</span> caratteri:<br/>
   </div>
 </div>
