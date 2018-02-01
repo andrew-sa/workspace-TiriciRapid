@@ -21,11 +21,12 @@
 	<%@ include file="nav_login.jsp"%>
 
 	<div id ="contenitore_login">
-	<form  onsubmit="sendRequestLogin(this);">
+	<div id ="messaggio"></div>
+	<form>
 	<input id ="tipo" type="hidden" name="type" value="studente">
 	<div><input name="id" type="text" id ="username" placeholder="Esse3 Username"></div> 
 	<div><input name="password" type="password" id = "password" placeholder="Password"></div> 
-	<button id = "pulsante_login" type="submit" onclick="sendRequestLogin(this);">Entra</button>
+	<button id = "pulsante_login" type="button" onclick="sendRequestLogin(this.form);">Entra</button>
 	
 	</form>
 	<div id="password_dimenticata" style="visibility: hidden;"><a href="#">Password dimenticata?</a></div>

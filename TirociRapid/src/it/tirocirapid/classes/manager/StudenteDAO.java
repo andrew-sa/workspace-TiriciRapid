@@ -29,7 +29,6 @@ public class StudenteDAO extends AbstractStudenteManager {
 		Connection con = DriverManagerConnectionPool.getIstance().getConnection();
 		PreparedStatement ps = con.prepareStatement(SEARCH);
 		ps.setString(1, username);
-		ps.setString(2, password);
 		ResultSet rs = ps.executeQuery();
 		if (rs.next())
 		{
