@@ -15,6 +15,8 @@
 <script type="text/javascript" src="js/formcheck.js"></script>
 <script type="text/javascript" src="js/selected_item_azienda.js"></script>
 <script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+
 
 </head>
 <body onload="selectedItemAzienda();">
@@ -26,6 +28,10 @@
 
 <div class="container">
 	<div class="row">
+	<%if ((request.getAttribute("errore") != null))
+		{%>
+	<div style="color: green; text-align: center;"><%=request.getAttribute("errore").toString()%></div>
+	<%}%>
 		<form action="registrazione_azienda" method="post" 
 		class="form-horizontal" onsubmit="return validateRegistrazione(this)">
 		
@@ -72,7 +78,7 @@
 					<label class="col-md-4 control-label" for="descrizioneAmbito">Descrizione
 						Ambito </label>
 					<div class="col-md-4">
-						<textarea onkeyup="maxlength(this,500,'conta3')"
+						<textarea onkeyup="maxlength(this,500,'#conta3')"
 							style="resize: none;"id="descrizioneAmbito"
 							name="descrizioneAmbito" class="form-control input-md" rows="4"
 							cols="50"></textarea>
@@ -110,7 +116,7 @@
 					<label class="col-md-4 control-label" for="password">Password
 					</label>
 					<div class="col-md-4">
-						<input id="password" name="password" type="text"
+						<input id="password" name="password" type="password"
 							class="form-control input-md" maxlength="20">
 					</div>
 					<p id="7" class="col-md-4 errorform" >
@@ -122,7 +128,7 @@
 					<label class="col-md-4 control-label" for="confPassword">Conferma
 						Password </label>
 					<div class="col-md-4">
-						<input id="confPassword" name="confPassword" type="text"
+						<input id="confPassword" name="confPassword" type="password"
 							class="form-control input-md" maxlength="20">
 					</div>
 					<p id="8" class="col-md-4 errorform" >
@@ -146,7 +152,6 @@
 </div>
 
 <%@include file="footer.jsp"%>
-<script type="text/javascript" src="js/formcheck.js"></script>
 
 </body>
 

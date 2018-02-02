@@ -39,7 +39,7 @@
 		</form>
 
 		<div id="password_dimenticata" style="visibility: hidden;">
-			<a id="registra_azienda" href="#">Registrati</a> &ensp; &ensp; &ensp;
+			<a id="registra_azienda" href="azienda_iscrizione.jsp">Registrati</a> &ensp; &ensp; &ensp;
 			<a id="link_password_dimenticata" href="#">Password dimenticata?</a>
 		</div>
 	</div>

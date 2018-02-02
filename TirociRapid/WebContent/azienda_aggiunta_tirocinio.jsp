@@ -18,11 +18,26 @@
 <body onload="selectedItemAzienda();">
 <%@ include file="slider.jsp" %>
 
-
+<%if ((request.getAttribute("successo") != null) && (request.getAttribute("successo").toString().
+		equals("Inserisici una proposta di tirocinio per salvare l'azienda")) 
+		 )
+		{ %>
+		<%@ include file="nav_vuota.jsp" %>
+		<%} else{%>
 <%@ include file="nav_azienda.jsp" %>
+<%} %>
 
 <div class="container">
 	<div class="row">
+	<%if ((request.getAttribute("successo") != null))
+		{%>
+	<div style="color: green; text-align: center;"><%=request.getAttribute("successo").toString()%></div>
+	<%}%>
+		<%if ((request.getAttribute("errore") != null))
+		{%>
+	<div style="color: red; text-align: center;"><%=request.getAttribute("errore").toString()%></div>
+	<%}%>
+	<div style="color: red; text-align: center;"> ciaoo sdnjk ams dxjs sdkxj sakdlm</div>
 		<form class="form-horizontal">
 		<fieldset>
 		<!-- Form Name -->
