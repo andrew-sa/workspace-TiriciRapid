@@ -1,10 +1,5 @@
 package it.tirociraid.test.unit;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
 import it.tirocirapid.classes.model.Professore;
 import junit.framework.TestCase;
@@ -13,12 +8,12 @@ public class TestProfessore extends TestCase{
 
 	protected Professore p;
 	
-	protected void setUp() throws Exception {
+	protected void setUp() {
 		p=new Professore("username","password","ambito","emailIstituzionale","nome",
 				"cognome","email","telefono","indirizzo","matricola");
 	}
 
-	protected void tearDown() throws Exception {
+	protected void tearDown() {
 		p=null;
 	}
 

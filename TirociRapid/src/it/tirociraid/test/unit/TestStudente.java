@@ -10,7 +10,7 @@ public class TestStudente extends TestCase{
 	protected Curriculum c;
 	protected Curriculum c2;
 	
-	protected void setUp(){
+	protected void setUp() {
 		c=new Curriculum("fax","esperienzaLavorativa","capacitaCompetenzePersonali","madrelingua",
 				"altreLingue","capacitaCompetenzeRelazionali","capacitaCompetenzeOrganizzative",
 				"capacitaCompetenzeTecniche","capacitaCompetenzeArtistiche","altreCapacitaCompetenze",
@@ -19,7 +19,7 @@ public class TestStudente extends TestCase{
 				"nome","cognome","indirizzo","telefono","istruzioneFormazione","email",c);
 	}
 
-	protected void tearDown(){
+	protected void tearDown() {
 		c=null;
 		s=null;
 		c2=null;

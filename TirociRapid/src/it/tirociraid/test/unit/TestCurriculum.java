@@ -1,11 +1,5 @@
 package it.tirociraid.test.unit;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import it.tirocirapid.classes.model.Curriculum;
 import junit.framework.TestCase;
 
@@ -14,7 +8,7 @@ public class TestCurriculum extends TestCase {
 	protected Curriculum c;
 
 	
-	protected void setUp() throws Exception {
+	protected void setUp() {
 		c=new Curriculum("fax","esperienzaLavorativa","capacitaCompetenzePersonali","madrelingua",
 				"altreLingue","capacitaCompetenzeRelazionali","capacitaCompetenzeOrganizzative",
 				"capacitaCompetenzeTecniche","capacitaCompetenzeArtistiche","altreCapacitaCompetenze",
@@ -22,7 +16,7 @@ public class TestCurriculum extends TestCase {
 	}
 
 	
-	protected void tearDown() throws Exception {
+	protected void tearDown() {
 		c=null;
 	}
 	
