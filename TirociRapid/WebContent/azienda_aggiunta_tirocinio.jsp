@@ -13,6 +13,7 @@
 <script type="text/javascript" src="js/formcheck.js"></script>
 <script type="text/javascript" src="js/selected_item_azienda.js"></script>
 <script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
 
 </head>
 <body onload="selectedItemAzienda();">
@@ -37,8 +38,7 @@
 		{%>
 	<div style="color: red; text-align: center;"><%=request.getAttribute("errore").toString()%></div>
 	<%}%>
-	<div style="color: red; text-align: center;"> ciaoo sdnjk ams dxjs sdkxj sakdlm</div>
-		<form class="form-horizontal">
+		<form method="post" action="crea_proposta_tirocinio" class="form-horizontal">
 		<fieldset>
 		<!-- Form Name -->
 		<legend>Tirocinio:</legend>

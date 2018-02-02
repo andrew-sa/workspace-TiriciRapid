@@ -26,14 +26,14 @@ import it.tirocirapid.factory.DAOFactory;
 @WebServlet("/login")
 public class LoginAjax extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public LoginAjax() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public LoginAjax() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -46,15 +46,15 @@ public class LoginAjax extends HttpServlet {
 		String password = request.getParameter("password");
 		String tipo = request.getParameter("type");
 		final String replacement = "";
-		
+
 		response.setContentType("text/xml");
 		PrintWriter out = response.getWriter();
 		out.println("<!DOCTYPE result [");
 		out.println("<!ENTITY egrave \"è\">");
 		out.println("]>");
-		
+
 		out.println("<result>");
-		
+
 		if (replaceIfMissing(tipo, replacement).equals(replacement))
 		{
 			out.println("<errore>");
@@ -96,7 +96,7 @@ public class LoginAjax extends HttpServlet {
 						user.setId(id);
 						user.setTipo(userTypes.get("Stud"));
 						session.setAttribute("user", user);
-						
+
 						out.println("<type>");
 						out.println(user.getTipo());
 						out.println("</type>");
@@ -134,7 +134,7 @@ public class LoginAjax extends HttpServlet {
 						user.setId(id);
 						user.setTipo(userTypes.get("Prof"));
 						session.setAttribute("user", user);
-						
+
 						out.println("<type>");
 						out.println(user.getTipo());
 						out.println("</type>");
@@ -145,7 +145,7 @@ public class LoginAjax extends HttpServlet {
 						user.setId(id);
 						user.setTipo(userTypes.get("RespAppr"));
 						session.setAttribute("user", user);
-						
+
 						out.println("<type>");
 						out.println(user.getTipo());
 						out.println("</type>");
@@ -182,7 +182,7 @@ public class LoginAjax extends HttpServlet {
 						user.setId(id);
 						user.setTipo(userTypes.get("RespAz"));
 						session.setAttribute("user", user);
-						
+
 						out.println("<type>");
 						out.println(user.getTipo());
 						out.println("</type>");
@@ -216,7 +216,7 @@ public class LoginAjax extends HttpServlet {
 				out.println("</errore>");
 			}
 		}
-		
+
 		out.println("</result>");
 	}
 
@@ -227,7 +227,7 @@ public class LoginAjax extends HttpServlet {
 	{
 		doGet(request, response);
 	}
-	
+
 	/**
 	 * 
 	 * @param username username dello studente da caricare

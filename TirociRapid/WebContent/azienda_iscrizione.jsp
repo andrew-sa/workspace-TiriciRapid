@@ -78,7 +78,7 @@
 					<label class="col-md-4 control-label" for="descrizioneAmbito">Descrizione
 						Ambito </label>
 					<div class="col-md-4">
-						<textarea onkeyup="maxlength(this,500,'#conta3')"
+						<textarea onkeyup="maxlength(this,500,'conta3')"
 							style="resize: none;"id="descrizioneAmbito"
 							name="descrizioneAmbito" class="form-control input-md" rows="4"
 							cols="50"></textarea>

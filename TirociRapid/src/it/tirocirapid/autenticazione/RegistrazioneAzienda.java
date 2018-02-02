@@ -201,7 +201,7 @@ public class RegistrazioneAzienda extends HttpServlet {
 //			request.setAttribute("partitaIVA", azienda.getPartitaIVA());
 //			request.setAttribute("registrazione", true);
 		request.getSession().setAttribute("azienda", azienda);
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/azienda_aggiunta_tirocinio.jsp"); //AggiungiTirocinio
+		RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/azienda_aggiunta_tirocinio.jsp"); //AggiungiTirocinio
 		dispatcher.forward(request, response);
 //			return;
 //		}
