@@ -17,7 +17,7 @@ public class TestRichiestaTirocinio extends TestCase {
 	protected Curriculum c;
 	
 	protected void setUp() {
-		rVuoto=null;
+		rVuoto=new RichiestaTirocinio();
 		s= new Studente("username","password","emailIstituzionale","matricola","mediaVoti","nome","cognome","indirizzo","telefono","istruzioneFormazione","email",c);
 		t= new Tirocinio("partitaIVAAzienda","nome","descrizione","offertaFormativa","stato");
 		p= new Professore("username","password","ambito","emailIstituzionale","nome","cognome","email","telefono","indirizzo","matricola");
@@ -50,5 +50,30 @@ public class TestRichiestaTirocinio extends TestCase {
 	public void testGetStato() {
 		assertEquals("stato",r.getStato());
 	}
-
+	
+	public void testSetStudente() {
+		r.setStudente(s);
+		assertSame(s,r.getStudente());
+	}
+	
+	public void testSetTirocinio() {
+		r.setTiroconio(t);
+		assertSame(t,r.getTirocinio());
+	}
+	
+	public void testSetTutorInterno() {
+		r.setTutorInterno(p);
+		assertSame(p,r.getTutorInterno());
+	}
+	
+	public void testSetStato() {
+		r.setStato("stato");
+		assertEquals("stato",r.getStato());
+	}
+/*	
+	public void testSetStudente(String usernamemetodo) {
+		usernamemetodo="aaaa";
+		s.setUsername(usernamemetodo);
+	}
+*/
 }
