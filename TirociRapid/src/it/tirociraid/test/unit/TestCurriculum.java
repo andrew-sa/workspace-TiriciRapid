@@ -89,48 +89,49 @@ public class TestCurriculum extends TestCase {
 		assertEquals("pippo", c.getCapacitaCompetenzePersonali());
 	}
 	
-	public void testMadreLingua() {
+	public void testSetMadreLingua() {
 		c.setCapacitaCompetenzePersonali("pippo");
 		assertEquals("pippo", c.getCapacitaCompetenzePersonali());
 	}
 	
-	public void testAltreLingue() {
+	public void testSetAltreLingue() {
 		c.setAltreLingue("pippo");
 		assertEquals("pippo", c.getAltreLingue());
 	}
 	
-	public void testCapacitaCompetenzeRelazionali() {
+	public void testSetCapacitaCompetenzeRelazionali() {
 		c.setCapacitaCompetenzeRelazionali("pippo");
 		assertEquals("pippo", c.getCapacitaCompetenzeRelazionali());
 	}
 	
-	public void testCapacitaCompetenzeOrganizzative() {
+	public void testSetCapacitaCompetenzeOrganizzative() {
 		c.setCapacitaCompetenzeOrganizzative("pippo");
 		assertEquals("pippo", c.getCapacitaCompetenzeOrganizzative());
 	}
 	
-	public void testCapacitaCompetenzeTecniche() {
+	public void testSetCapacitaCompetenzeTecniche() {
 		c.setCapacitaCompetenzeTecniche("pippo");
 		assertEquals("pippo", c.getCapacitaCompetenzeTecniche());
 	}
 	
-	public void testCapacitaCompetenzeArtistiche() {
+	public void testSetCapacitaCompetenzeArtistiche() {
 		c.setCapacitaCompetenzeArtistiche("pippo");
 		assertEquals("pippo", c.getCapacitaCompetenzeArtistiche());
 	}
 	
-	public void testAltreCapacitaCompetenze() {
+	public void testSetAltreCapacitaCompetenze() {
 		c.setAltreCapacitaCompetenze("pippo");
 		assertEquals("pippo", c.getAltreCapacitaCompetenze());
 	}
 	
-	public void testPatenti() {
+	public void testSetPatenti() {
 		c.setPatenti("pippo");
 		assertEquals("pippo", c.getPatenti());
 	}
 	
-	public void testUlterioriInformazioni() {
+	public void testSetUlterioriInformazioni() {
 		c.setUlterioriInformazioni("pippo");
 		assertEquals("pippo", c.getUlterioriInformazioni());
 	}
+	
 }
