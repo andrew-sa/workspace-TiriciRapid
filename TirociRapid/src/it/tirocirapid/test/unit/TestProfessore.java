@@ -1,4 +1,4 @@
-package it.tirociraid.test.unit;
+package it.tirocirapid.test.unit;
 
 
 import it.tirocirapid.classes.model.Professore;
