@@ -63,12 +63,12 @@ function readResultLogin()
 
 function sendRequestLogin(form)
 {
-
+	if(validateLogin(form)){
 	inAttesa = true;
 	document.body.style.cursor = "wait";
 	xhttp = new XMLHttpRequest();
 	xhttp.open("get", "login?id="+form.id.value+"&password="+form.password.value+"&type="+form.type.value, true);
 	xhttp.setRequestHeader("connection", "close");
 	xhttp.onreadystatechange = readResultLogin;
-	xhttp.send(null);
+	xhttp.send(null); }
 }

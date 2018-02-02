@@ -23,13 +23,15 @@ function checkEmpty(form) {
 }
 
 function validateLogin(form) {
-	resetInput(form);
+	for (let i = 1; i < (form.length - 1); i++) {
+		form[i].style.border = "0.1em solid #00627d";
+	}
 	var flag = 0;
-	for (let i = 0; i < form.length; i++) {
+	for (let i = 1; i < form.length; i++) {
 		if (form[i].value.trim() === ""
 				&& (form[i].type === "text" || form[i].type === "password")) {
-			document.getElementById(i).innerHTML = "Non puoi lasciare vuoto";
-			form[i].setAttribute('placeholder', "Non puoi lasciare vuoto");
+			form[i].setAttribute("placeholder", "Non puoi lasciare il campo vuoto");
+			form[i].style.border = "0.1em solid red";
 			flag = 1;
 		}
 	}
