@@ -154,7 +154,7 @@ function validateCurriculum(form) {
 	if (!(x.trim().endsWith(","))) {
 		x = x.concat(",")
 	}
-	if (!(x.match(/^([A-Za-z]{2,20},\s)+$/))) {
+	if (!((x.match(/^([A-Za-z\s]{2,20},)+$/))||((x.trim().length) <= 200))) {
 		form["altreLingue"].setAttribute("title",
 				"Il formato di questo campo \u00E8 sbagliato");
 		document.getElementById(9).innerHTML = "Il formato di questo campo deve essere 'nomelingua1, nomelingua2, nomelingua3,'";
@@ -177,7 +177,7 @@ function validateCurriculum(form) {
 			form["patenti"].setAttribute("title",
 					"Il formato di questo campo deve essere 'A, AM, A1, A2'");
 			document.getElementById(10).innerHTML = "Questa patente non esiste "
-					+ y;
+					+ y + "Il formato di questo campo deve essere 'A, AM, A1, A2'";
 		}
 	}
 	
