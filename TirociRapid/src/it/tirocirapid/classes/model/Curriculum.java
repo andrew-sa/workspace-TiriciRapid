@@ -12,6 +12,28 @@ public class Curriculum {
 	public Curriculum() {
 		
 	}
+	
+	public Curriculum(String fax, String esperienzaLavorativa, String capacitaCompetenzePersonali, String madrelingua,
+			String altreLingue, String capacitaCompetenzeRelazionali, String capacitaCompetenzeOrganizzative,
+			String capacitaCompetenzeTecniche, String capacitaCompetenzeArtistiche, String altreCapacitaCompetenze,
+			String patenti, String ulterioriInformazioni) {
+		super();
+		this.fax = fax;
+		this.esperienzaLavorativa = esperienzaLavorativa;
+		this.capacitaCompetenzePersonali = capacitaCompetenzePersonali;
+		this.madrelingua = madrelingua;
+		this.altreLingue = altreLingue;
+		this.capacitaCompetenzeRelazionali = capacitaCompetenzeRelazionali;
+		this.capacitaCompetenzeOrganizzative = capacitaCompetenzeOrganizzative;
+		this.capacitaCompetenzeTecniche = capacitaCompetenzeTecniche;
+		this.capacitaCompetenzeArtistiche = capacitaCompetenzeArtistiche;
+		this.altreCapacitaCompetenze = altreCapacitaCompetenze;
+		this.patenti = patenti;
+		this.ulterioriInformazioni = ulterioriInformazioni;
+	}
+
+
+
 	/**
 	 * @return the fax
 	 */

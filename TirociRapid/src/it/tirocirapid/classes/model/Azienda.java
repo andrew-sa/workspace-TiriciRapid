@@ -12,6 +12,21 @@ public class Azienda {
 	public Azienda() {
 
 	}
+	
+	public Azienda(String partitaIVA, String password, String email, String nome, String sede, String numeroTelefono,
+			ArrayList<Tirocinio> tirociniOfferti, String stato, String descrizioneAmbito) {
+		super();
+		this.partitaIVA = partitaIVA;
+		this.password = password;
+		this.email = email;
+		this.nome = nome;
+		this.sede = sede;
+		this.numeroTelefono = numeroTelefono;
+		this.tirociniOfferti = tirociniOfferti;
+		this.stato = stato;
+		this.descrizioneAmbito = descrizioneAmbito;
+	}
+
 	/**
 	 * @return the partitaIVA
 	 */

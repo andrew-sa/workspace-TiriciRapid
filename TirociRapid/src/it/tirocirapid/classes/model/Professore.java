@@ -11,6 +11,21 @@ public class Professore {
 		
 	}
 	
+	public Professore(String username, String password, String ambito, String emailIstituzionale, String nome,
+			String cognome, String email, String telefono, String indirizzo, String matricola) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.ambito = ambito;
+		this.emailIstituzionale = emailIstituzionale;
+		this.nome = nome;
+		this.cognome = cognome;
+		this.email = email;
+		this.telefono = telefono;
+		this.indirizzo = indirizzo;
+		this.matricola = matricola;
+	}
+
 	public Professore(String username)
 	{
 		this.username = username;

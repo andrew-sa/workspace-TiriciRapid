@@ -10,6 +10,25 @@ public class Studente {
 	public Studente() {
 		
 	}
+	
+	public Studente(String username, String password, String emailIstituzionale, String matricola, String mediaVoti,
+			String nome, String cognome, String indirizzo, String telefono, String istruzioneFormazione, String email,
+			Curriculum curriculum) {
+		super();
+		this.username = username;
+		this.password = password;
+		this.emailIstituzionale = emailIstituzionale;
+		this.matricola = matricola;
+		this.mediaVoti = mediaVoti;
+		this.nome = nome;
+		this.cognome = cognome;
+		this.indirizzo = indirizzo;
+		this.telefono = telefono;
+		this.istruzioneFormazione = istruzioneFormazione;
+		this.email = email;
+		this.curriculum = curriculum;
+	}
+
 	/**
 	 * @return the username
 	 */

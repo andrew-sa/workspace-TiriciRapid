@@ -5,6 +5,13 @@ public class UserLoggato {
 	public UserLoggato() {
 		
 	}
+	
+	public UserLoggato(String id, String tipo) {
+		super();
+		this.id = id;
+		this.tipo = tipo;
+	}
+
 	/**
 	 * @return the id
 	 */

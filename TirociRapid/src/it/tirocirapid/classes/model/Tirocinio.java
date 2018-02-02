@@ -10,6 +10,16 @@ public class Tirocinio {
 	public Tirocinio() {
 		
 	}
+	
+	public Tirocinio(String partitaIVAAzienda, String nome, String descrizione, String offertaFormativa, String stato) {
+		super();
+		this.partitaIVAAzienda = partitaIVAAzienda;
+		this.nome = nome;
+		this.descrizione = descrizione;
+		this.offertaFormativa = offertaFormativa;
+		this.stato = stato;
+	}
+
 	/**
 	 * @return the partitaIVAAzienda
 	 */
