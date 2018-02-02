@@ -50,7 +50,7 @@
 
 #password_dimenticata > a:hover
 {
-	cursor: help; 
+	
 	margin-top:1em;
 	color: #008db3;
 	text-align: left;
@@ -61,7 +61,17 @@
 	margin-top:1em;
 	color: #008db3;
 	text-align: left;
-	margin-bottom: 2em;
+	margin-bottom: 9em;
+}
+
+#registra_azienda:hover
+{
+	cursor: pointer; 
+}
+
+#link_password_dimenticata:hover
+{
+	cursor: help; 
 }
 
 #item_studente:hover,#item_azienda:hover,#item_professore:hover {

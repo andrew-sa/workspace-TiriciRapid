@@ -22,11 +22,12 @@
 	<%@ include file="slider.jsp"%>
 
 </body>
-<%@ include file="nav_azienda.jsp"%>
+<%@ include file="nav_vuota.jsp"%>
 
 <div class="container">
 	<div class="row">
-		<form class="form-horizontal" onsubmit="return validateRegistrazione(this)">
+		<form action="registrazione_azienda" method="post" 
+		class="form-horizontal" onsubmit="return validateRegistrazione(this)">
 		
 			<fieldset>
 				<!-- Form Name -->
