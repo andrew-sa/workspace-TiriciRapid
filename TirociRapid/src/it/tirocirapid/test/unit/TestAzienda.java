@@ -17,17 +17,20 @@ import junit.framework.TestCase;
  */
 public class TestAzienda extends TestCase{
 	
+	protected Azienda aVuoto;
 	protected Azienda a;
 	protected ArrayList<Tirocinio> array;
 	protected Tirocinio t;
 	
 	protected void setUp(){
+		aVuoto= new Azienda();
 		a=new Azienda("partitaIVA","password","email","nome","sede","numeroTelefono",array,"stato","descrizioneAmbito");
 		t= new Tirocinio("partitaIVAAzienda","nome","descrizione","offertaFormativa","stato");
-		a.aggiungiTirocinio(t);
+	//	a.aggiungiTirocinio(t);
 	}
 
 	protected void tearDown(){
+		aVuoto=null;
 		a=null;
 		t=null;
 	}

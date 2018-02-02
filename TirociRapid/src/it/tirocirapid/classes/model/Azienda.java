@@ -135,13 +135,15 @@ public class Azienda {
 	public void setDescrizioneAmbito(String descrizioneAmbito) {
 		this.descrizioneAmbito = descrizioneAmbito;
 	}
+/*	
+	
 	/**
 	 * 
 	 * @param t Il tirocinio da aggiungere
 	 * @pre t != null
 	 * @post tirociniOfferti.contains(t)
 	 */
-	public void aggiungiTirocinio(Tirocinio t)
+/*	public void aggiungiTirocinio(Tirocinio t)
 	{
 		
 	}
@@ -151,10 +153,11 @@ public class Azienda {
 	 * @pre t != null && tirociniOfferti.contains(t)
 	 * @post !tirociniOfferti.contains(t)
 	 */
-	public void cancellaTirocinio(Tirocinio t)
+/*	public void cancellaTirocinio(Tirocinio t)
 	{
 		
 	}
+*/
 	private String partitaIVA;
 	private String password;
 	private String email;

@@ -6,15 +6,20 @@ import junit.framework.TestCase;
 
 public class TestProfessore extends TestCase{
 
+	protected Professore pUser;
+	protected Professore pVuoto;
 	protected Professore p;
 	
 	protected void setUp() {
-		p=new Professore("username","password","ambito","emailIstituzionale","nome",
-				"cognome","email","telefono","indirizzo","matricola");
+		p=new Professore("username","password","ambito","emailIstituzionale","nome","cognome","email","telefono","indirizzo","matricola");
+		pVuoto= new Professore();
+		pUser= new Professore("username");
 	}
 
 	protected void tearDown() {
 		p=null;
+		pVuoto=null;
+		pUser=null;
 	}
 
 	public void testGetUsername() {

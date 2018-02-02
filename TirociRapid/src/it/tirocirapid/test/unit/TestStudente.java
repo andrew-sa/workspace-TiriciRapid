@@ -6,6 +6,7 @@ import junit.framework.TestCase;
 
 public class TestStudente extends TestCase{
 
+	protected Studente sVuoto;
 	protected Studente s;
 	protected Curriculum c;
 	protected Curriculum c2;
@@ -15,12 +16,14 @@ public class TestStudente extends TestCase{
 				"altreLingue","capacitaCompetenzeRelazionali","capacitaCompetenzeOrganizzative",
 				"capacitaCompetenzeTecniche","capacitaCompetenzeArtistiche","altreCapacitaCompetenze",
 				"patenti","ulterioriInformazioni");
+		sVuoto=new Studente();
 		s=new Studente("username","password","emailIstituzionale","matricola","mediaVoti",
 				"nome","cognome","indirizzo","telefono","istruzioneFormazione","email",c);
 	}
 
 	protected void tearDown() {
 		c=null;
+		sVuoto=null;
 		s=null;
 		c2=null;
 	}

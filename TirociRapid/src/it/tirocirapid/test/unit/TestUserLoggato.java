@@ -6,14 +6,17 @@ import junit.framework.TestCase;
 
 public class TestUserLoggato extends TestCase {
 
+	protected UserLoggato uVuoto;
 	protected UserLoggato u;
 	
 	protected void setUp() {
-		u= new UserLoggato("id","tipo");	
+		u= new UserLoggato("id","tipo");
+		uVuoto= new UserLoggato();
 	}
 
 	protected void tearDown() {
 		u=null;
+		uVuoto=null;
 	}
 
 	public void testGetId() {
