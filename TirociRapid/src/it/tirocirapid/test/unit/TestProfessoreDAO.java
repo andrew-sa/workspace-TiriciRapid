@@ -13,11 +13,26 @@ public class TestProfessoreDAO extends TestCase{
 
 	@AfterEach
 	protected void tearDown(){
-	}
+	}	
 
 	@Test
-	void test() {
-		fail("Not yet implemented");
+	public void testSearch() {
+		
+	}
+	
+	@Test
+	public void testRead() {
+		
+	}
+	
+	@Test
+	public void testUpdate() {
+		
+	}
+	
+	@Test
+	public void testCreate() {
+		
 	}
 
 }

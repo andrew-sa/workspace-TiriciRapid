@@ -16,8 +16,22 @@ public class TestCurriculumDAO extends TestCase{
 	}
 
 	@Test
-	void test() {
-		fail("Not yet implemented");
+	public void testCreate() {
+		
 	}
+	
+	@Test
+	public void testRead() {
+		
+	}
+	
+	@Test
+	public void testUpdate() {
+		
+	}	
 
+	@Test
+	public void testSearch() {
+		
+	}
 }

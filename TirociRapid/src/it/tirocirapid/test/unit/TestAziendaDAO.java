@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 
 import it.tirocirapid.classes.manager.AziendaDAO;
 import it.tirocirapid.classes.model.Azienda;
@@ -19,7 +21,7 @@ public class TestAziendaDAO {
 	protected Azienda azienda;
 	protected Connection con;
 	
-	@Before
+	@BeforeEach
 	public void setUp() throws Exception {
 		aziendaDAO=new AziendaDAO();
 		aziendaDAO2=new AziendaDAO();
@@ -27,12 +29,18 @@ public class TestAziendaDAO {
 		con=DriverManagerConnectionPool.getIstance().getConnection();
 	}
 
-	@After
+	@AfterEach
 	public void tearDown() throws Exception {
 		azienda=null;
 		aziendaDAO=null;
 		aziendaDAO2=null;
 		con.close();
+	}
+	
+	@Test
+	public void testSearch() throws SQLException, TuplaNotFoundException {
+		//aziendaDAO2.search("07643520567", "ciao");
+		
 	}
 
 	@Test
@@ -48,13 +56,38 @@ public class TestAziendaDAO {
 	}
 	
 	@Test
-	public void testSearch() throws SQLException, TuplaNotFoundException {
-		//aziendaDAO2.search("07643520567", "ciao");
+	public void testIsNewKey() {
 		
 	}
 	
 	@Test
+	public void testRead() {
+		
+	}
+	
+	
+	@Test
 	public void testUpdate() {
+		
+	}
+	
+	@Test
+	public void testReadAll() {
+		
+	}
+	
+	@Test
+	public void testReadEmail() {
+		
+	}
+	
+	@Test
+	public void testReadPassword() {
+		
+	}
+	
+	@Test
+	public void testUpdateStato() {
 		
 	}
 
