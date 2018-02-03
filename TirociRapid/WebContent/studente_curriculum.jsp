@@ -163,7 +163,7 @@
 						<label class="col-md-4 control-label" for="madreLingua">Madrelingua *
 						</label>
 						<div class="col-md-4">
-							<input id="madrelingua" name="madreLingua" type="text"
+							<input id="madrelingua" name="madrelingua" type="text"
 								class="form-control input-md" maxlength="20">
 						</div>
 						<p id="8" class="col-md-4 errorform"></p>
@@ -175,7 +175,7 @@
 						<label class="col-md-4 control-label" for="altreLingue">Altre
 							Lingue *</label>
 						<div class="col-md-4">
-							<input id="altreLingue" name="altreLingue" type="text"
+							<input id="altreLingue" name="altrelingue" type="text"
 								class="form-control input-md" maxlength="100">
 						</div>
 						<p id="9" class="col-md-4 errorform"></p>

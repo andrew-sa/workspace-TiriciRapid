@@ -55,7 +55,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 		parametri.add("altreCapacitaCompetenze");
 		parametri.add("esperienzaLavorativa");
 		parametri.add("madrelingua");
-		parametri.add("altreLingue");
+		parametri.add("altrelingue");
 		parametri.add("patenti");
 		parametri.add("ulterioriInformazioni");
 		
@@ -108,7 +108,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 			if (!param.equals(parametri.get(0)) && replaceIfMissing(request.getParameter(param), replacement).equals(replacement))
 			{
 				request.setAttribute("errore", "Il campo " + param + " &egrave; obbligatorio");
-				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/studente_curriculum.jsp"); //CreaCurriculum
+				RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/studente_curriculum.jsp"); //CreaCurriculum
 				dispatcher.forward(request, response);
 				return;
 			}
@@ -249,7 +249,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 				else
 				{
 					request.setAttribute("errore", "Le lingue del campo " + param + " devono essere superate da una virgola e il contenuto non deve superare i 100 caratteri");
-					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/studente_curriculum.jsp"); //CreaCurriculum
+					RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/studente_curriculum.jsp"); //CreaCurriculum
 					dispatcher.forward(request, response);
 					return;
 				}
@@ -258,12 +258,13 @@ public class CreaCurriculumStudente extends HttpServlet {
 			{
 				if (validaPatenti(request.getParameter(param).toUpperCase()))
 				{
-					curriculum.setPatenti(removeLastToken(request.getParameter(param.toUpperCase())));
+					//curriculum.setPatenti(removeLastToken(request.getParameter(param.toUpperCase())));
+					curriculum.setPatenti("AM");
 				}
 				else
 				{
 					request.setAttribute("errore", "Il campo " + param + " non &egrave; nel formato corretto (Le sigle delle patenti devono essere separate dalla virgola)");
-					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/studente_curriculum.jsp"); //CreaCurriculum
+					RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/studente_curriculum.jsp"); //CreaCurriculum
 					dispatcher.forward(request, response);
 					return;
 				}
@@ -277,7 +278,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 				else
 				{
 					request.setAttribute("errore", "Il campo " + param + " non pu&ograve; superare 200 caratteri");
-					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/studente_curriculum.jsp"); //CreaCurriculum
+					RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/studente_curriculum.jsp"); //CreaCurriculum
 					dispatcher.forward(request, response);
 					return;
 				}
@@ -301,7 +302,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 			user.setId(userTypes.get("Stud"));
 			session.setAttribute("user", user);
 //			request.setAttribute("successo", "La registrazione &egrave; avvenuta con successo.<br/>Ora puoi effettuare il login");
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/studente_richieste.jsp"); //RichiesteStudente
+			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/studente_richieste.jsp"); //RichiesteStudente
 			dispatcher.forward(request, response);
 		}
 		catch (MySQLIntegrityConstraintViolationException e)
@@ -372,7 +373,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 		String[] p = strPatenti.split(TOKEN);
 		for (int i = 0; i < p.length; i++)
 		{
-			if (!patenti.contains(p))
+			if (!patenti.contains(p[i]))
 			{
 				return false;
 			}
@@ -391,7 +392,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 		{
 			altreLingue.concat(TOKEN);
 		}
-		return Pattern.matches("(([A-Za-z\\s]{2,20},)+", altreLingue) && (altreLingue.length()<=200);
+		return Pattern.matches("(([A-Za-z\\s]{2,20},)+)", altreLingue) && (altreLingue.length()<=200);
 	}
 	
 	/**
