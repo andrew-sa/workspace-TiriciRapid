@@ -3,6 +3,7 @@ package it.tirocirapid.autenticazione;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.regex.Pattern;
 
 import javax.servlet.RequestDispatcher;
@@ -12,11 +13,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 
 import it.tirocirapid.classes.manager.AbstractCurriculumManager;
 import it.tirocirapid.classes.model.Curriculum;
+import it.tirocirapid.classes.model.UserLoggato;
 import it.tirocirapid.eccezioni.InsertFailedException;
 import it.tirocirapid.factory.AbstractManagerFactory;
 import it.tirocirapid.factory.DAOFactory;
@@ -42,7 +45,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException
 	{
 		parametri = new ArrayList<>();
-		parametri.add("username");
+//		parametri.add("username");
 		parametri.add("fax");
 		parametri.add("capacitaCompetenzeRelazionali");
 		parametri.add("capacitaCompetenzeTecniche");
@@ -88,11 +91,21 @@ public class CreaCurriculumStudente extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
+		HttpSession session = request.getSession();
+		HashMap<String, String> userTypes = (HashMap<String, String>) request.getServletContext().getAttribute("userTypes");
 		final String replacement = "";
+		if (session.getAttribute("usernameStudente") == null)
+		{
+			request.setAttribute("errore", "Devi essere un nuovo studente per poter creare un curriculum");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login.jsp"); //LoginStudente
+			dispatcher.forward(request, response);
+			return;
+		}
+		String username = (String) session.getAttribute("usernameStudente");
 		Curriculum curriculum = new Curriculum();
 		for (String param: parametri)
 		{
-			if (!param.equals(parametri.get(1)) && replaceIfMissing(request.getParameter(param), replacement).equals(replacement))
+			if (!param.equals(parametri.get(0)) && replaceIfMissing(request.getParameter(param), replacement).equals(replacement))
 			{
 				request.setAttribute("errore", "Il campo " + param + " &egrave; obbligatorio");
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/studente_curriculum.jsp"); //CreaCurriculum
@@ -101,7 +114,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 			}
 			
 			/* Validazione parametro fissato dal ciclo */
-			if (param.equals(parametri.get(1))) //fax
+			if (param.equals(parametri.get(0))) //fax
 			{
 				if (validaFax(request.getParameter(param)))
 				{
@@ -115,7 +128,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 					return;
 				}
 			}
-			else if (param.equals(parametri.get(2))) //capacitaCompetenzeRelazionali
+			else if (param.equals(parametri.get(1))) //capacitaCompetenzeRelazionali
 			{
 				if (validaCapacitaCompetenzeX(request.getParameter(param)))
 				{
@@ -129,7 +142,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 					return;
 				}
 			}
-			else if (param.equals(parametri.get(3))) //capacitaCompetenzeTecniche
+			else if (param.equals(parametri.get(2))) //capacitaCompetenzeTecniche
 			{
 				if (validaCapacitaCompetenzeX(request.getParameter(param)))
 				{
@@ -143,7 +156,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 					return;
 				}
 			}
-			else if (param.equals(parametri.get(4))) //capacitaCompetenzePersonali
+			else if (param.equals(parametri.get(3))) //capacitaCompetenzePersonali
 			{
 				if (validaCapacitaCompetenzeX(request.getParameter(param)))
 				{
@@ -157,7 +170,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 					return;
 				}
 			}
-			else if (param.equals(parametri.get(5))) //capacitaCompetenzeOrganizzative
+			else if (param.equals(parametri.get(4))) //capacitaCompetenzeOrganizzative
 			{
 				if (validaCapacitaCompetenzeX(request.getParameter(param)))
 				{
@@ -171,7 +184,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 					return;
 				}
 			}
-			else if (param.equals(parametri.get(6))) //altreCapacitaCompetenze
+			else if (param.equals(parametri.get(5))) //altreCapacitaCompetenze
 			{
 				if (validaCapacitaCompetenzeX(request.getParameter(param)))
 				{
@@ -185,7 +198,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 					return;
 				}
 			}
-			else if (param.equals(parametri.get(7))) //esperienzaLavorativa
+			else if (param.equals(parametri.get(6))) //esperienzaLavorativa
 			{
 				if (validaEsperienzaLavorativa(request.getParameter(param)))
 				{
@@ -199,7 +212,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 					return;
 				}
 			}
-			else if (param.equals(parametri.get(8))) //madrelingua
+			else if (param.equals(parametri.get(7))) //madrelingua
 			{
 				if (validaMadrelingua(request.getParameter(param)))
 				{
@@ -213,7 +226,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 					return;
 				}
 			}
-			else if (param.equals(parametri.get(9))) //altreLingue
+			else if (param.equals(parametri.get(8))) //altreLingue
 			{
 				if (validaAltreLingue(request.getParameter(param)))
 				{
@@ -227,7 +240,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 					return;
 				}
 			}
-			else if (param.equals(parametri.get(10))) //patenti
+			else if (param.equals(parametri.get(9))) //patenti
 			{
 				if (validaPatenti(request.getParameter(param).toUpperCase()))
 				{
@@ -241,7 +254,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 					return;
 				}
 			}
-			else if (param.equals(parametri.get(11))) //ulterioriInformazioni
+			else if (param.equals(parametri.get(10))) //ulterioriInformazioni
 			{
 				if (validaUlterioriInformazioni(request.getParameter(param)))
 				{
@@ -267,9 +280,14 @@ public class CreaCurriculumStudente extends HttpServlet {
 		{
 			AbstractManagerFactory factory = new DAOFactory();
 			AbstractCurriculumManager managerCurriculum = factory.createCurriculumManager();
-			managerCurriculum.create(curriculum, request.getParameter("username"));
-			request.setAttribute("successo", "La registrazione &egrave; avvenuta con successo.<br/>Ora puoi effettuare il login");
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login.jsp"); //LoginStudente
+			managerCurriculum.create(curriculum, username);
+			session.removeAttribute("usernameStudente");
+			UserLoggato user = new UserLoggato();
+			user.setId(username);
+			user.setId(userTypes.get("Stud"));
+			session.setAttribute("user", user);
+//			request.setAttribute("successo", "La registrazione &egrave; avvenuta con successo.<br/>Ora puoi effettuare il login");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/studente_richieste.jsp"); //RichiesteStudente
 			dispatcher.forward(request, response);
 		}
 		catch (MySQLIntegrityConstraintViolationException e)

@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.HashMap;
 
+import javax.management.InvalidAttributeValueException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import it.tirocirapid.classes.manager.AbstractAziendaManager;
+import it.tirocirapid.classes.manager.AbstractCurriculumManager;
 import it.tirocirapid.classes.manager.AbstractProfessoreManager;
 import it.tirocirapid.classes.manager.AbstractStudenteManager;
 import it.tirocirapid.classes.model.UserLoggato;
@@ -92,14 +94,25 @@ public class LoginAjax extends HttpServlet {
 				{
 					if (loginStudente(id, password))
 					{
-						UserLoggato user = new UserLoggato();
-						user.setId(id);
-						user.setTipo(userTypes.get("Stud"));
-						session.setAttribute("user", user);
-
-						out.println("<type>");
-						out.println(user.getTipo());
-						out.println("</type>");
+						if(!isNewStudente(id))
+						{
+							UserLoggato user = new UserLoggato();
+							user.setId(id);
+							user.setTipo(userTypes.get("Stud"));
+							session.setAttribute("user", user);
+	
+							out.println("<type>");
+							out.println(user.getTipo());
+							out.println("</type>");
+						}
+						else
+						{
+							session.setAttribute("usernameStudente", id);
+							
+							out.println("<type>");
+							out.println("StudenteNonRegistrato");
+							out.println("</type>");
+						}
 					}
 					else
 					{
@@ -272,6 +285,28 @@ public class LoginAjax extends HttpServlet {
 		AbstractManagerFactory factory = new DAOFactory();
 		AbstractProfessoreManager managerProfessore = factory.createProfessoreManager();
 		return managerProfessore.search(username, password);
+	}
+	
+	/**
+	 * @param password rappresenta l'password dello studente
+	 * @return true  
+	 * @return false 
+	 * @throws TuplaNotFoundException 
+	 * @throws SQLException 
+	 * @throws InvalidAttributeValueException 
+	 */
+	private boolean isNewStudente(String username) throws SQLException
+	{
+		AbstractManagerFactory factory = new DAOFactory();
+		AbstractCurriculumManager managerCurriculum = factory.createCurriculumManager();
+		if (!managerCurriculum.search(username))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 
 	/**
