@@ -43,7 +43,7 @@ public class CaricaProfiloStudente extends HttpServlet {
 	{
 //		String referer = request.getHeader("Referer");
 		HttpSession session = request.getSession();
-		HashMap<String, String> userTypes =  (HashMap<String, String>) request.getServletContext().getAttribute("userTypes");
+		HashMap<String, String> userTypes =  (HashMap<String, String>) getServletContext().getAttribute("userTypes");
 		UserLoggato user = (UserLoggato) session.getAttribute("user");
 		final String replacement = "";
 		if (user.getTipo().equals(userTypes.get("Stud")))
@@ -63,8 +63,8 @@ public class CaricaProfiloStudente extends HttpServlet {
 				e.printStackTrace();
 				request.setAttribute("errore", "Lo studente cercato non &egrave; registrato alla piattaforma");
 			}
-//			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata del profilo dello studente
-//			dispatcher.forward(request, response);
+			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/studente_profilo.jsp"); //Alla schermata del profilo dello studente
+			dispatcher.forward(request, response);
 		}
 		else if (!replaceIfMissing(request.getParameter("username"), replacement).equals(replacement))
 		{

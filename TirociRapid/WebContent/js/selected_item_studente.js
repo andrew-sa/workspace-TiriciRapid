@@ -6,7 +6,7 @@ function selectedItemStudente()
 		case "/TirociRapid/studente_aziende.jsp":
 			$("#item_lista_aziende_studente").attr("class","attiva");
 			break;
-		case "/TirociRapid/studente_profilo.jsp":
+		case "/TirociRapid/studente_profilo.jsp" :case "/TirociRapid/profilo_studente":
 			$("#item_profilo_studente").addClass("attiva");
 			break;
 		case "/TirociRapid/studente_richieste.jsp":

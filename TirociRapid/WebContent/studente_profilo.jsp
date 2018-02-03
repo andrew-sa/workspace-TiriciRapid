@@ -1,3 +1,5 @@
+<%@page import="it.tirocirapid.classes.manager.AbstractCurriculumManager"%>
+<%@page import="it.tirocirapid.classes.model.Curriculum"%>
 <%@page import="it.tirocirapid.classes.manager.AbstractStudenteManager"%>
 <%@page import="it.tirocirapid.factory.DAOFactory"%>
 <%@page import="it.tirocirapid.factory.AbstractManagerFactory"%>
@@ -27,11 +29,11 @@
 
 
 
-	<%if(session.getAttribute("user")!=null){
-		UserLoggato user = (UserLoggato) session.getAttribute("user");
-		AbstractManagerFactory factory = new DAOFactory();
-		AbstractStudenteManager managerStudente = factory.createStudenteManager();
-		Studente studente = managerStudente.read(user.getId());	%>
+	<%if(request.getAttribute("studente")!=null){
+		Studente studente =  (Studente)request.getAttribute("studente");
+		Curriculum curriculum = studente.getCurriculum();
+	
+		%>
 	
 
 	<div class="container">
@@ -41,56 +43,57 @@
 		<h3 style="text-align: center;"><span>Curriculum </span></h3>
 		<div class="tabelle">
 		
+		<%if(curriculum.getFax()!= null){ %>
 			<div class="parametri-studente">
 			<div class="elemento-parametri-studente"> Fax: </div> 
-			<div class="elemento-parametri-studente"> bla </div>
+			<div class="elemento-parametri-studente"> <%=curriculum.getFax() %> </div>
 			</div>
-		
+		<%} %>
 			<div class="parametri-studente">
 			<div class="elemento-parametri-studente"> Capacita competenze relazionali: </div> 
-			<div class="elemento-parametri-studente"> bla </div>
+			<div class="elemento-parametri-studente"> <%=curriculum.getCapacitaCompetenzeRelazionali() %></div>
 			</div>
 			
 			<div class="parametri-studente">
 			<div class="elemento-parametri-studente"> Capacita competenze tecniche:</div> 
-			<div class="elemento-parametri-studente"> bla asdnbncsj jk wuyg jwdbsj fcbcaj  dvsj zud jhg fduavzsjd cnuywyye hgsge fawg esu </div>
+			<div class="elemento-parametri-studente"> <%=curriculum.getCapacitaCompetenzeTecniche() %></div>
 			</div>
 			
 			<div class="parametri-studente">
 			<div class="elemento-parametri-studente"> Capacita competenze artistiche: </div> 
-			<div class="elemento-parametri-studente"> bla </div>
+			<div class="elemento-parametri-studente"> <%=curriculum.getCapacitaCompetenzeArtistiche() %></div>
 			</div>
 			<div class="parametri-studente">
 			<div class="elemento-parametri-studente"> Capacita competenze personali: </div> 
-			<div class="elemento-parametri-studente"> bla </div>
+			<div class="elemento-parametri-studente"> <%=curriculum.getCapacitaCompetenzePersonali() %> </div>
 			</div>
 			<div class="parametri-studente">
 			<div class="elemento-parametri-studente"> Capacita competenze organizzative: </div> 
-			<div class="elemento-parametri-studente"> bla </div>
+			<div class="elemento-parametri-studente"> <%=curriculum.getCapacitaCompetenzeOrganizzative() %> </div>
 			</div>
 			<div class="parametri-studente">
 			<div class="elemento-parametri-studente"> Altre capacità e competenze: </div> 
-			<div class="elemento-parametri-studente"> bla </div>
+			<div class="elemento-parametri-studente"> <%=curriculum.getAltreCapacitaCompetenze() %> </div>
 			</div>
 			<div class="parametri-studente">
 			<div class="elemento-parametri-studente"> Esperienza lavorativa:  </div> 
-			<div class="elemento-parametri-studente"> bla </div>
-			</div>
-			<div class="parametri-studente">
-			<div class="elemento-parametri-studente"> Altre lingue </div> 
-			<div class="elemento-parametri-studente"> bla </div>
+			<div class="elemento-parametri-studente"> <%=curriculum.getEsperienzaLavorativa() %> </div>
 			</div>
 			<div class="parametri-studente">
 			<div class="elemento-parametri-studente"> Madrelingua: </div> 
-			<div class="elemento-parametri-studente"> bla </div>
+			<div class="elemento-parametri-studente"> <%=curriculum.getMadrelingua() %> </div>
+			</div>
+			<div class="parametri-studente">
+			<div class="elemento-parametri-studente"> Altre lingue </div> 
+			<div class="elemento-parametri-studente"> <%=curriculum.getAltreLingue() %> </div>
 			</div>
 			<div class="parametri-studente">
 			<div class="elemento-parametri-studente"> Patenti: </div> 
-			<div class="elemento-parametri-studente"> bla </div>
+			<div class="elemento-parametri-studente"> <%=curriculum.getPatenti() %> </div>
 			</div>
 			<div class="parametri-studente">
 			<div class="elemento-parametri-studente"> Ulteriori informazioni: </div> 
-			<div class="elemento-parametri-studente"> bla </div>
+			<div class="elemento-parametri-studente"><%=curriculum.getUlterioriInformazioni() %></div>
 			</div>
 		
 		</div>
@@ -112,47 +115,50 @@
 		
 			<div class="parametri-studente">
 			<div class="elemento-parametri-studente"> Cognome: </div> 
-			<div class="elemento-parametri-studente"> bla </div>
+			<div class="elemento-parametri-studente"> <%=studente.getCognome() %> </div>
 			</div>
 			
 			<div class="parametri-studente">
 			<div class="elemento-parametri-studente"> Istruzione e formazione:  </div> 
-			<div class="elemento-parametri-studente"> bla </div>
+			<div class="elemento-parametri-studente"> <%=studente.getIstruzioneFormazione()  %> </div>
 			</div>
 			
 			<div class="parametri-studente">
 			<div class="elemento-parametri-studente"> Email: </div> 
-			<div class="elemento-parametri-studente"> bla </div>
+			<div class="elemento-parametri-studente"> <%=studente.getEmail()%> </div>
 			</div>
 			
 			<div class="parametri-studente">
 			<div class="elemento-parametri-studente"> Telefono: </div> 
-			<div class="elemento-parametri-studente"> bla </div>
+			<div class="elemento-parametri-studente"> <%=studente.getTelefono()%></div>
 			</div>
 			
 			<div class="parametri-studente">
 			<div class="elemento-parametri-studente"> Indirizzo: </div> 
-			<div class="elemento-parametri-studente"> bla </div>
+			<div class="elemento-parametri-studente"> <%=studente.getIndirizzo() %></div>
 			</div>
 			
 			<div class="parametri-studente">
 			<div class="elemento-parametri-studente"> Matricola:</div> 
-			<div class="elemento-parametri-studente"> bla asdnbncsj jk wsvkj shjjkse fdbjkb xjkb ej vndbxjhv dkjd v vx kjj bs  ajuja  </div>
+			<div class="elemento-parametri-studente"> <%=studente.getMatricola() %>  </div>
 			</div>
 			<div class="parametri-studente">
 			<div class="elemento-parametri-studente"> Username: </div> 
-			<div class="elemento-parametri-studente"> bla </div>
+			<div class="elemento-parametri-studente"> <%=studente.getUsername() %> </div>
 			</div>
 			<div class="parametri-studente">
 			<div class="elemento-parametri-studente"> Email istituzionale: </div> 
-			<div class="elemento-parametri-studente"> bljjjgaya </div>
+			<div class="elemento-parametri-studente"> <%=studente.getEmailIstituzionale() %> </div>
 			</div>
 			<div class="parametri-studente">
 			<div class="elemento-parametri-studente"> Media voti: </div> 
-			<div class="elemento-parametri-studente"> bla </div>
+			<div class="elemento-parametri-studente"> <%=studente.getMediaVoti() %> </div>
 			</div>
 			
 			
+		<%} if(request.getAttribute("errore")!=null){ 
+		%>
+				<%=request.getAttribute("errore") %>		
 		<%} %>
 		
 		</div>

@@ -31,7 +31,7 @@ function readResultLogin()
 			
 			if(tipo == "Studente")
 			{
-				window.location.href="studente_profilo.jsp";
+				window.location.href="profilo_studente";
 			}
 			else if(tipo == "ResponsabileAzienda")
 			{
