@@ -1,9 +1,9 @@
 package it.tirocirapid.test.unit;
 
+import static org.junit.jupiter.api.Assertions.fail;
+
 import java.sql.Connection;
 import java.sql.SQLException;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -45,7 +45,8 @@ public class TestAziendaDAO {
 
 	@Test
 	public void testCreate() throws SQLException, InsertFailedException {
-		aziendaDAO.create(azienda);
+		fail("Not yet implemented");
+		//aziendaDAO.create(azienda);
 		/*Verifico nella base di fati se l'ho salvato*/
 		/*
 		PreparedStatement ps = con.prepareStatement("SELECT PartitaIVA FROM azienda WHERE PartitaIVA = ?");
@@ -57,38 +58,38 @@ public class TestAziendaDAO {
 	
 	@Test
 	public void testIsNewKey() {
-		
+		fail("Not yet implemented");
 	}
 	
 	@Test
 	public void testRead() {
-		
+		fail("Not yet implemented");
 	}
 	
 	
 	@Test
 	public void testUpdate() {
-		
+		fail("Not yet implemented");
 	}
 	
 	@Test
 	public void testReadAll() {
-		
+		fail("Not yet implemented");
 	}
 	
 	@Test
 	public void testReadEmail() {
-		
+		fail("Not yet implemented");
 	}
 	
 	@Test
 	public void testReadPassword() {
-		
+		fail("Not yet implemented");
 	}
 	
 	@Test
 	public void testUpdateStato() {
-		
+		fail("Not yet implemented");
 	}
 
 }

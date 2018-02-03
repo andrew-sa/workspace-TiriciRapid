@@ -1,5 +1,7 @@
 package it.tirocirapid.test.unit;
 
+import static org.junit.jupiter.api.Assertions.fail;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,22 +19,21 @@ public class TestProfessoreDAO extends TestCase{
 
 	@Test
 	public void testSearch() {
-		
+		fail("Not yet implemented");
 	}
 	
 	@Test
 	public void testRead() {
-		
+		fail("Not yet implemented");
 	}
 	
 	@Test
-	public void testUpdate() {
-		
+	public void testReadAll() {
+		fail("Not yet implemented");
 	}
 	
 	@Test
-	public void testCreate() {
-		
+	public void testEmail() {
+		fail("Not yet implemented");
 	}
-
 }
