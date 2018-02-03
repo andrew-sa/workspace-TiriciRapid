@@ -21,13 +21,36 @@
 </head>
 <body>
 	<%@ include file="slider.jsp"%>
+	<% if(session.getAttribute("usernameStudente")!=null)
+	{
+		%>
+		<%@ include file="nav_vuota.jsp"%>
+		<div class="container">
+				<% if(request.getAttribute("errore")!=null){
+		%>
+				<div style="color: red; text-align: center;"><%=request.getAttribute("errore").toString()%></div>		
+		<%} %>
+		<div class="row">
+			<form class="form-horizontal" onsubmit="return validateCurriculum(this)" action="inserisci_curriculum" method="post">
+				<fieldset>
+		<% 
+	}
+	else 
+	{%>
 	<%@ include file="nav_studente.jsp"%>
 	<div class="container">
+			<% if(request.getAttribute("errore")!=null){
+		%>
+				<div style="color: red; text-align: center;"><%=request.getAttribute("errore").toString()%></div>		
+		<%} %>
 		<div class="row">
-			<form class="form-horizontal" onsubmit="return validateCurriculum(this)">
+			<form class="form-horizontal" onsubmit="return validateCurriculum(this)" action="modifica_curriculum"  method="post">
 				<fieldset>
+	<%} %>
+	
 
 					<!-- Form Name -->
+		
 					<legend>Compila il tuo curriculum:</legend>
 
 					<!-- Capacita Competenze Relazionali input-->
@@ -140,7 +163,7 @@
 						<label class="col-md-4 control-label" for="madreLingua">Madrelingua *
 						</label>
 						<div class="col-md-4">
-							<input id="madreLingua" name="madreLingua" type="text"
+							<input id="madrelingua" name="madreLingua" type="text"
 								class="form-control input-md" maxlength="20">
 						</div>
 						<p id="8" class="col-md-4 errorform"></p>
@@ -198,7 +221,7 @@
 					<div class="form-group">
 						<label class="col-md-4 control-label" for="submit"></label>
 						<div class="col-md-4">
-							<button id="suSbmit" name="submit" class="btn btn-primary">Invia
+							<button id="suSbmit" name="submit" type="submit" class="btn btn-primary">Invia
 								Curriculum</button>
 						</div>
 					</div>
