@@ -72,19 +72,19 @@ public class TestRichiestaTirocinio extends TestCase {
 	}
 	
 	@Test 
-	public void testSetStudente() {
+	public void testSetStudente1() {
 		r.setStudente(s);
 		assertSame(s,r.getStudente());
 	}
 	
 	@Test 
-	public void testSetTirocinio() {
+	public void testSetTirocinio1() {
 		r.setTiroconio(t);
 		assertSame(t,r.getTirocinio());
 	}
 	
 	@Test 
-	public void testSetTutorInterno() {
+	public void testSetTutorInterno1() {
 		r.setTutorInterno(p);
 		assertSame(p,r.getTutorInterno());
 	}
@@ -94,25 +94,34 @@ public class TestRichiestaTirocinio extends TestCase {
 		r.setStato("stato");
 		assertEquals("stato",r.getStato());
 	}
-/*	
- * 	@Test 
-	public void testSetStudente(String username) {
-		username=usernameprova;
+	
+ 	@Test 
+	public void testSetStudente2() {
+ 		String a="username";
+		Studente studente = new Studente();
+		studente.setUsername(a);
+		r.setStudente(a);
+		assertEquals(studente.getUsername(),r.getStudente().getUsername());	
+	}
+
+	public void testSetTirocinio2() {
+		String a="partitaIVAAzienda";
+		String b="nomeTirocinio";
+		Tirocinio tirocinio = new Tirocinio();
+		tirocinio.setPartitaIVAAzienda(a);
+		tirocinio.setNome(b);
+		r.setTirocinio(a, b);
+		assertEquals(tirocinio.getPartitaIVAAzienda(),r.getTirocinio().getPartitaIVAAzienda());
+		assertEquals(tirocinio.getNome(),r.getTirocinio().getNome());
+	}
+
+	public void testSetTutorInterno2() {
+		String a="username";
+		Professore professore = new Professore();
+		professore.setUsername(a);
+		r.setTutorInterno(a);
+		assertEquals(professore.getUsername(),r.getTutorInterno().getUsername());
 		
 	}
-*//*	
-	public void testSetTirocinio(String partitaIVAAzienda, String nomeTirocinio)
-	{
-		Tirocinio tirocinio = new Tirocinio();
-		tirocinio.setPartitaIVAAzienda(partitaIVAAzienda);
-		tirocinio.setNome(nomeTirocinio);
-		assertEquals(partitaIVAAzienda,r2.getTirocinio().getPartitaIVAAzienda());
-		assertEquals(nomeTirocinio,r2.getTirocinio().getNome());
-	}
-/*
-	public void testSetStudente(String usernamemetodo) {
-		usernamemetodo="aaaa";
-		s.setUsername(usernamemetodo);
-	}
-*/
+	
 }
