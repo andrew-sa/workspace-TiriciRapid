@@ -47,11 +47,13 @@ public class TestAziendaDAO {
 	    	
 	}
 	
+	@Test
 	public void testSearch() throws SQLException, TuplaNotFoundException {
 		//aziendaDAO2.search("07643520567", "ciao");
 		
 	}
 	
+	@Test
 	public void testUpdate() {
 		
 	}
