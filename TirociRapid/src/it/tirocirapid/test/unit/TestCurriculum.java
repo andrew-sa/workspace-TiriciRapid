@@ -1,10 +1,11 @@
-package it.tirociraid.test.unit;
+package it.tirocirapid.test.unit;
 
 import it.tirocirapid.classes.model.Curriculum;
 import junit.framework.TestCase;
 
 public class TestCurriculum extends TestCase {
 	
+	protected Curriculum cVuoto;
 	protected Curriculum c;
 
 	
@@ -13,11 +14,13 @@ public class TestCurriculum extends TestCase {
 				"altreLingue","capacitaCompetenzeRelazionali","capacitaCompetenzeOrganizzative",
 				"capacitaCompetenzeTecniche","capacitaCompetenzeArtistiche","altreCapacitaCompetenze",
 				"patenti","ulterioriInformazioni");
+		cVuoto= new Curriculum();
 	}
 
 	
 	protected void tearDown() {
 		c=null;
+		cVuoto=null;
 	}
 	
 	public void testGetFax() {
@@ -84,8 +87,8 @@ public class TestCurriculum extends TestCase {
 	}
 	
 	public void testSetMadreLingua() {
-		c.setCapacitaCompetenzePersonali("pippo");
-		assertEquals("pippo", c.getCapacitaCompetenzePersonali());
+		c.setMadrelingua("pippo");
+		assertEquals("pippo", c.getMadrelingua());
 	}
 	
 	public void testSetAltreLingue() {

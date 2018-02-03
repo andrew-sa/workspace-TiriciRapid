@@ -11,6 +11,15 @@ public class RichiestaTirocinio {
 	public RichiestaTirocinio() {
 		
 	}
+	
+	public RichiestaTirocinio(Studente studente, Tirocinio tirocinio, Professore tutorInterno, String stato) {
+		super();
+		this.studente = studente;
+		this.tirocinio = tirocinio;
+		this.tutorInterno = tutorInterno;
+		this.stato = stato;
+	}
+
 	/**
 	 * @return the studente
 	 */

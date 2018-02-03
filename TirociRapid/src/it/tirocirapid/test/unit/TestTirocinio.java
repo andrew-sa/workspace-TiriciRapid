@@ -1,4 +1,4 @@
-package it.tirociraid.test.unit;
+package it.tirocirapid.test.unit;
 
 
 import it.tirocirapid.classes.model.Tirocinio;
@@ -6,14 +6,17 @@ import junit.framework.TestCase;
 
 public class TestTirocinio extends TestCase {
 	
+	protected Tirocinio tVuoto;
 	protected Tirocinio t;
 
 	protected void setUp() {
 		t= new Tirocinio("partitaIVAAzienda","nome","descrizione","offertaFormativa","stato");
+		tVuoto= new Tirocinio();
 	}
 
 	protected void tearDown() {
 		t=null;
+		tVuoto=null;
 	}
 
 	public void testGetPartitaIVAAzienda() {
@@ -54,5 +57,10 @@ public class TestTirocinio extends TestCase {
 	public void testSetOffertaFormativa() {
 		t.setOffertaFormativa("pippo");
 		assertEquals("pippo", t.getOffertaFormativa());
+	}
+	
+	public void testSetStato() {
+		t.setStato("pippo");
+		assertEquals("pippo", t.getStato());
 	}
 }
