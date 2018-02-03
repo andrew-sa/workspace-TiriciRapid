@@ -14,6 +14,9 @@ function selectedItemLogin(elemento){
 	if(recupero_id==="item_studente")
 	{
 		$("#username").attr("placeholder","Esse3 Username");
+		$("#username").css({"border":"0.1em solid #00627d"});
+		$("#password").attr("placeholder","Password");
+		$("#password").css({"border":"0.1em solid #00627d"});
 		$("#tipo").attr("value","studente");
 		$("#password_dimenticata").css("visibility","hidden");
 	}
@@ -21,6 +24,9 @@ function selectedItemLogin(elemento){
 	if(recupero_id==="item_azienda")
 	{
 		$("#username").attr("placeholder","Partita IVA");
+		$("#username").css({"border":"0.1em solid #00627d"});
+		$("#password").attr("placeholder","Password");
+		$("#password").css({"border":"0.1em solid #00627d"});
 		$("#tipo").attr("value","azienda");
 		$("#password_dimenticata").css("visibility","visible");
 	}
@@ -28,6 +34,9 @@ function selectedItemLogin(elemento){
 	if(recupero_id==="item_professore")
 	{
 		$("#username").attr("placeholder","Esse3 Username");
+		$("#username").css({"border":"0.1em solid #00627d"});
+		$("#password").attr("placeholder","Password");
+		$("#password").css({"border":"0.1em solid #00627d"});
 		$("#tipo").attr("value","professore");
 		$("#password_dimenticata").css("visibility","hidden");
 	}
