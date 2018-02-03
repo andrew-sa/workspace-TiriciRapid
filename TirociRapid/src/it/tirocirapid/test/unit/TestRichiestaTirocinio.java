@@ -15,6 +15,11 @@ public class TestRichiestaTirocinio extends TestCase {
 	protected Tirocinio t;
 	protected Professore p;
 	protected Curriculum c;
+	protected String usernameprova;
+	protected String nometirocinioprova;
+	protected String iva;
+	
+	
 	
 	protected void setUp() {
 		rVuoto=new RichiestaTirocinio();
@@ -23,6 +28,10 @@ public class TestRichiestaTirocinio extends TestCase {
 		p= new Professore("username","password","ambito","emailIstituzionale","nome","cognome","email","telefono","indirizzo","matricola");
 		c= new Curriculum("fax","esperienzaLavorativa","capacitaCompetenzePersonali","madrelingua","altreLingue","capacitaCompetenzeRelazionali","capacitaCompetenzeOrganizzative","capacitaCompetenzeTecniche","capacitaCompetenzeArtistiche","altreCapacitaCompetenze","patenti","ulterioriInformazioni");
 		r= new RichiestaTirocinio(s,t,p,"stato");
+		usernameprova="aaa";
+		nometirocinioprova="bbb";
+		iva="ccc";
+		
 	}
 
 	
@@ -33,6 +42,9 @@ public class TestRichiestaTirocinio extends TestCase {
 		t=null;
 		p=null;
 		c=null;
+		usernameprova=null;
+		nometirocinioprova=null;
+		iva=null;
 	}
 	
 	public void testGetStudente() {
@@ -71,6 +83,20 @@ public class TestRichiestaTirocinio extends TestCase {
 		assertEquals("stato",r.getStato());
 	}
 /*	
+	public void testSetStudente(String username) {
+		username=usernameprova;
+		
+	}
+*//*	
+	public void testSetTirocinio(String partitaIVAAzienda, String nomeTirocinio)
+	{
+		Tirocinio tirocinio = new Tirocinio();
+		tirocinio.setPartitaIVAAzienda(partitaIVAAzienda);
+		tirocinio.setNome(nomeTirocinio);
+		assertEquals(partitaIVAAzienda,r2.getTirocinio().getPartitaIVAAzienda());
+		assertEquals(nomeTirocinio,r2.getTirocinio().getNome());
+	}
+/*
 	public void testSetStudente(String usernamemetodo) {
 		usernamemetodo="aaaa";
 		s.setUsername(usernamemetodo);
