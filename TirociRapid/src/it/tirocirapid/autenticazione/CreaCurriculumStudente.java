@@ -258,8 +258,8 @@ public class CreaCurriculumStudente extends HttpServlet {
 			{
 				if (validaPatenti(request.getParameter(param).toUpperCase()))
 				{
-					//curriculum.setPatenti(removeLastToken(request.getParameter(param.toUpperCase())));
-					curriculum.setPatenti("AM");
+					curriculum.setPatenti(removeLastToken(request.getParameter(param).toUpperCase()));
+				
 				}
 				else
 				{
@@ -411,7 +411,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 		str = str.trim();
 		if (str.endsWith(TOKEN))
 		{
-			str = str.substring(0, str.length() - 2);
+			str = str.substring(0, str.length() - 1);
 		}
 		return str;
 	}
