@@ -202,6 +202,38 @@ public class TirocinioDAO extends AbstractTirocinioManager {
 		return tirocini;
 	}
 	
+	/**
+	 * Si occupa dell'interrogazione al database per ricavare tutti i tirocini di un azienda 
+	 * @param partitaIVA la partita IVA dell'azienda
+	 * @return ArrayList<Tirocinio> rappresenta i tirocini presenti nel DB di un azienda 
+	 * @throws SQLException
+	 */
+	@Override
+	public ArrayList<Tirocinio> readAllTirociniDisponibiliAzienda(String partitaIVA, String stato) throws SQLException
+	{
+		ArrayList<Tirocinio> tirocini = new ArrayList<>();
+		Connection con = DriverManagerConnectionPool.getIstance().getConnection();
+		PreparedStatement ps = con.prepareStatement(READ_ALL_DISPONIBILI_BY_AZIENDA);
+		ps.setString(1, partitaIVA);
+		ps.setString(2, stato);
+		ResultSet rs = ps.executeQuery();
+		while (rs.next())
+		{
+			Tirocinio tirocinio = new Tirocinio();
+			tirocinio.setNome(rs.getString(1));
+			tirocinio.setPartitaIVAAzienda(rs.getString(2));
+			tirocinio.setStato(rs.getString(3));
+			tirocinio.setOffertaFormativa(rs.getString(4));
+			tirocinio.setDescrizione(rs.getString(5));
+			tirocini.add(tirocinio);
+		}
+		con.commit();
+		rs.close();
+		ps.close();
+		DriverManagerConnectionPool.getIstance().releaseConnection(con);
+		return tirocini;
+	}
+	
 	@Override
 	public int countByAzienda(String partitaIVA) throws SQLException
 	{
@@ -224,6 +256,7 @@ public class TirocinioDAO extends AbstractTirocinioManager {
 	private static final String UPDATE = "UPDATE tirocinio SET Stato = ? WHERE PartitaIVA = ? AND Nome = ?";
 	private static final String DELETE = "DELETE FROM tirocinio WHERE Nome = ? AND PartitaIVA";
 	private static final String READ_ALL_BY_AZIENDA = "SELECT * FROM tirocinio WHERE PartitaIVA = ?";
+	private static final String READ_ALL_DISPONIBILI_BY_AZIENDA = "SELECT * FROM tirocinio WHERE PartitaIVA = ? AND Stato = ?";
 	private static final String COUNT_BY_AZIENDA = "SELECT COUNT(*) FROM richiestatirocinio WHERE PartitaIVA = ?";
 	
 }
