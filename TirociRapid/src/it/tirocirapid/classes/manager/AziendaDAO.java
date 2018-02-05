@@ -317,7 +317,7 @@ public class AziendaDAO extends AbstractAziendaManager {
 	private static final String CREATE = "INSERT INTO azienda(PartitaIVA, Nome, Sede, DescrizioneAmbito, NumeroTelefono, Email, Pass, Stato) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String READ_ALL_KEY = "SELECT PartitaIVA FROM azienda";
 	private static final String READ_ALL = "SELECT * FROM azienda";
-	private static final String UPDATE = "UPDATE azienda SET Nome = ?, Sede = ?, DescrizioneAmbito = ?, NumeroTelefono = ? "
+	private static final String UPDATE = "UPDATE azienda SET Nome = ?, Sede = ?, DescrizioneAmbito = ?, NumeroTelefono = ?, "
 			+ "Email = ?, Stato = ? WHERE PartitaIVA = ?";
 	private static final String UPDATE_STATO = "UPDATE azienda SET Stato = ? WHERE PartitaIVA = ?";
 	

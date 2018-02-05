@@ -135,7 +135,17 @@ public class Azienda {
 	public void setDescrizioneAmbito(String descrizioneAmbito) {
 		this.descrizioneAmbito = descrizioneAmbito;
 	}
-/*	
+	
+	
+@Override
+	public String toString() {
+		return "Azienda [partitaIVA=" + partitaIVA + ", password=" + password + ", email=" + email + ", nome=" + nome
+				+ ", sede=" + sede + ", numeroTelefono=" + numeroTelefono + ", tirociniOfferti=" + tirociniOfferti
+				+ ", stato=" + stato + ", descrizioneAmbito=" + descrizioneAmbito + "]";
+	}
+
+
+	/*	
 	
 	/**
 	 * 
