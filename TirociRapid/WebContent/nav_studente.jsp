@@ -5,7 +5,7 @@
 
 		<ul class="nav nav-tabs">
 			<li role="presentation"><a id ="item_richieste_studente" href="studente_richieste.jsp">Richieste</a></li>
-			<li role="presentation"><a id ="item_lista_aziende_studente" href="studente_aziende.jsp">Aziende</a></li>
+			<li role="presentation"><a id ="item_lista_aziende_studente" href="lista_aziende">Aziende</a></li>
 			<li role="presentation"><a id ="item_lista_professori_studente" href="lista_professori">Professori</a></li>
 			<li role="presentation"><a id ="item_profilo_studente" href="profilo_studente">Profilo</a></li>
 			<li role="presentation" class="navbar-right"><a href="logout">Logout

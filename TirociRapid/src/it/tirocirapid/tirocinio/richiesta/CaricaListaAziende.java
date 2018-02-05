@@ -58,12 +58,12 @@ public class CaricaListaAziende extends HttpServlet {
 		
 		if (user.getTipo().equals(userTypes.get("Stud"))) 
 		{
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata della ListaAziende
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/studente_aziende.jsp"); //Alla schermata delle aziende visualizzate dallo studente
 			dispatcher.forward(request, response);
 		}
 		else 
 		{
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata della ListaAziende
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/responsabile_approvazioni_aziende.jsp"); //Alla schermata delle aziende visualizzate dal responsabile approvazioni
 			dispatcher.forward(request, response);
 		}
 		

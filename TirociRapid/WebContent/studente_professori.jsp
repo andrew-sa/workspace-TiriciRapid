@@ -33,7 +33,7 @@
 			<div class="bs-calltoaction bs-calltoaction-default">
 				<div class="row">
 					<div class="col-md-9 cta-contents">
-						<h1 class="cta-title"><%=p.getNome() %> &thinsp; <%=p.getCognome() %></h1>
+						<h1 class="cta-title"><%=p.getNome() %> <%=p.getCognome() %></h1>
 						<div class="cta-desc">
 							<p>
 								<span class="parametri-professore">Ambito:</span>

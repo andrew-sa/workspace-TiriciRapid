@@ -299,7 +299,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 			session.removeAttribute("usernameStudente");
 			UserLoggato user = new UserLoggato();
 			user.setId(username);
-			user.setId(userTypes.get("Stud"));
+			user.setTipo(userTypes.get("Stud"));
 			session.setAttribute("user", user);
 //			request.setAttribute("successo", "La registrazione &egrave; avvenuta con successo.<br/>Ora puoi effettuare il login");
 			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/studente_richieste.jsp"); //RichiesteStudente

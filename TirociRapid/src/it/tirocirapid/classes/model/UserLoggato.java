@@ -12,6 +12,11 @@ public class UserLoggato {
 		this.tipo = tipo;
 	}
 
+	@Override
+	public String toString() {
+		return "UserLoggato [id=" + id + ", tipo=" + tipo + "]";
+	}
+
 	/**
 	 * @return the id
 	 */
