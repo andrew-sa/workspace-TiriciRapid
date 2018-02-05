@@ -63,7 +63,25 @@ public class CaricaTirociniAzienda extends HttpServlet {
 				request.setAttribute("errore", "L'azienda " + user.getId() + " non offre tirocini");
 			}
 		}
-		else if (!replaceIfMissing(request.getParameter("partitaIVA"), replacement).equals(replacement))
+		else if (!replaceIfMissing(request.getParameter("partitaIVA"), replacement).equals(replacement) && (user.getTipo().equals(userTypes.get("Stud"))))
+		{
+			try 
+			{
+				ArrayList<Tirocinio> tirocini = caricaTirociniAzienda(request.getParameter("partitaIVA"));
+				request.setAttribute("tirocini", tirocini);
+			} 
+			catch (SQLException e)
+			{
+				e.printStackTrace();
+				request.setAttribute("errore", "Si &egrave; verificato un errore durante l'interazione col database, si prega di riprovare");
+			}
+			catch (TuplaNotFoundException e) 
+			{
+				e.printStackTrace();
+				request.setAttribute("errore", "Non sono presenti tirocini di questa azienda");
+			}
+		}
+		else if (!replaceIfMissing(request.getParameter("partitaIVA"), replacement).equals(replacement) && (user.getTipo().equals(userTypes.get("RespAppr"))))
 		{
 			try 
 			{

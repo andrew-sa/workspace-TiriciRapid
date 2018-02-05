@@ -52,7 +52,7 @@
 						</div>
 					</div>
 					<div class="col-md-3 cta-button">
-						<a href="#" class="btn btn-lg btn-block btn-default">Visualizza
+						<a href="tirocini_azienda?partitaIVA=<%=a.getPartitaIVA() %>" class="btn btn-lg btn-block btn-default">Visualizza
 							Tirocini</a>
 					</div>
 				</div>
