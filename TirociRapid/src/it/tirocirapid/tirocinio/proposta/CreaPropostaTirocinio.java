@@ -201,7 +201,7 @@ public class CreaPropostaTirocinio extends HttpServlet {
 		{
 			try
 			{
-				salvaAzienda(azienda);
+				//salvaAzienda(azienda);
 				tirocinio.setPartitaIVAAzienda(user.getId());
 				salvaTirocinio(tirocinio);
 				request.setAttribute("successo", "Proposta di Tirocinio salvata con successo");
@@ -214,7 +214,7 @@ public class CreaPropostaTirocinio extends HttpServlet {
 					//do nothing
 					e.printStackTrace();
 				}
-				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //HomeAzienda
+				RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/azienda_aggiunta_tirocinio.jsp"); //HomeAzienda
 				dispatcher.forward(request, response);
 				return;
 			} 

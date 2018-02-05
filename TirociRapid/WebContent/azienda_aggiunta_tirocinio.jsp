@@ -32,11 +32,11 @@
 	<div class="row">
 	<%if ((request.getAttribute("successo") != null))
 		{%>
-	<div style="color: green; text-align: center;"><%=request.getAttribute("successo").toString()%></div>
+	<div style="color: green; text-align: center;"><%=request.getAttribute("successo")%></div>
 	<%}%>
 		<%if ((request.getAttribute("errore") != null))
 		{%>
-	<div style="color: red; text-align: center;"><%=request.getAttribute("errore").toString()%></div>
+	<div style="color: red; text-align: center;"><%=request.getAttribute("errore")%></div>
 	<%}%>
 		<form method="post" action="crea_proposta_tirocinio" class="form-horizontal">
 		<fieldset>

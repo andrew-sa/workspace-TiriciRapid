@@ -85,9 +85,16 @@ public class CaricaDatiAzienda extends HttpServlet {
 //			response.sendRedirect(referer);
 			request.setAttribute("errore", "Non hai selezionato alcuna azienda");
 		}
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/visualizza_informazioni_azienda.jsp"); //Schermata datiAzienda
-		dispatcher.forward(request, response);
-		
+		if(user.getTipo().equals(userTypes.get("RespAz"))) 
+		{
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/azienda_profilo.jsp"); //Schermata datiAzienda
+			dispatcher.forward(request, response);
+		}
+		else
+		{
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/visualizza_informazioni_azienda.jsp"); //Schermata datiAzienda
+			dispatcher.forward(request, response);
+		}	
 	}
 
 	/**
