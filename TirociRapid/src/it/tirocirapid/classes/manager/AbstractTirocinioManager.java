@@ -17,6 +17,7 @@ public abstract class AbstractTirocinioManager {
 	public abstract void delete(String partitaIVA, String nome) throws MySQLIntegrityConstraintViolationException, SQLException, InsertFailedException;
 	public abstract ArrayList<Tirocinio> readAllTirociniAzienda(String partitaIVA) throws SQLException;
 	public abstract int countByAzienda(String partitaIVA) throws SQLException;
-	public abstract ArrayList<Tirocinio> readAllTirociniDisponibiliAzienda(String partitaIVA, String stato) throws SQLException;
+	public abstract ArrayList<Tirocinio> readAllTirociniDisponibiliAzienda(String partitaIVA) throws SQLException;
+	public abstract ArrayList<Tirocinio> readAllTirociniInAttesaApprovazione() throws SQLException;
 	
 }
