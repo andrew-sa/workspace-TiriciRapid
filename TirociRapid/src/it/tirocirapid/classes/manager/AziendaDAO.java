@@ -33,7 +33,6 @@ public class AziendaDAO extends AbstractAziendaManager {
 		Connection con = DriverManagerConnectionPool.getIstance().getConnection();
 		PreparedStatement ps = con.prepareStatement(SEARCH);
 		ps.setString(1, partitaIVA);
-		ps.setString(2, password);
 		ResultSet rs = ps.executeQuery();
 		if (rs.next())
 		{
@@ -107,7 +106,7 @@ public class AziendaDAO extends AbstractAziendaManager {
 	 * @param con la connessione al database
 	 * @throws SQLException
 	 */
-	private static boolean isNewKey(String partitaIVA, Connection con) throws SQLException
+	private boolean isNewKey(String partitaIVA, Connection con) throws SQLException
 	{
 		Statement stm = con.createStatement();
 		ResultSet rs = stm.executeQuery(READ_ALL_KEY);
