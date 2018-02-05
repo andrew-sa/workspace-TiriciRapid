@@ -53,39 +53,7 @@
 
 
 		</div>
-		<div class="col-sm-12">
 
-			<div class="bs-calltoaction bs-calltoaction-default">
-				<div class="row">
-					<div class="col-md-9 cta-contents">
-						<h1 class="cta-title">NomeAzienda 1</h1>
-						<div class="cta-desc">
-							<p>
-								<span class="parametri-azienda">Ambito:</span> blabladaskjhbasdn
-								vkjfadfbvk ajhndfvlk,n dfvlk jnaafhbvn, ansskjvf adgadbmkajb
-								vtffubla
-							</p>
-							<p>
-								<span class="parametri-azienda">Sede:</span> blablabla
-							</p>
-							<p>
-								<span class="parametri-azienda">Email:</span> blablabla
-							</p>
-							<p>
-								<span class="parametri-azienda">Telefono:</span> blablabla
-							</p>
-
-						</div>
-					</div>
-					<div class="col-md-3 cta-button">
-						<a href="#" class="btn btn-lg btn-block btn-default">Visualizza
-							Tirocini</a>
-					</div>
-				</div>
-			</div>
-
-
-		</div>
 	</div>
 	<%@include file="footer.jsp"%>
 </body>
