@@ -151,7 +151,7 @@
 			
 		<%} if(request.getAttribute("errore")!=null){ 
 		%>
-				<div style="color: red; text-align: center;"><%=request.getAttribute("errore").toString()%></div>		
+				<div style="color: red; text-align: center;"><%=request.getAttribute("errore")%></div>		
 		<%} %>
 		
 		</div>

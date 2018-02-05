@@ -73,11 +73,11 @@ public class CreaPropostaTirocinio extends HttpServlet {
 	{
 		Azienda azienda = null;
 		UserLoggato user = null;
-		if ("registrazione".equals(request.getParameter("action")))
+		if ("registrazione".equals(request.getSession().getAttribute("action")))
 		{
-			if (request.getAttribute("azienda") != null)
+			if (request.getSession().getAttribute("azienda") != null)
 			{
-				azienda = (Azienda) request.getAttribute("azienda");
+				azienda = (Azienda) request.getSession().getAttribute("azienda");
 			}
 			else
 			{
@@ -180,7 +180,7 @@ public class CreaPropostaTirocinio extends HttpServlet {
 					//do nothing
 					e.printStackTrace();
 				}
-				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //LoginAzienda
+				RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/index.jsp"); //LoginAzienda
 				dispatcher.forward(request, response);
 				return;
 			} 

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+
+<%@page import="it.tirocirapid.classes.model.Azienda"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -23,6 +26,10 @@
 
 	<div class="container">
 
+<%if(request.getAttribute("azienda")!=null){
+		Azienda a = (Azienda)request.getAttribute("azienda");
+	
+		%>
 		<div id="azienda-profilo">
 
 			<h2 style="text-align: center;">
@@ -32,37 +39,37 @@
 
 				<div class="parametri-azienda">
 					<div class="elemento-parametri-azienda">PartitaIVA:</div>
-					<div class="elemento-parametri-azienda">bla</div>
+					<div class="elemento-parametri-azienda"><%=a.getPartitaIVA() %></div>
 				</div>
 
 				<div class="parametri-azienda">
 					<div class="elemento-parametri-azienda">Nome:</div>
-					<div class="elemento-parametri-azienda">bla</div>
+					<div class="elemento-parametri-azienda"><%=a.getNome() %></div>
 				</div>
 
 				<div class="parametri-azienda">
 					<div class="elemento-parametri-azienda">Sede:</div>
-					<div class="elemento-parametri-azienda">bla</div>
+					<div class="elemento-parametri-azienda"><%=a.getSede() %></div>
 				</div>
 
 				<div class="parametri-azienda">
 					<div class="elemento-parametri-azienda">Email:</div>
-					<div class="elemento-parametri-azienda">bla js</div>
+					<div class="elemento-parametri-azienda"><%=a.getEmail() %></div>
 				</div>
 
 				<div class="parametri-azienda">
 					<div class="elemento-parametri-azienda">Numero di telefono:</div>
-					<div class="elemento-parametri-azienda">bla</div>
+					<div class="elemento-parametri-azienda"><%=a.getNumeroTelefono() %></div>
 				</div>
 
 				<div class="parametri-azienda">
 					<div class="elemento-parametri-azienda">Descrizione Ambito:</div>
-					<div class="elemento-parametri-azienda">bla</div>
+					<div class="elemento-parametri-azienda"><%=a.getDescrizioneAmbito() %></div>
 				</div>
 
 				<div class="parametri-azienda">
 					<div class="elemento-parametri-azienda">Stato:</div>
-					<div class="elemento-parametri-azienda">bla dsav xm skjhbdvnod  j ddj j k k lkxlk k kl kls dlkzldf  klkdz vfkdf i dzklzd foi  l id zl</div>
+					<div class="elemento-parametri-azienda"><%=a.getStato() %></div>
 				</div>
 				
 			</div>
@@ -73,6 +80,10 @@
 		
 
 		</div>
+			<%} if(request.getAttribute("errore")!=null){ 
+		%>
+				<div style="color: red; text-align: center;"><%=request.getAttribute("errore")%></div>		
+		<%} %>
 		
 	</div>
 

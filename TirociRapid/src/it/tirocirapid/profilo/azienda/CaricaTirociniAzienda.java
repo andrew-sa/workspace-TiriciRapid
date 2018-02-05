@@ -67,37 +67,22 @@ public class CaricaTirociniAzienda extends HttpServlet {
 		{
 			try 
 			{
-				ArrayList<Tirocinio> tirocini = caricaTirociniAzienda(request.getParameter("partitaIVA"));
+				ArrayList<Tirocinio> tirocini = caricaTirociniDisponibiliAzienda(request.getParameter("partitaIVA"));
+				
 				request.setAttribute("tirocini", tirocini);
 			} 
+			catch (TuplaNotFoundException e) 
+			{
+				e.printStackTrace();
+				System.out.println("sono nell'eccezione");
+				request.setAttribute("errore", "Non sono presenti tirocini di questa azienda");
+			}
 			catch (SQLException e)
 			{
 				e.printStackTrace();
 				request.setAttribute("errore", "Si &egrave; verificato un errore durante l'interazione col database, si prega di riprovare");
 			}
-			catch (TuplaNotFoundException e) 
-			{
-				e.printStackTrace();
-				request.setAttribute("errore", "Non sono presenti tirocini di questa azienda");
-			}
-		}
-		else if (!replaceIfMissing(request.getParameter("partitaIVA"), replacement).equals(replacement) && (user.getTipo().equals(userTypes.get("RespAppr"))))
-		{
-			try 
-			{
-				ArrayList<Tirocinio> tirocini = caricaTirociniAzienda(request.getParameter("partitaIVA"));
-				request.setAttribute("tirocini", tirocini);
-			} 
-			catch (SQLException e)
-			{
-				e.printStackTrace();
-				request.setAttribute("errore", "Si &egrave; verificato un errore durante l'interazione col database, si prega di riprovare");
-			}
-			catch (TuplaNotFoundException e) 
-			{
-				e.printStackTrace();
-				request.setAttribute("errore", "Non sono presenti tirocini di questa azienda");
-			}
+			
 		}
 		else
 		{
@@ -122,7 +107,13 @@ public class CaricaTirociniAzienda extends HttpServlet {
 		AbstractTirocinioManager managerTirocinio = factory.createTirocinioManager();
 		return managerTirocinio.readAllTirociniAzienda(partitaIVA);
 	}
-	
+
+	private ArrayList<Tirocinio> caricaTirociniDisponibiliAzienda(String partitaIVA) throws SQLException, TuplaNotFoundException
+	{
+		AbstractManagerFactory factory = new DAOFactory();
+		AbstractTirocinioManager managerTirocinio = factory.createTirocinioManager();
+		return managerTirocinio.readAllTirociniDisponibiliAzienda(partitaIVA);
+	}
 	/**
 	 * 
 	 * @param orig la stringa da controllare

@@ -210,14 +210,24 @@ public class TirocinioDAO extends AbstractTirocinioManager {
 	 * @throws SQLException
 	 */
 	@Override
-	public ArrayList<Tirocinio> readAllTirociniDisponibiliAzienda(String partitaIVA) throws SQLException
+	public ArrayList<Tirocinio> readAllTirociniDisponibiliAzienda(String partitaIVA) throws SQLException, TuplaNotFoundException
 	{
 		ArrayList<Tirocinio> tirocini = new ArrayList<>();
 		Connection con = DriverManagerConnectionPool.getIstance().getConnection();
 		PreparedStatement ps = con.prepareStatement(READ_ALL_DISPONIBILI_BY_AZIENDA);
 		ps.setString(1, partitaIVA);
 		ResultSet rs = ps.executeQuery();
-		while (rs.next())
+		
+		if(!rs.next()) 
+		{
+			con.commit();
+			rs.close();
+			ps.close();
+			DriverManagerConnectionPool.getIstance().releaseConnection(con);
+			throw new TuplaNotFoundException("Lo studente selezionato non &egrave; presente nel database");
+		}
+		
+		do 
 		{
 			Tirocinio tirocinio = new Tirocinio();
 			tirocinio.setNome(rs.getString(1));
@@ -226,7 +236,9 @@ public class TirocinioDAO extends AbstractTirocinioManager {
 			tirocinio.setOffertaFormativa(rs.getString(4));
 			tirocinio.setDescrizione(rs.getString(5));
 			tirocini.add(tirocinio);
-		}
+		} 
+		while (rs.next());
+		
 		con.commit();
 		rs.close();
 		ps.close();
@@ -280,7 +292,7 @@ public class TirocinioDAO extends AbstractTirocinioManager {
 		return count;
 	}
 	
-	private static final String CREATE = "INSERT INTO tirocinio(PartitaIVA, Nome, Descirzione, OffertaFormativa, Stato) VALUES (?, ?, ?, ?, ?)";
+	private static final String CREATE = "INSERT INTO tirocinio(PartitaIVA, Nome, Descrizione, OffertaFormativa, Stato) VALUES (?, ?, ?, ?, ?)";
 	private static final String READ_ALL_KEY_BY_AZIENDA = "SELECT Nome FROM tirocinio WHERE PartitaIVA = ?";
 	private static final String READ = "SELECT * FROM tirocinio WHERE PartitaIVA = ? AND Nome = ?";
 	private static final String UPDATE = "UPDATE tirocinio SET Stato = ? WHERE PartitaIVA = ? AND Nome = ?";
