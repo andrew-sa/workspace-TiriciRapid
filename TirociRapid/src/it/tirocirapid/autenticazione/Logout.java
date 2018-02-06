@@ -33,7 +33,6 @@ public class Logout extends HttpServlet {
 		session.removeAttribute("user");
 		if (referer != null)
 			response.sendRedirect(getServletContext().getContextPath());
-			
 		else
 			response.sendRedirect(referer);
 		
