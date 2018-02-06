@@ -3,8 +3,10 @@ package it.tirocirapid.test.unit;
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -191,7 +193,60 @@ public class TestProfessoreDAO extends TestCase{
 	
 	@Test
 	public void testReadAll() {
-		fail("Not yet implemented");
+		ArrayList<Professore> professori = new ArrayList<>();
+		try(Connection con = DriverManagerConnectionPool.getIstance().getConnection();){
+			try(Statement stm=(Statement) con.createStatement()){
+			ResultSet rs = stm.executeQuery("SELECT Nome, Cognome, EmailIstituzionale, Telefono, Ambito, Email FROM professore");
+			while (rs.next()){
+				Professore professore = new Professore();
+				professore.setNome(rs.getString(1));
+				professore.setCognome(rs.getString(2));
+				professore.setEmailIstituzionale(rs.getString(3));
+				professore.setTelefono(rs.getString(4));
+				professore.setAmbito(rs.getString(5));
+				professore.setEmail(rs.getString(6));
+				professori.add(professore);
+			}
+			ArrayList<Professore> professoriTest = new ArrayList<>();
+			Professore uno = new Professore();
+			Professore due = new Professore();
+			Professore tre = new Professore();
+			uno.setNome("Antonio");
+			uno.setCognome("Prevete");
+			uno.setEmailIstituzionale("a.prevete@professori.unisa.it");
+			uno.setTelefono("3278967434");
+			uno.setAmbito("Ingegneria del Software");
+			uno.setEmail("prevete@outlook.com");
+			due.setNome("Davide");
+			due.setCognome("Nini");
+			due.setEmailIstituzionale("d.nini@professori.unisa.it");
+			due.setTelefono("3279873216");
+			due.setAmbito("Programmazione Web");
+			due.setEmail("DavNin@outlook.com");
+			tre.setNome("Giuseppe");
+			tre.setCognome("Tomeo");
+			tre.setEmailIstituzionale("a.tomeo8@professori.unisa.it");
+			tre.setTelefono("3255674564");
+			tre.setAmbito("Sicurezza");
+			tre.setEmail("sicuinfo@outlook.com");
+			professoriTest.add(uno);
+			professoriTest.add(due);
+			professoriTest.add(tre);
+			for(Professore i: professori) {
+				int w=0;
+				Professore control = professoriTest.get(w);
+				i.equals(control);
+				w++;
+			}
+			con.commit();
+			rs.close();
+			stm.close();
+			DriverManagerConnectionPool.getIstance().releaseConnection(con);
+			}
+        }catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	@Test

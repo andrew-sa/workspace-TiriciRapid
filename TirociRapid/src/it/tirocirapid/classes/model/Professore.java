@@ -25,7 +25,24 @@ public class Professore {
 		this.indirizzo = indirizzo;
 		this.matricola = matricola;
 	}
-
+	
+	@Override public boolean equals(Object other) {
+        boolean result = false;
+        if (other instanceof Professore) {
+            Professore that = (Professore) other;
+            result = (this.getUsername() == that.getUsername() && 
+            		this.getPassword() == that.getPassword() && 
+            		this.getAmbito() == that.getAmbito() &&
+            		this.getEmailIstituzionale()==that.getEmailIstituzionale() &&
+            		this.getNome()== that.getAmbito() &&
+            		this.getCognome()==that.getCognome() &&
+            		this.getEmail()==that.getEmail() &&
+            		this.getTelefono()==that.getTelefono() &&
+            		this.getIndirizzo()==that.getIndirizzo() &&
+            		this.getMatricola()==that.getMatricola());
+        }
+        return result;
+    }
 	public Professore(String username)
 	{
 		this.username = username;
