@@ -1,0 +1,42 @@
+div.erroreMsg
+{
+	color: red;
+	text-align: center;
+}
+
+div.successoMsg
+{
+	color: green;
+	text-align: center;
+}
+
+h1.erroreTop, h1.successoTop
+{
+	padding: 0.5em 0.2em 0.5em 0.2em;
+	color: #333333;
+	text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.5);
+	margin-top: 0.4em;
+	text-align: center;
+	margin: 0em;
+}
+
+h1.erroreTop
+{
+	background-color: #EDDBE3;
+	border: 1px solid #cd3e3e;
+}
+
+h1.successoTop
+{
+	background-color: #CCDDBB;
+	border: 1px solid #C6D4AA;
+}
+
+h1.erroreTop > i.fa, h1.successoTop > i.fa
+{
+	cursor: pointer;
+	float: right;
+	padding-left: 0.35em;
+	vertical-align: text-top;
+	color: #848484;
+}

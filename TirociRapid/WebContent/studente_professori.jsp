@@ -7,9 +7,8 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="author" content="Cammarano Mogavero Tomeo">
+		<meta name="author" content="Bolognese Cammarano Mogavero Napoli Tomeo">
 		<title>Lista Professori</title>
 		<link rel="stylesheet" href="css/studente.css">
 		<link rel="stylesheet" href="css/bootstrap.min.css">
@@ -69,16 +68,6 @@
 						<div class="col-md-3 cta-button">
 							<a href="<%= path %>" class="btn btn-lg btn-block btn-default">Scegli
 								come tutor</a>
-						</div>
-						<%
-							}
-							else
-							{
-						%>
-						<div class="col-md-3 cta-button" style="display: none;">
-							<a href="#" class="btn btn-lg btn-block btn-default">
-								Scegli come tutor
-							</a>
 						</div>
 						<%
 							}
