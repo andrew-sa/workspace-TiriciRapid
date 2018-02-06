@@ -91,6 +91,8 @@ public class TestTirocinioDAO extends TestCase{
                 tirocinioDAOcreate.create(t);
                 System.out.println("SONO NEL TEST CREATE TIROCINIO2 QUESTO DEVE FALLIRE:"+partitaIVA);
                 connection.close();
+                
+                tirocinioDAOcreate.delete(partitaIVA, nome);
             } catch (InsertFailedException e) {
 				
 				e.printStackTrace();
@@ -243,10 +245,10 @@ public class TestTirocinioDAO extends TestCase{
                 connection.setAutoCommit(true);
 
                 String partitaIVA="06653061215"; // serve quella gia presente
-                String nome="aaa";
-                String descrizione="aaa";
-                String offertaformativa="aaa";
-                String stato="aaa";
+                String nome="zzz";
+                String descrizione="zzz";
+                String offertaformativa="zzz";
+                String stato="zzz";
                 t=new Tirocinio(partitaIVA,nome,descrizione,offertaformativa,stato);
                 tirocinioDAOdelete.create(t);
                 tirocinioDAOdelete.delete(partitaIVA, nome);
@@ -264,12 +266,42 @@ public class TestTirocinioDAO extends TestCase{
 	}
 	
 	@Test
-	public void testReadAllTirociniAziend() {
+	public void testReadAllTirociniAzienda() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testReadAllTirociniDisponibiliAzienda() {
+		fail("Not yet implemented");
+	}
+
+	@Test
+	public void testReadAllTirociniInAttesaApprovazione() {
 		fail("Not yet implemented");
 	}
 	
 	@Test
 	public void testCountByAzienda() {
-		fail("Not yet implemented");
+		TirocinioDAO tirocinioDAOcount= new TirocinioDAO();
+		Tirocinio t;
+		
+		try(Connection connection=DriverManagerConnectionPool.getIstance().getConnection();)
+        {
+            try(Statement stCheck=(Statement) connection.createStatement())
+            {
+                connection.setAutoCommit(true);
+
+                String partitaIVA="06653061215";
+                
+                int numero=2;
+                int numeroritorno = 0;
+                numeroritorno= tirocinioDAOcount.countByAzienda(partitaIVA);
+                assertEquals(numero, numeroritorno);
+                connection.close();
+            }   
+        } catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
 	}
 }

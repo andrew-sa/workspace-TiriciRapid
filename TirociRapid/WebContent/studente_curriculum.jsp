@@ -177,7 +177,7 @@
 						</label>
 						<div class="col-md-4">
 							<input id="madrelingua" name="madrelingua" type="text"
-								class="form-control input-md" maxlength="20" value=<%if(curriculum!=null){%><%= curriculum.getMadrelingua() %><% } %>>
+								class="form-control input-md" maxlength="20" value="<%if(curriculum!=null){%><%= curriculum.getMadrelingua() %><% } %>">
 						</div>
 						<p id="8" class="col-md-4 errorform"></p>
 					</div>
@@ -189,7 +189,7 @@
 							Lingue *</label>
 						<div class="col-md-4">
 							<input id="altreLingue" name="altreLingue" type="text"
-								class="form-control input-md" maxlength="100" value=<%if(curriculum!=null){%><%= curriculum.getAltreLingue() %><% } %>>
+								class="form-control input-md" maxlength="100" value="<%if(curriculum!=null){%><%= curriculum.getAltreLingue() %><% } %>">
 						</div>
 						<p id="9" class="col-md-4 errorform"></p>
 					</div>
@@ -199,7 +199,7 @@
 						<label class="col-md-4 control-label" for="patenti">Patenti *</label>
 						<div class="col-md-4">
 							<input id="patenti" name="patenti" type="text"
-								class="form-control input-md" maxlength="50" value=<%if(curriculum!=null){%><%= curriculum.getPatenti() %><% } %>>
+								class="form-control input-md" maxlength="50" value="<%if(curriculum!=null){%><%= curriculum.getPatenti() %><% } %>">
 						</div>
 						<p id="10" class="col-md-4 errorform"></p>
 					</div>
@@ -224,7 +224,7 @@
 						<label class="col-md-4 control-label" for="fax">Fax</label>
 						<div class="col-md-4">
 							<input id="fax" name="fax" type="text"
-								class="form-control input-md" maxlength="11" value=<%if(curriculum!=null){%><%= curriculum.getFax() %><% } %>>
+								class="form-control input-md" maxlength="11" value="<%if(curriculum!=null){%><%= curriculum.getFax() %><% } %>">
 						</div>
 						<p id="12" class="col-md-4 errorform"></p>
 						<label class="col-md-4 control-label" for="fax">*questi campi sono obbligatori</label>

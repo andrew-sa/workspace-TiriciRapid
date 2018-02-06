@@ -55,7 +55,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 		parametri.add("altreCapacitaCompetenze");
 		parametri.add("esperienzaLavorativa");
 		parametri.add("madrelingua");
-		parametri.add("altrelingue");
+		parametri.add("altreLingue");
 		parametri.add("patenti");
 		parametri.add("ulterioriInformazioni");
 		
@@ -390,9 +390,9 @@ public class CreaCurriculumStudente extends HttpServlet {
 	{
 		if (!altreLingue.trim().endsWith(TOKEN))
 		{
-			altreLingue.concat(TOKEN);
+			altreLingue = altreLingue.concat(TOKEN);
 		}
-		return Pattern.matches("(([A-Za-z\\s]{2,20},)+)", altreLingue) && (altreLingue.length() <= 200);
+		return Pattern.matches("([A-Za-z\\s]{2,20},)+", altreLingue) && (altreLingue.length() <= 200);
 	}
 	
 	/**
