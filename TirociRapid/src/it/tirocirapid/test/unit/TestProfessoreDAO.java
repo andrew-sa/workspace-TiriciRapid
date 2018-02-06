@@ -125,7 +125,7 @@ public class TestProfessoreDAO extends TestCase{
 		        {
 		            try(Statement stCheck=(Statement) connection.createStatement())
 		            {
-		                connection.setAutoCommit(true);
+		                
 		                String username0="a.aaaa";
 		                String password0="aaaaa";
 		                int n0=0;
@@ -136,7 +136,7 @@ public class TestProfessoreDAO extends TestCase{
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-		           
+		            connection.commit();
 		            connection.close();
 		        } catch (SQLException e) {
 					// TODO Auto-generated catch block
@@ -145,22 +145,48 @@ public class TestProfessoreDAO extends TestCase{
 	}
 	
 	@Test
-	public void testRead() throws SQLException, TuplaNotFoundException {
+	public void testRead1() {
 		ProfessoreDAO professoreDAORead= new ProfessoreDAO();
 		Professore pro;
 				try(Connection connection=DriverManagerConnectionPool.getIstance().getConnection();)
 		        {
 		            try(Statement stCheck=(Statement) connection.createStatement())
 		            {
-		                connection.setAutoCommit(false);
 		                String username="a.prevete";
 		                pro=professoreDAORead.read(username);
 		                assertEquals(username,pro.getUsername());
 		                System.out.println("SONO NEL TEST READ PROFESSORE:"+username);
-		            }
+		            } catch (TuplaNotFoundException e) {
+						e.printStackTrace();
+					}
+		            connection.commit();
+		            connection.close();
+		        } catch (SQLException e) {
+					e.printStackTrace();
+				}
+	}
+	
+	@Test
+	public void testRead2() {
+		ProfessoreDAO professoreDAORead= new ProfessoreDAO();
+		Professore pro;
+				try(Connection connection=DriverManagerConnectionPool.getIstance().getConnection();)
+		        {
+		            try(Statement stCheck=(Statement) connection.createStatement())
+		            {
+		                connection.setAutoCommit(true);
+		                String username="a.ciao1";
+		                pro=professoreDAORead.read(username);
+		                assertEquals(username,pro.getUsername());
+		                System.out.println("SONO NEL TEST READ PROFESSORE:"+username);
+		            } catch (TuplaNotFoundException e) {
+						e.printStackTrace();
+					}
 		           
 		            connection.close();
-		        }
+		        } catch (SQLException e) {
+					e.printStackTrace();
+				}
 	}
 	
 	@Test
@@ -191,7 +217,7 @@ public class TestProfessoreDAO extends TestCase{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-}
+	}
 	
 	@Test
 	public void testEmail2(){

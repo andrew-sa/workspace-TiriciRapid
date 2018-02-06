@@ -1,4 +1,4 @@
-package it.tirocirapid.autenticazione;
+ package it.tirocirapid.autenticazione;
 
 import java.io.IOException;
 import java.sql.SQLException;

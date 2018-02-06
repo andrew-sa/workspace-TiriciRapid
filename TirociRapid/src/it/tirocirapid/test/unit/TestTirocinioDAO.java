@@ -233,7 +233,34 @@ public class TestTirocinioDAO extends TestCase{
 	
 	@Test
 	public void testDelete() {
-		fail("Not yet implemented");
+		TirocinioDAO tirocinioDAOdelete= new TirocinioDAO();
+		Tirocinio t;
+		
+		try(Connection connection=DriverManagerConnectionPool.getIstance().getConnection();)
+        {
+            try(Statement stCheck=(Statement) connection.createStatement())
+            {
+                connection.setAutoCommit(true);
+
+                String partitaIVA="06653061215"; // serve quella gia presente
+                String nome="aaa";
+                String descrizione="aaa";
+                String offertaformativa="aaa";
+                String stato="aaa";
+                t=new Tirocinio(partitaIVA,nome,descrizione,offertaformativa,stato);
+                tirocinioDAOdelete.create(t);
+                tirocinioDAOdelete.delete(partitaIVA, nome);
+                ResultSet rs=(ResultSet) stCheck.executeQuery("SELECT * FROM tirocinio WHERE nome='aaa'&& PartitaIVA='06653061215'");
+                    assertFalse(rs.next());
+                connection.close();
+            } catch (InsertFailedException e) {
+				
+				e.printStackTrace();
+			}   
+        } catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
 	}
 	
 	@Test

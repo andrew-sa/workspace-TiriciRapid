@@ -392,7 +392,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 		{
 			altreLingue.concat(TOKEN);
 		}
-		return Pattern.matches("(([A-Za-z\\s]{2,20},)+)", altreLingue) && (altreLingue.length()<=200);
+		return Pattern.matches("(([A-Za-z\\s]{2,20},)+)", altreLingue) && (altreLingue.length() <= 200);
 	}
 	
 	/**

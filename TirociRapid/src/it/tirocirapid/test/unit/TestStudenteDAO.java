@@ -18,6 +18,7 @@ import it.tirocirapid.classes.model.Azienda;
 import it.tirocirapid.classes.model.Studente;
 import it.tirocirapid.database.DriverManagerConnectionPool;
 import it.tirocirapid.eccezioni.TuplaNotFoundException;
+import junit.framework.Assert;
 import junit.framework.TestCase;
 
 public class TestStudenteDAO extends TestCase{
@@ -59,7 +60,7 @@ public class TestStudenteDAO extends TestCase{
 	}
 	
 	@Test
-	public void testSearch2() {
+	public void testSearch2(){
 		StudenteDAO studenteDAOsearch= new StudenteDAO();
 		
 		try(Connection connection=DriverManagerConnectionPool.getIstance().getConnection();)
@@ -127,7 +128,7 @@ public class TestStudenteDAO extends TestCase{
 		                st=aziendaDAOread.read(username);
 		                assertEquals(username,st.getUsername());
 		                System.out.println("SONO NEL TEST READ:"+username);
-		            } catch (TuplaNotFoundException e) {
+		            }catch (TuplaNotFoundException e) {
 						
 						e.printStackTrace();
 					}
@@ -139,7 +140,7 @@ public class TestStudenteDAO extends TestCase{
 	}
 	
 	@Test
-	public void testRead2() throws SQLException, TuplaNotFoundException {
+	public void testRead2() {
 		StudenteDAO aziendaDAOread= new StudenteDAO();
 		Studente st;
 				try(Connection connection=DriverManagerConnectionPool.getIstance().getConnection();)
@@ -151,13 +152,19 @@ public class TestStudenteDAO extends TestCase{
 		                st=aziendaDAOread.read(username);
 		                assertEquals(username,st.getUsername());
 		                System.out.println("SONO NEL TEST READ:"+username);
-		            }
+		            } catch (TuplaNotFoundException e) {
+
+						e.printStackTrace();
+					}
 		            connection.close();
-		        }
+		        } catch (SQLException e) {
+	
+					e.printStackTrace();
+				}
 	}	
 	
 	@Test
-	public void testReadEmail1() throws SQLException, TuplaNotFoundException {
+	public void testReadEmail1() {
 		StudenteDAO aziendaDAOEmail= new StudenteDAO();
 
 				try(Connection connection=DriverManagerConnectionPool.getIstance().getConnection();)
@@ -170,9 +177,15 @@ public class TestStudenteDAO extends TestCase{
 		                String email=null;
 		                email = aziendaDAOEmail.readEmail(username); 
 		                assertEquals(email,emailprova);
-		            }
+		            } catch (TuplaNotFoundException e) {
+					
+						e.printStackTrace();
+					}
 		            connection.close();
-		        }
+		        } catch (SQLException e) {
+				
+					e.printStackTrace();
+				}
 	}
 
 	public void testReadEmail2() {
@@ -193,7 +206,7 @@ public class TestStudenteDAO extends TestCase{
 						e.printStackTrace();
 					}
 		            connection.close();
-		        } catch (SQLException e) {
+		        }catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}

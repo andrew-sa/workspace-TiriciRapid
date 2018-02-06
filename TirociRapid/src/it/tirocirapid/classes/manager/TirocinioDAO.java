@@ -296,7 +296,7 @@ public class TirocinioDAO extends AbstractTirocinioManager {
 	private static final String READ_ALL_KEY_BY_AZIENDA = "SELECT Nome FROM tirocinio WHERE PartitaIVA = ?";
 	private static final String READ = "SELECT * FROM tirocinio WHERE PartitaIVA = ? AND Nome = ?";
 	private static final String UPDATE = "UPDATE tirocinio SET Stato = ? WHERE PartitaIVA = ? AND Nome = ?";
-	private static final String DELETE = "DELETE FROM tirocinio WHERE Nome = ? AND PartitaIVA";
+	private static final String DELETE = "DELETE FROM tirocinio WHERE Nome = ? AND PartitaIVA=?";
 	private static final String READ_ALL_BY_AZIENDA = "SELECT * FROM tirocinio WHERE PartitaIVA = ?";
 	private static final String READ_ALL_DISPONIBILI_BY_AZIENDA = "SELECT * FROM tirocinio WHERE PartitaIVA = ? AND Stato = \"TirConf\"";
 	private static final String READ_ALL_IN_ATTESA_APPROVAZIONE = "SELECT * FROM tirocinio WHERE PartitaIVA = ? AND Stato = \"TirProp\"";
