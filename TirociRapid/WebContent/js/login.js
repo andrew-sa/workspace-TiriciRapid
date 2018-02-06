@@ -33,9 +33,13 @@ function readResultLogin()
 			{
 				window.location.href="profilo_studente";
 			}
+			else if(tipo == "StudenteNonRegistrato")
+			{
+				window.location.href="studente_curriculum.jsp";
+			}
 			else if(tipo == "ResponsabileAzienda")
 			{
-				window.location.href = "azienda_profilo.jsp";
+				window.location.href = "dati_azienda";
 			}
 			else if(tipo =="Professore")
 			{

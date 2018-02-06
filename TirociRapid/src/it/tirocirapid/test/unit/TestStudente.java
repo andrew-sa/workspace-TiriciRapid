@@ -1,5 +1,9 @@
 package it.tirocirapid.test.unit;
 
+import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+
 import it.tirocirapid.classes.model.Curriculum;
 import it.tirocirapid.classes.model.Studente;
 import junit.framework.TestCase;
@@ -11,6 +15,7 @@ public class TestStudente extends TestCase{
 	protected Curriculum c;
 	protected Curriculum c2;
 	
+	@BeforeEach
 	protected void setUp() {
 		c=new Curriculum("fax","esperienzaLavorativa","capacitaCompetenzePersonali","madrelingua",
 				"altreLingue","capacitaCompetenzeRelazionali","capacitaCompetenzeOrganizzative",
@@ -21,6 +26,7 @@ public class TestStudente extends TestCase{
 				"nome","cognome","indirizzo","telefono","istruzioneFormazione","email",c);
 	}
 
+	@AfterEach
 	protected void tearDown() {
 		c=null;
 		sVuoto=null;
@@ -28,109 +34,133 @@ public class TestStudente extends TestCase{
 		c2=null;
 	}
 	
+	@Test
 	public void testGetUsername() {
 		assertEquals("username",s.getUsername());
 	}
 	
+	@Test
 	public void testGetPassword() {
 		assertEquals("password",s.getPassword());
 	}
 	
+	@Test
 	public void testGetEmailIstituzionale() {
 		assertEquals("emailIstituzionale",s.getEmailIstituzionale());
 	}
 	
+	@Test
 	public void testGetMatricola() {
 		assertEquals("matricola",s.getMatricola());
 	}
 	
+	@Test
 	public void testGetMediaVoti() {
 		assertEquals("mediaVoti",s.getMediaVoti());
 	}
 	
+	@Test
 	public void testGetNome() {
 		assertEquals("nome",s.getNome());
 	}
 	
+	@Test
 	public void testGetCognome() {
 		assertEquals("cognome",s.getCognome());
 	}
 	
+	@Test
 	public void testGetIndirizzo() {
 		assertEquals("indirizzo",s.getIndirizzo());
 	}
 
+	@Test
 	public void testGetTelefono() {
 		assertEquals("telefono",s.getTelefono());
 	}
 	
+	@Test
 	public void testGetIstruzioneFormazione() {
 		assertEquals("istruzioneFormazione",s.getIstruzioneFormazione());
 	}
 	
+	@Test
 	public void testGetEmail() {
 		assertEquals("email",s.getEmail());
 	}
 	
+	@Test
 	public void testGetCurriculum() {
 		assertSame(c,s.getCurriculum());
 	}
 
+	@Test
 	public void testSetUsername() {
 		s.setUsername("pippo");
 		assertEquals("pippo",s.getUsername());
 	}
 	
+	@Test
 	public void testSetPassword() {
 		s.setPassword("pippo");
 		assertEquals("pippo",s.getPassword());
 	}
 	
+	@Test
 	public void testSetEmailIstituzionale() {
 		s.setEmailIstituzionale("pippo");
 		assertEquals("pippo",s.getEmailIstituzionale());
 	}
 	
+	@Test
 	public void testSetMatricola() {
 		s.setMatricola("pippo");
 		assertEquals("pippo",s.getMatricola());
 	}
 	
+	@Test
 	public void testSetMediaVoti() {
 		s.setMediaVoti("pippo");
 		assertEquals("pippo",s.getMediaVoti());
 	}
 	
+	@Test
 	public void testSetNome() {
 		s.setNome("pippo");
 		assertEquals("pippo",s.getNome());
 	}
 	
+	@Test
 	public void testSetCognome() {
 		s.setCognome("pippo");
 		assertEquals("pippo",s.getCognome());
 	}
 	
+	@Test
 	public void testSetIndirizzo() {
 		s.setIndirizzo("pippo");
 		assertEquals("pippo",s.getIndirizzo());
 	}
 	
+	@Test
 	public void testSetTelefono() {
 		s.setTelefono("pippo");
 		assertEquals("pippo",s.getTelefono());
 	}
 	
+	@Test
 	public void testSetIstruzioneFormazione() {
 		s.setIstruzioneFormazione("pippo");
 		assertEquals("pippo",s.getIstruzioneFormazione());
 	}
 	
+	@Test
 	public void testSetEmail() {
 		s.setEmail("pippo");
 		assertEquals("pippo",s.getEmail());
 	}
 	
+	@Test
 	public void testSetCurriculum() {
 		c2= new Curriculum("a","b","c","d","e","f","g","h","i","l","m","n");
 		s.setCurriculum(c2);

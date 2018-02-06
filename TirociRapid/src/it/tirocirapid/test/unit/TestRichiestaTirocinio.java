@@ -1,5 +1,9 @@
 package it.tirocirapid.test.unit;
 
+import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+
 import it.tirocirapid.classes.model.Curriculum;
 import it.tirocirapid.classes.model.Professore;
 import it.tirocirapid.classes.model.RichiestaTirocinio;
@@ -15,7 +19,12 @@ public class TestRichiestaTirocinio extends TestCase {
 	protected Tirocinio t;
 	protected Professore p;
 	protected Curriculum c;
+	protected String usernameprova;
+	protected String nometirocinioprova;
+	protected String iva;
 	
+	
+	@BeforeEach
 	protected void setUp() {
 		rVuoto=new RichiestaTirocinio();
 		s= new Studente("username","password","emailIstituzionale","matricola","mediaVoti","nome","cognome","indirizzo","telefono","istruzioneFormazione","email",c);
@@ -23,9 +32,13 @@ public class TestRichiestaTirocinio extends TestCase {
 		p= new Professore("username","password","ambito","emailIstituzionale","nome","cognome","email","telefono","indirizzo","matricola");
 		c= new Curriculum("fax","esperienzaLavorativa","capacitaCompetenzePersonali","madrelingua","altreLingue","capacitaCompetenzeRelazionali","capacitaCompetenzeOrganizzative","capacitaCompetenzeTecniche","capacitaCompetenzeArtistiche","altreCapacitaCompetenze","patenti","ulterioriInformazioni");
 		r= new RichiestaTirocinio(s,t,p,"stato");
+		usernameprova="aaa";
+		nometirocinioprova="bbb";
+		iva="ccc";
+		
 	}
 
-	
+	@AfterEach
 	protected void tearDown() {
 		rVuoto=null;
 		r=null;
@@ -33,47 +46,82 @@ public class TestRichiestaTirocinio extends TestCase {
 		t=null;
 		p=null;
 		c=null;
+		usernameprova=null;
+		nometirocinioprova=null;
+		iva=null;
 	}
 	
+	@Test 
 	public void testGetStudente() {
 		assertSame(s,r.getStudente());
 	}
 
+	@Test 
 	public void testGetTirocinio() {
 		assertSame(t,r.getTirocinio());
 	}
 	
+	@Test 
 	public void testGetTutorInterno() {
 		assertSame(p,r.getTutorInterno());
 	}
 	
+	@Test 
 	public void testGetStato() {
 		assertEquals("stato",r.getStato());
 	}
 	
-	public void testSetStudente() {
+	@Test 
+	public void testSetStudente1() {
 		r.setStudente(s);
 		assertSame(s,r.getStudente());
 	}
 	
-	public void testSetTirocinio() {
+	@Test 
+	public void testSetTirocinio1() {
 		r.setTiroconio(t);
 		assertSame(t,r.getTirocinio());
 	}
 	
-	public void testSetTutorInterno() {
+	@Test 
+	public void testSetTutorInterno1() {
 		r.setTutorInterno(p);
 		assertSame(p,r.getTutorInterno());
 	}
 	
+	@Test 
 	public void testSetStato() {
 		r.setStato("stato");
 		assertEquals("stato",r.getStato());
 	}
-/*	
-	public void testSetStudente(String usernamemetodo) {
-		usernamemetodo="aaaa";
-		s.setUsername(usernamemetodo);
+	
+ 	@Test 
+	public void testSetStudente2() {
+ 		String a="username";
+		Studente studente = new Studente();
+		studente.setUsername(a);
+		r.setStudente(a);
+		assertEquals(studente.getUsername(),r.getStudente().getUsername());	
 	}
-*/
+
+	public void testSetTirocinio2() {
+		String a="partitaIVAAzienda";
+		String b="nomeTirocinio";
+		Tirocinio tirocinio = new Tirocinio();
+		tirocinio.setPartitaIVAAzienda(a);
+		tirocinio.setNome(b);
+		r.setTirocinio(a, b);
+		assertEquals(tirocinio.getPartitaIVAAzienda(),r.getTirocinio().getPartitaIVAAzienda());
+		assertEquals(tirocinio.getNome(),r.getTirocinio().getNome());
+	}
+
+	public void testSetTutorInterno2() {
+		String a="username";
+		Professore professore = new Professore();
+		professore.setUsername(a);
+		r.setTutorInterno(a);
+		assertEquals(professore.getUsername(),r.getTutorInterno().getUsername());
+		
+	}
+	
 }

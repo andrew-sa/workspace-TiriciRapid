@@ -14,7 +14,7 @@ function selectedItemResponsabileApprovazioni()
 		case "/TirociRapid/responsabile_approvazioni_conferma_finale.jsp":
 			$("#item_conferma_finale_responsabile").addClass("attiva");
 			break;
-		case "/TirociRapid/responsabile_approvazioni_aziende.jsp":
+		case "/TirociRapid/responsabile_approvazioni_aziende.jsp": case "/TirociRapid/lista_aziende":
 			$("#item_lista_aziende_responsabile").addClass("attiva");
 			break;
 		default:

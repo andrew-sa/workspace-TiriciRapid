@@ -63,31 +63,42 @@ public class CaricaTirociniAzienda extends HttpServlet {
 				request.setAttribute("errore", "L'azienda " + user.getId() + " non offre tirocini");
 			}
 		}
-		else if (!replaceIfMissing(request.getParameter("partitaIVA"), replacement).equals(replacement))
+		else if (!replaceIfMissing(request.getParameter("partitaIVA"), replacement).equals(replacement) && (user.getTipo().equals(userTypes.get("Stud"))))
 		{
 			try 
 			{
-				ArrayList<Tirocinio> tirocini = caricaTirociniAzienda(request.getParameter("partitaIVA"));
+				ArrayList<Tirocinio> tirocini = caricaTirociniDisponibiliAzienda(request.getParameter("partitaIVA"));
+				
 				request.setAttribute("tirocini", tirocini);
 			} 
+			catch (TuplaNotFoundException e) 
+			{
+				e.printStackTrace();
+				System.out.println("sono nell'eccezione");
+				request.setAttribute("errore", "Non sono presenti tirocini di questa azienda");
+			}
 			catch (SQLException e)
 			{
 				e.printStackTrace();
 				request.setAttribute("errore", "Si &egrave; verificato un errore durante l'interazione col database, si prega di riprovare");
 			}
-			catch (TuplaNotFoundException e) 
-			{
-				e.printStackTrace();
-				request.setAttribute("errore", "Non sono presenti tirocini di questa azienda");
-			}
+			
 		}
 		else
 		{
 //			response.sendRedirect(referer);
 			request.setAttribute("errore", "Non hai selezionato alcuna azienda");
 		}
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/visualizza_tirocini_azienda.jsp"); //Schermata listaTirociniAzienda
-		dispatcher.forward(request, response);
+		if (user.getTipo().equals(userTypes.get("RespAz")))
+		{
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/azienda_visualizza_tirocini.jsp"); //Schermata listaTirociniAzienda
+			dispatcher.forward(request, response);
+		}
+		else
+		{
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/visualizza_tirocini_azienda.jsp"); //Schermata listaTirociniAzienda
+			dispatcher.forward(request, response);
+		}
 	}
 
 	/**
@@ -104,7 +115,13 @@ public class CaricaTirociniAzienda extends HttpServlet {
 		AbstractTirocinioManager managerTirocinio = factory.createTirocinioManager();
 		return managerTirocinio.readAllTirociniAzienda(partitaIVA);
 	}
-	
+
+	private ArrayList<Tirocinio> caricaTirociniDisponibiliAzienda(String partitaIVA) throws SQLException, TuplaNotFoundException
+	{
+		AbstractManagerFactory factory = new DAOFactory();
+		AbstractTirocinioManager managerTirocinio = factory.createTirocinioManager();
+		return managerTirocinio.readAllTirociniDisponibiliAzienda(partitaIVA);
+	}
 	/**
 	 * 
 	 * @param orig la stringa da controllare

@@ -76,7 +76,7 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 	 * @param con la connessione al database
 	 * @throws SQLException
 	 */
-	private static boolean isGoodRequest(String usename, HashMap<Integer, String> states, Connection con) throws SQLException
+	private boolean isGoodRequest(String usename, HashMap<Integer, String> states, Connection con) throws SQLException
 	{
 		PreparedStatement ps = con.prepareStatement(READ_ALL_STATES_BY_STUDENTE);
 		ResultSet rs = ps.executeQuery();

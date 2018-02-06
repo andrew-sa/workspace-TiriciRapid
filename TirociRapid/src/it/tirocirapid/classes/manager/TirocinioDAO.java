@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
@@ -202,6 +203,79 @@ public class TirocinioDAO extends AbstractTirocinioManager {
 		return tirocini;
 	}
 	
+	/**
+	 * Si occupa dell'interrogazione al database per ricavare tutti i tirocini di un azienda 
+	 * @param partitaIVA la partita IVA dell'azienda
+	 * @return ArrayList<Tirocinio> rappresenta i tirocini presenti nel DB di un azienda 
+	 * @throws SQLException
+	 */
+	@Override
+	public ArrayList<Tirocinio> readAllTirociniDisponibiliAzienda(String partitaIVA) throws SQLException, TuplaNotFoundException
+	{
+		ArrayList<Tirocinio> tirocini = new ArrayList<>();
+		Connection con = DriverManagerConnectionPool.getIstance().getConnection();
+		PreparedStatement ps = con.prepareStatement(READ_ALL_DISPONIBILI_BY_AZIENDA);
+		ps.setString(1, partitaIVA);
+		ResultSet rs = ps.executeQuery();
+		
+		if(!rs.next()) 
+		{
+			con.commit();
+			rs.close();
+			ps.close();
+			DriverManagerConnectionPool.getIstance().releaseConnection(con);
+			throw new TuplaNotFoundException("Lo studente selezionato non &egrave; presente nel database");
+		}
+		
+		do 
+		{
+			Tirocinio tirocinio = new Tirocinio();
+			tirocinio.setNome(rs.getString(1));
+			tirocinio.setPartitaIVAAzienda(rs.getString(2));
+			tirocinio.setStato(rs.getString(3));
+			tirocinio.setOffertaFormativa(rs.getString(4));
+			tirocinio.setDescrizione(rs.getString(5));
+			tirocini.add(tirocinio);
+		} 
+		while (rs.next());
+		
+		con.commit();
+		rs.close();
+		ps.close();
+		DriverManagerConnectionPool.getIstance().releaseConnection(con);
+		return tirocini;
+	}
+	
+	/**
+	 * Si occupa dell'interrogazione al database per ricavare tutti i tirocini di un azienda 
+	 * @param partitaIVA la partita IVA dell'azienda
+	 * @return ArrayList<Tirocinio> rappresenta i tirocini presenti nel DB di un azienda 
+	 * @throws SQLException
+	 */
+	@Override
+	public ArrayList<Tirocinio> readAllTirociniInAttesaApprovazione() throws SQLException
+	{
+		ArrayList<Tirocinio> tirocini = new ArrayList<>();
+		Connection con = DriverManagerConnectionPool.getIstance().getConnection();
+		Statement stm = con.createStatement();
+		ResultSet rs = stm.executeQuery(READ_ALL_IN_ATTESA_APPROVAZIONE);
+		while (rs.next())
+		{
+			Tirocinio tirocinio = new Tirocinio();
+			tirocinio.setNome(rs.getString(1));
+			tirocinio.setPartitaIVAAzienda(rs.getString(2));
+			tirocinio.setStato(rs.getString(3));
+			tirocinio.setOffertaFormativa(rs.getString(4));
+			tirocinio.setDescrizione(rs.getString(5));
+			tirocini.add(tirocinio);
+		}
+		con.commit();
+		rs.close();
+		stm.close();
+		DriverManagerConnectionPool.getIstance().releaseConnection(con);
+		return tirocini;
+	}
+	
 	@Override
 	public int countByAzienda(String partitaIVA) throws SQLException
 	{
@@ -218,12 +292,14 @@ public class TirocinioDAO extends AbstractTirocinioManager {
 		return count;
 	}
 	
-	private static final String CREATE = "INSERT INTO tirocinio(PartitaIVA, Nome, Descirzione, OffertaFormativa, Stato) VALUES (?, ?, ?, ?, ?)";
+	private static final String CREATE = "INSERT INTO tirocinio(PartitaIVA, Nome, Descrizione, OffertaFormativa, Stato) VALUES (?, ?, ?, ?, ?)";
 	private static final String READ_ALL_KEY_BY_AZIENDA = "SELECT Nome FROM tirocinio WHERE PartitaIVA = ?";
 	private static final String READ = "SELECT * FROM tirocinio WHERE PartitaIVA = ? AND Nome = ?";
 	private static final String UPDATE = "UPDATE tirocinio SET Stato = ? WHERE PartitaIVA = ? AND Nome = ?";
 	private static final String DELETE = "DELETE FROM tirocinio WHERE Nome = ? AND PartitaIVA";
 	private static final String READ_ALL_BY_AZIENDA = "SELECT * FROM tirocinio WHERE PartitaIVA = ?";
+	private static final String READ_ALL_DISPONIBILI_BY_AZIENDA = "SELECT * FROM tirocinio WHERE PartitaIVA = ? AND Stato = \"TirConf\"";
+	private static final String READ_ALL_IN_ATTESA_APPROVAZIONE = "SELECT * FROM tirocinio WHERE PartitaIVA = ? AND Stato = \"TirProp\"";
 	private static final String COUNT_BY_AZIENDA = "SELECT COUNT(*) FROM richiestatirocinio WHERE PartitaIVA = ?";
 	
 }

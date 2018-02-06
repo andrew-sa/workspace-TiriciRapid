@@ -55,7 +55,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 		parametri.add("altreCapacitaCompetenze");
 		parametri.add("esperienzaLavorativa");
 		parametri.add("madrelingua");
-		parametri.add("altreLingue");
+		parametri.add("altrelingue");
 		parametri.add("patenti");
 		parametri.add("ulterioriInformazioni");
 		
@@ -108,7 +108,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 			if (!param.equals(parametri.get(0)) && replaceIfMissing(request.getParameter(param), replacement).equals(replacement))
 			{
 				request.setAttribute("errore", "Il campo " + param + " &egrave; obbligatorio");
-				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/studente_curriculum.jsp"); //CreaCurriculum
+				RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/studente_curriculum.jsp"); //CreaCurriculum
 				dispatcher.forward(request, response);
 				return;
 			}
@@ -132,7 +132,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 			{
 				if (validaCapacitaCompetenzeX(request.getParameter(param)))
 				{
-					curriculum.setCapacitaCompetenzePersonali(request.getParameter(param));
+					curriculum.setCapacitaCompetenzeRelazionali(request.getParameter(param));
 				}
 				else
 				{
@@ -156,7 +156,21 @@ public class CreaCurriculumStudente extends HttpServlet {
 					return;
 				}
 			}
-			else if (param.equals(parametri.get(3))) //capacitaCompetenzePersonali
+			else if (param.equals(parametri.get(3))) //capacitaCompetenzeArtistiche
+			{
+				if (validaCapacitaCompetenzeX(request.getParameter(param)))
+				{
+					curriculum.setCapacitaCompetenzeArtistiche(request.getParameter(param));
+				}
+				else
+				{
+					request.setAttribute("errore", "Il campo " + param + " non pu&ograve; superare 200 caratteri");
+					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/studente_curriculum.jsp"); //CreaCurriculum
+					dispatcher.forward(request, response);
+					return;
+				}
+			}
+			else if (param.equals(parametri.get(4))) //capacitaCompetenzePersonali
 			{
 				if (validaCapacitaCompetenzeX(request.getParameter(param)))
 				{
@@ -170,7 +184,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 					return;
 				}
 			}
-			else if (param.equals(parametri.get(4))) //capacitaCompetenzeOrganizzative
+			else if (param.equals(parametri.get(5))) //capacitaCompetenzeOrganizzative
 			{
 				if (validaCapacitaCompetenzeX(request.getParameter(param)))
 				{
@@ -184,7 +198,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 					return;
 				}
 			}
-			else if (param.equals(parametri.get(5))) //altreCapacitaCompetenze
+			else if (param.equals(parametri.get(6))) //altreCapacitaCompetenze
 			{
 				if (validaCapacitaCompetenzeX(request.getParameter(param)))
 				{
@@ -198,7 +212,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 					return;
 				}
 			}
-			else if (param.equals(parametri.get(6))) //esperienzaLavorativa
+			else if (param.equals(parametri.get(7))) //esperienzaLavorativa
 			{
 				if (validaEsperienzaLavorativa(request.getParameter(param)))
 				{
@@ -206,13 +220,13 @@ public class CreaCurriculumStudente extends HttpServlet {
 				}
 				else
 				{
-					request.setAttribute("errore", "Il campo " + param + " deve contenere dai 6 ai 20 caratteri alfanumerici");
+					request.setAttribute("errore", "Il campo " + param + " non pu&ograve; superare 200 caratteri");
 					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/studente_curriculum.jsp"); //CreaCurriculum
 					dispatcher.forward(request, response);
 					return;
 				}
 			}
-			else if (param.equals(parametri.get(7))) //madrelingua
+			else if (param.equals(parametri.get(8))) //madrelingua
 			{
 				if (validaMadrelingua(request.getParameter(param)))
 				{
@@ -226,7 +240,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 					return;
 				}
 			}
-			else if (param.equals(parametri.get(8))) //altreLingue
+			else if (param.equals(parametri.get(9))) //altreLingue
 			{
 				if (validaAltreLingue(request.getParameter(param)))
 				{
@@ -235,26 +249,27 @@ public class CreaCurriculumStudente extends HttpServlet {
 				else
 				{
 					request.setAttribute("errore", "Le lingue del campo " + param + " devono essere superate da una virgola e il contenuto non deve superare i 100 caratteri");
-					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/studente_curriculum.jsp"); //CreaCurriculum
+					RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/studente_curriculum.jsp"); //CreaCurriculum
 					dispatcher.forward(request, response);
 					return;
 				}
 			}
-			else if (param.equals(parametri.get(9))) //patenti
+			else if (param.equals(parametri.get(10))) //patenti
 			{
 				if (validaPatenti(request.getParameter(param).toUpperCase()))
 				{
-					curriculum.setPatenti(removeLastToken(request.getParameter(param.toUpperCase())));
+					curriculum.setPatenti(removeLastToken(request.getParameter(param).toUpperCase()));
+				
 				}
 				else
 				{
 					request.setAttribute("errore", "Il campo " + param + " non &egrave; nel formato corretto (Le sigle delle patenti devono essere separate dalla virgola)");
-					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/studente_curriculum.jsp"); //CreaCurriculum
+					RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/studente_curriculum.jsp"); //CreaCurriculum
 					dispatcher.forward(request, response);
 					return;
 				}
 			}
-			else if (param.equals(parametri.get(10))) //ulterioriInformazioni
+			else if (param.equals(parametri.get(11))) //ulterioriInformazioni
 			{
 				if (validaUlterioriInformazioni(request.getParameter(param)))
 				{
@@ -263,7 +278,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 				else
 				{
 					request.setAttribute("errore", "Il campo " + param + " non pu&ograve; superare 200 caratteri");
-					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/studente_curriculum.jsp"); //CreaCurriculum
+					RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/studente_curriculum.jsp"); //CreaCurriculum
 					dispatcher.forward(request, response);
 					return;
 				}
@@ -284,10 +299,10 @@ public class CreaCurriculumStudente extends HttpServlet {
 			session.removeAttribute("usernameStudente");
 			UserLoggato user = new UserLoggato();
 			user.setId(username);
-			user.setId(userTypes.get("Stud"));
+			user.setTipo(userTypes.get("Stud"));
 			session.setAttribute("user", user);
 //			request.setAttribute("successo", "La registrazione &egrave; avvenuta con successo.<br/>Ora puoi effettuare il login");
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/studente_richieste.jsp"); //RichiesteStudente
+			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/studente_richieste.jsp"); //RichiesteStudente
 			dispatcher.forward(request, response);
 		}
 		catch (MySQLIntegrityConstraintViolationException e)
@@ -358,7 +373,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 		String[] p = strPatenti.split(TOKEN);
 		for (int i = 0; i < p.length; i++)
 		{
-			if (!patenti.contains(p))
+			if (!patenti.contains(p[i]))
 			{
 				return false;
 			}
@@ -377,7 +392,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 		{
 			altreLingue.concat(TOKEN);
 		}
-		return Pattern.matches("(([A-Za-z\\s]{2,20},)+", altreLingue) && (altreLingue.length()<=200);
+		return Pattern.matches("(([A-Za-z\\s]{2,20},)+)", altreLingue) && (altreLingue.length()<=200);
 	}
 	
 	/**
@@ -396,7 +411,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 		str = str.trim();
 		if (str.endsWith(TOKEN))
 		{
-			str = str.substring(0, str.length() - 2);
+			str = str.substring(0, str.length() - 1);
 		}
 		return str;
 	}

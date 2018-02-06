@@ -1,11 +1,8 @@
-<%@page import="it.tirocirapid.classes.manager.AbstractCurriculumManager"%>
+
 <%@page import="it.tirocirapid.classes.model.Curriculum"%>
-<%@page import="it.tirocirapid.classes.manager.AbstractStudenteManager"%>
-<%@page import="it.tirocirapid.factory.DAOFactory"%>
-<%@page import="it.tirocirapid.factory.AbstractManagerFactory"%>
+
 <%@page import="it.tirocirapid.classes.model.Studente"%>
 <%@page import="it.tirocirapid.classes.model.UserLoggato"%>
-<%@page import="it.tirocirapid.classes.manager.StudenteDAO"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -28,16 +25,12 @@
 	<%@ include file="nav_studente.jsp"%>
 
 
-
+	<div class="container">
 	<%if(request.getAttribute("studente")!=null){
 		Studente studente =  (Studente)request.getAttribute("studente");
 		Curriculum curriculum = studente.getCurriculum();
 	
 		%>
-	
-
-	<div class="container">
-	
 		<div id="profilo-curriculum">
 		
 		<h3 style="text-align: center;"><span>Curriculum </span></h3>
@@ -99,7 +92,7 @@
 		</div>
 		
 		 <div class="col-md-3 cta-button"id="bottone-curriculum">
-                            <a href="#" class="btn btn-lg btn-block btn-default" >Modifica curriculum</a>
+                            <a href="studente_curriculum.jsp" class="btn btn-lg btn-block btn-default" >Modifica curriculum</a>
                         </div>
 
 		</div>
@@ -158,7 +151,7 @@
 			
 		<%} if(request.getAttribute("errore")!=null){ 
 		%>
-				<%=request.getAttribute("errore") %>		
+				<div style="color: red; text-align: center;"><%=request.getAttribute("errore")%></div>		
 		<%} %>
 		
 		</div>

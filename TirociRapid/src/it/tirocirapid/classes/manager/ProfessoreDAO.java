@@ -131,6 +131,7 @@ public class ProfessoreDAO extends AbstractProfessoreManager {
 			professore.setEmailIstituzionale(rs.getString(3));
 			professore.setTelefono(rs.getString(4));
 			professore.setAmbito(rs.getString(5));
+			professore.setEmail(rs.getString(6));
 			professori.add(professore);
 		}
 		con.commit();
@@ -175,6 +176,6 @@ public class ProfessoreDAO extends AbstractProfessoreManager {
 	
 	private static final String SEARCH = "SELECT Username, Pass, Tipo FROM professore WHERE Username = ?";
 	private static final String READ = "SELECT Nome, Cognome, EmailIstituzionale, Telefono, Ambito FROM professore WHERE Username = ?";
-	private static final String READ_ALL = "SELECT Nome, Cognome, EmailIstituzionale, Telefono, Ambito FROM professore";
+	private static final String READ_ALL = "SELECT Nome, Cognome, EmailIstituzionale, Telefono, Ambito, Email FROM professore";
 	private static final String READ_EMAIL = "SELECT EmailIstituzionale FROM professore WHERE Username = ?";
 }

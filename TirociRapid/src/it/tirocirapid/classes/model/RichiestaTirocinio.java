@@ -72,7 +72,7 @@ public class RichiestaTirocinio {
 	public void setStudente(String username)
 	{
 		Studente studente = new Studente();
-		studente.setEmail(username);
+		studente.setUsername(username);
 		this.studente = studente;
 	}
 	
