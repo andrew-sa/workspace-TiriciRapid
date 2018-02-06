@@ -30,13 +30,13 @@ public class TestAziendaDAO extends TestCase{
 	
 	
 	@BeforeEach
-	public void setUp() throws Exception {
+	public void setUp() {
 
 		
 	}
 
 	@AfterEach
-	public void tearDown() throws Exception {
+	public void tearDown() {
 		
 	}
 	
@@ -380,7 +380,6 @@ public class TestAziendaDAO extends TestCase{
 					e.printStackTrace();
 				}
 	}
-	
 	
 	@Test
 	public void testUpdateStato()  {
