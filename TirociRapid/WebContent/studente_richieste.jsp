@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
-<%@ page import="it.tirocirapid.classes.model.*, java.util.ArrayList" %>
+<%@ page import="it.tirocirapid.classes.model.*, java.util.ArrayList, java.util.HashMap" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -41,6 +41,7 @@
 	
 	<div class="container">
 		<%
+			HashMap<Integer, String> states = (HashMap<Integer, String>) getServletContext().getAttribute("statesReqTir");
 			if (request.getAttribute("richieste") != null)
 			{
 				ArrayList<RichiestaTirocinio> richieste = (ArrayList<RichiestaTirocinio>) request.getAttribute("richieste");
@@ -59,11 +60,20 @@
                <div class="bs-calltoaction bs-calltoaction-default">
                    <div class="row">
                        <div class="col-md-9 cta-contents">
-                           <h1 class="cta-title"><%= reqTir.getTirocinio().getNome() %></h1>
+                           <h1 class="cta-title">
+                      			<%= reqTir.getTirocinio().getNome() %>
+                           </h1>
                            <div class="cta-desc">
                                <h3>Stato: <%= reqTir.getStato() %></h3>
-                               <!--<p>Describe the action hereahjfsdbdfbadjcba jsbxjkasb djav sx mnzc asmnx basxb msbx cmx dbs dbjabskj b asd b xjbadj bj bjmz bxvbz.</p>-->
-                               
+                               <%
+                               		String stato = reqTir.getStato();
+                               		if (states.get(4).equals(stato) || states.get(5).equals(stato) || states.get(-4).equals(stato))
+                               		{
+                               %>
+                               <p>Tutor interno: <b><%= reqTir.getTutorInterno().getUsername() %></b></p>
+                               <%
+                               		}
+                               %>
                            </div>
                        </div>
                        <div class="col-md-3 cta-button">

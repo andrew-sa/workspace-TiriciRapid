@@ -374,7 +374,7 @@ public class ModificaCurriculum extends HttpServlet {
 	
 	private boolean validaPatenti(String strPatenti)
 	{
-		String[] p = strPatenti.split(TOKEN);
+		String[] p = strPatenti.trim().split(TOKEN);
 		for (int i = 0; i < p.length; i++)
 		{
 			if (!patenti.contains(p[i]))
@@ -394,7 +394,7 @@ public class ModificaCurriculum extends HttpServlet {
 	{
 		if (!altreLingue.trim().endsWith(TOKEN))
 		{
-			altreLingue.concat(TOKEN);
+			altreLingue = altreLingue.concat(TOKEN);
 		}
 		return Pattern.matches("(([A-Za-z\\s]{2,20},)+)", altreLingue) && (altreLingue.length() <= 200);
 	}

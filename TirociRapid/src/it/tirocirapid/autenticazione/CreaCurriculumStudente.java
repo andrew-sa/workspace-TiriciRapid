@@ -370,7 +370,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 	
 	private boolean validaPatenti(String strPatenti)
 	{
-		String[] p = strPatenti.split(TOKEN);
+		String[] p = strPatenti.trim().split(TOKEN);
 		for (int i = 0; i < p.length; i++)
 		{
 			if (!patenti.contains(p[i]))
