@@ -102,6 +102,7 @@ public class ModificaCurriculum extends HttpServlet {
 			{
 				if (!param.equals(parametri.get(0)) && replaceIfMissing(request.getParameter(param), replacement).equals(replacement))
 				{
+					System.out.println(param);
 					request.setAttribute("errore", "Il campo " + param + " &egrave; obbligatorio");
 					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //ModificaCurriculum
 					dispatcher.forward(request, response);
@@ -290,7 +291,7 @@ public class ModificaCurriculum extends HttpServlet {
 			{
 				managerCurriculum.update(curriculum, username);;
 				request.setAttribute("successo", "Il curriculum &egrave; stato modificato con successo");
-				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //ProfiloStudente
+				RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/profilo_studente"); //ProfiloStudente
 				dispatcher.forward(request, response);
 			}
 			catch (MySQLIntegrityConstraintViolationException e)
@@ -376,7 +377,7 @@ public class ModificaCurriculum extends HttpServlet {
 		String[] p = strPatenti.split(TOKEN);
 		for (int i = 0; i < p.length; i++)
 		{
-			if (!patenti.contains(p))
+			if (!patenti.contains(p[i]))
 			{
 				return false;
 			}
@@ -386,7 +387,7 @@ public class ModificaCurriculum extends HttpServlet {
 	
 	private boolean validaMadrelingua(String madrelingua)
 	{
-		return (Pattern.matches("[A-Za-z]{20}", madrelingua) && (madrelingua.length() <= 20));
+		return (Pattern.matches("[A-Za-z]{2,20}", madrelingua) && (madrelingua.length() <= 20));
 	}
 	
 	private boolean validaAltreLingue(String altreLingue)
@@ -395,7 +396,7 @@ public class ModificaCurriculum extends HttpServlet {
 		{
 			altreLingue.concat(TOKEN);
 		}
-		return Pattern.matches("([A-Za-z\\s],)+", altreLingue);
+		return Pattern.matches("(([A-Za-z\\s]{2,20},)+)", altreLingue) && (altreLingue.length() <= 200);
 	}
 	
 	/**
@@ -414,7 +415,7 @@ public class ModificaCurriculum extends HttpServlet {
 		str = str.trim();
 		if (str.endsWith(TOKEN))
 		{
-			str = str.substring(0, str.length() - 2);
+			str = str.substring(0, str.length() - 1);
 		}
 		return str;
 	}

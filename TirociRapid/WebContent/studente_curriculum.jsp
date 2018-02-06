@@ -54,7 +54,7 @@
 	<div class="container">
 			<% if(request.getAttribute("errore")!=null){
 		%>
-				<div style="color: red; text-align: center;"><%=request.getAttribute("errore").toString()%></div>		
+				<div style="color: red; text-align: center;"><%=request.getAttribute("errore")%></div>		
 		<%} %>
 		<div class="row">
 			<form class="form-horizontal" onsubmit="return validateCurriculum(this)" action="modifica_curriculum"  method="post">
@@ -188,7 +188,7 @@
 						<label class="col-md-4 control-label" for="altreLingue">Altre
 							Lingue *</label>
 						<div class="col-md-4">
-							<input id="altreLingue" name="altrelingue" type="text"
+							<input id="altreLingue" name="altreLingue" type="text"
 								class="form-control input-md" maxlength="100" value=<%if(curriculum!=null){%><%= curriculum.getAltreLingue() %><% } %>>
 						</div>
 						<p id="9" class="col-md-4 errorform"></p>
