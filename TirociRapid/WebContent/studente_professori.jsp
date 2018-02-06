@@ -72,6 +72,16 @@
 						</div>
 						<%
 							}
+							else
+							{
+						%>
+						<div class="col-md-3 cta-button" style="display: none;">
+							<a href="#" class="btn btn-lg btn-block btn-default">
+								Scegli come tutor
+							</a>
+						</div>
+						<%
+							}
 						%>
 					</div>
 				</div>
