@@ -2,7 +2,7 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
   <display-name>TirociRapid</display-name>
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file> 
+    <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
     <welcome-file>index.jsp</welcome-file>
     <welcome-file>default.html</welcome-file>
@@ -12,7 +12,7 @@
   <listener>
     <listener-class>it.tirocirapid.listener.InizializzazioneContextListener</listener-class>
   </listener>
- <filter>
+  <filter>
     <filter-name>AreaVisitatoreFiltro</filter-name>
     <filter-class>it.tirocirapid.filters.AreaVisitatoreFiltro</filter-class>
   </filter>
@@ -44,6 +44,7 @@
     <url-pattern>/invia_richiesta</url-pattern>
     <url-pattern>/elimina_richiesta_tirocinio</url-pattern>
     <url-pattern>/scegli_tutor</url-pattern>
+    <url-pattern>/richieste</url-pattern>
   </filter-mapping>
   <filter>
     <filter-name>NonProfessoreFiltro</filter-name>
