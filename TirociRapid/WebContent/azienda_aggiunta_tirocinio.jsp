@@ -16,10 +16,23 @@
 <script type="text/javascript" src="js/selected_item_azienda.js"></script>
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript" src="js/messaggi.js"></script>
 
 
 </head>
-<body onload="selectedItemAzienda();">
+<body onload="selectedItemAzienda(); nascondiMessaggiTop();">
+			<%
+				if (request.getAttribute("errore") != null) {
+			%>
+			<h1 class="erroreTop"><%= request.getAttribute("errore") %> <i class="fa fa-times" aria-hidden="true" onclick="clearMessaggiTop()"></i></h1>
+			<%
+				}
+				else if (request.getAttribute("successo") != null) {
+			%>
+			<h1 class="successoTop"><%= request.getAttribute("successo") %> <i class="fa fa-times" aria-hidden="true" onclick="clearMessaggiTop()"></i></h1>
+			<%
+				}
+			%>
 	<%@ include file="slider.jsp"%>
 
 	<%
@@ -40,20 +53,7 @@
 
 	<div class="container">
 		<div class="row">
-			<%
-				if ((request.getAttribute("successo") != null)) {
-			%>
-			<div class="successoMsg"><h1 class="successoTop"><%=request.getAttribute("successo")%> </h1></div>
-			<%
-				}
-			%>
-			<%
-				if ((request.getAttribute("errore") != null)) {
-			%>
-			<div class="successoMsg"><h1 class="successoTop"><i><%=request.getAttribute("errore")%></i></h1></div>
-			<%
-				}
-			%>
+			
 			<form method="post" action="crea_proposta_tirocinio"
 				class="form-horizontal">
 				<fieldset>
