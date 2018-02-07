@@ -45,6 +45,7 @@
     <url-pattern>/elimina_richiesta_tirocinio</url-pattern>
     <url-pattern>/scegli_tutor</url-pattern>
     <url-pattern>/richieste</url-pattern>
+    <url-pattern>/storico_richieste</url-pattern>
   </filter-mapping>
   <filter>
     <filter-name>NonProfessoreFiltro</filter-name>
@@ -101,5 +102,6 @@
     <url-pattern>/modifica_dati_azienda</url-pattern>
     <url-pattern>/convalida_proposta_tirocinio</url-pattern>
     <url-pattern>/convalida_richiesta_tirocinio</url-pattern>
+    <url-pattern>/storico_richieste</url-pattern>
   </filter-mapping>
 </web-app>
