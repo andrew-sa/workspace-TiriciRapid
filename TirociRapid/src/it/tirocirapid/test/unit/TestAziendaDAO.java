@@ -164,28 +164,6 @@ public class TestAziendaDAO extends TestCase{
 		}
 	}
 	
-	@Test  /*PROBLEMA DI VISIBILITA'  E' UN METODO STATICO PRIVATO*/
-	public void testIsNewKey()  {
-		fail("Not yet implemented");	
-		/*
-			AziendaDAO aziendais=new AziendaDAO();
-				try(Connection connection=DriverManagerConnectionPool.getIstance().getConnection();)
-		        {
-		            try(Statement stCheck=(Statement) connection.createStatement())
-		            {
-		           
-		            	Boolean falso= false;
-		            	Boolean vero=true;
-		            	String iva="07643520567";
-		                String pass="ciao";
-		            }
-		            finally
-		            {
-		                 connection.close();;
-		            }
-		        }	
-		        */
-	}
 	
 	@Test
 	public void testRead() {
@@ -272,61 +250,6 @@ public class TestAziendaDAO extends TestCase{
 	@Test
 	public void testReadAll() {
 		fail("Not yet implemented");
-		/*
-		AziendaDAO aziendaDAOreadAll= new AziendaDAO();
-		ArrayList<Azienda> aziendearray=new ArrayList<Azienda>();
-		ArrayList<Azienda> aziendearraydiconfronto = new ArrayList<Azienda>();
-		
-		Connection connection=DriverManagerConnectionPool.getIstance().getConnection();
-		Statement stCheck=(Statement) connection.createStatement();
-		Azienda temp=null;
-		System.out.println("aziendearraydiconfronto");
-//		int k=0;
-		try(ResultSet rs=(ResultSet) stCheck.executeQuery("SELECT * FROM azienda"))
-        {
-			while(rs.next()) {
-//				Azienda a=(Azienda)rs.getArray(k);
-//				System.out.println(a.toString());
-				//Azienda(partitaIVA,password,email,nome,sede,numero,null,stato,descrizioneAmbito);
-				temp=new Azienda(rs.getString("PartitaIVA"),rs.getString("Pass"),rs.getString("Email"),
-						rs.getString("Nome"),rs.getString("Sede"),rs.getString("NumeroTelefono"),null,
-						rs.getString("Stato"),rs.getString("DescrizioneAmbito"));
-//	            temp.setPartitaIVA(rs.getString("PartitaIVA"));
-//	            temp.setPassword(rs.getString("Pass"));
-//	            temp.setEmail("Email");
-//	            temp.setNome("Nome");
-//	            temp.setSede("Sede");
-//	            temp.setNumeroTelefono("NumeroTelefono");
-//	            temp.setStato("Stato");
-//	            temp.setDescrizioneAmbito("Descrizione");
-//	            temp.setDescrizioneAmbito("DescrizioneAmbito");
-	            aziendearraydiconfronto.add(temp);
-//	            k++;
-	            System.out.println(temp.toString());
-			}
-        	
-        } 
-		System.out.println("aziendearray");
-		try(Connection connection2=DriverManagerConnectionPool.getIstance().getConnection();)
-		{
-			try(Statement stCheck2=(Statement) connection.createStatement())
-			{
-				connection.setAutoCommit(false);
-				aziendearray=aziendaDAOreadAll.readAll();
-				
-				for(int i=0;i<aziendearray.size();i++) {
-					 System.out.println(aziendearray.get(i).toString());
-					 aziendearray.get(i).setTirociniOfferti(null);
-					assertEquals(aziendearray.get(i), aziendearraydiconfronto.get(i));
-					
-				}
-				//for(int i = 0;i<aziendearray.size();i++)
-				//assertArrayEquals(aziendearray,aziendearraydiconfronto);
-				//assertEquals(aziendearray, aziendearraydiconfronto);
-			}
-		          
-		 }
-		 */
 	}
 	
 	@Test
@@ -408,15 +331,12 @@ public class TestAziendaDAO extends TestCase{
 		                PreparedStatement ps= (PreparedStatement) connection.prepareStatement("DELETE FROM azienda WHERE PartitaIVA='c'");
 	                    ps.executeUpdate();
 		            } catch (InsertFailedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					} catch (TuplaNotFoundException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}         
 		           connection.close();          
 		        } catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}	
 	}
