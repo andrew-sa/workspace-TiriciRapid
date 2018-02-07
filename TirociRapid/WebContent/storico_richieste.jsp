@@ -4,64 +4,60 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Professore</title>
+<title>Storico richieste</title>
 <link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/azienda.css">
+
 <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/professore.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	
-<script type="text/javascript" src="js/selected_item_professore.js"></script>
+<script type="text/javascript" src="js/formcheck.js"></script>
+<script type="text/javascript" src="js/selected_item_azienda.js"></script>
 <script type="text/javascript" src="js/jquery.js"></script>
+
 </head>
-<body onload="selectedItemProfessore();">
+<body onload="selectedItemAzienda();">
 
 	<%@ include file="slider.jsp"%>
-	<%@ include file="nav_professore.jsp"%>
 
-	
+	<%@ include file="nav_azienda.jsp"%>
+
+
 	<div class="container">
 		<div class="col-sm-12">
 
 			<div class="bs-calltoaction bs-calltoaction-default">
-				<div class="row">
+				<div class="row" id="divstorico">
 					<div class="col-md-9 cta-contents">
 						<h1 class="cta-title">Richiesta</h1>
 						<div class="cta-desc">
 							<h3>Studente:</h3>
 							<p>
 								Nome &nbsp; Cognome &emsp; 0512103653 &emsp;
-								<button class="bottoni-conferma-professore">Visualizza
+								<button class="bottoni-conferma-azienda">Visualizza
 									curriculum</button>
 							</p>
-							<h3>Azienda:</h3>
-							<p>
-								Partita IVA&emsp;
-								<button class="bottoni-conferma-professore">Visualizza
-									informazioni azienda</button>
-							</p>
+
 							<h3>Tirocinio:</h3>
 							<p>
 								Nome &emsp;
-								<button class="bottoni-conferma-professore">Visualizza
+								<button class="bottoni-conferma-azienda">Visualizza
 									informazioni tirocinio</button>
 							</p>
 						</div>
 					</div>
-					
-					<div class="col-md-3 cta-button"  >
-						<a href="#" class="btn btn-lg btn-block btn-default" id="bottone-professore-accetta" style="display: block;">Accetta</a>
-					</div>
-					<div class="col-md-3 cta-button" >
-						<a href="#" class="btn btn-lg btn-block btn-default" id="bottone-professore-rifiuta" style="display: block;" >Rifiuta</a>
-					</div>
 
+					<div id = "stato-storico">
+						<h1>Stato:</h1>
+						<h3>la capp kjusdbj j e hfrfjv llo</h3>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	
+
+
+
 	<%@include file="footer.jsp"%>
-	
 </body>
 </html>

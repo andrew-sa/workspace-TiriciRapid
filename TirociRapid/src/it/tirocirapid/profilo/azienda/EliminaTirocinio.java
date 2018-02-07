@@ -91,7 +91,7 @@ public class EliminaTirocinio extends HttpServlet {
 		{
 			request.setAttribute("errore", "Non hai selezionato alcuna proposta di tirocinio");
 		}
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/azienda_visualizza_tirocinio.jsp"); //ProfiloAzienda
+		RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/azienda_visualizza_tirocini.jsp"); //ProfiloAzienda
 		dispatcher.forward(request, response);
 	}
 

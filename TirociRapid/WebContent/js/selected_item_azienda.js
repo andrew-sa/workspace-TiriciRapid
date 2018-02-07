@@ -8,6 +8,9 @@ function selectedItemAzienda()
 		case "/TirociRapid/azienda_aggiunta_tirocinio.jsp":
 			$("#item_aggiungi_tirocinio_azienda").attr("class","attiva");
 			break;
+		case "/TirociRapid/storico_richieste.jsp":
+			$("#item_storico_richieste_azienda").attr("class","attiva");
+			break;
 		case "/TirociRapid/azienda_profilo.jsp": case "/TirociRapid/dati_azienda":
 			$("#item_profilo_azienda").addClass("attiva");
 			break;

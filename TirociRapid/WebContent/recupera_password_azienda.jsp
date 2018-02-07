@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>TirociRapid Login</title>
+<title>Recupera password</title>
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/login.css">
-<link rel="stylesheet" href="css/errorcheck.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script type="text/javascript" src="js/formcheck.js"></script>
@@ -17,33 +16,25 @@
 <script type="text/javascript" src="js/jquery.js"></script>
 </head>
 <body>
-
-
 	<%@ include file="slider.jsp"%>
-	<%@ include file="nav_login.jsp"%>
+	<%@ include file="nav_vuota.jsp"%>
 
 	<div id="contenitore_login">
-		<div id="messaggio"></div>
-		<form>
-			<input id="tipo" type="hidden" name="type" value="studente">
-			<div>
-				<input name="id" type="text" id="username"
-					placeholder="Esse3 Username">
-			</div>
-			<div>
-				<input name="password" type="password" id="password"
-					placeholder="Password">
-			</div>
-			<button id="pulsante_login" type="button"
-				onclick="sendRequestLogin(this.form);">Entra</button>
+		<form action="recupera_password" method="get">
+			<fieldset>
+				<div>
+					<input name="partitaIVA" type="text" id="username"
+						placeholder="Partita IVA">
+				</div>
+			</fieldset>
+			<button id="pulsante_login" type="submit">Recupera Password</button>
+
 
 		</form>
 
-		<div id="password_dimenticata" style="visibility: hidden;">
-			<a id="registra_azienda" href="azienda_iscrizione.jsp">Registrati</a> &ensp; &ensp; &ensp;
-			<a id="link_password_dimenticata" href="#">Password dimenticata?</a>
-		</div>
+
 	</div>
+
 	<%@include file="footer.jsp"%>
 </body>
 </html>

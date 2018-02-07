@@ -54,7 +54,7 @@
 						</div>
 					</div>
 					<div class="col-md-3 cta-button">
-						<a href="/elimina_tirocinio?nome=<%=t.getNome()%>" class="btn btn-lg btn-block btn-default">Elimina</a>
+						<a href="elimina_tirocinio?nome=<%=t.getNome()%>" class="btn btn-lg btn-block btn-default">Elimina</a>
 					</div>
 				</div>
 			</div>

@@ -82,7 +82,7 @@ public class CreaPropostaTirocinio extends HttpServlet {
 			else
 			{
 				request.setAttribute("errore", "Devi essere registrato come Azienda per insierire una offerta di tirocinio");
-				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //RegistrazioneAzienda
+				RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/azienda_iscrizione.jsp"); //RegistrazioneAzienda
 				dispatcher.forward(request, response);
 				return;
 			}
@@ -96,7 +96,7 @@ public class CreaPropostaTirocinio extends HttpServlet {
 			else
 			{
 				request.setAttribute("errore", "Devi essere registrato come Azienda per insierire una offerta di tirocinio");
-				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //RegistrazioneAzienda
+				RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/azienda_iscrizione.jsp"); //RegistrazioneAzienda
 				dispatcher.forward(request, response);
 				return;
 			}
@@ -113,7 +113,7 @@ public class CreaPropostaTirocinio extends HttpServlet {
 			if (replaceIfMissing(request.getParameter(param), replacement).equals(replacement))
 			{
 				request.setAttribute("errore", "Il campo " + param + " &egrave; obbligatorio");
-				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //RegistrazioneAzienda
+				RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/azienda_iscrizione.jsp"); //RegistrazioneAzienda
 				dispatcher.forward(request, response);
 				return;
 			}
@@ -128,7 +128,7 @@ public class CreaPropostaTirocinio extends HttpServlet {
 				else
 				{
 					request.setAttribute("errore", "Il campo " + param + " non pu&ograve; superare 50 caratteri");
-					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //RegistrazioneAzienda
+					RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/azienda_iscrizione.jsp"); //RegistrazioneAzienda
 					dispatcher.forward(request, response);
 					return;
 				}
@@ -142,7 +142,7 @@ public class CreaPropostaTirocinio extends HttpServlet {
 				else
 				{
 					request.setAttribute("errore", "Il campo " + param + " non pu&ograve; superare 500 caratteri");
-					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //RegistrazioneAzienda
+					RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/azienda_iscrizione.jsp"); //RegistrazioneAzienda
 					dispatcher.forward(request, response);
 					return;
 				}
@@ -156,7 +156,7 @@ public class CreaPropostaTirocinio extends HttpServlet {
 				else
 				{
 					request.setAttribute("errore", "Il campo " + param + " non pu&ograve; superare 500 caratteri");
-					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //RegistrazioneAzienda
+					RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/azienda_iscrizione.jsp"); //RegistrazioneAzienda
 					dispatcher.forward(request, response);
 					return;
 				}
@@ -194,7 +194,7 @@ public class CreaPropostaTirocinio extends HttpServlet {
 				request.setAttribute("errore", e.getMessage());
 				e.printStackTrace();
 			}
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //InserisciTircinio
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("azienda_aggiunta_tirocinio.jsp"); //InserisciTircinio
 			dispatcher.forward(request, response);
 		}
 		else if (user != null)
@@ -228,7 +228,7 @@ public class CreaPropostaTirocinio extends HttpServlet {
 				e.printStackTrace();
 				request.setAttribute("errore", e.getMessage());
 			}
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //InserisciTircinio
+			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/azienda_aggiunta_tirocinio.jsp"); //InserisciTircinio
 			dispatcher.forward(request, response);
 		}
 	}

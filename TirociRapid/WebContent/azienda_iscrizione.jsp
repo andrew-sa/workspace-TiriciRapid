@@ -20,21 +20,23 @@
 
 </head>
 <body onload="selectedItemAzienda();">
-
-	<%@ include file="slider.jsp"%>
-
-</body>
+	
+<%@ include file="slider.jsp"%>
 <%@ include file="nav_vuota.jsp"%>
 
 <div class="container">
 	<div class="row">
-	<%if ((request.getAttribute("errore") != null))
-		{%>
-	<div style="color: green; text-align: center;"><%=request.getAttribute("errore").toString()%></div>
-	<%}%>
-		<form action="registrazione_azienda" method="post" 
-		class="form-horizontal" onsubmit="return validateRegistrazione(this)">
-		
+		<%
+		if ((request.getAttribute("errore") != null))
+		{
+		%>		
+			<div style="color: green; text-align: center;"><%=request.getAttribute("errore")%></div>
+		<%
+		}
+		%>
+		<form action="registrazione_azienda" method="post"
+			class="form-horizontal" onsubmit="return validateRegistrazione(this)">
+
 			<fieldset>
 				<!-- Form Name -->
 				<legend>Immettere i dati Aziendali:</legend>
@@ -47,8 +49,7 @@
 						<input id="partitaIVA" name="partitaIVA" type="text"
 							class="form-control input-md" maxlength="11">
 					</div>
-					<p id="1" class="col-md-4 errorform">
-					</p>
+					<p id="1" class="col-md-4 errorform"></p>
 				</div>
 
 				<!-- Nome Azienda input-->
@@ -58,8 +59,7 @@
 						<input id="nome" name="nome" type="text"
 							class="form-control input-md" maxlength="50">
 					</div>
-					<p id="2" class="col-md-4 errorform" >
-					</p>
+					<p id="2" class="col-md-4 errorform"></p>
 				</div>
 
 				<!-- Sede Aziendale input-->
@@ -69,8 +69,7 @@
 						<input id="sede" name="sede" type="text"
 							class="form-control input-md" maxlength="39">
 					</div>
-					<p id="3" class="col-md-4 errorform" >
-					</p>
+					<p id="3" class="col-md-4 errorform"></p>
 				</div>
 
 				<!-- Descrizione Ambito-->
@@ -79,13 +78,12 @@
 						Ambito </label>
 					<div class="col-md-4">
 						<textarea onkeyup="maxlength(this,500,'conta3')"
-							style="resize: none;"id="descrizioneAmbito"
+							style="resize: none;" id="descrizioneAmbito"
 							name="descrizioneAmbito" class="form-control input-md" rows="4"
 							cols="50"></textarea>
 						Hai a disposizione ancora <span id='conta3'>500</span> caratteri:<br />
 					</div>
-					<p id="4" class="col-md-4 errorform" >
-					</p>
+					<p id="4" class="col-md-4 errorform"></p>
 				</div>
 
 				<!-- Numero Telefono-->
@@ -96,8 +94,7 @@
 						<input id="numeroTelefono" name="numeroTelefono" type="text"
 							class="form-control input-md" maxlength="13">
 					</div>
-					<p id="5" class="col-md-4 errorform" >
-					</p>
+					<p id="5" class="col-md-4 errorform"></p>
 				</div>
 
 				<!-- Email-->
@@ -107,8 +104,7 @@
 						<input id="email" name="email" type="text"
 							class="form-control input-md" maxlength="50">
 					</div>
-					<p id="6" class="col-md-4 errorform" >
-					</p>
+					<p id="6" class="col-md-4 errorform"></p>
 				</div>
 
 				<!-- Password-->
@@ -119,8 +115,7 @@
 						<input id="password" name="password" type="password"
 							class="form-control input-md" maxlength="20">
 					</div>
-					<p id="7" class="col-md-4 errorform" >
-					</p>
+					<p id="7" class="col-md-4 errorform"></p>
 				</div>
 
 				<!-- Conferma Password-->
@@ -131,8 +126,7 @@
 						<input id="confPassword" name="confPassword" type="password"
 							class="form-control input-md" maxlength="20">
 					</div>
-					<p id="8" class="col-md-4 errorform" >
-					</p>
+					<p id="8" class="col-md-4 errorform"></p>
 				</div>
 
 
@@ -140,8 +134,8 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="submit"></label>
 					<div class="col-md-4">
-						<button type="submit" id="submit" name="submit" class="btn btn-primary" >Invia
-							dati aziendali</button>
+						<button type="submit" id="submit" name="submit"
+							class="btn btn-primary">Invia dati aziendali</button>
 					</div>
 				</div>
 
