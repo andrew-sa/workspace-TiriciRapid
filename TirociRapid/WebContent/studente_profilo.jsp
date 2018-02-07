@@ -17,8 +17,9 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="js/selected_item_studente.js"></script>	
+<script type="text/javascript" src="js/messaggi.js"></script>
 </head>
-<body onload="selectedItemStudente();">
+<body onload="selectedItemStudente(); nascondiMessaggiTop();">
 
 	<%@ include file="slider.jsp"%>
 

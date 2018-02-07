@@ -55,6 +55,7 @@ public class CreaRichiestaTirocinio extends HttpServlet {
 		String username = ((UserLoggato) request.getSession().getAttribute("user")).getId();
 		String partitaIVA = request.getParameter("partitaIVAAzienda");
 		String nomeTirocinio = request.getParameter("nomeTirocinio");
+		nomeTirocinio = nomeTirocinio.replace("+", " ");
 		final String replacement = "";
 		if (replaceIfMissing(partitaIVA, replacement).equals(replacement) || replaceIfMissing(nomeTirocinio, replacement).equals(replacement))
 		{
@@ -99,7 +100,7 @@ public class CreaRichiestaTirocinio extends HttpServlet {
 				request.setAttribute("errore", e.getMessage());
 			}
 		}
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata di HomeStudente
+		RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/richieste"); //Alla schermata di HomeStudente
 		dispatcher.forward(request, response);
 	}
 

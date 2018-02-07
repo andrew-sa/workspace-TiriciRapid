@@ -43,6 +43,7 @@ public class EliminaRichiestaTirocinio extends HttpServlet {
 		String partitaIVA = request.getParameter("partitaIVAAzienda");
 		String nomeTirocinio = request.getParameter("nomeTirocinio");
 		String stato = request.getParameter("stato");
+		nomeTirocinio = nomeTirocinio.replace("+", " ");
 //		final String replacement = "";
 		HashMap<Integer, String> states = (HashMap<Integer, String>) getServletContext().getAttribute("statesReqTir");
 		if (!(states.get(-1).equals(stato) || states.get(-4).equals(stato)))
@@ -55,6 +56,7 @@ public class EliminaRichiestaTirocinio extends HttpServlet {
 			{
 				AbstractManagerFactory factory = new DAOFactory();
 				AbstractRichiestaTirocinioManager managerRichiestaTirocinio = factory.createRichiestaTirocinioManager();
+			
 				managerRichiestaTirocinio.delete(username, partitaIVA, nomeTirocinio);
 				request.setAttribute("successo", "La richiesta di tirocinio selezionata &egrave; stata eliminata con successo");
 			}
@@ -75,7 +77,7 @@ public class EliminaRichiestaTirocinio extends HttpServlet {
 				request.setAttribute("errore", e.getMessage());
 			}
 		}
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata di RichiesteTirocinioStudente
+		RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/richieste"); //Alla schermata di RichiesteTirocinioStudente
 		dispatcher.forward(request, response);
 	}
 

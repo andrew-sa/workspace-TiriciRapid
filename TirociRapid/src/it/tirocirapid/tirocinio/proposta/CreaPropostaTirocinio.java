@@ -194,7 +194,7 @@ public class CreaPropostaTirocinio extends HttpServlet {
 				request.setAttribute("errore", e.getMessage());
 				e.printStackTrace();
 			}
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("azienda_aggiunta_tirocinio.jsp"); //InserisciTircinio
+			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("azienda_aggiunta_tirocinio.jsp"); //InserisciTircinio
 			dispatcher.forward(request, response);
 		}
 		else if (user != null)

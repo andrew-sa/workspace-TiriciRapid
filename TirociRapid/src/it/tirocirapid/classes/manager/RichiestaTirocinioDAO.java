@@ -76,9 +76,10 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 	 * @param con la connessione al database
 	 * @throws SQLException
 	 */
-	private boolean isGoodRequest(String usename, HashMap<Integer, String> states, Connection con) throws SQLException
+	private boolean isGoodRequest(String username, HashMap<Integer, String> states, Connection con) throws SQLException
 	{
 		PreparedStatement ps = con.prepareStatement(READ_ALL_STATES_BY_STUDENTE);
+		ps.setString(1, username);
 		ResultSet rs = ps.executeQuery();
 		while (rs.next())
 		{
@@ -475,15 +476,15 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 		return count;
 	}
 	
-	private static final String CREATE = "INSERT INTO richiestatirocinio(Nome, PartitaIVA, Stato, Username) VALUES (?, ?, ?, ?)";
-	private static final String READ_ALL_STATES_BY_STUDENTE = "SELECT Stato FROM richiestatirocinio WHERE Studente = ?";
+	private static final String CREATE = "INSERT INTO richiestatirocinio(PartitaIVA, Nome,Stato, Username) VALUES (?, ?, ?, ?)";
+	private static final String READ_ALL_STATES_BY_STUDENTE = "SELECT Stato FROM richiestatirocinio WHERE Username = ?";
 	private static final String DELETE = "DELETE FROM richiestatirocinio WHERE Nome = ? AND PartitaIVA = ? AND Username = ?";
 	private static final String READ = "SELECT * FROM richiestatirocinio WHERE Nome = ? AND PartitaIVA = ? AND Username = ?";
 	private static final String UPDATE = "UPDATE tirocinio SET Stato = ? WHERE Nome = ? AND PartitaIVA = ? AND Username = ?";
 	private static final String CREATE_NOMINARE = "INSERT INTO nominare(Nome, PartitaIVA, UsernameStudente, UsernameProfessore) VALUES (?, ?, ?, ?)";
 	private static final String DELETE_NOMINARE = "DELETE FROM nominare WHERE Nome = ? AND PartitaIVA = ? AND UsernameStudente = ? AND UsernameProfessore = ?";
 	private static final String READ_NOMINARE = "SELECT UsernameProfessore FROM nominare WHERE Nome = ? AND PartitaIVA = ? AND UsernameStudente = ?";
-	private static final String READ_ALL_BY_STUDENTE = "SELECT * FROM richiestatirocinio WHERE Studente = ?";
+	private static final String READ_ALL_BY_STUDENTE = "SELECT * FROM richiestatirocinio WHERE Username = ?";
 	private static final String READ_BY_AZIENDA_AND_STATO = "SELECT * FROM richiestatirocinio WHERE PartitaIVA = ? AND Stato = ?";
 	private static final String READ_BY_AZIENDA = "SELECT * FROM richiestatirocinio WHERE PartitaIVA = ?";
 	private static final String READ_ALL_NOMINARE_BY_TUTOR_INTERNO = "SELECT * FROM nominare WHERE UsernameProfessore = ?";

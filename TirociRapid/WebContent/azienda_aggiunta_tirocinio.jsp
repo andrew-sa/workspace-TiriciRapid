@@ -21,18 +21,7 @@
 
 </head>
 <body onload="selectedItemAzienda(); nascondiMessaggiTop();">
-			<%
-				if (request.getAttribute("errore") != null) {
-			%>
-			<h1 class="erroreTop"><%= request.getAttribute("errore") %> <i class="fa fa-times" aria-hidden="true" onclick="clearMessaggiTop()"></i></h1>
-			<%
-				}
-				else if (request.getAttribute("successo") != null) {
-			%>
-			<h1 class="successoTop"><%= request.getAttribute("successo") %> <i class="fa fa-times" aria-hidden="true" onclick="clearMessaggiTop()"></i></h1>
-			<%
-				}
-			%>
+			
 	<%@ include file="slider.jsp"%>
 
 	<%
@@ -52,6 +41,18 @@
 	%>
 
 	<div class="container">
+		<%
+			if (request.getAttribute("errore") != null) {
+		%>
+		<h1 class="erroreTop"><%= request.getAttribute("errore") %> <i class="fa fa-times" aria-hidden="true" onclick="clearMessaggiTop()"></i></h1>
+		<%
+			}
+			else if (request.getAttribute("successo") != null) {
+		%>
+		<h1 class="successoTop"><%= request.getAttribute("successo") %> <i class="fa fa-times" aria-hidden="true" onclick="clearMessaggiTop()"></i></h1>
+		<%
+			}
+		%>
 		<div class="row">
 			
 			<form method="post" action="crea_proposta_tirocinio"

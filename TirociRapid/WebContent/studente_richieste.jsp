@@ -17,8 +17,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="js/jquery.js"></script>
 <script src="js/selected_item_studente.js"></script>
+<script type="text/javascript" src="js/messaggi.js"></script>
 </head>
-<body onload="selectedItemStudente();">
+<body onload="selectedItemStudente(); nascondiMessaggiTop();">
 
 	<%
 		if (request.getAttribute("errore") != null)
@@ -64,26 +65,80 @@
                       			<%= reqTir.getTirocinio().getNome() %>
                            </h1>
                            <div class="cta-desc">
-                               <h3>Stato: <%= reqTir.getStato() %></h3>
+                           
+                           <% 
+                           String statoAttuale = reqTir.getStato();
+                           switch (statoAttuale)
+                           {
+               					case "ConfAz":
+               						statoAttuale = "Richiesta in attesa della conferma da parte dell'azienda.";
+               						break;
+               					case "ScelTut":
+               						statoAttuale = "Richiesta in attesa dell'attesa del tutor interno da parte dello studente.";
+               						break;
+               					case "ConfTut":
+               						statoAttuale = "Richiesta in attesa della conferma da parte del professore scelto come tutor interno.";
+               						break;
+               					case "ConfResp":
+               						statoAttuale = "Richiesta  in attesa della conferma finale da parte del Responsabile Approvazioni.";
+               						break;
+               					case "Acc":
+               						statoAttuale = "Richiesta accettata dal Responsabile Approvazione.";
+               						break;
+               					case "RifResp":
+               						statoAttuale = "Richiesta rifiutata dal responsabile approvazioni";
+               						break;
+               					case "RifTut":
+               						statoAttuale = "Richiesta rifiutata dal tutor interno scelto e" 
+               						+"in attesa di una nuova scelta da parte dello studente.";
+               						break;
+               					case "RifAz":
+               						statoAttuale = "Richiesta rifiutata dall'azienda";
+               						break;
+               					default:
+               						break;
+                           }
+                           
+                           
+                           %>
+                               <p><span class="parametri-richiesta">Stato:</span> <%= statoAttuale %></p>
                                <%
                                		String stato = reqTir.getStato();
                                		if (states.get(4).equals(stato) || states.get(5).equals(stato) || states.get(-4).equals(stato))
                                		{
                                %>
-                               <p>Tutor interno: <b><%= reqTir.getTutorInterno().getUsername() %></b></p>
+                              <p> <span class="parametri-richiesta">Tutor interno:</span> <%=reqTir.getTutorInterno().getUsername()%></p>
+                               <%
+                               		}
+                               		else if(states.get(2).equals(stato)||states.get(-3).equals(stato))
+                               		{
+                               %>
+                                 	<div class="col-md-3 cta-button">
+		                           		<a href="" class="btn btn-lg btn-block btn-default">Elimina!</a>
+		                       		</div>
                                <%
                                		}
                                %>
                            </div>
                        </div>
-                       <div class="col-md-3 cta-button">
-                           <a href="#" class="btn btn-lg btn-block btn-default">Elimina!</a>
-                       </div>
+                        <%
+                        String path = "elimina_richiesta_tirocinio?nomeTirocinio="+ reqTir.getTirocinio().getNome().replace(" ", "+") +
+                        			  "&partitaIVAAzienda="+reqTir.getTirocinio().getPartitaIVAAzienda()+"&stato="+reqTir.getStato();
+                        if(states.get(-1).equals(stato) || states.get(-4).equals(stato))   
+                        	
+                        {       		
+                        %>
+		                       <div class="col-md-3 cta-button">
+		                           <a href=<%=path %> class="btn btn-lg btn-block btn-default">Elimina!</a>
+		                       </div>
+                        <%
+                         }
+                        %>
                     </div>
                </div>
 		</div>
 		<%
-					}
+					} //FINE FOR
 				}
 			}
 		%>
