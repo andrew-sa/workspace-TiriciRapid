@@ -31,7 +31,25 @@ public class Curriculum {
 		this.patenti = patenti;
 		this.ulterioriInformazioni = ulterioriInformazioni;
 	}
-
+	@Override public boolean equals(Object other) {
+        boolean result=false;
+        if (other instanceof Curriculum) {
+            Curriculum that = (Curriculum) other;
+            result = ((this.getFax().equals(that.getFax()))  && 
+            		(this.getEsperienzaLavorativa().equals(that.getEsperienzaLavorativa())) &&
+            		(this.getCapacitaCompetenzePersonali().equals(that.getCapacitaCompetenzePersonali())) &&
+            		(this.getMadrelingua().equals(that.getMadrelingua())) &&
+            		(this.getAltreLingue().equals(that.getAltreLingue())) &&
+            		(this.getCapacitaCompetenzeRelazionali().equals(that.getCapacitaCompetenzeRelazionali())) &&
+            		(this.getCapacitaCompetenzeOrganizzative().equals(that.getCapacitaCompetenzeOrganizzative())) &&
+            		(this.getCapacitaCompetenzeTecniche().equals(that.getCapacitaCompetenzeTecniche())) &&
+            		(this.getCapacitaCompetenzeArtistiche().equals(that.getCapacitaCompetenzeArtistiche())) &&
+            		(this.getAltreCapacitaCompetenze().equals(that.getAltreCapacitaCompetenze())) &&
+            		(this.getPatenti().equals(that.getPatenti())) &&
+            		(this.getUlterioriInformazioni().equals(that.getUlterioriInformazioni())));
+        }
+        return result;
+    }
 
 
 	/**

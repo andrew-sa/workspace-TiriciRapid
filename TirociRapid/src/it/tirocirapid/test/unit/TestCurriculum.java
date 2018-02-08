@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
+import it.tirocirapid.classes.model.Azienda;
 import it.tirocirapid.classes.model.Curriculum;
 import junit.framework.TestCase;
 
@@ -11,6 +12,7 @@ public class TestCurriculum extends TestCase {
 	
 	protected Curriculum cVuoto;
 	protected Curriculum c;
+	protected Curriculum w;
 
 	@BeforeEach
 	protected void setUp() {
@@ -25,6 +27,125 @@ public class TestCurriculum extends TestCase {
 	protected void tearDown() {
 		c=null;
 		cVuoto=null;
+	}
+	@Test
+	
+	public void testEquals1() {
+		boolean x=true;
+		assertEquals(x,c.equals(c));
+	}
+	@Test
+	public void testEquals2() {
+		boolean x=false;
+		assertEquals(x, c.equals(x));
+	}
+	@Test
+	public void testEquals3() {
+		boolean x=false;
+		w=new Curriculum("a","esperienzaLavorativa","capacitaCompetenzePersonali","madrelingua",
+				"altreLingue","capacitaCompetenzeRelazionali","capacitaCompetenzeOrganizzative",
+				"capacitaCompetenzeTecniche","capacitaCompetenzeArtistiche","altreCapacitaCompetenze",
+				"patenti","ulterioriInformazioni");
+		assertEquals(x, c.equals(w));
+	}
+	@Test
+	public void testEquals4() {
+		boolean x=false;
+		w=new Curriculum("fax","a","capacitaCompetenzePersonali","madrelingua",
+				"altreLingue","capacitaCompetenzeRelazionali","capacitaCompetenzeOrganizzative",
+				"capacitaCompetenzeTecniche","capacitaCompetenzeArtistiche","altreCapacitaCompetenze",
+				"patenti","ulterioriInformazioni");
+		assertEquals(x, c.equals(w));
+	}
+	@Test
+	public void testEquals5() {
+		boolean x=false;
+		w=new Curriculum("fax","esperienzaLavorativa","a","madrelingua",
+				"altreLingue","capacitaCompetenzeRelazionali","capacitaCompetenzeOrganizzative",
+				"capacitaCompetenzeTecniche","capacitaCompetenzeArtistiche","altreCapacitaCompetenze",
+				"patenti","ulterioriInformazioni");
+		assertEquals(x, c.equals(w));
+	}
+	@Test
+	public void testEquals6() {
+		boolean x=false;
+		w=new Curriculum("fax","esperienzaLavorativa","capacitaCompetenzePersonali","a",
+				"altreLingue","capacitaCompetenzeRelazionali","capacitaCompetenzeOrganizzative",
+				"capacitaCompetenzeTecniche","capacitaCompetenzeArtistiche","altreCapacitaCompetenze",
+				"patenti","ulterioriInformazioni");
+		assertEquals(x, c.equals(w));
+	}
+	@Test
+	public void testEquals7() {
+		boolean x=false;
+		w=new Curriculum("fax","esperienzaLavorativa","capacitaCompetenzePersonali","madrelingua",
+				"a","capacitaCompetenzeRelazionali","capacitaCompetenzeOrganizzative",
+				"capacitaCompetenzeTecniche","capacitaCompetenzeArtistiche","altreCapacitaCompetenze",
+				"patenti","ulterioriInformazioni");
+		assertEquals(x, c.equals(w));
+	}
+	@Test
+	public void testEquals8() {
+		boolean x=false;
+		w=new Curriculum("fax","esperienzaLavorativa","capacitaCompetenzePersonali","madrelingua",
+				"altreLingue","a","capacitaCompetenzeOrganizzative",
+				"capacitaCompetenzeTecniche","capacitaCompetenzeArtistiche","altreCapacitaCompetenze",
+				"patenti","ulterioriInformazioni");
+		assertEquals(x, c.equals(w));
+	}
+	@Test
+	public void testEquals9() {
+		boolean x=false;
+		w=new Curriculum("fax","esperienzaLavorativa","capacitaCompetenzePersonali","madrelingua",
+				"altreLingue","capacitaCompetenzeRelazionali","a",
+				"capacitaCompetenzeTecniche","capacitaCompetenzeArtistiche","altreCapacitaCompetenze",
+				"patenti","ulterioriInformazioni");
+		assertEquals(x, c.equals(w));
+	}
+	@Test
+	public void testEquals10() {
+		boolean x=false;
+		w=new Curriculum("fax","esperienzaLavorativa","capacitaCompetenzePersonali","madrelingua",
+				"altreLingue","capacitaCompetenzeRelazionali","capacitaCompetenzeOrganizzative",
+				"a","capacitaCompetenzeArtistiche","altreCapacitaCompetenze",
+				"patenti","ulterioriInformazioni");
+		assertEquals(x, c.equals(w));
+	}
+	@Test
+	public void testEquals11() {
+		boolean x=false;
+		w=new Curriculum("fax","esperienzaLavorativa","capacitaCompetenzePersonali","madrelingua",
+				"altreLingue","capacitaCompetenzeRelazionali","capacitaCompetenzeOrganizzative",
+				"capacitaCompetenzeTecniche","a","altreCapacitaCompetenze",
+				"patenti","ulterioriInformazioni");
+		assertEquals(x, c.equals(w));
+	}
+	@Test
+	public void testEquals12() {
+		boolean x=false;
+		w=new Curriculum("fax","esperienzaLavorativa","capacitaCompetenzePersonali","madrelingua",
+				"altreLingue","capacitaCompetenzeRelazionali","capacitaCompetenzeOrganizzative",
+				"capacitaCompetenzeTecniche","capacitaCompetenzeArtistiche","a",
+				"patenti","ulterioriInformazioni");
+		assertEquals(x, c.equals(w));
+	}
+	@Test
+	public void testEquals13() {
+		boolean x=false;
+		w=new Curriculum("fax","esperienzaLavorativa","capacitaCompetenzePersonali","madrelingua",
+				"altreLingue","capacitaCompetenzeRelazionali","capacitaCompetenzeOrganizzative",
+				"capacitaCompetenzeTecniche","capacitaCompetenzeArtistiche","altreCapacitaCompetenze",
+				"a","ulterioriInformazioni");
+		assertEquals(x, c.equals(w));
+	}
+	@Test
+	public void testEquals14() {
+		boolean x=false;
+		w=new Curriculum("fax","esperienzaLavorativa","capacitaCompetenzePersonali","madrelingua",
+				"altreLingue","capacitaCompetenzeRelazionali","capacitaCompetenzeOrganizzative",
+				"capacitaCompetenzeTecniche","capacitaCompetenzeArtistiche","altreCapacitaCompetenze",
+				"patenti","a");
+		assertEquals(x, c.equals(w));
 	}
 	
 	@Test
