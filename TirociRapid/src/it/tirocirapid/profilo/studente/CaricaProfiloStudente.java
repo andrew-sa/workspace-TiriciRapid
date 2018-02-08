@@ -68,10 +68,10 @@ public class CaricaProfiloStudente extends HttpServlet {
 		}
 		else if (!replaceIfMissing(request.getParameter("username"), replacement).equals(replacement))
 		{
-//			String username = request.getParameter("username");
+			String username = request.getParameter("username");
 			try 
 			{
-				Studente studente = caricaDatiStudente(request.getParameter("username"));
+				Studente studente = caricaDatiStudente(username);
 				request.setAttribute("studente", studente);
 			} 
 			catch (SQLException e)
@@ -84,8 +84,8 @@ public class CaricaProfiloStudente extends HttpServlet {
 				e.printStackTrace();
 				request.setAttribute("errore", "Lo studente cercato non &egrave; registrato alla piattaforma");
 			}
-//			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata del profilo dello studente
-//			dispatcher.forward(request, response);
+			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/visualizza_curriculum.jsp"); //Alla schermata del profilo dello studente
+			dispatcher.forward(request, response);
 		}
 		else
 		{

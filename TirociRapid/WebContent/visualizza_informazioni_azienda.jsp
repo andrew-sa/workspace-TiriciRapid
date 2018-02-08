@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@page import="it.tirocirapid.classes.model.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -16,52 +17,69 @@
 </head>
 <body onload="nascondiMessaggiTop();">
 
+
 	<%@ include file="slider.jsp"%>
-	<%@ include file="nav_responsabile_approvazioni.jsp"%>
+	
+	<%
+	UserLoggato user = (UserLoggato) session.getAttribute("user");
+	if(user.getTipo().equals("Professore"))
+	{	
+	%>
+		<%@ include file="nav_professore.jsp"%>
+	<%
+	}
+	else if(user.getTipo().equals("ResponsabileApprovazioni"))
+	{
+	%>
+		<%@ include file="nav_responsabile_approvazioni.jsp"%>
+	<%
+	}
+	%>
 	
 		<div class="container">
+	<%
+	Azienda azienda = (Azienda) request.getAttribute("azienda");
+	
+	%>
 
 		<div id="responsabile-approvazione-azienda-profilo">
 
 			<h2 style="text-align: center;">
-				<span>Nome Azienda  </span>
+				<span><%=azienda.getNome() %>  </span>
 			</h2>
 			<div class="tabella-info-azienda">
 
 				<div class="parametri-azienda">
 					<div class="elemento-parametri-azienda">PartitaIVA:</div>
-					<div class="elemento-parametri-azienda">bla</div>
+					<div class="elemento-parametri-azienda"><%=azienda.getPartitaIVA() %></div>
 				</div>
 
 				<div class="parametri-azienda">
 					<div class="elemento-parametri-azienda">Sede:</div>
-					<div class="elemento-parametri-azienda">bla</div>
+					<div class="elemento-parametri-azienda"><%=azienda.getSede() %></div>
 				</div>
 
 				<div class="parametri-azienda">
 					<div class="elemento-parametri-azienda">Email:</div>
-					<div class="elemento-parametri-azienda">bla js</div>
+					<div class="elemento-parametri-azienda"><%=azienda.getEmail() %></div>
 				</div>
 
 				<div class="parametri-azienda">
 					<div class="elemento-parametri-azienda">Numero di telefono:</div>
-					<div class="elemento-parametri-azienda">bla</div>
+					<div class="elemento-parametri-azienda"><%=azienda.getNumeroTelefono() %></div>
 				</div>
 
 				<div class="parametri-azienda">
 					<div class="elemento-parametri-azienda">Descrizione Ambito:</div>
-					<div class="elemento-parametri-azienda">bla</div>
+					<div class="elemento-parametri-azienda"><%=azienda.getDescrizioneAmbito() %></div>
 				</div>
 
 				<div class="parametri-azienda">
 					<div class="elemento-parametri-azienda">Stato:</div>
-					<div class="elemento-parametri-azienda">bla dsav xm skjhbdvnod  j ddj j k k lkxlk k kl kls dlkzldf  klkdz vfkdf i dzklzd foi  l id zl</div>
+					<div class="elemento-parametri-azienda"><%=azienda.getStato() %></div>
 				</div>
 				
 			</div>
-
-		
-
 		</div>
 		
 	</div>

@@ -91,7 +91,7 @@ public class CaricaRichiesteTirocinio extends HttpServlet {
 				request.setAttribute("errore", "Si &egrave; verificato un errore durante l'interazione col database, si prega di riprovare");
 				
 			}
-			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/richieste.jsp"); //Alla schermata delle RichiesteProfessore
+			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/professore.jsp"); //Alla schermata delle RichiesteProfessore
 			dispatcher.forward(request, response);
 		}
 		else if (userTypes.get("RespAppr").equals(tipo))

@@ -43,7 +43,7 @@ function readResultLogin()
 			}
 			else if(tipo =="Professore")
 			{
-				window.location.href = "professore.jsp";
+				window.location.href = "richieste";
 			}
 			else if(tipo =="ResponsabileApprovazioni")
 			{

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ page import="it.tirocirapid.classes.model.*, java.util.ArrayList, java.util.HashMap" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -18,9 +19,40 @@
 
 	<%@ include file="slider.jsp"%>
 	<%@ include file="nav_professore.jsp"%>
-
+	
+	<%
+		if (request.getAttribute("errore") != null)
+		{
+	%>
+		<h1 class="erroreTop"><%= request.getAttribute("errore") %></h1>
+	<%
+		}
+		else if (request.getAttribute("successo") != null)
+		{
+	%>
+		<h1 class="successoTop"><%= request.getAttribute("successo") %></h1>
+	<%
+		}
+	%>
+	
 	
 	<div class="container">
+	<%
+			HashMap<Integer, String> states = (HashMap<Integer, String>) getServletContext().getAttribute("statesReqTir");
+			if (request.getAttribute("richieste") != null)
+			{
+				ArrayList<RichiestaTirocinio> richieste = (ArrayList<RichiestaTirocinio>) request.getAttribute("richieste");
+				if (richieste.size() == 0)
+				{
+		%>
+			<div class="erroreMsg">Non hai richieste.</div>
+		<%
+				}
+				else
+				{
+					for (RichiestaTirocinio reqTir: richieste)
+					{
+		%>
 		<div class="col-sm-12">
 
 			<div class="bs-calltoaction bs-calltoaction-default">
@@ -30,15 +62,15 @@
 						<div class="cta-desc">
 							<h3>Studente:</h3>
 							<p>
-								Nome &nbsp; Cognome &emsp; 0512103653 &emsp;
-								<button class="bottoni-conferma-professore">Visualizza
-									curriculum</button>
+								<%=reqTir.getStudente().getUsername() %>
+								<a href="profilo_studente?username=<%=reqTir.getStudente().getUsername()%>"><button class="bottoni-conferma-professore" >Visualizza
+									curriculum</button></a>
 							</p>
 							<h3>Azienda:</h3>
 							<p>
-								Partita IVA&emsp;
-								<button class="bottoni-conferma-professore">Visualizza
-									informazioni azienda</button>
+								<%=reqTir.getTirocinio().getNome() %>
+								<a href="dati_azienda?partitaIVA=<%=reqTir.getTirocinio().getPartitaIVAAzienda()%>"><button class="bottoni-conferma-professore">Visualizza
+									informazioni azienda</button></a>
 							</p>
 							<h3>Tirocinio:</h3>
 							<p>
@@ -59,6 +91,11 @@
 				</div>
 			</div>
 		</div>
+		<%
+					} //FINE FOR
+				}
+			}
+		%>
 	</div>
 	
 	<%@include file="footer.jsp"%>

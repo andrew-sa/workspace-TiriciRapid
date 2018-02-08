@@ -23,7 +23,7 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 	
 	public RichiestaTirocinioDAO()
 	{
-		HashMap<Integer, String> statesReqTir = new HashMap<>();
+		statesReqTir = new HashMap<>();
     	statesReqTir.put(1, "ConfAz");
     	statesReqTir.put(2, "ScelTut");
     	statesReqTir.put(3, "ConfTut");
@@ -383,6 +383,8 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 		while (rs.next())
 		{
 			RichiestaTirocinio reqTir = read(rs.getString(3), rs.getString(2), rs.getString(1));
+			System.out.println(reqTir.getStato()+"Studente  "+ reqTir.getStudente().getUsername()+"Tirocinio:  "+reqTir.getTirocinio().getNome()+" Professore: "+reqTir.getTutorInterno().getUsername());
+			System.out.println(statesReqTir.get(3).charAt(1));
 			if (statesReqTir.get(3).equals(reqTir.getStato())) //stato == "ConfTut"
 			richieste.add(reqTir);
 		}

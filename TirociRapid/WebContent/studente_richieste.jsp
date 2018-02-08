@@ -20,7 +20,10 @@
 <script type="text/javascript" src="js/messaggi.js"></script>
 </head>
 <body onload="selectedItemStudente(); nascondiMessaggiTop();">
-
+	
+    <%@ include file="slider.jsp" %>
+	<%@ include file="nav_studente.jsp"%>
+		
 	<%
 		if (request.getAttribute("errore") != null)
 		{
@@ -35,11 +38,7 @@
 	<%
 		}
 	%>
-	
-    <%@ include file="slider.jsp" %>
-
-	<%@ include file="nav_studente.jsp"%>
-	
+		
 	<div class="container">
 		<%
 			HashMap<Integer, String> states = (HashMap<Integer, String>) getServletContext().getAttribute("statesReqTir");
