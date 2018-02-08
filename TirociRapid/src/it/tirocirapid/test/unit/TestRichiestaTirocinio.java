@@ -22,6 +22,7 @@ public class TestRichiestaTirocinio extends TestCase {
 	protected String usernameprova;
 	protected String nometirocinioprova;
 	protected String iva;
+	protected String toStringEs;
 	
 	
 	@BeforeEach
@@ -32,6 +33,7 @@ public class TestRichiestaTirocinio extends TestCase {
 		p= new Professore("username","password","ambito","emailIstituzionale","nome","cognome","email","telefono","indirizzo","matricola");
 		c= new Curriculum("fax","esperienzaLavorativa","capacitaCompetenzePersonali","madrelingua","altreLingue","capacitaCompetenzeRelazionali","capacitaCompetenzeOrganizzative","capacitaCompetenzeTecniche","capacitaCompetenzeArtistiche","altreCapacitaCompetenze","patenti","ulterioriInformazioni");
 		r= new RichiestaTirocinio(s,t,p,"stato");
+		toStringEs = "Studente: username Tirocinio: partitaIVAAzienda nome TutorInterno: username Stato: stato";
 		usernameprova="aaa";
 		nometirocinioprova="bbb";
 		iva="ccc";
@@ -50,7 +52,10 @@ public class TestRichiestaTirocinio extends TestCase {
 		nometirocinioprova=null;
 		iva=null;
 	}
-	
+	@Test
+	public void testToString() {
+		assertEquals(toStringEs, r.toString());
+	}
 	@Test 
 	public void testGetStudente() {
 		assertSame(s,r.getStudente());

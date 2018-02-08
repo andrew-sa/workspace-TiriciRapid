@@ -19,6 +19,7 @@ public class Tirocinio {
 		this.offertaFormativa = offertaFormativa;
 		this.stato = stato;
 	}
+	
 	@Override public boolean equals(Object other) {
         boolean result=false;
         if (other instanceof Tirocinio) {

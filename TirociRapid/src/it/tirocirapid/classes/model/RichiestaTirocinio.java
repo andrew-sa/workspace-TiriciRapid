@@ -19,7 +19,14 @@ public class RichiestaTirocinio {
 		this.tutorInterno = tutorInterno;
 		this.stato = stato;
 	}
-
+	
+	@Override public String toString(){
+	      return "Studente: "+getStudente().getUsername()+
+	             " Tirocinio: "+getTirocinio().getPartitaIVAAzienda()+" "+getTirocinio().getNome()+
+	             " TutorInterno: "+getTutorInterno().getUsername()+
+	             " Stato: "+getStato();
+	      }
+	
 	/**
 	 * @return the studente
 	 */

@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.junit.jupiter.api.AfterEach;
@@ -299,7 +300,39 @@ public class TestRichiestaTirocinioDAO extends TestCase{
 	
 	@Test
 	public void testReadAllRichiesteStudente() {
-		fail("Not yet implemented");
+		try {
+			ArrayList<RichiestaTirocinio> richieste = new ArrayList<>();
+			ArrayList<RichiestaTirocinio> richiesteTest = new ArrayList<>();
+			RichiestaTirocinioDAO rtDAOReadAllRichiesteStudente = new RichiestaTirocinioDAO();
+			richieste = rtDAOReadAllRichiesteStudente.readAllRichiesteStudente("l.esposito23");
+			RichiestaTirocinio h = new RichiestaTirocinio();
+			StudenteDAO s = new StudenteDAO();
+			Studente testStu = s.read("l.esposito23");
+			CurriculumDAO c = new CurriculumDAO();
+			Curriculum testcur = c.read("l.esposito23");
+			testStu.setCurriculum(testcur);
+			ProfessoreDAO p = new ProfessoreDAO();
+			TirocinioDAO t = new TirocinioDAO();
+			Tirocinio testTir = t.read("06653061215", "Tirocinio di PHP");
+			h.setStudente(testStu);
+			h.setTiroconio(testTir);
+			h.setTutorInterno("d.nini");
+			h.setStato("ConfResp");
+			richiesteTest.add(h);
+			for(int i=0; i<= richieste.size()-1; i++) {
+				assertEquals(richieste.get(i).getStato(), richiesteTest.get(i).getStato());
+				assertEquals(richieste.get(i).getTutorInterno().getUsername(), richiesteTest.get(i).getTutorInterno().getUsername());
+				assertEquals(richieste.get(i).getTirocinio().getPartitaIVAAzienda(), richiesteTest.get(i).getTirocinio().getPartitaIVAAzienda());
+				assertEquals(richieste.get(i).getTirocinio().getNome(), richiesteTest.get(i).getTirocinio().getNome());
+				assertEquals(richieste.get(i).getStudente().getUsername(), richiesteTest.get(i).getStudente().getUsername());
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (TuplaNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	@Test
