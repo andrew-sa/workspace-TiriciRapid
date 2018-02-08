@@ -20,7 +20,9 @@ import com.mysql.jdbc.ResultSet;
 import com.mysql.jdbc.Statement;
 
 import it.tirocirapid.classes.manager.AziendaDAO;
+import it.tirocirapid.classes.manager.CurriculumDAO;
 import it.tirocirapid.classes.model.Azienda;
+import it.tirocirapid.classes.model.Curriculum;
 import it.tirocirapid.database.DriverManagerConnectionPool;
 import it.tirocirapid.eccezioni.InsertFailedException;
 import it.tirocirapid.eccezioni.TuplaNotFoundException;
@@ -28,16 +30,19 @@ import junit.framework.TestCase;
 
 public class TestAziendaDAO extends TestCase{
 	
+	protected Connection connection1;
+	protected AziendaDAO aziendadao;
 	
 	@BeforeEach
 	public void setUp() {
-
+		aziendadao=new AziendaDAO();
 		
 	}
 
 	@AfterEach
 	public void tearDown() {
-		
+		aziendadao=null;
+		connection1=null;
 	}
 	
 	@Test
@@ -163,7 +168,202 @@ public class TestAziendaDAO extends TestCase{
 			e.printStackTrace();
 		}
 	}
+
 	
+	@Test //TC_AAZ_1_07 Partiata iva vuota
+	public void testCreate1() {  //01281201299
+		Azienda azienda= new Azienda(null,"","","","","",null,"","");
+		
+		try {
+			connection1 = DriverManagerConnectionPool.getIstance().getConnection();
+	
+		try
+        {
+            try(Statement stCheck=(Statement) connection1.createStatement())
+            {
+            	connection1.setAutoCommit(false);
+                aziendadao.create(azienda);              
+                try(ResultSet rs=(ResultSet) stCheck.executeQuery("SELECT * FROM azienda WHERE PartitaIVA=''"))
+                {
+                    assertTrue(rs.next());
+                    PreparedStatement ps= (PreparedStatement) connection1.prepareStatement("DELETE FROM azienda WHERE PartitaIVA='partitaIVA'");
+                    ps.executeUpdate();
+                }
+               
+                connection1.close();
+            } catch (InsertFailedException e) {
+            	 connection1.rollback();
+				connection1.close();
+				e.printStackTrace();
+			}   
+        } catch (SQLException e) {
+        	
+        	connection1.close();
+			e.printStackTrace();
+		}
+            } 
+
+			catch (SQLException e1) {
+				
+				e1.printStackTrace();
+			}
+	}
+	
+	@Test //TC_AAZ_1_08 Partiata iva sbagliata nel formato
+	public void testCreate2() {  //01281201299
+		Azienda azienda= new Azienda("blabla123456","","","","","",null,"","");
+		
+		try {
+			connection1 = DriverManagerConnectionPool.getIstance().getConnection();
+	
+		try
+        {
+            try(Statement stCheck=(Statement) connection1.createStatement())
+            {
+            	connection1.setAutoCommit(false);
+                aziendadao.create(azienda);
+                try(ResultSet rs=(ResultSet) stCheck.executeQuery("SELECT * FROM azienda WHERE PartitaIVA='blabla123456'"))
+                {
+                    assertTrue(rs.next());
+                    PreparedStatement ps= (PreparedStatement) connection1.prepareStatement("DELETE FROM azienda WHERE PartitaIVA='partitaIVA'");
+                    ps.executeUpdate();
+                }
+               
+                connection1.close();
+            } catch (InsertFailedException e) {
+            	 connection1.rollback();
+				connection1.close();
+				e.printStackTrace();
+			}   
+        } catch (SQLException e) {
+        	
+        	connection1.close();
+			e.printStackTrace();
+		}
+            } 
+
+			catch (SQLException e1) {
+				
+				e1.printStackTrace();
+			}
+	}
+	
+	@Test //TC_AAZ_1_09 Partiata iva sbagliata nel formato
+	public void testCreate3() {  //01281201299
+		Azienda azienda= new Azienda("blabla123","","","","","",null,"","");
+		
+		try {
+			connection1 = DriverManagerConnectionPool.getIstance().getConnection();
+	
+		try
+        {
+            try(Statement stCheck=(Statement) connection1.createStatement())
+            {
+            	connection1.setAutoCommit(true);
+                aziendadao.create(azienda);  
+                try(ResultSet rs=(ResultSet) stCheck.executeQuery("SELECT * FROM azienda WHERE PartitaIVA='blabla123'"))
+                {
+                    assertTrue(rs.next());
+                    PreparedStatement ps= (PreparedStatement) connection1.prepareStatement("DELETE FROM azienda WHERE PartitaIVA='blabla123'");
+                    ps.executeUpdate();
+                }
+               
+                connection1.close();
+            } catch (InsertFailedException e) {
+            	 connection1.rollback();
+				connection1.close();
+				e.printStackTrace();
+			}   
+        } catch (SQLException e) {
+        	
+        	connection1.close();
+			e.printStackTrace();
+		}
+            } 
+
+			catch (SQLException e1) {
+				
+				e1.printStackTrace();
+			}
+	}
+	
+	@Test //TC_AAZ_1_10 Partiata iva sbagliata nel formato 
+	public void testCreate4() {  //01281201299
+		Azienda azienda= new Azienda("blabla12345","","","","","",null,"","");
+		
+		try {
+			connection1 = DriverManagerConnectionPool.getIstance().getConnection();
+	
+		try
+        {
+            try(Statement stCheck=(Statement) connection1.createStatement())
+            {
+            	connection1.setAutoCommit(true);
+                aziendadao.create(azienda);
+                try(ResultSet rs=(ResultSet) stCheck.executeQuery("SELECT * FROM azienda WHERE PartitaIVA='blabla12345'"))
+                {
+                    assertTrue(rs.next());
+                    PreparedStatement ps= (PreparedStatement) connection1.prepareStatement("DELETE FROM azienda WHERE PartitaIVA='blabla12345'");
+                    ps.executeUpdate();
+                }
+               
+                connection1.close();
+            } catch (InsertFailedException e) {
+            	 connection1.rollback();
+				connection1.close();
+				e.printStackTrace();
+			}   
+        } catch (SQLException e) {
+        	
+        	connection1.close();
+			e.printStackTrace();
+		}
+            } 
+
+			catch (SQLException e1) {
+				
+				e1.printStackTrace();
+			}
+	}
+	
+	@Test //TC_AAZ_1_11 Partiata iva ok
+	public void testCreate5() {  //01281201299
+		Azienda azienda= new Azienda("07643520567","","","","","",null,"","");
+		
+		try {
+			connection1 = DriverManagerConnectionPool.getIstance().getConnection();
+	
+		try
+        {
+            try(Statement stCheck=(Statement) connection1.createStatement())
+            {
+            	connection1.setAutoCommit(true);
+                aziendadao.create(azienda);
+                try(ResultSet rs=(ResultSet) stCheck.executeQuery("SELECT * FROM azienda WHERE PartitaIVA='07643520567'"))
+                {
+                    assertTrue(rs.next());
+                    PreparedStatement ps= (PreparedStatement) connection1.prepareStatement("DELETE FROM azienda WHERE PartitaIVA='07643520567'");
+                    ps.executeUpdate();
+                }
+               
+                connection1.close();
+            } catch (InsertFailedException e) {
+            	 connection1.rollback();
+				connection1.close();
+				e.printStackTrace();
+			}   
+        } catch (SQLException e) {
+        	
+        	connection1.close();
+			e.printStackTrace();
+		}
+            } 
+
+			catch (SQLException e1) {
+				
+				e1.printStackTrace();
+			}
+	}
 	
 	@Test
 	public void testRead() {
