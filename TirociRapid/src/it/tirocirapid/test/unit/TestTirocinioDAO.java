@@ -101,6 +101,37 @@ public class TestTirocinioDAO extends TestCase{
 			
 			e.printStackTrace();
 		}
+	}
+	
+	public void testCreate3() {
+		TirocinioDAO tirocinioDAOcreate= new TirocinioDAO();
+		Tirocinio t;
+		
+		try(Connection connection=DriverManagerConnectionPool.getIstance().getConnection();)
+        {
+            try(Statement stCheck=(Statement) connection.createStatement())
+            {
+                connection.setAutoCommit(true);
+
+                String partitaIVA="06653061215"; // serve quella gia presente
+                String nome="Tirocinio di C";  //già presenti
+                String descrizione="aaa";
+                String offertaformativa="aaa";
+                String stato="aaa";
+                t=new Tirocinio(partitaIVA,nome,descrizione,offertaformativa,stato);
+                tirocinioDAOcreate.create(t);
+                System.out.println("SONO NEL TEST CREATE TIROCINIO2 QUESTO DEVE FALLIRE:"+partitaIVA);
+                connection.close();
+                
+                tirocinioDAOcreate.delete(partitaIVA, nome);
+            } catch (InsertFailedException e) {
+				
+				e.printStackTrace();
+			}   
+        } catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
 	}	
 
 	@Test
@@ -140,7 +171,6 @@ public class TestTirocinioDAO extends TestCase{
 						}	
 		        
 	}
-	
 	
 	@Test
 	public void testUpdate2() {
