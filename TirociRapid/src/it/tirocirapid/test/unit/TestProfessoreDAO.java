@@ -225,7 +225,7 @@ public class TestProfessoreDAO extends TestCase{
 					professoriTest.add(due);
 					professoriTest.add(tre);
 					System.out.println("sono nel test READALL");
-					for(int i=0; i<=professori.size(); i++) {
+					for(int i=0; i<=professori.size()-1; i++) {
 						assertEquals(professori.get(i).getNome(), professoriTest.get(i).getNome());
 						assertEquals(professori.get(i).getCognome(), professoriTest.get(i).getCognome());
 						assertEquals(professori.get(i).getEmailIstituzionale(), professoriTest.get(i).getEmailIstituzionale());
