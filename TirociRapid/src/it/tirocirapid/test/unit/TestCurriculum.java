@@ -13,6 +13,7 @@ public class TestCurriculum extends TestCase {
 	protected Curriculum cVuoto;
 	protected Curriculum c;
 	protected Curriculum w;
+	protected String toStringEs;
 
 	@BeforeEach
 	protected void setUp() {
@@ -20,6 +21,7 @@ public class TestCurriculum extends TestCase {
 				"altreLingue","capacitaCompetenzeRelazionali","capacitaCompetenzeOrganizzative",
 				"capacitaCompetenzeTecniche","capacitaCompetenzeArtistiche","altreCapacitaCompetenze",
 				"patenti","ulterioriInformazioni");
+		toStringEs="Fax: fax EsperienzaLavorativa: esperienzaLavorativa CapacitaCompetenzePersonali: capacitaCompetenzePersonali Madrelingua: madrelingua AltreLingue: altreLingue CapacitaCompetenzeRelazionali: capacitaCompetenzeRelazionali CapacitaCompetenzeOrganizzative: capacitaCompetenzeOrganizzative CapacitaCompetenzeTecniche: capacitaCompetenzeTecniche CapacitaCompetenzeArtistiche: capacitaCompetenzeArtistiche AltreCapacitaCompetenze: altreCapacitaCompetenze Patenti: patenti UlterioriInformazioni: ulterioriInformazioni";
 		cVuoto= new Curriculum();
 	}
 
@@ -147,7 +149,10 @@ public class TestCurriculum extends TestCase {
 				"patenti","a");
 		assertEquals(x, c.equals(w));
 	}
-	
+	@Test
+	public void testToString() {
+		assertEquals(toStringEs, c.toString());
+	}
 	@Test
 	public void testGetFax() {
 		assertEquals("fax", c.getFax());

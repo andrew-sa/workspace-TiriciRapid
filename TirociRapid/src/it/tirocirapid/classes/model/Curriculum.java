@@ -31,6 +31,20 @@ public class Curriculum {
 		this.patenti = patenti;
 		this.ulterioriInformazioni = ulterioriInformazioni;
 	}
+	@Override public String toString(){
+	      return "Fax: "+getFax()+
+	    		 " EsperienzaLavorativa: " +getEsperienzaLavorativa()+
+	    		 " CapacitaCompetenzePersonali: " +getCapacitaCompetenzePersonali()+
+	    		 " Madrelingua: " +getMadrelingua()+
+	    		 " AltreLingue: " +getAltreLingue()+
+	    		 " CapacitaCompetenzeRelazionali: "+getCapacitaCompetenzeRelazionali()+
+	    		 " CapacitaCompetenzeOrganizzative: " +getCapacitaCompetenzeOrganizzative()+
+	    		 " CapacitaCompetenzeTecniche: " +getCapacitaCompetenzeTecniche()+
+	    		 " CapacitaCompetenzeArtistiche: " +getCapacitaCompetenzeArtistiche()+
+	    		 " AltreCapacitaCompetenze: " +getAltreCapacitaCompetenze()+
+	    		 " Patenti: "+getPatenti()+
+	    		 " UlterioriInformazioni: " +getUlterioriInformazioni();
+	    }
 	@Override public boolean equals(Object other) {
         boolean result=false;
         if (other instanceof Curriculum) {
