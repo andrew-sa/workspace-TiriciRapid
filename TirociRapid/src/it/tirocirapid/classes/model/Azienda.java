@@ -26,7 +26,35 @@ public class Azienda {
 		this.stato = stato;
 		this.descrizioneAmbito = descrizioneAmbito;
 	}
-
+	@Override public boolean equals(Object other) {
+        boolean result=false;
+        if (other instanceof Azienda) {
+            Azienda that = (Azienda) other;
+            for(int i=0; i<=this.getTirociniOfferti().size()-1; i++) {
+            	result=(this.getTirociniOfferti().get(i).equals(that.getTirociniOfferti().get(i)));
+            }
+            result = ((this.getPartitaIVA().equals(that.getPartitaIVA()))  && 
+            		(this.getPassword().equals(that.getPassword())) && 
+            		(this.getEmail().equals(that.getEmail())) &&
+            		(this.getNome().equals(that.getNome())) &&
+            		(this.getSede().equals(that.getSede())) &&
+            		(this.getNumeroTelefono().equals(that.getNumeroTelefono())) &&
+            		(this.getStato().equals(that.getStato())) &&
+            		(this.getDescrizioneAmbito().equals(that.getDescrizioneAmbito())));
+        }
+        return result;
+    }
+	@Override public String toString(){
+      return "PartitaIVA: "+getPartitaIVA()+
+             " Password: "+getPassword()+
+             " Email: "+getEmail()+
+             " Nome: "+getNome()+
+             " Sede: "+getSede()+
+             " NumeroTelefono: "+getNumeroTelefono()+
+             " TirociniOfferti: "+getTirociniOfferti()+
+             " Stato: "+getStato()+
+             " DescrizioneAmbito: "+getDescrizioneAmbito();
+    }
 	/**
 	 * @return the partitaIVA
 	 */
@@ -135,15 +163,6 @@ public class Azienda {
 	public void setDescrizioneAmbito(String descrizioneAmbito) {
 		this.descrizioneAmbito = descrizioneAmbito;
 	}
-	
-	
-@Override
-	public String toString() {
-		return "Azienda [partitaIVA=" + partitaIVA + ", password=" + password + ", email=" + email + ", nome=" + nome
-				+ ", sede=" + sede + ", numeroTelefono=" + numeroTelefono + ", tirociniOfferti=" + tirociniOfferti
-				+ ", stato=" + stato + ", descrizioneAmbito=" + descrizioneAmbito + "]";
-	}
-
 
 	/*	
 	
