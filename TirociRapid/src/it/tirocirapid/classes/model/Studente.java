@@ -28,6 +28,25 @@ public class Studente {
 		this.email = email;
 		this.curriculum = curriculum;
 	}
+	@Override public boolean equals(Object other) {
+        boolean result=false;
+        if (other instanceof Studente) {
+            Studente that = (Studente) other;
+            result = ((this.getUsername().equals(that.getUsername()))  && 
+            		(this.getPassword().equals(that.getPassword())) &&
+            		(this.getEmailIstituzionale().equals(that.getEmailIstituzionale())) &&
+            		(this.getMatricola().equals(that.getMatricola())) &&
+            		(this.getMediaVoti().equals(that.getMediaVoti())) &&
+            		(this.getNome().equals(that.getNome())) &&
+            		(this.getCognome().equals(that.getCognome())) &&
+            		(this.getIndirizzo().equals(that.getIndirizzo())) &&
+            		(this.getTelefono().equals(that.getTelefono())) &&
+            		(this.getIstruzioneFormazione().equals(that.getIstruzioneFormazione())) &&
+            		(this.getEmail().equals(that.getEmail())) &&
+            		(this.getCurriculum().equals(that.getCurriculum())));
+        }
+        return result;
+    }
 
 	/**
 	 * @return the username

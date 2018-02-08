@@ -12,6 +12,7 @@ public class TestStudente extends TestCase{
 
 	protected Studente sVuoto;
 	protected Studente s;
+	protected Studente s2;
 	protected Curriculum c;
 	protected Curriculum c2;
 	
@@ -33,7 +34,100 @@ public class TestStudente extends TestCase{
 		s=null;
 		c2=null;
 	}
-	
+	public void testEquals1() {
+		boolean x=true;
+		assertEquals(x,s.equals(s));
+	}
+	@Test
+	public void testEquals2() {
+		boolean x=false;
+		assertEquals(x, s.equals(x));
+	}
+	@Test
+	public void testEquals3() {
+		boolean x=false;
+		s2=new Studente("a","password","emailIstituzionale","matricola","mediaVoti",
+				"nome","cognome","indirizzo","telefono","istruzioneFormazione","email",c);
+		assertEquals(x, s.equals(s2));
+	}
+	@Test
+	public void testEquals4() {
+		boolean x=false;
+		s2=new Studente("username","a","emailIstituzionale","matricola","mediaVoti",
+				"nome","cognome","indirizzo","telefono","istruzioneFormazione","email",c);
+		assertEquals(x, s.equals(s2));
+	}
+	@Test
+	public void testEquals5() {
+		boolean x=false;
+		s2=new Studente("username","password","a","matricola","mediaVoti",
+				"nome","cognome","indirizzo","telefono","istruzioneFormazione","email",c);
+		assertEquals(x, s.equals(s2));
+	}
+	@Test
+	public void testEquals6() {
+		boolean x=false;
+		s2=new Studente("username","password","emailIstituzionale","a","mediaVoti",
+				"nome","cognome","indirizzo","telefono","istruzioneFormazione","email",c);
+		assertEquals(x, s.equals(s2));
+	}
+	@Test
+	public void testEquals7() {
+		boolean x=false;
+		s2=new Studente("username","password","emailIstituzionale","matricola","a",
+				"nome","cognome","indirizzo","telefono","istruzioneFormazione","email",c);
+		assertEquals(x, s.equals(s2));
+	}
+	@Test
+	public void testEquals8() {
+		boolean x=false;
+		s2=new Studente("username","password","emailIstituzionale","matricola","mediaVoti",
+				"a","cognome","indirizzo","telefono","istruzioneFormazione","email",c);
+		assertEquals(x, s.equals(s2));
+	}
+	@Test
+	public void testEquals9() {
+		boolean x=false;
+		s2=new Studente("username","password","emailIstituzionale","matricola","mediaVoti",
+				"nome","a","indirizzo","telefono","istruzioneFormazione","email",c);
+		assertEquals(x, s.equals(s2));
+	}
+	@Test
+	public void testEquals10() {
+		boolean x=false;
+		s2=new Studente("username","password","emailIstituzionale","matricola","mediaVoti",
+				"nome","cognome","a","telefono","istruzioneFormazione","email",c);
+		assertEquals(x, s.equals(s2));
+	}
+	@Test
+	public void testEquals11() {
+		boolean x=false;
+		s2=new Studente("username","password","emailIstituzionale","matricola","mediaVoti",
+				"nome","cognome","indirizzo","a","istruzioneFormazione","email",c);
+		assertEquals(x, s.equals(s2));
+	}
+	@Test
+	public void testEquals12() {
+		boolean x=false;
+		s2=new Studente("username","password","emailIstituzionale","matricola","mediaVoti",
+				"nome","cognome","indirizzo","telefono","a","email",c);
+		assertEquals(x, s.equals(s2));
+	}
+	@Test
+	public void testEquals13() {
+		boolean x=false;
+		s2=new Studente("username","password","emailIstituzionale","matricola","mediaVoti",
+				"nome","cognome","indirizzo","telefono","istruzioneFormazione","a",c);
+		assertEquals(x, s.equals(s2));
+	}
+	@Test
+	public void testEquals14() {
+		boolean x=false;
+		c2= new Curriculum("a","b","c","d","e","f","g","h","i","l","m","n");
+		s2=new Studente("username","password","emailIstituzionale","matricola","mediaVoti",
+				"nome","cognome","indirizzo","telefono","istruzioneFormazione","email",c2);
+		assertEquals(x, s.equals(s2));
+	}
 	@Test
 	public void testGetUsername() {
 		assertEquals("username",s.getUsername());
