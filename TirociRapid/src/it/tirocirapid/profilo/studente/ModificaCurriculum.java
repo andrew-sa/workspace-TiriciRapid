@@ -104,7 +104,7 @@ public class ModificaCurriculum extends HttpServlet {
 				{
 					System.out.println(param);
 					request.setAttribute("errore", "Il campo " + param + " &egrave; obbligatorio");
-					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //ModificaCurriculum
+					RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/"); //ModificaCurriculum
 					dispatcher.forward(request, response);
 					return;
 				}
@@ -119,7 +119,7 @@ public class ModificaCurriculum extends HttpServlet {
 					else
 					{
 						request.setAttribute("errore", "Il campo " + param + " deve contenere 11 cifre");
-						RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/studente_curriculum.jsp"); //CreaCurriculum
+						RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/studente_curriculum.jsp"); //CreaCurriculum
 						dispatcher.forward(request, response);
 						return;
 					}
@@ -133,7 +133,7 @@ public class ModificaCurriculum extends HttpServlet {
 					else
 					{
 						request.setAttribute("errore", "Il campo " + param + " non pu&ograve; superare 200 caratteri");
-						RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/studente_curriculum.jsp"); //CreaCurriculum
+						RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/studente_curriculum.jsp"); //CreaCurriculum
 						dispatcher.forward(request, response);
 						return;
 					}
@@ -147,7 +147,7 @@ public class ModificaCurriculum extends HttpServlet {
 					else
 					{
 						request.setAttribute("errore", "Il campo " + param + " non pu&ograve; superare 200 caratteri");
-						RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/studente_curriculum.jsp"); //CreaCurriculum
+						RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/studente_curriculum.jsp"); //CreaCurriculum
 						dispatcher.forward(request, response);
 						return;
 					}
@@ -161,7 +161,7 @@ public class ModificaCurriculum extends HttpServlet {
 					else
 					{
 						request.setAttribute("errore", "Il campo " + param + " non pu&ograve; superare 200 caratteri");
-						RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/studente_curriculum.jsp"); //CreaCurriculum
+						RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/studente_curriculum.jsp"); //CreaCurriculum
 						dispatcher.forward(request, response);
 						return;
 					}
@@ -175,7 +175,7 @@ public class ModificaCurriculum extends HttpServlet {
 					else
 					{
 						request.setAttribute("errore", "Il campo " + param + " non pu&ograve; superare 200 caratteri");
-						RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/studente_curriculum.jsp"); //CreaCurriculum
+						RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/studente_curriculum.jsp"); //CreaCurriculum
 						dispatcher.forward(request, response);
 						return;
 					}
@@ -189,7 +189,7 @@ public class ModificaCurriculum extends HttpServlet {
 					else
 					{
 						request.setAttribute("errore", "Il campo " + param + " non pu&ograve; superare 200 caratteri");
-						RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/studente_curriculum.jsp"); //CreaCurriculum
+						RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/studente_curriculum.jsp"); //CreaCurriculum
 						dispatcher.forward(request, response);
 						return;
 					}
@@ -203,7 +203,7 @@ public class ModificaCurriculum extends HttpServlet {
 					else
 					{
 						request.setAttribute("errore", "Il campo " + param + " non pu&ograve; superare 200 caratteri");
-						RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/studente_curriculum.jsp"); //CreaCurriculum
+						RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/studente_curriculum.jsp"); //CreaCurriculum
 						dispatcher.forward(request, response);
 						return;
 					}
@@ -217,7 +217,7 @@ public class ModificaCurriculum extends HttpServlet {
 					else
 					{
 						request.setAttribute("errore", "Il campo " + param + " non pu&ograve; superare 200 caratteri");
-						RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/studente_curriculum.jsp"); //CreaCurriculum
+						RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/studente_curriculum.jsp"); //CreaCurriculum
 						dispatcher.forward(request, response);
 						return;
 					}
@@ -231,7 +231,7 @@ public class ModificaCurriculum extends HttpServlet {
 					else
 					{
 						request.setAttribute("errore", "Il campo " + param + " non pu&ograve; superare 20 caratteri");
-						RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/studente_curriculum.jsp"); //CreaCurriculum
+						RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/studente_curriculum.jsp"); //CreaCurriculum
 						dispatcher.forward(request, response);
 						return;
 					}
@@ -282,7 +282,7 @@ public class ModificaCurriculum extends HttpServlet {
 				else //Non si verifica mai
 				{
 					request.setAttribute("errore", "Si &egrave; verificato un errore, si prega di riprovare");
-					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/studente_curriculum.jsp"); //CreaCurriculum
+					RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/studente_curriculum.jsp"); //CreaCurriculum
 					dispatcher.forward(request, response);
 					return;
 				}
@@ -298,21 +298,21 @@ public class ModificaCurriculum extends HttpServlet {
 			{
 				e.printStackTrace();
 				request.setAttribute("errore", "L'username dello studente immesso non &egrave; presente nel database");
-				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //ModificaCurriculum
+				RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/"); //ModificaCurriculum
 				dispatcher.forward(request, response);
 			}
 			catch (SQLException e)
 			{
 				e.printStackTrace();
 				request.setAttribute("errore", "Si &egrave; verificato un errore durante l'interazione col database, si prega di riprovare");
-				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //ModificaCurriculum
+				RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/"); //ModificaCurriculum
 				dispatcher.forward(request, response);
 			}
 			catch (InsertFailedException e)
 			{
 				e.printStackTrace();
 				request.setAttribute("errore", e.getMessage());
-				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //ModificaCurriculum
+				RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/"); //ModificaCurriculum
 				dispatcher.forward(request, response);
 			}
 		}
@@ -320,14 +320,14 @@ public class ModificaCurriculum extends HttpServlet {
 		{
 			e.printStackTrace();
 			request.setAttribute("errore", "Si &egrave; verificato un errore durante l'interazione col database, si prega di riprovare");
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //ModificaCurriculum
+			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/"); //ModificaCurriculum
 			dispatcher.forward(request, response);
 		}
 		catch (TuplaNotFoundException e)
 		{
 			e.printStackTrace();
 			request.setAttribute("errore", e.getMessage());
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //ModificaCurriculum
+			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/"); //ModificaCurriculum
 			dispatcher.forward(request, response);
 		}
 	}

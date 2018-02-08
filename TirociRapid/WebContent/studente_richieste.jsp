@@ -74,7 +74,7 @@
                						statoAttuale = "Richiesta in attesa della conferma da parte dell'azienda.";
                						break;
                					case "ScelTut":
-               						statoAttuale = "Richiesta in attesa dell'attesa del tutor interno da parte dello studente.";
+               						statoAttuale = "Richiesta in attesa della conferma del tutor interno da parte dello studente.";
                						break;
                					case "ConfTut":
                						statoAttuale = "Richiesta in attesa della conferma da parte del professore scelto come tutor interno.";
@@ -110,14 +110,6 @@
                               <p> <span class="parametri-richiesta">Tutor interno:</span> <%=reqTir.getTutorInterno().getUsername()%></p>
                                <%
                                		}
-                               		else if(states.get(2).equals(stato)||states.get(-3).equals(stato))
-                               		{
-                               %>
-                                 	<div class="col-md-3 cta-button">
-		                           		<a href="" class="btn btn-lg btn-block btn-default">Elimina!</a>
-		                       		</div>
-                               <%
-                               		}
                                %>
                            </div>
                        </div>
@@ -133,7 +125,7 @@
 		                       </div>
                         <%
                          }
-                        if (states.get(2).equals(stato) )
+                        if (states.get(2).equals(stato) || states.get(-3).equals(stato))
                         {	
                         	path = "lista_professori?nomeTirocinio="+ reqTir.getTirocinio().getNome().replace(" ", "+") +
                       			  "&partitaIVAAzienda="+reqTir.getTirocinio().getPartitaIVAAzienda();
