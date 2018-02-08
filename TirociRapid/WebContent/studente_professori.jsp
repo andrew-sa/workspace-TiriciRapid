@@ -13,92 +13,30 @@
 		<link rel="stylesheet" href="css/studente.css">
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/messaggi.css">
+		<link rel="stylesheet" href="css/pagine.css">
 		<link rel="stylesheet"
 			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<script src="js/jquery.js"></script>
+		<script src="js/json2.js"></script>
 		<script src="js/selected_item_studente.js"></script>
-		<script type="text/javascript" src="js/messaggi.js"></script>
+		<script src="js/messaggi.js"></script>
+		<script src="js/lista_professori.js"></script>
 	</head>
-	<body onload="selectedItemStudente(); nascondiMessaggiTop();">
+	<body onload="selectedItemStudente(); caricaListaProfessori(); caricaPaginaProfessori(null); nascondiMessaggiTop();">
 	
 		<%@ include file="slider.jsp"%>
 	
 		<%@ include file="nav_studente.jsp"%>
 	
 		<div class="container">
-		<%
-		if (request.getAttribute("errore") != null)
-		{
-		%>
-			<h1 class="erroreTop"><%= request.getAttribute("errore") %></h1>
-		<%
-		}
-		else if (request.getAttribute("successo") != null)
-		{
-		%>
-			<h1 class="successoTop"><%= request.getAttribute("successo") %></h1>
-		<%
-		}
-		%>
-			<%
-				boolean isReqTir = false;
-				if (request.getParameter("partitaIVAAzienda") != null && request.getParameter("nomeTirocinio") != null)
-				{
-					isReqTir = true;
-				}
-				if (request.getAttribute("professori") != null) {
-					ArrayList<Professore> professori = (ArrayList<Professore>) request.getAttribute("professori");
-					for (Professore p : professori) {
-			%>
-	
-			<div class="col-sm-12">
-	
-				<div class="bs-calltoaction bs-calltoaction-default">
-					<div class="row">
-						<div class="col-md-9 cta-contents">
-							<h1 class="cta-title"><%=p.getNome() %> <%=p.getCognome() %></h1>
-							<div class="cta-desc">
-								<p>
-									<span class="parametri-professore">Ambito:</span>
-									<%=p.getAmbito() %>
-								</p>
-								<p>
-									<span class="parametri-professore">Email Istituzionale: </span>
-									<%=p.getEmailIstituzionale() %>
-								</p>
-								<p>
-									<span class="parametri-professore">Email:</span> <%=p.getEmail() %>
-								</p>
-								<p>
-									<span class="parametri-professore">Telefono:</span> <%=p.getTelefono() %>
-								</p>
-	
-							</div>
-						</div>
-						<%
-							if (isReqTir)
-							{
-								String path = getServletContext().getContextPath() + "/scegli_tutor?" + request.getQueryString() + "&professore=" + p.getUsername();
-						%>
-						<div class="col-md-3 cta-button">
-							<a href="<%= path %>" class="btn btn-lg btn-block btn-default">Scegli
-								come tutor</a>
-						</div>
-						<%
-							}
-						%>
-					</div>
-				</div>
-	
-	
-			</div>
-			<%
-				} //FINE FOR
-	
-				} // FINE IF
-			%>
 			
 		</div>
+		
+		<div id="numPages">
+		
+		</div>
+		
 		<%@include file="footer.jsp"%>
 	</body>
 </html>
