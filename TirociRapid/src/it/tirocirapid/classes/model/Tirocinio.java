@@ -19,7 +19,25 @@ public class Tirocinio {
 		this.offertaFormativa = offertaFormativa;
 		this.stato = stato;
 	}
-
+	@Override public boolean equals(Object other) {
+        boolean result=false;
+        if (other instanceof Tirocinio) {
+            Tirocinio that = (Tirocinio) other;
+            result = ((this.getPartitaIVAAzienda().equals(that.getPartitaIVAAzienda()))  && 
+            		(this.getNome().equals(that.getNome())) &&
+            		(this.getDescrizione().equals(that.getDescrizione())) &&
+            		(this.getOffertaFormativa().equals(that.getOffertaFormativa())) &&
+            		(this.getStato().equals(that.getStato())));
+        }
+        return result;
+    }
+	@Override public String toString(){
+	      return "PartitaIVAAzienda: "+getPartitaIVAAzienda()+
+	             " Nome: "+getNome()+
+	             " Descrizione: "+getDescrizione()+
+	             " OffertaFormativa: "+getOffertaFormativa()+
+	             " Stato: "+getStato();
+	    }
 	/**
 	 * @return the partitaIVAAzienda
 	 */
