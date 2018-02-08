@@ -5,7 +5,7 @@ function selectedItemAzienda()
 	
 	switch(path)
 	{
-		case "/TirociRapid/azienda_aggiunta_tirocinio.jsp":
+		case "/TirociRapid/azienda_aggiunta_tirocinio.jsp": case "/TirociRapid/crea_proposta_tirocinio":
 			$("#item_aggiungi_tirocinio_azienda").attr("class","attiva");
 			break;
 		case "/TirociRapid/storico_richieste.jsp":

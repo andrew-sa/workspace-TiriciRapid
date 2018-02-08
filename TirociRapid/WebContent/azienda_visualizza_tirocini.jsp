@@ -13,27 +13,41 @@
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="css/messaggi.css">
 <script type="text/javascript" src="js/formcheck.js"></script>
 <script type="text/javascript" src="js/selected_item_azienda.js"></script>
 <script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/messaggi.js"></script>
 
 </head>
-<body onload="selectedItemAzienda();">
+<body onload="selectedItemAzienda(); nascondiMessaggiTop();">
 
 <%@ include file="slider.jsp" %>
 
 	<%@ include file="nav_azienda.jsp" %>
 	
 		<div class="container">
-		<%if ((request.getAttribute("successo") != null))
-		{%>
-	<div style="color: green; text-align: center;"><%=request.getAttribute("successo")%></div>
-	<%}%>
+		<%
+		if (request.getAttribute("errore") != null)
+		{
+		%>
+			<h1 class="erroreTop"><%= request.getAttribute("errore") %></h1>
+		<%
+		}
+		else if (request.getAttribute("successo") != null)
+		{
+		%>
+			<h1 class="successoTop"><%= request.getAttribute("successo") %></h1>
+		<%
+		}
+		%>
 	
 		<%
-			if (request.getAttribute("tirocini") != null) {
+			if (request.getAttribute("tirocini") != null) 
+			{
 				ArrayList<Tirocinio> tirocini = (ArrayList<Tirocinio>) request.getAttribute("tirocini");
-				for (Tirocinio t : tirocini) {
+				for (Tirocinio t : tirocini) 
+				{
 		%>
 		<div class="col-sm-12">
 
@@ -67,10 +81,8 @@
 
 			} // FINE IF
 			
-			if(request.getAttribute("errore")!=null){
+			
 		%>
-				<div style="color: red; text-align: center;"><%=request.getAttribute("errore")%></div>		
-		<%} %>
 		</div>
 	<%@include file="footer.jsp" %>
 </body>

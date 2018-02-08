@@ -12,10 +12,14 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	
+<link rel="stylesheet" href="css/messaggi.css">
+	
 <script type="text/javascript" src="js/selected_item_professore.js"></script>
 <script type="text/javascript" src="js/jquery.js"></script>
+
+<script type="text/javascript" src="js/messaggi.js"></script>
 </head>
-<body onload="selectedItemProfessore();">
+<body onload="selectedItemProfessore();nascondiMessaggiTop();">
 
 	<%@ include file="slider.jsp"%>
 	<%@ include file="nav_professore.jsp"%>
@@ -45,7 +49,7 @@
 				if (richieste.size() == 0)
 				{
 		%>
-			<div class="erroreMsg">Non hai richieste.</div>
+			<h1 class="erroreTop">Non hai richieste.</h1>
 		<%
 				}
 				else
@@ -68,24 +72,30 @@
 							</p>
 							<h3>Azienda:</h3>
 							<p>
-								<%=reqTir.getTirocinio().getNome() %>
+								<%=reqTir.getTirocinio().getPartitaIVAAzienda() %>
 								<a href="dati_azienda?partitaIVA=<%=reqTir.getTirocinio().getPartitaIVAAzienda()%>"><button class="bottoni-conferma-professore">Visualizza
 									informazioni azienda</button></a>
 							</p>
 							<h3>Tirocinio:</h3>
 							<p>
-								Nome &emsp;
-								<button class="bottoni-conferma-professore">Visualizza
-									informazioni tirocinio</button>
+								<%=reqTir.getTirocinio().getNome() %>
+								<a href="carica_tirocinio?partitaIVA=<%=reqTir.getTirocinio().getPartitaIVAAzienda()%>&nomeTirocinio=<%=reqTir.getTirocinio().getNome() %>"><button class="bottoni-conferma-professore">Visualizza
+									informazioni tirocinio</button></a>
 							</p>
 						</div>
 					</div>
 					
 					<div class="col-md-3 cta-button"  >
-						<a href="#" class="btn btn-lg btn-block btn-default" id="bottone-professore-accetta" style="display: block;">Accetta</a>
+					<% 
+					String pathAccetta ="convalida_richiesta_tirocinio?action=accetta&partitaIVAAzienda="+reqTir.getTirocinio().getPartitaIVAAzienda()+
+										"&nomeTirocinio="+reqTir.getTirocinio().getNome()+"&usernameStudente="+reqTir.getStudente().getUsername();
+					String pathRifiuta ="convalida_richiesta_tirocinio?action=rifiuta&partitaIVAAzienda="+reqTir.getTirocinio().getPartitaIVAAzienda()+
+							"&nomeTirocinio="+reqTir.getTirocinio().getNome()+"&usernameStudente="+reqTir.getStudente().getUsername();
+					%>
+						<a href="<%=pathAccetta%>" class="btn btn-lg btn-block btn-default" id="bottone-professore-accetta" style="display: block;">Accetta</a>
 					</div>
 					<div class="col-md-3 cta-button" >
-						<a href="#" class="btn btn-lg btn-block btn-default" id="bottone-professore-rifiuta" style="display: block;" >Rifiuta</a>
+						<a href="<%=pathRifiuta%>" class="btn btn-lg btn-block btn-default" id="bottone-professore-rifiuta" style="display: block;" >Rifiuta</a>
 					</div>
 
 				</div>

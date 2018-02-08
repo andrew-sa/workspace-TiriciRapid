@@ -103,7 +103,7 @@
                                <p><span class="parametri-richiesta">Stato:</span> <%= statoAttuale %></p>
                                <%
                                		String stato = reqTir.getStato();
-                               		if (states.get(4).equals(stato) || states.get(5).equals(stato) || states.get(-4).equals(stato))
+                               		if (states.get(3).equals(stato)||states.get(4).equals(stato) || states.get(5).equals(stato) || states.get(-4).equals(stato))
                                		{
                                %>
                               <p> <span class="parametri-richiesta">Tutor interno:</span> <%=reqTir.getTutorInterno().getUsername()%></p>

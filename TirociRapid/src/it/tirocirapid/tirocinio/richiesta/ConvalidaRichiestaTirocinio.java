@@ -33,6 +33,7 @@ import it.tirocirapid.eccezioni.InvalidPreviousStateException;
 import it.tirocirapid.eccezioni.TuplaNotFoundException;
 import it.tirocirapid.factory.AbstractManagerFactory;
 import it.tirocirapid.factory.DAOFactory;
+import jdk.nashorn.internal.ir.RuntimeNode.Request;
 
 /**
  * Servlet che si occupa di gestire la decisione da parte del Responsabile Approvazioni, Professore (Tutor), Azienda su una richeista di tirocinio da parte di uno studente
@@ -49,20 +50,23 @@ public class ConvalidaRichiestaTirocinio extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
     
-    /**
-	 * @see Servlet#init(ServletConfig)
-	 */
-	public void init(ServletConfig config) throws ServletException
-	{
-		userTypes = (HashMap<String, String>) getServletContext().getAttribute("userTypes");
-		statesReqTir = (HashMap<Integer, String>) getServletContext().getAttribute("statesReqTir");
-	}
+//    /**
+//	 * @see Servlet#init(ServletConfig)
+//	 */
+//	public void init(ServletConfig config) throws ServletException
+//	{
+//		userTypes = (HashMap<String, String>) getServletContext().getAttribute("userTypes");
+//		statesReqTir = (HashMap<Integer, String>) getServletContext().getAttribute("statesReqTir");
+//	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
+
+		userTypes = (HashMap<String, String>) getServletContext().getAttribute("userTypes");
+		statesReqTir = (HashMap<Integer, String>) getServletContext().getAttribute("statesReqTir");
 		String tipo = ((UserLoggato) request.getSession().getAttribute("user")).getTipo();
 		String action = request.getParameter("action");
 		String partitaIVA = request.getParameter("partitaIVAAzienda");
@@ -72,15 +76,16 @@ public class ConvalidaRichiestaTirocinio extends HttpServlet {
 		String page = "";
 		if (userTypes.get("RespAz").equals(tipo))
 		{
-			page = ""; // richiesteAzienda
+			page = "azienda_richieste.jsp"; // richiesteAzienda
 		}
 		else if (userTypes.get("Prof").equals(tipo))
 		{
-			page = ""; // richiesteProfessore
+			System.out.println("mi trovo al posto giusto");
+			page = "professore.jsp"; // richiesteProfessore
 		}
 		else if (userTypes.get("RespAppr").equals(tipo))
 		{
-			page = ""; // richiesteAzienda
+			page = "responsabile_approvazioni_richieste_di_tutorato.jsp"; // richiesteAzienda
 		}
 		
 		Boolean isAccept = false;
@@ -95,7 +100,7 @@ public class ConvalidaRichiestaTirocinio extends HttpServlet {
 		else
 		{
 			request.setAttribute("errore", "Devi selezionare un'azione (Acetta/Rifiuta)");
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/" + page);
+			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/" + page);
 			dispatcher.forward(request, response);
 			return;
 		}
@@ -143,7 +148,7 @@ public class ConvalidaRichiestaTirocinio extends HttpServlet {
 			e.printStackTrace();
 			request.setAttribute("errore", e.getMessage());
 		}
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/" + page);
+		RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/" + page);
 		dispatcher.forward(request, response);
 	}
 

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@page import="it.tirocirapid.classes.model.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -17,25 +18,44 @@
 <body onload="nascondiMessaggiTop();">
 
 	<%@ include file="slider.jsp"%>
-	<%@ include file="nav_responsabile_approvazioni.jsp"%>
+		
+	<%
+	UserLoggato user = (UserLoggato) session.getAttribute("user");
+	if(user.getTipo().equals("Professore"))
+	{	
+	%>
+		<%@ include file="nav_professore.jsp"%>
+	<%
+	}
+	else if(user.getTipo().equals("ResponsabileApprovazioni"))
+	{
+	%>
+		<%@ include file="nav_responsabile_approvazioni.jsp"%>
+	<%
+	}
+	%>
+	
 	
 		<div class="container">
-
+<%
+	Tirocinio tirocinio = (Tirocinio) request.getAttribute("tirocinio");
+	
+	%>
 		<div id="responsabile-approvazione-azienda-profilo">
 
 			<h2 style="text-align: center;">
-				<span>Nome Tirocinio</span>
+				<span><%=tirocinio.getNome() %></span>
 			</h2>
 			<div class="tabella-info-azienda">
 
 				<div class="parametri-azienda">
 					<div class="elemento-parametri-azienda">Offerta formativa:</div>
-					<div class="elemento-parametri-azienda">bla</div>
+					<div class="elemento-parametri-azienda"><%=tirocinio.getOffertaFormativa() %></div>
 				</div>
 
 				<div class="parametri-azienda">
 					<div class="elemento-parametri-azienda">Descrizione:</div>
-					<div class="elemento-parametri-azienda">bla</div>
+					<div class="elemento-parametri-azienda"><%=tirocinio.getDescrizione() %></div>
 				</div>
 	
 			</div>
