@@ -41,7 +41,7 @@
 
 		<div id="password_dimenticata" style="visibility: hidden;">
 			<a id="registra_azienda" href="azienda_iscrizione.jsp">Registrati</a> &ensp; &ensp; &ensp;
-			<a id="link_password_dimenticata" href="#">Password dimenticata?</a>
+			<a id="link_password_dimenticata" href="recupera_password_azienda.jsp">Password dimenticata?</a>
 		</div>
 	</div>
 	<%@include file="footer.jsp"%>

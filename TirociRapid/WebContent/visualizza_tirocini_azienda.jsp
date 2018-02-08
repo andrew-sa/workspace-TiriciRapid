@@ -14,8 +14,13 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script type="text/javascript" src="js/messaggi.js"></script>
+	<script type="text/javascript" src="js/selected_item_studente.js"></script>
 </head>
-<body onload="nascondiMessaggiTop();">
+<body onload="nascondiMessaggiTop(); selectedItemStudente();">
+	<%@ include file="slider.jsp"%>
+
+	<%@ include file="nav_studente.jsp"%>
+
 	<%
 		if (request.getAttribute("errore") != null)
 		{
@@ -30,9 +35,6 @@
 	<%
 		}
 	%>
-	<%@ include file="slider.jsp"%>
-
-	<%@ include file="nav_studente.jsp"%>
 
 	<div class="container"> <!-- Contenitore Grande -->
 		<%

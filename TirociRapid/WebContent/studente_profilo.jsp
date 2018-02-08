@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="css/studente.css">
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/messaggi.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="js/selected_item_studente.js"></script>	
@@ -25,6 +26,20 @@
 
 	<%@ include file="nav_studente.jsp"%>
 
+		<%
+		if (request.getAttribute("errore") != null)
+		{
+		%>
+			<h1 class="erroreTop"><%= request.getAttribute("errore") %></h1>
+		<%
+		}
+		else if (request.getAttribute("successo") != null)
+		{
+		%>
+			<h1 class="successoTop"><%= request.getAttribute("successo") %></h1>
+		<%
+		}
+		%>
 
 	<div class="container">
 	<%if(request.getAttribute("studente")!=null){
@@ -150,10 +165,9 @@
 			</div>
 			
 			
-		<%} if(request.getAttribute("errore")!=null){ 
+		<%} 
 		%>
-				<div style="color: red; text-align: center;"><%=request.getAttribute("errore")%></div>		
-		<%} %>
+			
 		
 		</div>
 	</div>

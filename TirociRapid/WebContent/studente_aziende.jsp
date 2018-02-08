@@ -17,6 +17,13 @@
 <script src="js/selected_item_studente.js"></script>
 </head>
 <body onload="selectedItemStudente();nascondiMessaggiTop();">
+	
+	<%@ include file="slider.jsp"%>
+
+	<%@ include file="nav_studente.jsp"%>
+
+	<div class="container">
+	
 	<%
 		if (request.getAttribute("errore") != null)
 		{
@@ -31,11 +38,7 @@
 	<%
 		}
 	%>
-	<%@ include file="slider.jsp"%>
-
-	<%@ include file="nav_studente.jsp"%>
-
-	<div class="container">
+	
 	<%
 			if (request.getAttribute("aziende") != null) {
 				ArrayList<Azienda> aziende = (ArrayList<Azienda>) request.getAttribute("aziende");

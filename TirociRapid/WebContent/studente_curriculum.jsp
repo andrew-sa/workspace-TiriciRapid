@@ -11,6 +11,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Studente curriculum</title>
 <link rel="stylesheet" href="css/studente.css">
+<link rel="stylesheet" href="css/messaggi.css">
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/errorcheck.css">
@@ -22,9 +23,12 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/script.js" type="text/javascript"></script>
 <script src="js/formcheck.js" type="text/javascript"></script>
+<script src="js/selected_item_studente.js" type="text/javascript"></script>
+
 
 </head>
-<body onload="nascondiMessaggiTop();">
+<body onload="nascondiMessaggiTop(); selectedItemStudente();">
+
 	<%@ include file="slider.jsp"%>
 	<%
 	Curriculum curriculum = null;
@@ -51,11 +55,23 @@
 		curriculum = managerCurriculum.read(user.getId());
 	%>
 	<%@ include file="nav_studente.jsp"%>
+	<%
+		if (request.getAttribute("errore") != null)
+		{
+	%>
+		<h1 class="erroreTop"><%= request.getAttribute("errore") %></h1>
+	<%
+		}
+		else if (request.getAttribute("successo") != null)
+		{
+	%>
+		<h1 class="successoTop"><%= request.getAttribute("successo") %></h1>
+	<%
+		}
+	%>
 	<div class="container">
-			<% if(request.getAttribute("errore")!=null){
-		%>
-				<div style="color: red; text-align: center;"><%=request.getAttribute("errore")%></div>		
-		<%} %>
+	
+	
 		<div class="row">
 			<form class="form-horizontal" onsubmit="return validateCurriculum(this)" action="modifica_curriculum"  method="post">
 				<fieldset>
