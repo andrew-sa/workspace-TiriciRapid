@@ -27,19 +27,20 @@ public class Professore {
 	}
 	
 	@Override public boolean equals(Object other) {
-        boolean result = false;
+        boolean result=false;
         if (other instanceof Professore) {
-            Professore that = (Professore) other;
-            result = (this.getUsername() == that.getUsername() && 
-            		this.getPassword() == that.getPassword() && 
-            		this.getAmbito() == that.getAmbito() &&
-            		this.getEmailIstituzionale()==that.getEmailIstituzionale() &&
-            		this.getNome()== that.getAmbito() &&
-            		this.getCognome()==that.getCognome() &&
-            		this.getEmail()==that.getEmail() &&
-            		this.getTelefono()==that.getTelefono() &&
-            		this.getIndirizzo()==that.getIndirizzo() &&
-            		this.getMatricola()==that.getMatricola());
+            Professore that = (Professore) other; 
+            System.out.println(that.toString());
+            result = ((this.getUsername().equals(that.getUsername()))  && 
+            		(this.getPassword().equals(that.getPassword())) && 
+            		(this.getAmbito().equals(that.getAmbito())) &&
+            		(this.getEmailIstituzionale().equals(that.getEmailIstituzionale())) &&
+            		(this.getNome().equals(that.getNome())) &&
+            		(this.getCognome().equals(that.getCognome())) &&
+            		(this.getEmail().equals(that.getEmail())) &&
+            		(this.getTelefono().equals(that.getTelefono())) &&
+            		(this.getIndirizzo().equals(that.getIndirizzo())) &&
+            		(this.getMatricola().equals(that.getMatricola())));
         }
         return result;
     }
@@ -47,6 +48,18 @@ public class Professore {
 	{
 		this.username = username;
 	}
+	@Override public String toString(){
+      return "Username: "+getUsername()+
+             " Password: "+getPassword()+
+             " Ambito: "+getAmbito()+
+             " EmailIstituzionale: "+getEmailIstituzionale()+
+             " Nome: "+getNome()+
+             " Cognome: "+getCognome()+
+             " Email: "+getEmail()+
+             " Telefono: "+getTelefono()+
+             " Indirizzo: "+getIndirizzo()+
+             " Matricola: "+getMatricola();
+    }
 	/**
 	 * @return the username
 	 */
