@@ -33,7 +33,14 @@
 		<%@ include file="nav_responsabile_approvazioni.jsp"%>
 	<%
 	}
+	else if(user.getTipo().equals("ResponsabileAzienda"))
+	{
 	%>
+		<%@ include file="nav_responsabile_approvazioni.jsp"%>
+	<%
+	}
+	%>
+	
 	
 	
 		<div class="container">

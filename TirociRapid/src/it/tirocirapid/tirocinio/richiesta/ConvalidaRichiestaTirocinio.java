@@ -76,7 +76,7 @@ public class ConvalidaRichiestaTirocinio extends HttpServlet {
 		String page = "";
 		if (userTypes.get("RespAz").equals(tipo))
 		{
-			page = "azienda_richieste.jsp"; // richiesteAzienda
+			page = "richieste"; // richiesteAzienda
 		}
 		else if (userTypes.get("Prof").equals(tipo))
 		{
