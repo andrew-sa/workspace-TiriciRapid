@@ -146,12 +146,15 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 	@Override
 	public void updateStato(RichiestaTirocinio toUpdate) throws SQLException, InsertFailedException
 	{
+		System.out.println("vjksbgh");
 		Connection con = DriverManagerConnectionPool.getIstance().getConnection();
 		PreparedStatement ps = con.prepareStatement(UPDATE);
-		ps.setString(1, toUpdate.getTirocinio().getNome());
-		ps.setString(2, toUpdate.getTirocinio().getPartitaIVAAzienda());
-		ps.setString(3, toUpdate.getStudente().getUsername());
+		ps.setString(1, toUpdate.getStato());
+		ps.setString(2, toUpdate.getTirocinio().getNome());
+		ps.setString(3, toUpdate.getTirocinio().getPartitaIVAAzienda());
+		ps.setString(4, toUpdate.getStudente().getUsername());
 		int i = ps.executeUpdate();
+		System.out.println(i);
 		con.commit();
 		ps.close();
 		DriverManagerConnectionPool.getIstance().releaseConnection(con);
@@ -166,6 +169,8 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 	{
 		Connection con = DriverManagerConnectionPool.getIstance().getConnection();
 		PreparedStatement ps = con.prepareStatement(CREATE_NOMINARE);
+		System.out.println(toUpdate.getTirocinio().getNome()+toUpdate.getTirocinio().getPartitaIVAAzienda());
+		System.out.println(toUpdate.getStudente().getUsername()+toUpdate.getTutorInterno().getUsername());
 		ps.setString(1, toUpdate.getTirocinio().getNome());
 		ps.setString(2, toUpdate.getTirocinio().getPartitaIVAAzienda());
 		ps.setString(3, toUpdate.getStudente().getUsername());
@@ -182,12 +187,13 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 		{
 			try
 			{
-				updateStato(toUpdate);
+				//updateStato(toUpdate);
 				con.commit();
 				ps.close();
 				DriverManagerConnectionPool.getIstance().releaseConnection(con);
 			}
-			catch (SQLException | InsertFailedException e)
+			//catch (SQLException | InsertFailedException e)
+			catch (SQLException e)			
 			{
 				con.rollback();
 				ps.close();
@@ -480,7 +486,7 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 	private static final String READ_ALL_STATES_BY_STUDENTE = "SELECT Stato FROM richiestatirocinio WHERE Username = ?";
 	private static final String DELETE = "DELETE FROM richiestatirocinio WHERE Nome = ? AND PartitaIVA = ? AND Username = ?";
 	private static final String READ = "SELECT * FROM richiestatirocinio WHERE Nome = ? AND PartitaIVA = ? AND Username = ?";
-	private static final String UPDATE = "UPDATE tirocinio SET Stato = ? WHERE Nome = ? AND PartitaIVA = ? AND Username = ?";
+	private static final String UPDATE = "UPDATE richiestatirocinio SET Stato = ? WHERE Nome = ? AND PartitaIVA = ? AND Username = ?";
 	private static final String CREATE_NOMINARE = "INSERT INTO nominare(Nome, PartitaIVA, UsernameStudente, UsernameProfessore) VALUES (?, ?, ?, ?)";
 	private static final String DELETE_NOMINARE = "DELETE FROM nominare WHERE Nome = ? AND PartitaIVA = ? AND UsernameStudente = ? AND UsernameProfessore = ?";
 	private static final String READ_NOMINARE = "SELECT UsernameProfessore FROM nominare WHERE Nome = ? AND PartitaIVA = ? AND UsernameStudente = ?";

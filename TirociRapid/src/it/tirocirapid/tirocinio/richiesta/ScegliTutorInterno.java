@@ -55,6 +55,7 @@ public class ScegliTutorInterno extends HttpServlet {
 		String usernameStudente = ((UserLoggato) request.getSession().getAttribute("user")).getId();
 		String partitaIVA = request.getParameter("partitaIVAAzienda");
 		String nomeTirocinio = request.getParameter("nomeTirocinio");
+		nomeTirocinio = nomeTirocinio.replace("+", " ");
 		String usernameProfessore = request.getParameter("professore");
 		final String replacement = "";
 		HashMap<Integer, String> states = (HashMap<Integer, String>) getServletContext().getAttribute("statesReqTir");
@@ -111,7 +112,7 @@ public class ScegliTutorInterno extends HttpServlet {
 				request.setAttribute("errore", e.getMessage());
 			}
 		}
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata di RichiesteTirocinioStudente
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/studente_richieste.jsp"); //Alla schermata di RichiesteTirocinioStudente
 		dispatcher.forward(request, response);
 	}
 

@@ -133,7 +133,17 @@
 		                       </div>
                         <%
                          }
-                        %>
+                        if (states.get(2).equals(stato) )
+                        {	
+                        	path = "lista_professori?nomeTirocinio="+ reqTir.getTirocinio().getNome().replace(" ", "+") +
+                      			  "&partitaIVAAzienda="+reqTir.getTirocinio().getPartitaIVAAzienda();
+                        %>	
+                              <div class="col-md-3 cta-button">
+	                              <a href=<%=path %> class="btn btn-lg btn-block btn-default">Scegli Tutor</a>
+	                          </div>
+	                    <%   
+                        }
+                        %>   
                     </div>
                </div>
 		</div>
