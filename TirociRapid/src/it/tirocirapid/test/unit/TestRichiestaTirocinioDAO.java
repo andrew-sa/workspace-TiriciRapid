@@ -114,10 +114,8 @@ public class TestRichiestaTirocinioDAO extends TestCase{
 				e.printStackTrace();
 			}
 		
-				
-		
-	
 	}
+	
 	
 	@Test
 	public void testIsGoodRequest() {
@@ -125,7 +123,7 @@ public class TestRichiestaTirocinioDAO extends TestCase{
 	}
 
 	@Test
-	public void testRead() {
+	public void testRead1() {
 
 		RichiestaTirocinio richiesta=  new RichiestaTirocinio();
 					try(Connection connection=DriverManagerConnectionPool.getIstance().getConnection();)
@@ -150,197 +148,58 @@ public class TestRichiestaTirocinioDAO extends TestCase{
 					}
 	}
 
+	@Test
+	public void testRead2() {
+
+		RichiestaTirocinio richiesta=  new RichiestaTirocinio();
+					try(Connection connection=DriverManagerConnectionPool.getIstance().getConnection();)
+			        {
+			            try(Statement stCheck=(Statement) connection.createStatement())
+			            {
+			                connection.setAutoCommit(false);
+			        		String usernamestudente="a.a"; 
+			        		String iva="06653061215";
+			        		String nome="Tirocinio di PHP";
+			        		richiesta=richDAO.read(usernamestudente, iva, nome);
+			        		assertEquals(nome, richiesta.getTirocinio().getNome());
+			        		assertEquals(usernamestudente, richiesta.getStudente().getUsername());
+			        		assertEquals(iva, richiesta.getTirocinio().getPartitaIVAAzienda());
+			            } catch (TuplaNotFoundException e) {
+							e.printStackTrace();
+						}
+			           
+			            connection.close();
+			        } catch (SQLException e) {
+						e.printStackTrace();
+					}
+	}
+	
 	@Test // 1 stato TirRif
 	public void testUpdateStato1() {
-		
-		/*DEVO METTERE I DATI DEL TIROCINIO*/
-	//(String partitaIVAAzienda, String nome, String descrizione, String offertaFormativa, String stato)
-		Tirocinio tir= new  Tirocinio("06653061215","AllSafe","Sicurezza","Studiare come usare c per creare un sito web.","TirProp");
-		
-		try {
-			connection1 = DriverManagerConnectionPool.getIstance().getConnection();
-	
-		try
+		RichiestaTirocinio richiesta=  new RichiestaTirocinio();
+		try(Connection connection=DriverManagerConnectionPool.getIstance().getConnection();)
         {
-            try(Statement stCheck=(Statement) connection1.createStatement())
+            try(Statement stCheck=(Statement) connection.createStatement())
             {
-            	connection1.setAutoCommit(true);
-            	
-            	t.create(tir);
-            	t.update("06653061215", "AllSafe", "TirRif");
-            	
-                           
-                try(ResultSet rs=(ResultSet) stCheck.executeQuery("SELECT * FROM Tirocinio WHERE PartitaIVA='06653061215' and Nome='AllSafe'"))
-                {
-                    assertTrue(rs.next());
-                    PreparedStatement ps= (PreparedStatement) connection1.prepareStatement("DELETE FROM tirocinio WHERE PartitaIVA='06653061215' and Nome='AllSafe'");
-                    ps.executeUpdate();
-                }
-               
-                connection1.close();
-            } catch (InsertFailedException e) {
-            	
-				connection1.close();
+                connection.setAutoCommit(false);
+        		String usernamestudente="a.gisi"; 
+        		String iva="06653061215";
+        		String nome="Tirocinio di PHP";
+        		richiesta=richDAO.read(usernamestudente, iva, nome);
+        		
+        		richDAO.updateStato(richiesta);
+        		
+            } catch (TuplaNotFoundException e) {
 				e.printStackTrace();
-			} catch (TuplaNotFoundException e) {
+			} catch (InsertFailedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}   
+			}
+           
+            connection.close();
         } catch (SQLException e) {
-        	
-        	connection1.close();
 			e.printStackTrace();
 		}
-            } 
-
-			catch (SQLException e1) {
-				
-				e1.printStackTrace();
-			}
-	}
-	
-	@Test // 1 stato TirProp
-	public void testUpdateStato2() {
-		
-		/*DEVO METTERE I DATI DEL TIROCINIO*/
-	//(String partitaIVAAzienda, String nome, String descrizione, String offertaFormativa, String stato)
-		Tirocinio tir= new  Tirocinio("06653061215","AllSafe","Sicurezza","Studiare come usare c per creare un sito web.","TirProp");
-		
-		try {
-			connection1 = DriverManagerConnectionPool.getIstance().getConnection();
-	
-		try
-        {
-            try(Statement stCheck=(Statement) connection1.createStatement())
-            {
-            	connection1.setAutoCommit(true);
-            	
-            	t.create(tir);
-            	t.update("06653061215", "AllSafe", "TirProp");
-                           
-                try(ResultSet rs=(ResultSet) stCheck.executeQuery("SELECT * FROM Tirocinio WHERE PartitaIVA='06653061215' and Nome='AllSafe'"))
-                {
-                    assertTrue(rs.next());
-                    PreparedStatement ps= (PreparedStatement) connection1.prepareStatement("DELETE FROM tirocinio WHERE PartitaIVA='06653061215' and Nome='AllSafe'");
-                    ps.executeUpdate();
-                }
-               
-                connection1.close();
-            } catch (InsertFailedException e) {
-            	
-				connection1.close();
-				e.printStackTrace();
-			} catch (TuplaNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}   
-        } catch (SQLException e) {
-        	
-        	connection1.close();
-			e.printStackTrace();
-		}
-            } 
-
-			catch (SQLException e1) {
-				
-				e1.printStackTrace();
-			}
-	}
-	
-	@Test // 1 stato TirNDisp
-	public void testUpdateStato3() {
-		
-		/*DEVO METTERE I DATI DEL TIROCINIO*/
-	//(String partitaIVAAzienda, String nome, String descrizione, String offertaFormativa, String stato)
-		Tirocinio tir= new  Tirocinio("06653061215","AllSafe","Sicurezza","Studiare come usare c per creare un sito web.","TirProp");
-		
-		try {
-			connection1 = DriverManagerConnectionPool.getIstance().getConnection();
-	
-		try
-        {
-            try(Statement stCheck=(Statement) connection1.createStatement())
-            {
-            	connection1.setAutoCommit(true);
-            	
-            	t.create(tir);
-            	t.update("06653061215", "AllSafe", "TirNDisp");
-                           
-                try(ResultSet rs=(ResultSet) stCheck.executeQuery("SELECT * FROM Tirocinio WHERE PartitaIVA='06653061215' and Nome='AllSafe'"))
-                {
-                    assertTrue(rs.next());
-                    PreparedStatement ps= (PreparedStatement) connection1.prepareStatement("DELETE FROM tirocinio WHERE PartitaIVA='06653061215' and Nome='AllSafe'");
-                    ps.executeUpdate();
-                }
-               
-                connection1.close();
-            } catch (InsertFailedException e) {
-            	
-				connection1.close();
-				e.printStackTrace();
-			} catch (TuplaNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}   
-        } catch (SQLException e) {
-        	
-        	connection1.close();
-			e.printStackTrace();
-		}
-            } 
-
-			catch (SQLException e1) {
-				
-				e1.printStackTrace();
-			}
-	}
-	
-	@Test // 1 stato TirConf
-	public void testUpdateStato4() {
-		
-		/*DEVO METTERE I DATI DEL TIROCINIO*/
-	//(String partitaIVAAzienda, String nome, String descrizione, String offertaFormativa, String stato)
-		Tirocinio tir= new  Tirocinio("06653061215","AllSafe","Sicurezza","Studiare come usare c per creare un sito web.","TirProp");
-		
-		try {
-			connection1 = DriverManagerConnectionPool.getIstance().getConnection();
-	
-		try
-        {
-            try(Statement stCheck=(Statement) connection1.createStatement())
-            {
-            	connection1.setAutoCommit(true);
-            	
-            	t.create(tir);
-            	t.update("06653061215", "AllSafe", "TirConf");
-                           
-                try(ResultSet rs=(ResultSet) stCheck.executeQuery("SELECT * FROM Tirocinio WHERE PartitaIVA='06653061215' and Nome='AllSafe'"))
-                {
-                    assertTrue(rs.next());
-                    PreparedStatement ps= (PreparedStatement) connection1.prepareStatement("DELETE FROM tirocinio WHERE PartitaIVA='06653061215' and Nome='AllSafe'");
-                    ps.executeUpdate();
-                }
-               
-                connection1.close();
-            } catch (InsertFailedException e) {
-            	
-				connection1.close();
-				e.printStackTrace();
-			} catch (TuplaNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}   
-        } catch (SQLException e) {
-        	
-        	connection1.close();
-			e.printStackTrace();
-		}
-            } 
-
-			catch (SQLException e1) {
-				
-				e1.printStackTrace();
-			}
 	}
 	
 	@Test

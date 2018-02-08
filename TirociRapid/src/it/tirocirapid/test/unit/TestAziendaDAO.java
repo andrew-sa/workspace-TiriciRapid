@@ -170,7 +170,6 @@ public class TestAziendaDAO extends TestCase{
 			e.printStackTrace();
 		}
 	}
-
 	
 	@Test //TC_AAZ_1_07 Partiata iva vuota
 	public void testCreate1() {  //01281201299
@@ -368,6 +367,50 @@ public class TestAziendaDAO extends TestCase{
 	}
 	
 	@Test
+	public void testCreate6() {
+		AziendaDAO aziendaDAOcreate= new AziendaDAO();
+		Azienda azienda;
+		try(Connection connection=DriverManagerConnectionPool.getIstance().getConnection();)
+        {
+            try(Statement stCheck=(Statement) connection.createStatement())
+            {
+                connection.setAutoCommit(true);
+                /*CANCELLARE LA TUPLA DI TESTIG PRIMA DI ESEGUIRE*/
+                //stCheck.executeUpdate("DELETE FROM azienda WHERE PartitaIVA='partitaIVA'");
+
+                String partitaIVA="01281201218";
+                String password="password";
+                String email="email";
+                String nome="nome";
+                String sede="sede";
+                String numero="3333333333";
+                String stato="stato";
+                String descrizioneAmbito="descrizioneAmbito";
+                
+                azienda=new Azienda(partitaIVA,password,email,nome,sede,numero,null,stato,descrizioneAmbito);
+                aziendaDAOcreate.create(azienda);
+
+                String partitaIVAID;
+                try(ResultSet rs=(ResultSet) stCheck.executeQuery("SELECT * FROM azienda WHERE PartitaIVA='partitaIVA'"))
+                {
+                    assertTrue(rs.next());
+                    partitaIVAID=rs.getString("PartitaIVA");
+                    System.out.println("SONO NEL TEST CREATE:"+partitaIVAID);
+                    PreparedStatement ps= (PreparedStatement) connection.prepareStatement("DELETE FROM azienda WHERE PartitaIVA='partitaIVA'");
+                    ps.executeUpdate();
+                }
+                connection.close();
+            } catch (InsertFailedException e) {
+				
+				e.printStackTrace();
+			}   
+        } catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
 	public void testRead() {
 		AziendaDAO aziendaDAOread= new AziendaDAO();
 		Azienda az;
@@ -377,6 +420,29 @@ public class TestAziendaDAO extends TestCase{
 		            {
 		                connection.setAutoCommit(false);
 		                String iva="01281201218";
+		                az=aziendaDAOread.read(iva);
+		                assertEquals(iva,az.getPartitaIVA());
+		                System.out.println("SONO NEL TEST READ:"+iva);
+		            } catch (TuplaNotFoundException e) {
+						e.printStackTrace();
+					}
+		           
+		            connection.close();
+		        } catch (SQLException e) {
+					e.printStackTrace();
+				}
+	}
+	
+	@Test
+	public void testRead2() {
+		AziendaDAO aziendaDAOread= new AziendaDAO();
+		Azienda az;
+				try(Connection connection=DriverManagerConnectionPool.getIstance().getConnection();)
+		        {
+		            try(Statement stCheck=(Statement) connection.createStatement())
+		            {
+		                connection.setAutoCommit(false);
+		                String iva="01281201217";
 		                az=aziendaDAOread.read(iva);
 		                assertEquals(iva,az.getPartitaIVA());
 		                System.out.println("SONO NEL TEST READ:"+iva);
@@ -485,7 +551,7 @@ public class TestAziendaDAO extends TestCase{
 	}
 	
 	@Test
-	public void testReadEmail() {
+	public void testReadEmail1() {
 		AziendaDAO aziendaDAOEmail= new AziendaDAO();
 		Azienda az;
 				try(Connection connection=DriverManagerConnectionPool.getIstance().getConnection();)
@@ -511,7 +577,33 @@ public class TestAziendaDAO extends TestCase{
 	}
 	
 	@Test
-	public void testReadPassword() {
+	public void testReadEmail2() {
+		AziendaDAO aziendaDAOEmail= new AziendaDAO();
+		Azienda az;
+				try(Connection connection=DriverManagerConnectionPool.getIstance().getConnection();)
+		        {
+		            try(Statement stCheck=(Statement) connection.createStatement())
+		            {
+		                connection.setAutoCommit(false);
+		                String iva="01281201266";
+		                
+		                String email=aziendaDAOEmail.readEmail(iva);
+		                
+		                //assertEquals(email,az.getEmail());
+		                System.out.println("SONO NEL TEST READ EMAIL:"+iva);
+		            } catch (TuplaNotFoundException e) {
+						
+						e.printStackTrace();
+					}
+		            connection.close();
+		        } catch (SQLException e) {
+					
+					e.printStackTrace();
+				}
+	}
+	
+	@Test
+	public void testReadPassword1() {
 		AziendaDAO aziendaDAOEmail= new AziendaDAO();
 		Azienda az;
 				try(Connection connection=DriverManagerConnectionPool.getIstance().getConnection();)
@@ -524,6 +616,32 @@ public class TestAziendaDAO extends TestCase{
 		                String password=aziendaDAOEmail.readPassword(iva);
 		                
 		                assertEquals(password,az.getPassword());
+		                System.out.println("SONO NEL TEST READ PASSWORD:"+iva);
+		            } catch (TuplaNotFoundException e) {
+						
+						e.printStackTrace();
+					}
+		            connection.close();
+		        } catch (SQLException e) {
+					
+					e.printStackTrace();
+				}
+	}
+	
+	@Test
+	public void testReadPassword2() {
+		AziendaDAO aziendaDAOEmail= new AziendaDAO();
+		Azienda az;
+				try(Connection connection=DriverManagerConnectionPool.getIstance().getConnection();)
+		        {
+		            try(Statement stCheck=(Statement) connection.createStatement())
+		            {
+		                connection.setAutoCommit(false);
+		                String iva="01281201266";
+		                
+		                String password=aziendaDAOEmail.readPassword(iva);
+		                
+		                //assertEquals(password,az.getPassword());
 		                System.out.println("SONO NEL TEST READ PASSWORD:"+iva);
 		            } catch (TuplaNotFoundException e) {
 						
