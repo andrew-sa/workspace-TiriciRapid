@@ -1,4 +1,8 @@
 <%@page import="it.tirocirapid.classes.model.UserLoggato"%>
+<%@page import="it.tirocirapid.classes.model.Azienda"%>
+<%@page import="it.tirocirapid.classes.manager.AbstractAziendaManager"%>
+<%@page import="it.tirocirapid.factory.AbstractManagerFactory"%>
+<%@page import="it.tirocirapid.factory.DAOFactory"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -26,6 +30,7 @@
 <%@ include file="slider.jsp"%>
 
 	<%
+	Azienda azienda = null;
 	boolean loggato = false;
 	if(session.getAttribute("user")==null)
 	{ 
@@ -38,9 +43,11 @@
 	else
 	{
 		loggato = true;
-		Azienda azienda = (UserLoggato) session.getAttribute("user");
-		
-	%>	
+		UserLoggato user = (UserLoggato)session.getAttribute("user");
+		AbstractManagerFactory factory = new DAOFactory();
+		AbstractAziendaManager managerAzienda = factory.createAziendaManager();
+		azienda = managerAzienda.read(user.getId());
+	%>
 		<%@ include file="nav_azienda.jsp"%>
 	<%
 	}
@@ -62,10 +69,22 @@
 	}
 	%>
 	<div class="row">
-		
+		<%
+		if(loggato) 
+		{
+		%>
+		<form action="modifica_dati_azienda" method="post"
+			class="form-horizontal" onsubmit="return validateRegistrazione(this)">
+		<%
+		}
+		else
+		{
+		%>
 		<form action="registrazione_azienda" method="post"
 			class="form-horizontal" onsubmit="return validateRegistrazione(this)">
-
+		<%
+		}
+		%>
 			<fieldset>
 				<!-- Form Name -->
 				<legend>Immettere i dati Aziendali:</legend>
@@ -93,17 +112,38 @@
 					<label class="col-md-4 control-label" for="nome">Nome </label>
 					<div class="col-md-4 ">
 						<input id="nome" name="nome" type="text"
-							class="form-control input-md" maxlength="50" value=<%if(loggato){%> <% }%> >
+							class="form-control input-md" maxlength="50" value=<%if(loggato){%><%=azienda.getNome() %> <% }%> >
 					</div>
 					<p id="2" class="col-md-4 errorform"></p>
 				</div>
-
+				<%
+				if(loggato)
+				{
+				%>
+				<!-- Stato Aziendale input-->
+				<div class="form-group">
+					<label class="col-md-4 control-label" for="sede">Stato </label>
+					<div class="col-md-4">
+						<!--  <select>
+						  <option name="stato" value="AccettaRichieste">Accetta Richieste</option>
+						  <option value="NonAccettaRichieste">Non Accetta Richieste</option>
+						</select>-->
+						<input id="sede" name="stato" type="text"
+							class="form-control input-md" maxlength="39" value=<%if(loggato){%><%=azienda.getStato() %> <% }%>>
+					</div>
+					<p id="3" class="col-md-4 errorform"></p>
+				</div>
+				
+				
+				<%
+				}
+				%>
 				<!-- Sede Aziendale input-->
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="sede">Sede </label>
 					<div class="col-md-4">
 						<input id="sede" name="sede" type="text"
-							class="form-control input-md" maxlength="39">
+							class="form-control input-md" maxlength="39" value=<%if(loggato){%><%=azienda.getSede() %> <% }%>>
 					</div>
 					<p id="3" class="col-md-4 errorform"></p>
 				</div>
@@ -116,7 +156,7 @@
 						<textarea onkeyup="maxlength(this,500,'conta3')"
 							style="resize: none;" id="descrizioneAmbito"
 							name="descrizioneAmbito" class="form-control input-md" rows="4"
-							cols="50"></textarea>
+							cols="50"><%if(loggato){%><%=azienda.getDescrizioneAmbito() %><% }%></textarea>
 						Hai a disposizione ancora <span id='conta3'>500</span> caratteri:<br />
 					</div>
 					<p id="4" class="col-md-4 errorform"></p>
@@ -128,7 +168,7 @@
 						di Telefono </label>
 					<div class="col-md-4">
 						<input id="numeroTelefono" name="numeroTelefono" type="text"
-							class="form-control input-md" maxlength="13">
+							class="form-control input-md" maxlength="13" value=<%if(loggato){%><%=azienda.getNumeroTelefono() %><% }%>>
 					</div>
 					<p id="5" class="col-md-4 errorform"></p>
 				</div>
@@ -138,7 +178,7 @@
 					<label class="col-md-4 control-label" for="email">Email </label>
 					<div class="col-md-4">
 						<input id="email" name="email" type="text"
-							class="form-control input-md" maxlength="50">
+							class="form-control input-md" maxlength="50" value=<%if(loggato){%><%=azienda.getEmail() %><% }%>>
 					</div>
 					<p id="6" class="col-md-4 errorform"></p>
 				</div>
@@ -149,7 +189,7 @@
 					</label>
 					<div class="col-md-4">
 						<input id="password" name="password" type="password"
-							class="form-control input-md" maxlength="20">
+							class="form-control input-md" maxlength="20" value=<%if(loggato){%><%=azienda.getPassword() %><% }%>>
 					</div>
 					<p id="7" class="col-md-4 errorform"></p>
 				</div>
@@ -160,7 +200,7 @@
 						Password </label>
 					<div class="col-md-4">
 						<input id="confPassword" name="confPassword" type="password"
-							class="form-control input-md" maxlength="20">
+							class="form-control input-md" maxlength="20" value=<%if(loggato){%><%=azienda.getPassword() %><% }%>>
 					</div>
 					<p id="8" class="col-md-4 errorform"></p>
 				</div>

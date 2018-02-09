@@ -67,7 +67,7 @@ public class ModificaDatiAzienda extends HttpServlet {
 	{
 		UserLoggato user = (UserLoggato) request.getSession().getAttribute("user");
 		String partitIVA = user.getId();
-		HashMap<String, String> statesAzienda = (HashMap<String, String>) getServletContext().getAttribute("statesAzienda");
+		HashMap<String, String> statesAzienda = (HashMap<String, String>) request.getServletContext().getAttribute("statesAzienda");
 		final String replacement = "";
 		try
 		{
@@ -80,7 +80,7 @@ public class ModificaDatiAzienda extends HttpServlet {
 				if (replaceIfMissing(request.getParameter(param), replacement).equals(replacement))
 				{
 					request.setAttribute("errore", "Il campo " + param + " &egrave; obbligatorio");
-					RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("dati_azienda"); //ProfiloAzienda
+					RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/azienda_iscrizione.jsp"); //ProfiloAzienda
 					dispatcher.forward(request, response);
 					return;
 				}
@@ -95,7 +95,7 @@ public class ModificaDatiAzienda extends HttpServlet {
 					else
 					{
 						request.setAttribute("errore", "Il campo " + param + " non pu&ograve; superare 50 caratteri");
-						RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("dati_azienda"); //ProfiloAzienda
+						RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/azienda_iscrizione.jsp"); //ProfiloAzienda
 						dispatcher.forward(request, response);
 						return;
 					}
@@ -113,7 +113,7 @@ public class ModificaDatiAzienda extends HttpServlet {
 					else
 					{
 						request.setAttribute("errore", "Il campo " + param + " non &egrave; nel formato corretto (x@x.x)");
-						RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("dati_azienda"); //ProfiloAzienda
+						RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/azienda_iscrizione.jsp"); //ProfiloAzienda
 						dispatcher.forward(request, response);
 						return;
 					}
@@ -127,7 +127,7 @@ public class ModificaDatiAzienda extends HttpServlet {
 					else
 					{
 						request.setAttribute("errore", "Il campo " + param + " deve contenere 10 cifre");
-						RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("dati_azienda"); //ProfiloAzienda
+						RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/azienda_iscrizione.jsp"); //ProfiloAzienda
 						dispatcher.forward(request, response);
 						return;
 					}
@@ -141,7 +141,7 @@ public class ModificaDatiAzienda extends HttpServlet {
 					else
 					{
 						request.setAttribute("errore", "Il campo " + param + " non pu&ograve; superare 500 caratteri");
-						RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("dati_azienda"); //ProfiloAzienda
+						RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/azienda_iscrizione.jsp"); //ProfiloAzienda
 						dispatcher.forward(request, response);
 						return;
 					}
@@ -155,7 +155,7 @@ public class ModificaDatiAzienda extends HttpServlet {
 					else
 					{
 						request.setAttribute("errore", "Il valore scelto del campo " + param + " non &egrave; ammesso");
-						RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("dati_azienda"); //ProfiloAzienda
+						RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/azienda_iscrizione.jsp"); //ProfiloAzienda
 						dispatcher.forward(request, response);
 						return;
 					}
@@ -163,7 +163,7 @@ public class ModificaDatiAzienda extends HttpServlet {
 				else //Non si verifica mai
 				{
 					request.setAttribute("errore", "Si &egrave; verificato un errore, si prega di riprovare");
-					RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("dati_azienda"); //ProfiloAzienda
+					RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/dati_azienda"); //ProfiloAzienda
 					dispatcher.forward(request, response);
 					return;
 				}
@@ -187,7 +187,7 @@ public class ModificaDatiAzienda extends HttpServlet {
 			e.printStackTrace();
 			request.setAttribute("errore", e.getMessage());
 		}
-		RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("dati_azienda"); //ProfiloAzienda
+		RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/dati_azienda"); //ProfiloAzienda
 		dispatcher.forward(request, response);
 	}
 	
