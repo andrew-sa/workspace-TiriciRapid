@@ -21,7 +21,10 @@
 
 	<%@ include file="nav_studente.jsp"%>
 
-	<%
+
+
+	<div class="container"> <!-- Contenitore Grande -->
+		<%
 		if (request.getAttribute("errore") != null)
 		{
 	%>
@@ -33,11 +36,7 @@
 	%>
 		<h1 class="successoTop"><%= request.getAttribute("successo") %></h1>
 	<%
-		}
-	%>
-
-	<div class="container"> <!-- Contenitore Grande -->
-		<%
+		}		
 			if (request.getAttribute("tirocini") != null) {
 				ArrayList<Tirocinio> tirocini = (ArrayList<Tirocinio>) request.getAttribute("tirocini");
 				for (Tirocinio t : tirocini) {

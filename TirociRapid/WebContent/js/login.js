@@ -47,7 +47,7 @@ function readResultLogin()
 			}
 			else if(tipo =="ResponsabileApprovazioni")
 			{
-				window.location.href = "responsabile_approvazioni_richieste_di_tutorato.jsp";
+				window.location.href = "richieste?action=tutor";
 			}
 			else
 			{

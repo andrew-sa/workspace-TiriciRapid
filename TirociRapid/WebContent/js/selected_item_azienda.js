@@ -14,7 +14,7 @@ function selectedItemAzienda()
 		case "/TirociRapid/azienda_profilo.jsp": case "/TirociRapid/dati_azienda":
 			$("#item_profilo_azienda").addClass("attiva");
 			break;
-		case "/TirociRapid/azienda_richieste.jsp":
+		case "/TirociRapid/azienda_richieste.jsp": case"/TirociRapid/richieste":
 			$("#item_richieste_azienda").addClass("attiva");
 			break;
 		case "/TirociRapid/azienda_visualizza_tirocini.jsp": case "/TirociRapid/tirocini_azienda":

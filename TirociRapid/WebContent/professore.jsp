@@ -24,6 +24,7 @@
 	<%@ include file="slider.jsp"%>
 	<%@ include file="nav_professore.jsp"%>
 	
+	<div class="container">	
 	<%
 		if (request.getAttribute("errore") != null)
 		{
@@ -37,11 +38,6 @@
 		<h1 class="successoTop"><%= request.getAttribute("successo") %></h1>
 	<%
 		}
-	%>
-	
-	
-	<div class="container">
-	<%
 			HashMap<Integer, String> states = (HashMap<Integer, String>) getServletContext().getAttribute("statesReqTir");
 			if (request.getAttribute("richieste") != null)
 			{
@@ -49,7 +45,7 @@
 				if (richieste.size() == 0)
 				{
 		%>
-			<h1 class="erroreTop">Non hai richieste.</h1>
+				<div class="erroreMsg">Non hai richieste.</div>
 		<%
 				}
 				else

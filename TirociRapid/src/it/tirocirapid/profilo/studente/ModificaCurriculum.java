@@ -104,7 +104,7 @@ public class ModificaCurriculum extends HttpServlet {
 				{
 					System.out.println(param);
 					request.setAttribute("errore", "Il campo " + param + " &egrave; obbligatorio");
-					RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/"); //ModificaCurriculum
+					RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/studente_curriculum.jsp"); //ModificaCurriculum
 					dispatcher.forward(request, response);
 					return;
 				}
