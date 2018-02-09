@@ -164,17 +164,17 @@ public class ConvalidaRichiestaTirocinio extends HttpServlet {
 	{
 		if (reqTir.getStato().equals(statesReqTir.get(1))) // stato == "ConfAz"
 		{
-			String subject = "TirociRapid: Decisione dell'azienda sulla tua richiesta di tirocinio" + reqTir.getStudente().getEmail();
+			String subject = "TirociRapid: Decisione dell'azienda sulla richiesta per il tirocinio" + reqTir.getTirocinio().getNome();
 			String messageText = "";
 			if (isAccept)
 			{
 				reqTir.setStato(statesReqTir.get(2)); // stato = "SceltTut"
-				subject = "L'azienda ha ACCETTATO la tua richiesta per il tirocinio " + reqTir.getTirocinio().getNome() + "./n" + "Ora puoi scegliere un professore per il ruolo di tutor interno" + "./n";
+				messageText = "L'azienda ha ACCETTATO la tua richiesta per il tirocinio " + reqTir.getTirocinio().getNome() + ".\n" + "Ora puoi scegliere un professore per il ruolo di tutor interno" + ".\n";
 			}
 			else
 			{
 				reqTir.setStato(statesReqTir.get(-1)); // stato = "RifAz"
-				subject = "L'azienda ha RIFIUTATO la tua richiesta per il tirocinio " + reqTir.getTirocinio().getNome() + "./n";
+				messageText = "L'azienda ha RIFIUTATO la tua richiesta per il tirocinio " + reqTir.getTirocinio().getNome() + ".\n";
 			}
 			AbstractManagerFactory factory = new DAOFactory();
 			AbstractRichiestaTirocinioManager managerRichiestaTirocinio = factory.createRichiestaTirocinioManager();
@@ -193,7 +193,7 @@ public class ConvalidaRichiestaTirocinio extends HttpServlet {
 		{
 			String subjectResponsabileApprovazioni = "TirociRapid: Nuova richiesta di tirocinio dallo studente " + reqTir.getStudente().getEmail();
 			String subjectStudente = "TirociRapid: Aggiornamento stato richiesta tirocinio";
-			String messageTextResponsabileApprovazioni = "Lo studente " + reqTir.getStudente().getUsername() + " vorrebbe effettuare il tirocinio " + reqTir.getTirocinio().getNome() + " presso l'azienda " + reqTir.getTirocinio().getPartitaIVAAzienda() + "./n";
+			String messageTextResponsabileApprovazioni = "Lo studente " + reqTir.getStudente().getUsername() + " vorrebbe effettuare il tirocinio " + reqTir.getTirocinio().getNome() + " presso l'azienda " + reqTir.getTirocinio().getPartitaIVAAzienda() + ".\n";
 			String messageTextStudente = "";
 			AbstractManagerFactory factory = new DAOFactory();
 			AbstractRichiestaTirocinioManager managerRichiestaTirocinio = factory.createRichiestaTirocinioManager();
@@ -201,14 +201,14 @@ public class ConvalidaRichiestaTirocinio extends HttpServlet {
 			{
 				reqTir.setStato(statesReqTir.get(4)); // stato = "ConfResp"
 				managerRichiestaTirocinio.updateStato(reqTir);
-				messageTextStudente = "Il professore da te scelto come tutor interno per il tirocinio " + reqTir.getTirocinio().getNome() + "ha ACCETTATO." + "/n/n" + "In attesa della CONVALIDA da parte del Responsabile Approvazioni." + "/n";
+				messageTextStudente = "Il professore da te scelto come tutor interno per il tirocinio " + reqTir.getTirocinio().getNome() + "ha ACCETTATO." + "\n\n" + "In attesa della CONVALIDA da parte del Responsabile Approvazioni." + "\n";
 				inviaEmailResponsabileApprovazioni(subjectResponsabileApprovazioni, messageTextResponsabileApprovazioni);
 			}
 			else
 			{
 				reqTir.setStato(statesReqTir.get(-3)); // stato = "RifTut"
 				managerRichiestaTirocinio.updateRemoveTutor(reqTir);
-				messageTextStudente = "Il professore da te scelto come tutor interno per il tirocinio " + reqTir.getTirocinio().getNome() + "ha RIFIUTATO." + "/n/n" + "SCEGLI un nuovo Professore come Tutor Interno." + "/n";
+				messageTextStudente = "Il professore da te scelto come tutor interno per il tirocinio " + reqTir.getTirocinio().getNome() + "ha RIFIUTATO." + "\n\n" + "SCEGLI un nuovo Professore come Tutor Interno." + "\n";
 			}
 			inviaEmailStudente(reqTir.getStudente().getEmail(), subjectStudente, messageTextStudente);
 		}

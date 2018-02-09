@@ -139,7 +139,7 @@ public class ScegliTutorInterno extends HttpServlet {
 		String host = "smtp.gmail.com";
 		String from = "tirocirapid@gmail.com";
 		String subject = "TirociRapid: Sei stato scelto come tutor interno"; 
-		String messageText = "Lo studente " + usernameStudente + " l'ha scelta come Tutor Interno per il tirocinio " + nomeTirocinio + " offerto dall'azienda " + partitaIVAAzienda + "./n";
+		String messageText = "Lo studente " + usernameStudente + " l'ha scelta come Tutor Interno per il tirocinio " + nomeTirocinio + " offerto dall'azienda " + partitaIVAAzienda + ".\n";
 		final String username = "tirocirapid@gmail.com";
 		final String password = "TirociRapid2018";
 		

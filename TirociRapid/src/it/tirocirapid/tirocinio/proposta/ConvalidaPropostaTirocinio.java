@@ -133,7 +133,7 @@ public class ConvalidaPropostaTirocinio extends HttpServlet {
 		String to = emailAzienda;
 		String from = "tirocirapid@gmail.com";
 		String subject = "Tirocirapid: Esito approvazione Proposta Tirocinio " + nomeTirocinio; 
-		String messageText = "La propostata di tirocinio " + nomeTirocinio + "è stata " + responso.toUpperCase() + ".\n";
+		String messageText = "La propostata di tirocinio " + nomeTirocinio + " è stata " + responso.toUpperCase() + ".\n";
 		final String username = "tirocirapid@gmail.com";
 		final String password = "TirociRapid2018";
 		
