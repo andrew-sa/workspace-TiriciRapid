@@ -31,7 +31,7 @@ function readResultLogin()
 			
 			if(tipo == "Studente")
 			{
-				window.location.href="profilo_studente";
+				window.location.href="richieste";
 			}
 			else if(tipo == "StudenteNonRegistrato")
 			{
