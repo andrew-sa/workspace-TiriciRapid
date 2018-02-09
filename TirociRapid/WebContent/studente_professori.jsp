@@ -23,13 +23,13 @@
 		<script src="js/messaggi.js"></script>
 		<script src="js/lista_professori.js"></script>
 	</head>
-	<body onload="selectedItemStudente(); caricaListaProfessori(); caricaPaginaProfessori(null); nascondiMessaggiTop();">
+	<body onload="selectedItemStudente(); caricaListaProfessori(); nascondiMessaggiTop();">
 	
 		<%@ include file="slider.jsp"%>
 	
 		<%@ include file="nav_studente.jsp"%>
 	
-		<div class="container">
+		<div class="container" id="contenuto">
 			
 		</div>
 		

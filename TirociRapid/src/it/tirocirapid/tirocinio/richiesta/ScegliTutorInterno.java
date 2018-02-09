@@ -112,7 +112,7 @@ public class ScegliTutorInterno extends HttpServlet {
 				request.setAttribute("errore", e.getMessage());
 			}
 		}
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/studente_richieste.jsp"); //Alla schermata di RichiesteTirocinioStudente
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/richieste"); //Alla schermata di RichiesteTirocinioStudente
 		dispatcher.forward(request, response);
 	}
 

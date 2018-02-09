@@ -116,7 +116,6 @@
                         String path = "elimina_richiesta_tirocinio?nomeTirocinio="+ reqTir.getTirocinio().getNome().replace(" ", "+") +
                         			  "&partitaIVAAzienda="+reqTir.getTirocinio().getPartitaIVAAzienda()+"&stato="+reqTir.getStato();
                         if(states.get(-1).equals(stato) || states.get(-4).equals(stato))   
-                        	
                         {       		
                         %>
 		                       <div class="col-md-3 cta-button">
@@ -126,7 +125,7 @@
                          }
                         if (states.get(2).equals(stato) || states.get(-3).equals(stato))
                         {	
-                        	path = "lista_professori?nomeTirocinio="+ reqTir.getTirocinio().getNome().replace(" ", "+") +
+                        	path = "studente_professori.jsp?nomeTirocinio="+ reqTir.getTirocinio().getNome().replace(" ", "+") +
                       			  "&partitaIVAAzienda="+reqTir.getTirocinio().getPartitaIVAAzienda();
                         %>	
                               <div class="col-md-3 cta-button">

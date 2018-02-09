@@ -18,7 +18,7 @@ function ProfessoreHTML(username, nome, cognome, ambito, emailIstituzionale, ema
 	
 	this.buttonWrapper = $('<div class="col-md-3 cta-button"></div>');
 	
-	this.title.html(nome + ' ' + conogme);
+	this.title.html(nome + ' ' + cognome);
 	this.ambito.html('<span class="parametri-professore">Ambito: </span>' + ambito);
 	this.emailIstituzionale.html('<span class="parametri-professore">Email Istituzionale: </span>' + emailIstituzionale);
 	this.email.html('<span class="parametri-professore">Email: </span>' + email);
@@ -27,8 +27,10 @@ function ProfessoreHTML(username, nome, cognome, ambito, emailIstituzionale, ema
 	if (isReqTir)
 	{
 		var queryString = window.location.href.substring(window.location.href.indexOf('?') + 1);
-		var path = window.location.hostname + "/scegli_tutor?" + queryString + "&professore=" + username;
-		buttonWrapper.html('<a href="' + path + '" class="btn btn-lg btn-block btn-default">Scegli come tutor</a>')
+		console.log(window.location.hostname);
+		var path = /*window.location.hostname +*/ '/TirociRapid/scegli_tutor?' + queryString + '&professore=' + username;
+		console.log(path);
+		this.buttonWrapper.html('<a href="' + path + '" class="btn btn-lg btn-block btn-default">Scegli come tutor</a>')
 	}
 	
 	this.infoWrapper.append(this.ambito);
@@ -36,13 +38,14 @@ function ProfessoreHTML(username, nome, cognome, ambito, emailIstituzionale, ema
 	this.infoWrapper.append(this.email);
 	this.infoWrapper.append(this.telefono);
 	
+	this.contentWrapper.append(this.title);
 	this.contentWrapper.append(this.infoWrapper);
-	if (isReqTir)
-	{
-		this.contentWrapper.append(this.buttonWrapper);
-	}
 	
 	this.wrapper3.append(this.contentWrapper);
+	if (isReqTir)
+	{
+		this.wrapper3.append(this.buttonWrapper);
+	}
 	this.wrapper2.append(this.wrapper3);
 	this.wrapper.append(this.wrapper2);
 }
@@ -52,7 +55,7 @@ function mostraNumeroPagine()
 	var wrapperNumPages = $('#numPages');
 	for (var i = 1; i <= numPages; i++)
 	{
-		var num = $('<span id="num' + i + '" onclick="caricaPaginaProdotti(this)">' + i + '</span>');
+		var num = $('<span id="num' + i + '" onclick="caricaPaginaProfessori(this)">' + i + '</span>');
 		wrapperNumPages.append(num);
 	}
 }
@@ -66,7 +69,7 @@ function mostraListaProfessori()
 		{
 			var messaggio = $('<h1 class="erroreTop"></h1>')
 			messaggio.html("Non sono stati trovati professori<br>Si prega di ricaricare la pagina");
-			$("div.container").prepend(messaggio);
+			$("#contenuto").prepend(messaggio);
 		}
 		else
 		{
@@ -89,21 +92,22 @@ function mostraListaProfessori()
 			
 			for (var k = 0; k < numPages; k++)
 			{
+				var currentPage = $('<div id="page' + (k+1) + '"></div>');
 				for (var j = 0; j < profInAPage; j++)
 				{
-					var currentPage = $('<div id="page' + (k+1) + '"></div>');
-					var i = (k * (profInAPage - 1)) + j;
-					if (i >= professore.length)
+					var i = (k * profInAPage) + j;
+					if (i >= professori.length)
 					{
 						break;
 					}
 					var professoreHTML = new ProfessoreHTML(professori[i].username, professori[i].nome, professori[i].cognome, professori[i].ambito, professori[i].emailIstituzionale, professori[i].email, professori[i].telefono, isReqTir);
 					currentPage.append(professoreHTML.wrapper);
 				}
-				$("div.container").append(currentPage);
+				$("#contenuto").append(currentPage);
 			}
 			
 			mostraNumeroPagine();
+			caricaPaginaProfessori(null);
 		}
 		document.body.style.cursor = "auto";
 	}
@@ -121,6 +125,7 @@ function caricaListaProfessori()
 
 function caricaPaginaProfessori(fieldNumeroPagina)
 {
+	console.log(numPages);
 	document.body.style.cursor = "wait";
 	if (fieldNumeroPagina == null)
 	{
@@ -128,11 +133,13 @@ function caricaPaginaProfessori(fieldNumeroPagina)
 		{
 			if (i == 1)
 			{
+				console.log("Sono qui");
 				$("#page" + i).show();
 				$("#num" + i).attr("class", "currentPage");
 			}
 			else
 			{
+				console.log("NON sono qui");
 				$("#page" + i).hide();
 				$("#num" + i).removeAttr("class");
 			}

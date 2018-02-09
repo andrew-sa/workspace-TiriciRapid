@@ -165,6 +165,24 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 		}
 	}
 	
+	private void updateStato(RichiestaTirocinio toUpdate, Connection con) throws SQLException, InsertFailedException
+	{	
+		PreparedStatement ps = con.prepareStatement(UPDATE);
+		ps.setString(1, toUpdate.getStato());
+		ps.setString(2, toUpdate.getTirocinio().getNome());
+		ps.setString(3, toUpdate.getTirocinio().getPartitaIVAAzienda());
+		ps.setString(4, toUpdate.getStudente().getUsername());
+
+		int i = ps.executeUpdate();
+				
+//		con.commit();
+		ps.close();
+		if (i != 1)
+		{
+			throw new InsertFailedException("Impossibile aggiornare la richiesta di tirocinio selezionata");
+		}
+	}
+	
 	@Override
 	public void updateAddTutor(RichiestaTirocinio toUpdate) throws MySQLIntegrityConstraintViolationException, SQLException, InsertFailedException
 	{
@@ -194,10 +212,10 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 		{
 			try
 			{
+				updateStato(toUpdate, con);
 				con.commit();
 				ps.close();
 				DriverManagerConnectionPool.getIstance().releaseConnection(con);
-				updateStato(toUpdate);
 			}
 			catch (SQLException | InsertFailedException e)	
 			{
@@ -230,7 +248,7 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 		{
 			try
 			{
-				updateStato(toUpdate);
+				updateStato(toUpdate, con);
 				con.commit();
 				ps.close();
 				DriverManagerConnectionPool.getIstance().releaseConnection(con);
