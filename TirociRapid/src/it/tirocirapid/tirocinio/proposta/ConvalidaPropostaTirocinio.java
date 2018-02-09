@@ -60,7 +60,7 @@ public class ConvalidaPropostaTirocinio extends HttpServlet {
 			{
 				case "accetta":
 					managerTirocinio.update(partitaIVA, nome, states.get(2));
-					request.setAttribute("successo", "Tirocinio: " + partitaIVA + "-" + nome + " accettato con successo");
+					request.setAttribute("successo", "Tirocinio: " + partitaIVA + " - " + nome + " accettato con successo");
 					try
 					{
 						inviaEmailResponsabileAzienda(partitaIVA, nome, "accettata");
@@ -73,7 +73,7 @@ public class ConvalidaPropostaTirocinio extends HttpServlet {
 					break;
 				case "rifiuta":
 					managerTirocinio.update(partitaIVA, nome, states.get(0));
-					request.setAttribute("successo", "Tirocinio: " + partitaIVA + "-" + nome + " rifiutato con successo");
+					request.setAttribute("successo", "Tirocinio: " + partitaIVA + " - " + nome + " rifiutato con successo");
 					try
 					{
 						inviaEmailResponsabileAzienda(partitaIVA, nome, "rifiutata");
@@ -100,7 +100,7 @@ public class ConvalidaPropostaTirocinio extends HttpServlet {
 		}
 		finally
 		{
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //VisualizzaProposteTiroicinioInSospeso
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/carica_proposte_tirocinio"); //VisualizzaProposteTiroicinioInSospeso
 			dispatcher.forward(request, response);
 		}
 	}

@@ -37,10 +37,20 @@
 		%>
 		<%@ include file="nav_vuota.jsp"%>
 		<div class="container">
-				<% if(request.getAttribute("errore")!=null){
-		%>
-				<div style="color: red; text-align: center;"><%=request.getAttribute("errore")%></div>		
-		<%} %>
+			<%
+	if (request.getAttribute("errore") != null)
+	{
+	%>
+		<h1 class="erroreTop"><%= request.getAttribute("errore") %></h1>
+	<%
+	}
+	else if (request.getAttribute("successo") != null)
+	{
+	%>
+		<h1 class="successoTop"><%= request.getAttribute("successo") %></h1>
+	<%
+	}
+	%>
 		<div class="row">
 			<form class="form-horizontal" onsubmit="return validateCurriculum(this)" action="inserisci_curriculum" method="post">
 				<fieldset>

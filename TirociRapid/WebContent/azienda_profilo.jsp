@@ -74,7 +74,7 @@
 				
 			</div>
 <div class="col-md-3 cta-button" id="bottone-dati-aziendali">
-					<a href="#" class="btn btn-lg btn-block btn-default">Modifica
+					<a href="azienda_iscrizione.jsp" class="btn btn-lg btn-block btn-default">Modifica
 						informazioni</a>
 				</div>
 		

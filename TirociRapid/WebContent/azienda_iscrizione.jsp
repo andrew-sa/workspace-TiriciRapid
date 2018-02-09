@@ -1,3 +1,4 @@
+<%@page import="it.tirocirapid.classes.model.UserLoggato"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -9,31 +10,59 @@
 <link rel="stylesheet" href="css/errorcheck.css">
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="css/messaggi.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <script type="text/javascript" src="js/formcheck.js"></script>
 <script type="text/javascript" src="js/selected_item_azienda.js"></script>
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
+<script type="text/javascript" src="js/messaggi.js"></script>
 
 
 </head>
-<body onload="selectedItemAzienda();">
+<body onload="selectedItemAzienda();nascondiMessaggiTop();">
 	
 <%@ include file="slider.jsp"%>
-<%@ include file="nav_vuota.jsp"%>
+
+	<%
+	boolean loggato = false;
+	if(session.getAttribute("user")==null)
+	{ 
+		loggato = false;
+	%>
+		<%@ include file="nav_vuota.jsp"%>
+		
+	<%
+	}
+	else
+	{
+		loggato = true;
+		Azienda azienda = (UserLoggato) session.getAttribute("user");
+		
+	%>	
+		<%@ include file="nav_azienda.jsp"%>
+	<%
+	}
+	%>
 
 <div class="container">
+	<%
+	if (request.getAttribute("errore") != null)
+	{
+	%>
+		<h1 class="erroreTop"><%= request.getAttribute("errore") %></h1>
+	<%
+	}
+	else if (request.getAttribute("successo") != null)
+	{
+	%>
+		<h1 class="successoTop"><%= request.getAttribute("successo") %></h1>
+	<%
+	}
+	%>
 	<div class="row">
-		<%
-		if ((request.getAttribute("errore") != null))
-		{
-		%>		
-			<div style="color: green; text-align: center;"><%=request.getAttribute("errore")%></div>
-		<%
-		}
-		%>
+		
 		<form action="registrazione_azienda" method="post"
 			class="form-horizontal" onsubmit="return validateRegistrazione(this)">
 
@@ -42,6 +71,10 @@
 				<legend>Immettere i dati Aziendali:</legend>
 
 				<!-- PartitaIVA input-->
+				<%
+				if(!loggato)
+				{ 
+				%>
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="partitaIVA">Partita
 						IVA</label>
@@ -51,13 +84,16 @@
 					</div>
 					<p id="1" class="col-md-4 errorform"></p>
 				</div>
+				<%
+				}
+				%>
 
 				<!-- Nome Azienda input-->
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="nome">Nome </label>
 					<div class="col-md-4 ">
 						<input id="nome" name="nome" type="text"
-							class="form-control input-md" maxlength="50">
+							class="form-control input-md" maxlength="50" value=<%if(loggato){%> <% }%> >
 					</div>
 					<p id="2" class="col-md-4 errorform"></p>
 				</div>
