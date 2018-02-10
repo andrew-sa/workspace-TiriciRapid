@@ -73,7 +73,7 @@ public class CreaPropostaTirocinio extends HttpServlet {
 	{
 		Azienda azienda = null;
 		UserLoggato user = null;
-		if ("registrazione".equals(request.getSession().getAttribute("action")))
+		if ("registrazione".equals(request.getParameter("action")))
 		{
 			if (request.getSession().getAttribute("azienda") != null)
 			{

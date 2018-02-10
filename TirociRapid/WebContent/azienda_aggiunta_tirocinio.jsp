@@ -47,7 +47,12 @@
 	%>
 
 	<div class="container">
-		<%
+		<%	
+			String parametro="";
+			if(request.getAttribute("action")!=null)//Significa che l'azienda si sta registrando
+			{
+				parametro ="?action="+request.getAttribute("action");
+			}
 			if (request.getAttribute("errore") != null) {
 		%>
 		<h1 class="erroreTop"><%= request.getAttribute("errore") %> <i class="fa fa-times" aria-hidden="true" onclick="clearMessaggiTop()"></i></h1>
@@ -61,7 +66,7 @@
 		%>
 		<div class="row">
 			
-			<form method="post" action="crea_proposta_tirocinio"
+			<form method="post" action="crea_proposta_tirocinio<%=parametro%>"
 				class="form-horizontal">
 				<fieldset>
 					<!-- Form Name -->

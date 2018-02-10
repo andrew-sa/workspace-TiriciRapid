@@ -199,7 +199,8 @@ public class RegistrazioneAzienda extends HttpServlet {
 //			salvaAzienda(azienda);
 		request.setAttribute("successo", "Inserisici una proposta di tirocinio per salvare l'azienda");
 //			request.setAttribute("partitaIVA", azienda.getPartitaIVA());
-		request.getSession().setAttribute("action", "registrazione");
+//		request.getSession().setAttribute("action", "registrazione");
+		request.setAttribute("action", "registrazione");
 		request.getSession().setAttribute("azienda", azienda);
 		RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/azienda_aggiunta_tirocinio.jsp"); //AggiungiTirocinio
 		dispatcher.forward(request, response);
