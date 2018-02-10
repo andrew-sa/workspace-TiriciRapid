@@ -5,7 +5,7 @@
 
 		<ul class="nav nav-tabs">
 			<li role="presentation"><a id="item_richieste_azienda" href="richieste">Richieste</a></li>
-			<li role="presentation"><a id="item_storico_richieste_azienda" href="storico_richieste.jsp">Storico richieste</a></li>
+			<li role="presentation"><a id="item_storico_richieste_azienda" href="storico_richieste">Storico richieste</a></li>
 			<li role="presentation"><a id="item_aggiungi_tirocinio_azienda"  href="azienda_aggiunta_tirocinio.jsp">Aggiungi Tirocinio</a></li>
 			<li role="presentation"><a id="item_visualizza_tirocini_azienda"  href="tirocini_azienda">Visualizza Tirocini</a></li>
 			<li role="presentation"><a id="item_profilo_azienda" href="dati_azienda">Profilo</a></li>
