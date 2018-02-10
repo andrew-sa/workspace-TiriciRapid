@@ -7,16 +7,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-<title>Studente Aziende</title>
-<link rel="stylesheet" href="css/studente.css">
+<title>Aziende</title>
+
 <link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/studente.css">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/messaggi.css">
-<script type="text/javascript" src="js/messaggi.js"></script>
 <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script type="text/javascript" src="js/messaggi.js"></script>
 <script src="js/selected_item_studente.js"></script>
 </head>
-<body onload="selectedItemStudente();nascondiMessaggiTop();">
+<body onload="selectedItemStudente(); nascondiMessaggiTop();">
 	
 	<%@ include file="slider.jsp"%>
 
@@ -37,14 +39,18 @@
 		<h1 class="successoTop"><%= request.getAttribute("successo") %></h1>
 	<%
 		}
-	%>
-	
-	<%
-			if (request.getAttribute("aziende") != null) {
+		if (request.getAttribute("aziende") != null) {
 				ArrayList<Azienda> aziende = (ArrayList<Azienda>) request.getAttribute("aziende");
-				for (Azienda a : aziende) {
-					
-					
+				if(aziende.size() == 0)
+				{
+					%>
+					<div class="erroreMsg">Non sono attualmente presenti aziende che offrono tirocini.</div>
+					<%
+				}
+				else
+				{
+				for (Azienda a : aziende)
+				{								
 		%>
 		<div class="col-sm-12">
 
@@ -78,7 +84,8 @@
 
 		</div>
 <%
-			} //FINE FOR
+				}//FINE FOR
+			} //FINE ELSE
 
 			} // FINE IF
 			

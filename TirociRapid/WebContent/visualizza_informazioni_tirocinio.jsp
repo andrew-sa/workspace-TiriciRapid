@@ -11,9 +11,10 @@
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/professore.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<script type="text/javascript" src="js/messaggi.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="css/messaggi.css">
+	
+<script type="text/javascript" src="js/messaggi.js"></script>
 </head>
 <body onload="nascondiMessaggiTop();">
 
@@ -39,14 +40,22 @@
 		<%@ include file="nav_responsabile_approvazioni.jsp"%>
 	<%
 	}
+	%>	
+	<div class="container">
+	<%
+	if (request.getAttribute("errore") != null)
+	{
 	%>
-	
-	
-	
-		<div class="container">
-<%
+		<h1 class="erroreTop"><%= request.getAttribute("errore") %></h1>
+	<%
+	}
+	else if (request.getAttribute("successo") != null)
+	{
+	%>
+		<h1 class="successoTop"><%= request.getAttribute("successo") %></h1>
+	<%
+	}
 	Tirocinio tirocinio = (Tirocinio) request.getAttribute("tirocinio");
-	
 	%>
 		<div id="responsabile-approvazione-azienda-profilo">
 

@@ -7,39 +7,50 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Visualizza tirocini azienda</title>
+
 <link rel="stylesheet" href="css/studente.css">
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/messaggi.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<script type="text/javascript" src="js/messaggi.js"></script>
-	<script type="text/javascript" src="js/selected_item_studente.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+<script type="text/javascript" src="js/messaggi.js"></script>
+<script type="text/javascript" src="js/selected_item_studente.js"></script>
+
 </head>
 <body onload="nascondiMessaggiTop(); selectedItemStudente();">
 	<%@ include file="slider.jsp"%>
 
 	<%@ include file="nav_studente.jsp"%>
 
-
-
 	<div class="container"> <!-- Contenitore Grande -->
 		<%
-		if (request.getAttribute("errore") != null)
+		if (request.getAttribute("errore") != null && 
+		(!request.getAttribute("errore").equals("Non sono presenti tirocini di questa azienda")))
 		{
-	%>
-		<h1 class="erroreTop"><%= request.getAttribute("errore") %></h1>
-	<%
+		%>
+			<h1 class="erroreTop"><%= request.getAttribute("errore") %></h1>
+		<%
 		}
+		else if(request.getAttribute("errore") != null && 
+				(request.getAttribute("errore").equals("Non sono presenti tirocini di questa azienda")))
+		{
+			%>
+			<div class="erroreMsg"><%= request.getAttribute("errore") %></div>
+			<%
+		}
+		
 		else if (request.getAttribute("successo") != null)
 		{
-	%>
-		<h1 class="successoTop"><%= request.getAttribute("successo") %></h1>
-	<%
+		%>
+			<h1 class="successoTop"><%= request.getAttribute("successo") %></h1>
+		<%
 		}		
-			if (request.getAttribute("tirocini") != null) {
-				ArrayList<Tirocinio> tirocini = (ArrayList<Tirocinio>) request.getAttribute("tirocini");
-				for (Tirocinio t : tirocini) {
+		if (request.getAttribute("tirocini") != null) 
+		{
+			ArrayList<Tirocinio> tirocini = (ArrayList<Tirocinio>) request.getAttribute("tirocini");
+			for (Tirocinio t : tirocini)
+			{
 		%>
 		<div class="col-sm-12">
 			<div class="bs-calltoaction bs-calltoaction-default">

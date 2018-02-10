@@ -3,16 +3,16 @@
 <%@page import="it.tirocirapid.classes.manager.AbstractAziendaManager"%>
 <%@page import="it.tirocirapid.factory.AbstractManagerFactory"%>
 <%@page import="it.tirocirapid.factory.DAOFactory"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-<title>Azienda iscrizione</title>
-<link rel="stylesheet" href="css/errorcheck.css">
+<title>Iscrizione</title>
+
 <link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/errorcheck.css">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/messaggi.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -22,7 +22,6 @@
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
 <script type="text/javascript" src="js/messaggi.js"></script>
-
 
 </head>
 <body onload="selectedItemAzienda();nascondiMessaggiTop();">
@@ -124,12 +123,10 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="sede">Stato </label>
 					<div class="col-md-4">
-						<!--  <select>
-						  <option name="stato" value="AccettaRichieste">Accetta Richieste</option>
+						<select name="stato">
+						  <option value="AccettaRichieste">Accetta Richieste</option>
 						  <option value="NonAccettaRichieste">Non Accetta Richieste</option>
-						</select>-->
-						<input id="sede" name="stato" type="text"
-							class="form-control input-md" maxlength="39" value=<%if(loggato){%><%=azienda.getStato() %> <% }%>>
+						</select>
 					</div>
 					<p id="3" class="col-md-4 errorform"></p>
 				</div>

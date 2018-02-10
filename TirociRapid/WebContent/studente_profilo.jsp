@@ -10,15 +10,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-<title>Studente profilo</title>
+<title>Profilo</title>
+
 <link rel="stylesheet" href="css/studente.css">
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/messaggi.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<script src="js/selected_item_studente.js"></script>	
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script src="js/selected_item_studente.js"></script>	
 <script type="text/javascript" src="js/messaggi.js"></script>
+
 </head>
 <body onload="selectedItemStudente(); nascondiMessaggiTop();">
 
@@ -26,6 +28,8 @@
 
 	<%@ include file="nav_studente.jsp"%>
 
+	<div class="container">
+	
 		<%
 		if (request.getAttribute("errore") != null)
 		{
@@ -39,13 +43,10 @@
 			<h1 class="successoTop"><%= request.getAttribute("successo") %></h1>
 		<%
 		}
-		%>
-
-	<div class="container">
-	<%if(request.getAttribute("studente")!=null){
-		Studente studente =  (Studente)request.getAttribute("studente");
-		Curriculum curriculum = studente.getCurriculum();
-	
+		if(request.getAttribute("studente")!=null)
+		{
+			Studente studente =  (Studente)request.getAttribute("studente");
+			Curriculum curriculum = studente.getCurriculum();
 		%>
 		<div id="profilo-curriculum">
 		

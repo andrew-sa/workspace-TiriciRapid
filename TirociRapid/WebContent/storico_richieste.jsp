@@ -10,16 +10,17 @@
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/professore.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="css/messaggi.css">
+
 <script type="text/javascript" src="js/formcheck.js"></script>
 <script type="text/javascript" src="js/selected_item_azienda.js"></script>
 <script type="text/javascript" src="js/selected_item_professore.js"></script>
+<script type="text/javascript" src="js/selected_item_responsabile_approvazioni.js"></script>
 <script type="text/javascript" src="js/jquery.js"></script>
 
 </head>
-<body onload="selectedItemAzienda(); selectedItemProfessore()">
+<body onload="selectedItemAzienda(); selectedItemProfessore(); selectedItemResponsabileApprovazioni();">
 
 	<%@ include file="slider.jsp"%>
 
@@ -43,6 +44,11 @@
 		<%@ include file="nav_azienda.jsp"%>
 	<%
 	}
+	%>
+	
+
+	<div class="container">
+	<%	
 	if (request.getAttribute("errore") != null)
 	{
 	%>
@@ -55,25 +61,20 @@
 		<h1 class="successoTop"><%= request.getAttribute("successo") %></h1>
 	<%
 	}
-	%>
-
-	<div class="container">
-	
-	<%
-			HashMap<Integer, String> states = (HashMap<Integer, String>) getServletContext().getAttribute("statesReqTir");
-			if (request.getAttribute("richieste") != null)
-			{
-				ArrayList<RichiestaTirocinio> richieste = (ArrayList<RichiestaTirocinio>) request.getAttribute("richieste");
-				if (richieste.size() == 0)
-				{
+	HashMap<Integer, String> states = (HashMap<Integer, String>) getServletContext().getAttribute("statesReqTir");
+	if (request.getAttribute("richieste") != null)
+	{
+		ArrayList<RichiestaTirocinio> richieste = (ArrayList<RichiestaTirocinio>) request.getAttribute("richieste");
+		if (richieste.size() == 0)
+		{
 		%>
-			<h1 class="erroreTop">Non hai richieste.</h1>
+			<div class="erroreMsg">Non hai richieste.</div>
 		<%
-				}
-				else
-				{
-					for (RichiestaTirocinio reqTir: richieste)
-					{
+		}
+		else
+		{
+			for (RichiestaTirocinio reqTir: richieste)
+			{
 		%>
 		<div class="col-sm-12">
 

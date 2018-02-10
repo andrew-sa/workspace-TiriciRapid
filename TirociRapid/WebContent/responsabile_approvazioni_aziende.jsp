@@ -7,28 +7,50 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Responsabile Approvazioni Aziende</title>
+<title>Aziende</title>
+
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/professore.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="css/messaggi.css">
 
+<script type="text/javascript" src="js/messaggi.js"></script>
 <script type="text/javascript" src="js/selected_item_responsabile_approvazioni.js"></script>
 <script type="text/javascript" src="js/jquery.js"></script>
 
 </head>
-<body onload="selectedItemResponsabileApprovazioni();">
+<body onload="selectedItemResponsabileApprovazioni(); nascondiMessaggiTop();">
 
 	<%@ include file="slider.jsp"%>
 	<%@ include file="nav_responsabile_approvazioni.jsp"%>
 	
 		<div class="container">
-<%
+		<%
+			if (request.getAttribute("errore") != null)
+			{
+		%>
+			<h1 class="erroreTop"><%= request.getAttribute("errore") %></h1>
+		<%
+			}
+			else if (request.getAttribute("successo") != null)
+			{
+		%>
+			<h1 class="successoTop"><%= request.getAttribute("successo") %></h1>
+		<%
+			}
 			if (request.getAttribute("aziende") != null) {
 				ArrayList<Azienda> aziende = (ArrayList<Azienda>) request.getAttribute("aziende");
-				for (Azienda a : aziende) {
-					
-					
+				if(aziende.size() == 0)
+				{
+					%>
+					<div class="erroreMsg">Non sono attualmente presenti aziende che offrono tirocini.</div>
+					<%
+				}
+				else
+				{
+					for (Azienda a : aziende) 
+					{				
 		%>
 		<div id="responsabile-approvazione-azienda-profilo">
 
@@ -73,14 +95,10 @@
 
 		</div>
 		<%
-			} //FINE FOR
-
-			} // FINE IF
-			
-			if(request.getAttribute("errore")!=null){
-		%>
-				<div style="color: red; text-align: center;"><%=request.getAttribute("errore")%></div>		
-		<%} %>
+				}//FINE FOR
+			} //FINE ELSE
+		} // FINE IF
+		 %>
 	</div>
 	<%@include file="footer.jsp"%>
 </body>

@@ -10,18 +10,21 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="author" content="Bolognese Cammarano Mogavero Napoli Tomeo">
 		<title>Lista Professori</title>
-		<link rel="stylesheet" href="css/studente.css">
+		
+		
 		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/studente.css">
 		<link rel="stylesheet" href="css/style.css">
 		<link rel="stylesheet" href="css/messaggi.css">
 		<link rel="stylesheet" href="css/pagine.css">
-		<link rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		
 		<script src="js/jquery.js"></script>
 		<script src="js/json2.js"></script>
 		<script src="js/selected_item_studente.js"></script>
 		<script src="js/messaggi.js"></script>
 		<script src="js/lista_professori.js"></script>
+		
 	</head>
 	<body onload="selectedItemStudente(); caricaListaProfessori(); nascondiMessaggiTop();">
 	

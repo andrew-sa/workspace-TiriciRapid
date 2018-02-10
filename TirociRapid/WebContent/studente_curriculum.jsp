@@ -9,17 +9,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Studente curriculum</title>
+
+<title>Curriculum</title>
+
+<link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/studente.css">
 <link rel="stylesheet" href="css/messaggi.css">
-<link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/errorcheck.css">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <script type="text/javascript" src="js/messaggi.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/script.js" type="text/javascript"></script>
 <script src="js/formcheck.js" type="text/javascript"></script>
@@ -34,7 +35,7 @@
 	Curriculum curriculum = null;
 	if(session.getAttribute("usernameStudente")!=null)
 	{
-		%>
+	%>
 		<%@ include file="nav_vuota.jsp"%>
 		<div class="container">
 			<%
@@ -65,6 +66,8 @@
 		curriculum = managerCurriculum.read(user.getId());
 	%>
 	<%@ include file="nav_studente.jsp"%>
+	
+	<div class="container">
 	<%
 		if (request.getAttribute("errore") != null)
 		{
@@ -79,8 +82,6 @@
 	<%
 		}
 	%>
-	<div class="container">
-	
 	
 		<div class="row">
 			<form class="form-horizontal" onsubmit="return validateCurriculum(this)" action="modifica_curriculum"  method="post">
