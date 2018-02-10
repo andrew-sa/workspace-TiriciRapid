@@ -1,31 +1,32 @@
 #numPages
 {
 	text-align: center;
-	margin-bottom: 1.5em;
+	padding-bottom: 3.5em;
 }
 
 #numPages > span
 {
 	cursor: pointer;
-	border-radius: 2em;
+	border-radius: 1em;
+	margin-left: 1em;
 	padding: 0.5em 1em 0.5em 1em;
-	background-color: #5c0202;
-	color: #f7e5e5;
+	background-color: #32a3c2;
+	color: white;
 	font-size: 1.001em;
 	font-weight: bold;
-	border: 0.1em solid transparent;
+	border: 0.2em solid transparent;
 }
 
 #numPages > span:hover, #numPages > span.currentPage:hover
 {
-	background-color: #240000;
+	background-color: #00627d;
 	color: #ffffff;
 	border-color: transparent;
 }
 
 #numPages > span.currentPage
 {
-	color: #5c0202;
+	color: #00627d;
 	background-color: initial;
-	border-color: #5c0202;
+	border-color: #00627d;
 }

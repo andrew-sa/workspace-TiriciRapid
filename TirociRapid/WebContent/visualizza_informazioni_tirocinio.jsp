@@ -37,7 +37,7 @@
 	else if(user.getTipo().equals("ResponsabileAzienda"))
 	{
 	%>
-		<%@ include file="nav_responsabile_approvazioni.jsp"%>
+		<%@ include file="nav_azienda.jsp"%>
 	<%
 	}
 	%>	
@@ -55,6 +55,9 @@
 		<h1 class="successoTop"><%= request.getAttribute("successo") %></h1>
 	<%
 	}
+	
+	if(request.getAttribute("tirocinio")!=null)
+	{
 	Tirocinio tirocinio = (Tirocinio) request.getAttribute("tirocinio");
 	%>
 		<div id="responsabile-approvazione-azienda-profilo">
@@ -79,7 +82,9 @@
 		
 
 		</div>
-		
+	<%
+	}
+	%>		
 	</div>
 	<%@include file="footer.jsp"%>
 </body>

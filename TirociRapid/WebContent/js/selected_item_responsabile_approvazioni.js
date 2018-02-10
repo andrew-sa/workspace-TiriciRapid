@@ -22,7 +22,8 @@ function selectedItemResponsabileApprovazioni()
 		case "/TirociRapid/responsabile_approvazioni_richieste_di_tutorato.jsp": case "/TirociRapid/richieste":
 			$("#item_richieste_di_tutorato_responsabile").attr("class","attiva");
 			break;
-		case "/TirociRapid/responsabile_approvazioni_richieste_nuovi_tirocini.jsp":
+		case "/TirociRapid/responsabile_approvazioni_richieste_nuovi_tirocini.jsp": 
+		case "/TirociRapid/carica_proposte_tirocinio":
 			$("#item_richieste_nuovi_tirocini_responsabile").addClass("attiva");
 			break;
 		case "/TirociRapid/responsabile_approvazioni_conferma_finale.jsp": case "/TirociRapid/richieste":

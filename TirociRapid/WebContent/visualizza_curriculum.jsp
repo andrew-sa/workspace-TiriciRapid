@@ -56,6 +56,7 @@
 		<h1 class="successoTop"><%= request.getAttribute("successo") %></h1>
 	<%
 	}
+	if(request.getAttribute("studente")!= null){
 	Studente studente = (Studente) request.getAttribute("studente");
 	Curriculum curriculum = studente.getCurriculum();
 	
@@ -133,7 +134,7 @@
 
 
 		</div>
-
+<%} %>
 	</div>
 	<%@include file="footer.jsp"%>
 </body>

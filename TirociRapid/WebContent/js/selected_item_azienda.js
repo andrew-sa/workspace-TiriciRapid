@@ -2,6 +2,11 @@ function selectedItemAzienda()
 {
 	var path = location.pathname;
 
+	if (path.includes("elimina_tirocinio"))
+	{
+		$("#item_visualizza_tirocini_azienda").addClass("attiva");
+		return;
+	}
 	
 	switch(path)
 	{
@@ -11,7 +16,8 @@ function selectedItemAzienda()
 		case "/TirociRapid/storico_richieste.jsp":
 			$("#item_storico_richieste_azienda").attr("class","attiva");
 			break;
-		case "/TirociRapid/azienda_profilo.jsp": case "/TirociRapid/dati_azienda":
+		case "/TirociRapid/azienda_profilo.jsp": case "/TirociRapid/dati_azienda": 
+		case "/TirociRapid/azienda_iscrizione.jsp": case "/TirociRapid/modifica_dati_azienda":
 			$("#item_profilo_azienda").addClass("attiva");
 			break;
 		case "/TirociRapid/azienda_richieste.jsp": case"/TirociRapid/richieste":

@@ -51,6 +51,8 @@
 		<h1 class="successoTop"><%= request.getAttribute("successo") %></h1>
 	<%
 	}
+	if(request.getAttribute("azienda")!=null)
+	{
 	Azienda azienda = (Azienda) request.getAttribute("azienda");
 	
 	%>
@@ -94,7 +96,9 @@
 				
 			</div>
 		</div>
-		
+		<%
+		}
+	%>
 	</div>
 	<%@include file="footer.jsp"%>
 </body>
