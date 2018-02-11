@@ -274,18 +274,30 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 	@Override
 	public void delete(String usernameStudente, String partitaIVAAzienda, String nomeTirocinio) throws MySQLIntegrityConstraintViolationException, SQLException, TuplaNotFoundException
 	{
-		Connection con = DriverManagerConnectionPool.getIstance().getConnection();	
-		PreparedStatement ps = con.prepareStatement(DELETE);
+		Connection con = DriverManagerConnectionPool.getIstance().getConnection();
+		PreparedStatement ps = con.prepareStatement(DELETE_NOMINARE_OF_DELETE_RICHIESTA);
+		ps.setString(1, nomeTirocinio);
+		ps.setString(2, partitaIVAAzienda);
+		ps.setString(3, usernameStudente);
+		ps.executeUpdate();
+		
+		ps = con.prepareStatement(DELETE);
 		ps.setString(1, nomeTirocinio);
 		ps.setString(2, partitaIVAAzienda);
 		ps.setString(3, usernameStudente);
 		int i = ps.executeUpdate();
-		con.commit();
-		ps.close();
-		DriverManagerConnectionPool.getIstance().releaseConnection(con);
 		if (i != 1)
 		{
+			con.rollback();
+			ps.close();
+			DriverManagerConnectionPool.getIstance().releaseConnection(con);
 			throw new TuplaNotFoundException("La richiesta di tirocinio selezionata non &egrave; presente nel database");
+		}
+		else
+		{
+			con.commit();
+			ps.close();
+			DriverManagerConnectionPool.getIstance().releaseConnection(con);
 		}
 	}
 
@@ -511,6 +523,7 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 	private static final String CREATE = "INSERT INTO richiestatirocinio(PartitaIVA, Nome,Stato, Username) VALUES (?, ?, ?, ?)";
 	private static final String READ_ALL_STATES_BY_STUDENTE = "SELECT Stato FROM richiestatirocinio WHERE Username = ?";
 	private static final String DELETE = "DELETE FROM richiestatirocinio WHERE Nome = ? AND PartitaIVA = ? AND Username = ?";
+	private static final String DELETE_NOMINARE_OF_DELETE_RICHIESTA = "DELETE FROM nominare WHERE Nome = ? AND PartitaIVA = ? AND UsernameStudente = ?";
 	private static final String READ = "SELECT * FROM richiestatirocinio WHERE Nome = ? AND PartitaIVA = ? AND Username = ?";
 	private static final String UPDATE = "UPDATE richiestatirocinio SET Stato = ? WHERE Nome = ? AND PartitaIVA = ? AND Username = ?";
 	private static final String CREATE_NOMINARE = "INSERT INTO nominare(Nome, PartitaIVA, UsernameStudente, UsernameProfessore) VALUES (?, ?, ?, ?)";

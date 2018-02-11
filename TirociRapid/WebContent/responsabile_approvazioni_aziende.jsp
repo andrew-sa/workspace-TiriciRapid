@@ -52,7 +52,7 @@
 					for (Azienda a : aziende) 
 					{				
 		%>
-		<div id="responsabile-approvazione-azienda-profilo">
+		<div class="responsabile-approvazione-azienda-profilo">
 
 			<h2 style="text-align: center;">
 				<span><%=a.getNome()%></span>

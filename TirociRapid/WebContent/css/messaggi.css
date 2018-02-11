@@ -2,12 +2,14 @@ div.erroreMsg
 {
 	color: red;
 	text-align: center;
+	font-size: 2em;
 }
 
 div.successoMsg
 {
 	color: green;
 	text-align: center;
+	font-size: 2em;
 }
 
 h1.erroreTop, h1.successoTop

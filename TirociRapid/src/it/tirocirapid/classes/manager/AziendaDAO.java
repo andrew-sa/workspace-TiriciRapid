@@ -196,7 +196,7 @@ public class AziendaDAO extends AbstractAziendaManager {
 	}
 
 	/**
-	 * Si occupa dell'interrogazione al database per ricavare tutte l' aziende presenti 
+	 * Si occupa dell'interrogazione al database per ricavare tutte le aziende presenti 
 	 * @return ArrayList<Azienda> rappresenta l'aziende presenti nel DB 
 	 * @throws SQLException
 	 */
@@ -207,6 +207,38 @@ public class AziendaDAO extends AbstractAziendaManager {
 		Connection con = DriverManagerConnectionPool.getIstance().getConnection();
 		Statement stm = con.createStatement();
 		ResultSet rs = stm.executeQuery(READ_ALL);
+		while (rs.next())
+		{
+			Azienda azienda = new Azienda();
+			azienda.setPartitaIVA(rs.getString(1));
+			azienda.setNome(rs.getString(2));
+			azienda.setSede(rs.getString(3));
+			azienda.setDescrizioneAmbito(rs.getString(4));
+			azienda.setNumeroTelefono(rs.getString(5));
+			azienda.setEmail(rs.getString(6));
+			azienda.setPassword(rs.getString(7));
+			azienda.setStato(rs.getString(8));
+			aziende.add(azienda);
+		}
+		con.commit();
+		rs.close();
+		stm.close();
+		DriverManagerConnectionPool.getIstance().releaseConnection(con);
+		return aziende;
+	}
+	
+	/**
+	 * Si occupa dell'interrogazione al database per ricavare tutte le aziende presenti in esso che accettano richieste di tirocinio 
+	 * @return ArrayList<Azienda> rappresenta l'aziende presenti nel DB che accettano richieste di tirocinio
+	 * @throws SQLException
+	 */
+	@Override
+	public ArrayList<Azienda> readDisponibili() throws SQLException
+	{
+		ArrayList<Azienda> aziende = new ArrayList<>();
+		Connection con = DriverManagerConnectionPool.getIstance().getConnection();
+		Statement stm = con.createStatement();
+		ResultSet rs = stm.executeQuery(READ_DISPONIBILI);
 		while (rs.next())
 		{
 			Azienda azienda = new Azienda();
@@ -317,6 +349,7 @@ public class AziendaDAO extends AbstractAziendaManager {
 	private static final String CREATE = "INSERT INTO azienda(PartitaIVA, Nome, Sede, DescrizioneAmbito, NumeroTelefono, Email, Pass, Stato) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String READ_ALL_KEY = "SELECT PartitaIVA FROM azienda";
 	private static final String READ_ALL = "SELECT * FROM azienda";
+	private static final String READ_DISPONIBILI = "SELECT * FROM azienda WHERE Stato = \"AccettaRichieste\"";
 	private static final String UPDATE = "UPDATE azienda SET Nome = ?, Sede = ?, DescrizioneAmbito = ?, NumeroTelefono = ?, "
 			+ "Email = ?, Stato = ? WHERE PartitaIVA = ?";
 	private static final String UPDATE_STATO = "UPDATE azienda SET Stato = ? WHERE PartitaIVA = ?";

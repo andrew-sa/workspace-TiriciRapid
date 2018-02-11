@@ -67,7 +67,7 @@ function mostraListaProfessori()
 		var strJSON = xhttp.responseText;
 		if (strJSON == "")
 		{
-			var messaggio = $('<h1 class="erroreTop"></h1>')
+			var messaggio = $('<div class="erroreMsg"></div>')
 			messaggio.html("Non sono stati trovati professori<br>Si prega di ricaricare la pagina");
 			$("#contenuto").prepend(messaggio);
 		}

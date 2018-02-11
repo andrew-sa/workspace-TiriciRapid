@@ -1,6 +1,6 @@
 /*css lista aziende*/
 @media screen and (min-width: 1024px) {
-	#responsabile-approvazione-azienda-profilo {
+	.responsabile-approvazione-azienda-profilo {
 		
 		width: 80%;
 		margin-left: 10%;
@@ -36,7 +36,7 @@
 
 @media screen and (max-width: 1024px) {
 
-	#responsabile-approvazione-azienda-profilo {
+	.responsabile-approvazione-azienda-profilo {
 		width: 100%;
 		color: #fff;
 		background-color: #32a3c2;
