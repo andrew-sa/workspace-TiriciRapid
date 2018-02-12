@@ -1,0 +1,63 @@
+@media screen and (max-width: 1024px) {
+
+	#info-azienda,#info-studente,#info-tirocinio {
+		width: 100%;
+		color: #fff;
+		background-color: #32a3c2;
+		border-color: #00627d;
+		border-style: solid;
+		border-width: 0.2em;
+		border-radius: 1em;
+		margin-bottom: 5em;
+		margin-top: 2.5em;
+	}
+	.parametri-azienda,.parametri-studente,.parametri-tirocinio {
+		display: table-row;
+		display: block;
+		padding-left: 1em;
+		font-size: medium;
+		border-style:solid;
+		border-width: 0.3em;
+		border-right-width: 0.1em;
+		border-left-width: 0em;
+		border-top-width: 0em;
+		border-radius: 1em;
+		border-color: #00627d;
+	}
+	
+}
+
+@media screen and (min-width: 1024px) {
+	#info-azienda,#info-studente,#info-tirocinio {
+		
+		width: 80%;
+		margin-left: 10%;
+		color: #fff;
+		background-color: #32a3c2;
+		border-color: #00627d;
+		border-style: solid;
+		border-width: 0.2em;
+		border-radius: 1em;
+		margin-top: 2.5em;
+		margin-bottom: 2.5em;
+	}
+	
+	.tabella-info-azienda,.tabella-info-studente,.tabella-info-tirocinio {
+		display: table;
+		margin-top: 1.2em;
+	}
+	.parametri-azienda,.parametri-studente,.parametri-tirocinio {
+		display: table-row;
+		font-size: medium;
+		margin-left: 1em;
+	}
+	.elemento-parametri-azienda,.elemento-parametri-studente,.elemento-parametri-tirocinio {
+		
+		display: table-cell;
+		padding-left: 10em;
+		font-size: medium;
+		margin-left: 1em;
+		padding-right: 1em;
+		padding-bottom: 1.1em;
+	}
+}

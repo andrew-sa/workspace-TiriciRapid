@@ -120,6 +120,7 @@
 	
 	.tabelle {
 		display: table;
+		margin-top: 1.2em;
 	}
 	.parametri-azienda {
 		display: table-row;
@@ -133,6 +134,7 @@
 		font-size: medium;
 		margin-left: 1em;
 		padding-right: 1em;
+		padding-bottom: 1em;
 	}
 	
 	#bottone-dati-aziendali

@@ -9,7 +9,7 @@
 
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/professore.css">
+<link rel="stylesheet" href="css/informazioni.css">
 <link rel="stylesheet" href="css/messaggi.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	
@@ -57,7 +57,7 @@
 	
 	%>
 
-		<div id="responsabile-approvazione-azienda-profilo">
+		<div id="info-azienda">
 
 			<h2 style="text-align: center;">
 				<span><%=azienda.getNome() %>  </span>

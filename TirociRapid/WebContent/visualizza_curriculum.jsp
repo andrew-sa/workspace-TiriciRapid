@@ -9,7 +9,8 @@
 
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/professore.css">
+<link rel="stylesheet" href="css/informazioni.css">
+<!-- <link rel="stylesheet" href="css/professore.css"> -->
 <link rel="stylesheet" href="css/messaggi.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	
@@ -61,73 +62,73 @@
 	Curriculum curriculum = studente.getCurriculum();
 	
 	%>
-		<div id="responsabile-approvazione-azienda-profilo">
+		<div id="info-studente">
 
 			<h2 style="text-align: center;">
 				<span><%=studente.getNome()+" "+studente.getCognome() %></span>
 			</h2>
-			<div class="tabella-info-azienda">
+			<div class="tabella-info-studente">
 
 			<%if(curriculum.getFax()!=null) 
 			 {
 			 %>
-				<div class="parametri-azienda">
-					<div class="elemento-parametri-azienda">Fax:</div>
-					<div class="elemento-parametri-azienda"><%=curriculum.getFax() %></div>
+				<div class="parametri-studente">
+					<div class="elemento-parametri-studente">Fax:</div>
+					<div class="elemento-parametri-studente"><%=curriculum.getFax() %></div>
 				</div>
 			<%
 			} 
 			%>
-				<div class="parametri-azienda">
-					<div class="elemento-parametri-azienda">Capacit&agrave;
+				<div class="parametri-studente">
+					<div class="elemento-parametri-studente">Capacit&agrave;
 						competenze relazionali:</div>
-					<div class="elemento-parametri-azienda"><%=curriculum.getCapacitaCompetenzeRelazionali() %></div>
+					<div class="elemento-parametri-studente"><%=curriculum.getCapacitaCompetenzeRelazionali() %></div>
 				</div>
 
-				<div class="parametri-azienda">
-					<div class="elemento-parametri-azienda">Capacit&agrave;
+				<div class="parametri-studente">
+					<div class="elemento-parametri-studente">Capacit&agrave;
 						competenze tecniche:</div>
-					<div class="elemento-parametri-azienda"><%=curriculum.getCapacitaCompetenzeTecniche() %></div>
+					<div class="elemento-parametri-studente"><%=curriculum.getCapacitaCompetenzeTecniche() %></div>
 				</div>
 
-				<div class="parametri-azienda">
-					<div class="elemento-parametri-azienda">Capacit&agrave;
+				<div class="parametri-studente">
+					<div class="elemento-parametri-studente">Capacit&agrave;
 						competenze artistiche:</div>
-					<div class="elemento-parametri-azienda"><%=curriculum.getCapacitaCompetenzeArtistiche() %></div>
+					<div class="elemento-parametri-studente"><%=curriculum.getCapacitaCompetenzeArtistiche() %></div>
 				</div>
 
-				<div class="parametri-azienda">
-					<div class="elemento-parametri-azienda">Capacit&agrave;
+				<div class="parametri-studente">
+					<div class="elemento-parametri-studente">Capacit&agrave;
 						competenze personali:</div>
-					<div class="elemento-parametri-azienda"><%=curriculum.getCapacitaCompetenzePersonali() %></div>
+					<div class="elemento-parametri-studente"><%=curriculum.getCapacitaCompetenzePersonali() %></div>
 				</div>
 
-				<div class="parametri-azienda">
-					<div class="elemento-parametri-azienda">Capacit&agrave;
+				<div class="parametri-studente">
+					<div class="elemento-parametri-studente">Capacit&agrave;
 						competenze organizzative:</div>
-					<div class="elemento-parametri-azienda"><%=curriculum.getCapacitaCompetenzeOrganizzative() %></div>
+					<div class="elemento-parametri-studente"><%=curriculum.getCapacitaCompetenzeOrganizzative() %></div>
 				</div>
-				<div class="parametri-azienda">
-					<div class="elemento-parametri-azienda">AltreCapacit&agrave;
+				<div class="parametri-studente">
+					<div class="elemento-parametri-studente">AltreCapacit&agrave;
 						e competenze:</div>
-					<div class="elemento-parametri-azienda"><%=curriculum.getAltreCapacitaCompetenze() %></div>
+					<div class="elemento-parametri-studente"><%=curriculum.getAltreCapacitaCompetenze() %></div>
 				</div>
-				<div class="parametri-azienda">
-					<div class="elemento-parametri-azienda">Altre lingue:</div>
-					<div class="elemento-parametri-azienda"><%=curriculum.getAltreLingue() %></div>
+				<div class="parametri-studente">
+					<div class="elemento-parametri-studente">Altre lingue:</div>
+					<div class="elemento-parametri-studente"><%=curriculum.getAltreLingue() %></div>
 				</div>
-				<div class="parametri-azienda">
-					<div class="elemento-parametri-azienda">Madrelingua:</div>
-					<div class="elemento-parametri-azienda"><%=curriculum.getMadrelingua() %></div>
+				<div class="parametri-studente">
+					<div class="elemento-parametri-studente">Madrelingua:</div>
+					<div class="elemento-parametri-studente"><%=curriculum.getMadrelingua() %></div>
 				</div>
-				<div class="parametri-azienda">
-					<div class="elemento-parametri-azienda">Patenti:</div>
-					<div class="elemento-parametri-azienda"><%=curriculum.getPatenti() %></div>
+				<div class="parametri-studente">
+					<div class="elemento-parametri-studente">Patenti:</div>
+					<div class="elemento-parametri-studente"><%=curriculum.getPatenti() %></div>
 				</div>
-				<div class="parametri-azienda">
-					<div class="elemento-parametri-azienda">Ulteriori
+				<div class="parametri-studente">
+					<div class="elemento-parametri-studente">Ulteriori
 						informazioni:</div>
-					<div class="elemento-parametri-azienda"><%=curriculum.getUlterioriInformazioni() %></div>
+					<div class="elemento-parametri-studente"><%=curriculum.getUlterioriInformazioni() %></div>
 				</div>
 			</div>
 

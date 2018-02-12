@@ -10,7 +10,7 @@
 
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/professore.css">
+<link rel="stylesheet" href="css/informazioni.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="css/messaggi.css">
 	
@@ -60,21 +60,21 @@
 	{
 	Tirocinio tirocinio = (Tirocinio) request.getAttribute("tirocinio");
 	%>
-		<div id="responsabile-approvazione-azienda-profilo">
+		<div id="info-tirocinio">
 
 			<h2 style="text-align: center;">
 				<span><%=tirocinio.getNome() %></span>
 			</h2>
-			<div class="tabella-info-azienda">
+			<div class="tabella-info-tirocinio">
 
-				<div class="parametri-azienda">
-					<div class="elemento-parametri-azienda">Offerta formativa:</div>
-					<div class="elemento-parametri-azienda"><%=tirocinio.getOffertaFormativa() %></div>
+				<div class="parametri-tirocinio">
+					<div class="elemento-parametri-tirocinio">Offerta formativa:</div>
+					<div class="elemento-parametri-tirocinio"><%=tirocinio.getOffertaFormativa() %></div>
 				</div>
 
-				<div class="parametri-azienda">
-					<div class="elemento-parametri-azienda">Descrizione:</div>
-					<div class="elemento-parametri-azienda"><%=tirocinio.getDescrizione() %></div>
+				<div class="parametri-tirocinio">
+					<div class="elemento-parametri-tirocinio">Descrizione:</div>
+					<div class="elemento-parametri-tirocinio"><%=tirocinio.getDescrizione() %></div>
 				</div>
 	
 			</div>
