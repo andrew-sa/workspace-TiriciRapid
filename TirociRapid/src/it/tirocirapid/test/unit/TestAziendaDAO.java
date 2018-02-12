@@ -658,76 +658,66 @@ public class TestAziendaDAO extends TestCase{
 	@Test
 	public void testUpdateStato1()  {
 		AziendaDAO aziendaDAOUpStato= new AziendaDAO();
-		String partitaIVA="c";
-        String password="c";
-        String email="c";
-        String nome="c";
-        String sede="c";
-        String numero="c";
-        String stato="c";
-        String descrizioneAmbito="c";
-        
-        Azienda a = new Azienda(partitaIVA,password,email,nome,sede,numero,null,stato,descrizioneAmbito);
 				try(Connection connection=DriverManagerConnectionPool.getIstance().getConnection();)
 		        {
 		            try(Statement stCheck=(Statement) connection.createStatement())
 		            {
 		            	connection.setAutoCommit(true);
-		            	aziendaDAOUpStato.create(a);
-		            	Azienda b=aziendaDAOUpStato.read(partitaIVA);
-		                String stato1="aaaaaaaaa";
-		                aziendaDAOUpStato.updateStato(partitaIVA, stato1);
-		                assertEquals(stato,b.getStato());
-		                System.out.println("SONO NELl' UPDATE:"+b.getStato());
-		                PreparedStatement ps= (PreparedStatement) connection.prepareStatement("DELETE FROM azienda WHERE PartitaIVA='c'");
-	                    ps.executeUpdate();
-		            } catch (InsertFailedException e) {
+		            	String piva = "01281201218";
+		            	Azienda f =aziendaDAOUpStato.read(piva);
+		            	String statovecchio=f.getStato();
+		            	aziendaDAOUpStato.updateStato(piva, "a");
+		            	assertEquals("a", aziendaDAOUpStato.read(piva).getStato());
+		            	aziendaDAOUpStato.updateStato(piva, statovecchio);
+		            	
+		            } catch (TuplaNotFoundException e) {
 						e.printStackTrace();
-					} catch (TuplaNotFoundException e) {
+					} catch (InsertFailedException e) {
+						// TODO Auto-generated catch block
 						e.printStackTrace();
-					}         
-		           connection.close();          
+					}
+		                
 		        } catch (SQLException e) {
 					e.printStackTrace();
 				}	
 	}
 	
-	@Test
-	public void testUpdateStato2()  {
-		AziendaDAO aziendaDAOUpStato= new AziendaDAO();
-		String partitaIVA="c";
-        String password="c";
-        String email="c";
-        String nome="c";
-        String sede="c";
-        String numero="c";
-        String stato="c";
-        String descrizioneAmbito="c";
-        
-        Azienda a = new Azienda(partitaIVA,password,email,nome,sede,numero,null,stato,descrizioneAmbito);
-				try(Connection connection=DriverManagerConnectionPool.getIstance().getConnection();)
-		        {
-		            try(Statement stCheck=(Statement) connection.createStatement())
-		            {
-		            	connection.setAutoCommit(true);
-		            	aziendaDAOUpStato.create(a);
-		            	Azienda b=aziendaDAOUpStato.read(partitaIVA);
-		                String stato1="aaaaaaaaa";
-		                aziendaDAOUpStato.updateStato("aaa", stato1);
-		                assertEquals(stato,b.getStato());
-		                System.out.println("SONO NELl' UPDATE:"+b.getStato());
-		                PreparedStatement ps= (PreparedStatement) connection.prepareStatement("DELETE FROM azienda WHERE PartitaIVA='c'");
-	                    ps.executeUpdate();
-		            } catch (InsertFailedException e) {
-						e.printStackTrace();
-					} catch (TuplaNotFoundException e) {
-						e.printStackTrace();
-					}         
-		           connection.close();          
-		        } catch (SQLException e) {
-					e.printStackTrace();
-				}	
-	}
+//	@Test
+//	public void testUpdateStato2()  {
+//		AziendaDAO aziendaDAOUpStato= new AziendaDAO();
+//		String partitaIVA="c";
+//        String password="c";
+//        String email="c";
+//        String nome="c";
+//        String sede="c";
+//        String numero="c";
+//        String stato="c";
+//        String descrizioneAmbito="c";
+//        
+//        Azienda a = new Azienda(partitaIVA,password,email,nome,sede,numero,null,stato,descrizioneAmbito);
+//				try(Connection connection=DriverManagerConnectionPool.getIstance().getConnection();)
+//		        {
+//		            try(Statement stCheck=(Statement) connection.createStatement())
+//		            {
+//		            	connection.setAutoCommit(true);
+//		            	aziendaDAOUpStato.create(a);
+//		            	Azienda b=aziendaDAOUpStato.read(partitaIVA);
+//		                String stato1="aaaaaaaaa";
+//		                aziendaDAOUpStato.updateStato("aaa", stato1);
+//		                assertEquals(stato,b.getStato());
+//		                System.out.println("SONO NELl' UPDATE:"+b.getStato());
+//		                PreparedStatement ps= (PreparedStatement) connection.prepareStatement("DELETE FROM azienda WHERE PartitaIVA='c'");
+//	                    ps.executeUpdate();
+//		            } catch (InsertFailedException e) {
+//						e.printStackTrace();
+//					} catch (TuplaNotFoundException e) {
+//						e.printStackTrace();
+//					}         
+//		           connection.close();          
+//		        } catch (SQLException e) {
+//					e.printStackTrace();
+//				}	
+//	}
 	
 	@Test
 	public void testReadDisponibili() {
