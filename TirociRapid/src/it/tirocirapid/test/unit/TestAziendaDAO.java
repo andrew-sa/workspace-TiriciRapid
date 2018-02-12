@@ -690,5 +690,40 @@ public class TestAziendaDAO extends TestCase{
 					e.printStackTrace();
 				}	
 	}
+	
+	@Test
+	public void testReadDisponibili() {
+		AziendaDAO aziendaDAOreadAll= new AziendaDAO();
+		ArrayList<Azienda> aziendaTest = new ArrayList<>();
+		ArrayList<Azienda> azienda = new ArrayList<>();
+		try(Connection con = DriverManagerConnectionPool.getIstance().getConnection();){
+			try(Statement stm=(Statement) con.createStatement()){
+					con.setAutoCommit(true);
+					azienda=aziendaDAOreadAll.readDisponibili();
+					Azienda uno = new Azienda("01281201218","rtyfghcvb","soferm1@biu.com","Sofer","Napoli","08119365223", null,"AccettaRichieste","Edilizia");
+					Azienda due = new Azienda("06653061215","wersdfxcv","info@webapp.it","WEBAPP","Napoli","0815706309", null,"AccettaRichieste","App personalizzate e software gestionali");
+					Azienda tre = new Azienda("07071080639","poiuytlkj","sales@vulcanair.com","Vulcanair","Napoli","0815918111", null,"AccettaRichieste","Fabbricazione di aeromobili, di veicoli spaziali e dei relativi dispositivi nca");
+					aziendaTest.add(uno);
+					aziendaTest.add(due);
+					aziendaTest.add(tre);
+					for(int i=0; i<=azienda.size()-1; i++) {
+						assertEquals(azienda.get(i).getPartitaIVA(), aziendaTest.get(i).getPartitaIVA());
+						assertEquals(azienda.get(i).getPassword(), aziendaTest.get(i).getPassword());
+						assertEquals(azienda.get(i).getEmail(), aziendaTest.get(i).getEmail());
+						assertEquals(azienda.get(i).getNome(), aziendaTest.get(i).getNome());
+						assertEquals(azienda.get(i).getSede(), aziendaTest.get(i).getSede());
+						assertEquals(azienda.get(i).getNumeroTelefono(), aziendaTest.get(i).getNumeroTelefono());
+						assertEquals(azienda.get(i).getStato(), aziendaTest.get(i).getStato());
+						assertEquals(azienda.get(i).getDescrizioneAmbito(), aziendaTest.get(i).getDescrizioneAmbito());
+					}
+					con.commit();
+					stm.close();
+					DriverManagerConnectionPool.getIstance().releaseConnection(con);
+				}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 }
