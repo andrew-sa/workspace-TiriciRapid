@@ -93,6 +93,7 @@ public class CaricaStoricoRichiesteTirocinio extends HttpServlet {
 					
 					richiesteJSON.put(reqTirJSON);
 				}	
+				response.getWriter().write(richiesteJSON.toString());
 //				request.setAttribute("richieste", richieste);
 			}
 			catch (SQLException | TuplaNotFoundException e)

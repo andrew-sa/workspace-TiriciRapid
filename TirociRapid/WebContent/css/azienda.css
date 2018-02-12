@@ -11,24 +11,24 @@
 	background-color: #e6e6e6;
 }
 
-#bottone-azienda-accetta {
+.bottone-azienda-accetta {
 	background-color: #006600;
 	border-color: white;
 	color: white;
 }
 
-#bottone-azienda-rifiuta {
+.bottone-azienda-rifiuta {
 	
 	background-color: #cc0000;
 	border-color: white;
 	color: white;
 }
-#bottone-azienda-rifiuta:hover {
+.bottone-azienda-rifiuta:hover {
 	background-color: red;
 	box-shadow: 0em 0em 0em 0.1em white inset;
 	color: white;
 }
-#bottone-azienda-accetta:hover {
+.bottone-azienda-accetta:hover {
 	background-color: green;
 	box-shadow: 0em 0em 0em 0.1em white inset;
 	color: white;

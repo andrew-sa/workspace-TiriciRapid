@@ -86,12 +86,10 @@
 					String pathRifiuta ="convalida_richiesta_tirocinio?action=rifiuta&partitaIVAAzienda="+reqTir.getTirocinio().getPartitaIVAAzienda()+
 							"&nomeTirocinio="+reqTir.getTirocinio().getNome()+"&usernameStudente="+reqTir.getStudente().getUsername();
 					%>
-						<a href="<%=pathAccetta%>" class="btn btn-lg btn-block btn-default"
-							id="bottone-azienda-accetta" style="display: block;">Accetta</a>
+						<a href="<%=pathAccetta%>" class="btn btn-lg btn-block btn-default bottone-azienda-accetta" style="display: block;">Accetta</a>
 					</div>
 					<div class="col-md-3 cta-button">
-						<a href="<%=pathRifiuta%>" class="btn btn-lg btn-block btn-default"
-							id="bottone-azienda-rifiuta" style="display: block;">Rifiuta</a>
+						<a href="<%=pathRifiuta%>" class="btn btn-lg btn-block btn-default bottone-azienda-rifiuta" style="display: block;">Rifiuta</a>
 					</div>
 
 				</div>

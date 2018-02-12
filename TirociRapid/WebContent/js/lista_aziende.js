@@ -58,8 +58,8 @@ function AziendaResponsabileApprovazioniHTML(partitaIVA, nome, ambito, sede, ema
 			'<div class="elemento-parametri-azienda">' + partitaIVA + '</div>');
 	this.sede.html('<div class="elemento-parametri-azienda">Sede:</div>' + 
 			'<div class="elemento-parametri-azienda">' + sede + '</div>');
-	this.email.html('<div class="elemento-parametri-azienda">Sede:</div>' + 
-			'<div class="elemento-parametri-azienda">' + sede + '</div>');
+	this.email.html('<div class="elemento-parametri-azienda">Email:</div>' + 
+			'<div class="elemento-parametri-azienda">' + email + '</div>');
 	this.telefono.html('<div class="elemento-parametri-azienda">Numero di telefono:</div>' + 
 			'<div class="elemento-parametri-azienda">' + telefono + '</div>');
 	this.ambito.html('<div class="elemento-parametri-azienda">Descrizione Ambito:</div>' + 

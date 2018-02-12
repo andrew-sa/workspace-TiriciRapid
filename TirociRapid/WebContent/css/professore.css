@@ -77,24 +77,24 @@
 	background-color: #e6e6e6;
 }
 
-#bottone-professore-accetta {
+.bottone-professore-accetta {
 	background-color: #006600;
 	border-color: white;
 	color: white;
 }
 
-#bottone-professore-rifiuta {
+.bottone-professore-rifiuta {
 	
 	background-color: #cc0000;
 	border-color: white;
 	color: white;
 }
-#bottone-professore-rifiuta:hover {
+.bottone-professore-rifiuta:hover {
 	background-color: red;
 	box-shadow: 0em 0em 0em 0.1em white inset;
 	color: white;
 }
-#bottone-professore-accetta:hover {
+.bottone-professore-accetta:hover {
 	background-color: green;
 	box-shadow: 0em 0em 0em 0.1em white inset;
 	color: white;
