@@ -1,5 +1,9 @@
 package it.tirocirapid.factory;
 
+/**
+ * Rappresenta l'interfaccia dei metodi delle classi Manager
+ */
+
 import it.tirocirapid.classes.manager.AbstractAziendaManager;
 import it.tirocirapid.classes.manager.AbstractCurriculumManager;
 import it.tirocirapid.classes.manager.AbstractProfessoreManager;

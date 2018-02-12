@@ -35,7 +35,7 @@ public class CaricaListaAziende extends HttpServlet {
      */
     public CaricaListaAziende() {
         super();
-        // TODO Auto-generated constructor stub
+
     }
 
 	/**

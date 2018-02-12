@@ -44,7 +44,6 @@ public class CreaRichiestaTirocinio extends HttpServlet {
      */
     public CreaRichiestaTirocinio() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**

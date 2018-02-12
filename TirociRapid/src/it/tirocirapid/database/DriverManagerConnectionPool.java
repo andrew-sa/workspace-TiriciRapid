@@ -6,6 +6,10 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Classe che gestisce la connessione con il DB
+ */
+
 public class DriverManagerConnectionPool {
 	
 	private DriverManagerConnectionPool()

@@ -31,7 +31,6 @@ public class CaricaRichiesteTirocinio extends HttpServlet {
      */
     public CaricaRichiesteTirocinio() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -157,7 +156,7 @@ public class CaricaRichiesteTirocinio extends HttpServlet {
 	}
 	
 	/**
-	 * 
+	 * Controlla se orig è una stringa vuota o è null
 	 * @param orig la stringa da controllare
 	 * @param replacement la stringa da restituire nel caso orig fosse vuota o nulla  
 	 * @return orig se orig non è ne nulla e ne vuota

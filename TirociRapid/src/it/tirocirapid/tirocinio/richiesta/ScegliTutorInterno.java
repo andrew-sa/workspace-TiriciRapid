@@ -44,7 +44,6 @@ public class ScegliTutorInterno extends HttpServlet {
      */
     public ScegliTutorInterno() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**

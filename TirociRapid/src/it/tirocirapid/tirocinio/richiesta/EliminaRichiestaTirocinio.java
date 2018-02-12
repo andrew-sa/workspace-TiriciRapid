@@ -31,7 +31,6 @@ public class EliminaRichiestaTirocinio extends HttpServlet {
      */
     public EliminaRichiestaTirocinio() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**

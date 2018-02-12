@@ -35,7 +35,6 @@ public class CaricaStoricoRichiesteTirocinio extends HttpServlet {
      */
     public CaricaStoricoRichiesteTirocinio() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
