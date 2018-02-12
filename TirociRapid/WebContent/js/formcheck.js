@@ -206,3 +206,34 @@ function validateCurriculum(form) {
 		return false;
 	}
 }
+
+function validateAggiuntaTirocinio(form){
+	var contr = 0;
+	resetInput(form);
+	if (!((form["nome"].value.trim().length) <= 50)) {
+		form["nome"].setAttribute("nome",
+				"Non puoi scrivere pi\u00F9 di 50 caratteri");
+		document.getElementById(1).innerHTML = "Non puoi scrivere pi\u00F9 di 50 caratteri";
+		contr = 1;
+	}
+	if (!((form["offertaFormativa"].value.trim().length) <= 500)) {
+		form["offertaFormativa"].setAttribute("offertaFormativa",
+				"Non puoi scrivere pi\u00F9 di 500 caratteri");
+		document.getElementById(2).innerHTML = "Non puoi scrivere pi\u00F9 di 500 caratteri";
+		contr = 1;
+	}
+	if (!((form["descrizione"].value.trim().length) <= 500)) {
+		form["descrizione"].setAttribute("descrizione",
+				"Non puoi scrivere pi\u00F9 di 500 caratteri");
+		document.getElementById(3).innerHTML = "Non puoi scrivere pi\u00F9 di 500 caratteri";
+		contr = 1;
+	}
+	if (!checkEmpty(form)) {
+		contr = 1
+	}
+	if (contr == 0) {
+		return true;
+	} else {
+		return false;
+	}
+}
