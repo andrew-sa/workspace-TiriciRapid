@@ -33,7 +33,6 @@ public class RegistrazioneAzienda extends HttpServlet {
      */
     public RegistrazioneAzienda() {
         super();
-        // TODO Auto-generated constructor stub
     }
 	
 	/**
@@ -56,7 +55,6 @@ public class RegistrazioneAzienda extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -222,7 +220,7 @@ public class RegistrazioneAzienda extends HttpServlet {
 	}
 
 	/**
-	 * 
+	 * Valida il nome 
 	 * @param nome rappresenta il nome dell'azienda che si sta per registrare
 	 * @return true se il nome rispecchia il formato
 	 * @return false altrimenti
@@ -233,7 +231,7 @@ public class RegistrazioneAzienda extends HttpServlet {
 	}
 
 	/**
-	 * 
+	 * Valida la partitaIVA 
 	 * @param partitaIVA rappresenta la partita IVA dell'azienda che si sta per registrare 
 	 * @return true se la partitaIVA rispecchia il formato
 	 * @return false altrimenti
@@ -244,7 +242,7 @@ public class RegistrazioneAzienda extends HttpServlet {
 	}
 	
 	/**
-	 * 
+	 * Valida la Mail
 	 * @param email rappresenta l'email da validare
 	 * @return true se l'email rispecchia il formato
 	 * @return false altrimenti
@@ -255,7 +253,7 @@ public class RegistrazioneAzienda extends HttpServlet {
 	}
 	
 	/**
-	 * 
+	 * Valida il Numero di Telefono
 	 * @param numero rappresenta il numero da validare
 	 * @return true se il numero rispecchia il formato
 	 * @return false altrimenti
@@ -267,7 +265,7 @@ public class RegistrazioneAzienda extends HttpServlet {
 	}
 	
 	/**
-	 * 
+	 * Valida Descrizione Ambito
 	 * @param numero rappresenta il numero da validare
 	 * @return true se il numero rispecchia il formato
 	 * @return false altrimenti
@@ -278,7 +276,7 @@ public class RegistrazioneAzienda extends HttpServlet {
 	}
 	
 	/**
-	 * 
+	 * Valida il formato della Password
 	 * @param passw rappresenta la password da validare
 	 * @return true se passw è formattata in modo corretto
 	 * @return false se passw non è formattata in modo corretto
@@ -289,7 +287,7 @@ public class RegistrazioneAzienda extends HttpServlet {
 	}
 	
 	/**
-	 * 
+	 * Valida la conferma della Password
 	 * @param password rappresenta la password 
 	 * @param confPassword rappresenta la password da confermare
 	 * @return true se password è uguale a confPassword
@@ -301,7 +299,7 @@ public class RegistrazioneAzienda extends HttpServlet {
 	}
 	
 	/**
-	 * 
+	 * Verific se orig è vuota o null
 	 * @param orig la stringa da controllare
 	 * @param replacement la stringa da restituire nel caso orig fosse vuota o nulla  
 	 * @return orig se orig non è ne nulla e ne vuota

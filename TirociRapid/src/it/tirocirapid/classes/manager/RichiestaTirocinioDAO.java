@@ -35,12 +35,12 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 	}
 
 	/**
-	 * Si occupa dell'interrogazione al database per l'inserimento di un Richiesta di Tirocinio
+	 * Crea una Richiesta di Tirocinio all'interno del DB
 	 * @param toCreate la RichiestaTirocinio da inserire
 	 * @param states i possibili stati della richiesta di tiroicnio
 	 * @throws BadRequestTirocinioException eccezione che si verifica se lo studente che vuole effettuare la richiesta di tirocinio ha una richiesta di tirocinio già approvata o in fase di approvazione
-	 * @throws SQLException
-	 * @throws InsertFailedException 
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
+	 * @throws InsertFailedException viene lanciata nel caso in cui non avviene con successo il salvtaggio nel DB
 	 */
 	@Override
 	public void create(RichiestaTirocinio toCreate, HashMap<Integer, String> states) throws SQLException, BadRequestTirocinioException, InsertFailedException
@@ -70,11 +70,11 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 	}
 	
 	/**
-	 * 
+	 * Controlla se lo studente ha già una richiesta di tirocinio in fase di validazione
 	 * @param username l'username dello studente che sta effettuando la richiesta
 	 * @param states i possibili stati della richiesta di tiroicnio
 	 * @param con la connessione al database
-	 * @throws SQLException
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
 	 */
 	private boolean isGoodRequest(String username, HashMap<Integer, String> states, Connection con) throws SQLException
 	{
@@ -98,13 +98,13 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 	}
 
 	/**
-	 * Si occupa dell'interrogazione al database per ricavare una richiesta di tirocinio
+	 * Cerca nel DB una richiesta di tirocinio
 	 * @param usernameStudente l'username dello studente
 	 * @param partitaIVAAzienda la partita iva dell'azienda 
 	 * @param nomeTirocinio il nome del tirocinio
 	 * @return RichiestaTirocinio la richiesta di tirocinio cercata
 	 * @throws TuplaNotFoundException la richiesta cercata non è presente all'interno del DB 
-	 * @throws SQLException
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
 	 */
 	@Override
 	public RichiestaTirocinio read(String usernameStudente, String partitaIVAAzienda, String nomeTirocinio) throws SQLException, TuplaNotFoundException
@@ -138,10 +138,10 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 	}
 
 	/**
-	 * Si occupa dell'interrogazione al database per la modifica di una richiesta di tirocinio
+	 * Modifica lo stato di una richiesta di tirocinio presente nel DB
 	 * @param toUpdate la richiesta da modificata da inserire all'interno del DB
 	 * @throws TuplaNotFoundException la richiesta non è presente all'interno del DB 
-	 * @throws SQLException
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
 	 */
 	@Override
 	public void updateStato(RichiestaTirocinio toUpdate) throws SQLException, InsertFailedException
@@ -164,7 +164,13 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 			throw new InsertFailedException("Impossibile aggiornare la richiesta di tirocinio selezionata");
 		}
 	}
-	
+
+	/**
+	 * Modifica lo stato di una richiesta di tirocinio presente nel DB
+	 * @param toUpdate la richiesta da modificata da inserire all'interno del DB
+	 * @throws TuplaNotFoundException la richiesta non è presente all'interno del DB 
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
+	 */
 	private void updateStato(RichiestaTirocinio toUpdate, Connection con) throws SQLException, InsertFailedException
 	{	
 		PreparedStatement ps = con.prepareStatement(UPDATE);
@@ -183,6 +189,12 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 		}
 	}
 	
+	/**
+	 * Nomina un professore ad una rihiesta di tirocinio
+	 * @param toUpdate la richiesta da modificata da inserire all'interno del DB
+	 * @throws TuplaNotFoundException la richiesta non è presente all'interno del DB 
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
+	 */
 	@Override
 	public void updateAddTutor(RichiestaTirocinio toUpdate) throws MySQLIntegrityConstraintViolationException, SQLException, InsertFailedException
 	{
@@ -227,6 +239,14 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 		}
 	}
 
+	
+	
+	/**
+	 * Modifica lo stato di una richiesta di tirocinio presente nel DB
+	 * @param toUpdate la richiesta da modificata da inserire all'interno del DB
+	 * @throws TuplaNotFoundException la richiesta non è presente all'interno del DB 
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
+	 */
 	@Override
 	public void updateRemoveTutor(RichiestaTirocinio toUpdate) throws SQLException, InsertFailedException
 	{
@@ -264,12 +284,12 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 	}
 
 	/**
-	 * Si occupa dell'interrogazione al database per la cancellazione di una richiesta 
+	 * Si occupa della cancellazione di una richiesta 
 	 * @param usernameStudente l'username dello studente
 	 * @param partitaIVAAzienda la partita iva dell'azienda 
 	 * @param nomeTirocinio il nome del tirocinio
 	 * @throws TuplaNotFoundException la richiesta non è presente all'interno del DB 
-	 * @throws SQLException
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
 	 */
 	@Override
 	public void delete(String usernameStudente, String partitaIVAAzienda, String nomeTirocinio) throws MySQLIntegrityConstraintViolationException, SQLException, TuplaNotFoundException
@@ -302,10 +322,10 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 	}
 
 	/**
-	 * Si occupa dell'interrogazione al database per ricavare tutte le richieste di tirocinio presenti per un determinato studente
+	 * Cerca nel DB tutte le richieste di tirocinio presenti per un determinato studente
 	 * @param usernameStudente l'username dello studente
 	 * @return ArrayList<RichiestaTirocinio> rappresenta le richiesti presenti nel DB di uno studente 
-	 * @throws SQLException
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
 	 */
 	@Override
 	public ArrayList<RichiestaTirocinio> readAllRichiesteStudente(String usernameStudente) throws SQLException
@@ -332,10 +352,10 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 	}
 
 	/**
-	 * Si occupa dell'interrogazione al database per ricavare tutte le richieste di tirocinio presenti per una determinata azienda in attesa della conferma dell'azienda
+	 * Cerca nel tutte le richieste di tirocinio presenti per una determinata azienda in attesa della conferma dell'azienda
 	 * @param partitaIVA la partita iva dell'azienda 
 	 * @return ArrayList<RichiestaTirocinio> rappresenta le richiesti presenti nel DB che rispecchiano le condizioni
-	 * @throws SQLException
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
 	 */
 	@Override
 	public ArrayList<RichiestaTirocinio> readRichiesteAzienda(String partitaIVA) throws SQLException
@@ -363,10 +383,10 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 	}
 	
 	/**
-	 * Si occupa dell'interrogazione al database per ricavare tutte le richieste di tirocinio presenti per una determinata azienda in attesa di altre approvazioni o approvate
+	 * Cerca tutte le richieste di tirocinio presenti per una determinata azienda in attesa di altre approvazioni o approvate
 	 * @param partitaIVA la partita iva dell'azienda 
 	 * @return ArrayList<RichiestaTirocinio> rappresenta le richiesti presenti nel DB che rispecchiano le condizioni
-	 * @throws SQLException
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
 	 */
 	@Override
 	public ArrayList<RichiestaTirocinio> readStoricoRichiesteAzienda(String partitaIVA) throws SQLException
@@ -396,10 +416,10 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 	}
 
 	/**
-	 * Si occupa dell'interrogazione al database per ricavare tutte le richieste di tirocinio che sono in attesa di una scelta da parte del tutor interno specificato
+	 * Cerca tutte le richieste di tirocinio che sono in attesa di una scelta da parte del tutor interno specificato
 	 * @param  usernameProfessore rappresenta l'username del professore
 	 * @return ArrayList<RichiestaTirocinio> rappresenta le richiesti presenti nel DB che rispecchiano le condizioni
-	 * @throws SQLException
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
 	 * @throws TuplaNotFoundException se una richiesta di tirocinio dove è presente il professore come tutor interno non è presente sul database (non dovrebbe avvenire mai)
 	 */
 	@Override
@@ -426,10 +446,10 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 	}
 	
 	/**
-	 * Si occupa dell'interrogazione al database per ricavare tutte le richieste di tirocinio presenti per una determinato tutor in attesa di altre approvazioni o approvate
+	 * Cerca tutte le richieste di tirocinio presenti per una determinato tutor in attesa di altre approvazioni o approvate
 	 * @param  usernameProfessore rappresenta l'username del professore
 	 * @return ArrayList<RichiestaTirocinio> rappresenta le richiesti presenti nel DB che rispecchiano le condizioni
-	 * @throws SQLException
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
 	 * @throws TuplaNotFoundException se una richiesta di tirocinio dove è presente il professore come tutor interno non è presente sul database (non dovrebbe avvenire mai)
 	 */
 	@Override
@@ -456,9 +476,9 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 	}
 
 	/**
-	 * Si occupa dell'interrogazione al database per ricavare tutte le richieste del responsabile approvazione
+	 * Cerca tutte le richieste del responsabile approvazione
 	 * @return ArrayList<RichiestaTirocinio> rappresenta le richiesti presenti nel DB del responsabile approvazione
-	 * @throws SQLException
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
 	 */
 	@Override
 	public ArrayList<RichiestaTirocinio> readAllRichiesteInAttesaResponsabileApprovazione() throws SQLException
@@ -484,6 +504,11 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 		return richieste;
 	}
 	
+	/**
+	 * Cerca un tutor associato a quel tirocinio
+	 * @return String l'username del professore associato a quel tirocinio
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
+	 */
 	private String readTutorInterno(RichiestaTirocinio reqTir) throws SQLException
 	{
 		String usernameProfessore = null;
@@ -504,6 +529,11 @@ public class RichiestaTirocinioDAO extends AbstractRichiestaTirocinioManager {
 		return usernameProfessore;
 	}
 	
+	/**
+	 * Conta la richieste di tirocinio di quella azienda
+	 * @return int il numero di tuple che sono state contate
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
+	 */
 	public int countByTirocinio(String nomeTirocinio, String partitaIVAAzienda) throws SQLException
 	{
 		Connection con = DriverManagerConnectionPool.getIstance().getConnection();

@@ -23,8 +23,8 @@ public class TirocinioDAO extends AbstractTirocinioManager {
 	/**
 	 * Si occupa dell'interrogazione al database per l'inserimento di un tirocinio
 	 * @param toCreate il tirocinio da inserire
-	 * @throws SQLException
-	 * @throws InsertFailedException 
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
+	 * @throws InsertFailedException viene lanciata nel caso in cui l'inserimento fallisce
 	 */
 	@Override
 	public void create(Tirocinio toCreate) throws SQLException, InsertFailedException
@@ -55,11 +55,11 @@ public class TirocinioDAO extends AbstractTirocinioManager {
 	}
 	
 	/**
-	 * 
+	 * Controlla se l'azienda è già presente nel DB
 	 * @param partitaIVA la partitaIVA dell'azienda che propone il tirocinio
 	 * @param nome il nome del tirocinio da salvare
 	 * @param con la connessione al database
-	 * @throws SQLException
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
 	 */
 	private static boolean isNewKey(String partitaIVA, String nome, Connection con) throws SQLException
 	{
@@ -88,7 +88,7 @@ public class TirocinioDAO extends AbstractTirocinioManager {
 	 * @param nome il nome del tirocinio
 	 * @return Tirocinio il tirocinio cercato
 	 * @throws TuplaNotFoundException il tirocinio non è presente all'interno del DB 
-	 * @throws SQLException
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
 	 */
 	@Override
 	public Tirocinio read(String partitaIVA, String nome) throws SQLException, TuplaNotFoundException
@@ -128,7 +128,7 @@ public class TirocinioDAO extends AbstractTirocinioManager {
 	 * @param nome il nome del tirocinio
 	 * @param statoToUpdate il nuovo stato della proposta di tirocinio
 	 * @throws TuplaNotFoundException il tirocinio non è presente all'interno del DB 
-	 * @throws SQLException
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
 	 */
 	@Override
 	public void update(String partitaIVA, String nome, String statoToUpdate) throws SQLException, TuplaNotFoundException
@@ -152,7 +152,7 @@ public class TirocinioDAO extends AbstractTirocinioManager {
 	 * Si occupa di eliminare un tirocinio dal DB
 	 * @param partitaIVA la partita IVA dell'azienda 
 	 * @param nome il nome del tirocinio
-	 * @throws SQLException
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
 	 * @throws InsertFailedException il tirocinio non è presente all'interno del DB, quindi l'eliminazione fallisce
 	 */
 	@Override
@@ -176,7 +176,7 @@ public class TirocinioDAO extends AbstractTirocinioManager {
 	 * Si occupa dell'interrogazione al database per ricavare tutti i tirocini di un azienda 
 	 * @param partitaIVA la partita IVA dell'azienda
 	 * @return ArrayList<Tirocinio> rappresenta i tirocini presenti nel DB di un azienda 
-	 * @throws SQLException
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
 	 */
 	@Override
 	public ArrayList<Tirocinio> readAllTirociniAzienda(String partitaIVA) throws SQLException
@@ -207,7 +207,7 @@ public class TirocinioDAO extends AbstractTirocinioManager {
 	 * Si occupa dell'interrogazione al database per ricavare tutti i tirocini di un azienda 
 	 * @param partitaIVA la partita IVA dell'azienda
 	 * @return ArrayList<Tirocinio> rappresenta i tirocini presenti nel DB di un azienda 
-	 * @throws SQLException
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
 	 */
 	@Override
 	public ArrayList<Tirocinio> readAllTirociniDisponibiliAzienda(String partitaIVA) throws SQLException, TuplaNotFoundException
@@ -250,7 +250,7 @@ public class TirocinioDAO extends AbstractTirocinioManager {
 	 * Si occupa dell'interrogazione al database per ricavare tutti i tirocini di un azienda 
 	 * @param partitaIVA la partita IVA dell'azienda
 	 * @return ArrayList<Tirocinio> rappresenta i tirocini presenti nel DB di un azienda 
-	 * @throws SQLException
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
 	 */
 	@Override
 	public ArrayList<Tirocinio> readAllTirociniInAttesaApprovazione() throws SQLException
@@ -275,7 +275,13 @@ public class TirocinioDAO extends AbstractTirocinioManager {
 		DriverManagerConnectionPool.getIstance().releaseConnection(con);
 		return tirocini;
 	}
-	
+
+	/**
+	 * Conta i tirocini di quella azienda 
+	 * @param partitaIVA la partita IVA dell'azienda
+	 * @return int rappresenta il numero di tirocini del quella azienda
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
+	 */
 	@Override
 	public int countByAzienda(String partitaIVA) throws SQLException
 	{

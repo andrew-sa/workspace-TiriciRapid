@@ -11,9 +11,9 @@ import it.tirocirapid.database.DriverManagerConnectionPool;
 public class ResponsabileApprovazioniDAO extends AbstractResponsabileApprovazioniManager {
 
 	/**
-	 * Si occupa di recupare le email di tutti i responsabili approvazioni dal DB
+	 * Cerca le email di tutti i responsabili approvazioni presenti nel DB
 	 * @return ArrayList<String> rappresenta l'email dei responsabili approvazioni
-	 * @throws SQLException
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
 	 */
 	@Override
 	public ArrayList<String> readEmailAll() throws SQLException

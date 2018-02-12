@@ -19,13 +19,13 @@ import it.tirocirapid.eccezioni.TuplaNotFoundException;
 public class AziendaDAO extends AbstractAziendaManager {
 	
 	/**
-	 * Si occupa dell'interrogazione al database per verificare se l'azienda con quella partitaIVA e password è presente nel DB
+	 * Verifica se l'azienda con quella partitaIVA e password è presente nel DB
 	 * @param partitaIVA rappresenta la partitaIVA dello azienda da cercare
 	 * @param password rappresenta la password dello azienda da cercare
 	 * @return true se esiste un'azienda avente l'username e la password passati come parametri nel DB
 	 * @return false se esiste un'azienda avente l'username passato come parametro, ma la password non corrisponde
 	 * @throws TuplaNotFoundException se non esiste un'azienda avente l'username passato come parametro sul DB
-	 * @throws SQLException
+	 * @throws SQLException viene lanciata nel caso in cui c'è un problema con l'iterazione della DB
 	 */
 	@Override
 	public boolean search(String partitaIVA, String password) throws SQLException, TuplaNotFoundException
@@ -64,10 +64,10 @@ public class AziendaDAO extends AbstractAziendaManager {
 	}
 	
 	/**
-	 * Si occupa dell'interrogazione al database per l'inserimento di un azienda
+	 * Crea un azienda all'interno del DB
 	 * @param toCreate l'azienda da inserire
-	 * @throws SQLException
-	 * @throws InsertFailedException 
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
+	 * @throws InsertFailedException viene lanciata nel caso in cui il salvataggio nel DB non avviene con successo
 	 */
 	@Override
 	public void create(Azienda toCreate) throws SQLException, InsertFailedException
@@ -101,10 +101,10 @@ public class AziendaDAO extends AbstractAziendaManager {
 	}
 	
 	/**
-	 * 
+	 * Verifica se partitaIVA è già presente nel DB
 	 * @param partitaIVA la partitaIVA dell'azienda da inserire
 	 * @param con la connessione al database
-	 * @throws SQLException
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
 	 */
 	private boolean isNewKey(String partitaIVA, Connection con) throws SQLException
 	{
@@ -127,11 +127,11 @@ public class AziendaDAO extends AbstractAziendaManager {
 	}
 
 	/**
-	 * Si occupa dell'interrogazione al database per ricavare un' azienda tramite la partita IVA 
+	 * Cerca un' azienda tramite la partita IVA all'interno del DB
 	 * @param partitaIVA la partita IVA dell'azienda da ricavare
 	 * @return Azienda rappresenta l'azienda con quella partita IVA 
 	 * @throws TuplaNotFoundException l'azienda con la partita IVA specificata non è presente all'interno del DB 
-	 * @throws SQLException
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
 	 */
 	@Override
 	public Azienda read(String partitaIVA) throws SQLException, TuplaNotFoundException
@@ -168,10 +168,10 @@ public class AziendaDAO extends AbstractAziendaManager {
 	}
 
 	/**
-	 * Si occupa dell'interrogazione al database per la modifica di un'azienda
+	 * Modifica un'azienda già presenete nel DB
 	 * @param toUpdate l'azienda modificata da inserire all'interno del DB
 	 * @throws TuplaNotFoundException l'azienda con la partita IVA specificata non è presente all'interno del DB 
-	 * @throws SQLException
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
 	 */
 	@Override
 	public void update(Azienda toUpdate) throws SQLException, InsertFailedException
@@ -196,9 +196,9 @@ public class AziendaDAO extends AbstractAziendaManager {
 	}
 
 	/**
-	 * Si occupa dell'interrogazione al database per ricavare tutte le aziende presenti 
+	 * Cerca tutte le aziende presenti nel DB
 	 * @return ArrayList<Azienda> rappresenta l'aziende presenti nel DB 
-	 * @throws SQLException
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
 	 */
 	@Override
 	public ArrayList<Azienda> readAll() throws SQLException
@@ -228,9 +228,9 @@ public class AziendaDAO extends AbstractAziendaManager {
 	}
 	
 	/**
-	 * Si occupa dell'interrogazione al database per ricavare tutte le aziende presenti in esso che accettano richieste di tirocinio 
+	 * Cerca nel DB tutte le aziende che accettano richieste di tirocinio 
 	 * @return ArrayList<Azienda> rappresenta l'aziende presenti nel DB che accettano richieste di tirocinio
-	 * @throws SQLException
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
 	 */
 	@Override
 	public ArrayList<Azienda> readDisponibili() throws SQLException
@@ -260,11 +260,11 @@ public class AziendaDAO extends AbstractAziendaManager {
 	}
 
 	/**
-	 * Si occupa dell'interrogazione al database per ricavare l'email di un' azienda tramite la partita IVA 
+	 * Cerca l'email di un' azienda tramite la partita IVA presente nel DB
 	 * @param partitaIVA la partita IVA dell'azienda di cui vogliamo sapere l'email
 	 * @return String rappresenta l'email dell'azienda con quella partita IVA 
 	 * @throws TuplaNotFoundException l'azienda con la partita IVA specificata non è presente all'interno del DB 
-	 * @throws SQLException
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
 	 */
 	@Override
 	public String readEmail(String partitaIVA) throws SQLException, TuplaNotFoundException
@@ -293,11 +293,11 @@ public class AziendaDAO extends AbstractAziendaManager {
 	}
 
 	/**
-	 * Si occupa dell'interrogazione al database per ricavare la password di un' azienda tramite la partita IVA 
+	 * Cerca nel DB la password di un' azienda tramite la partita IVA 
 	 * @param partitaIVA la partita IVA dell'azienda di cui vogliamo sapere l'email
 	 * @return String rappresenta la password dell'azienda con quella partita IVA 
 	 * @throws TuplaNotFoundException l'azienda con la partita IVA specificata non è presente all'interno del DB 
-	 * @throws SQLException
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
 	 */
 	@Override
 	public String readPassword(String partitaIVA) throws SQLException, TuplaNotFoundException
@@ -325,6 +325,15 @@ public class AziendaDAO extends AbstractAziendaManager {
 		}
 	}
 	
+	
+	
+	/**
+	 * Si occupa di aggiornare lo Stato dell'Azienda 
+	 * @param partitaIVA la partita IVA dell'azienda di cui vogliamo aggiornare l'email
+	 * @param statoToUpdate rappresenta lo stato attuale dell'Azienda
+	 * @throws InsertFailedException viene se l'update dello stato non avviene con successo 
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
+	 */
 	@Override
 	public void updateStato(String partitaIVA, String statoToUpdate) throws SQLException, InsertFailedException
 	{

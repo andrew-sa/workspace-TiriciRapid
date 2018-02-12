@@ -36,7 +36,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 	 */
 	public CreaCurriculumStudente() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
 	
 	/**
@@ -82,7 +82,6 @@ public class CreaCurriculumStudente extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -329,7 +328,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 	}
 
 	/**
-	 * 
+	 * Valida il campo Fax
 	 * @param fax Il fax da validare
 	 * @return true se il fax rispecchia il formato
 	 * @return false altrimenti
@@ -347,8 +346,8 @@ public class CreaCurriculumStudente extends HttpServlet {
 	}
 	
 	/**
-	 * 
-	 * @param capacitaCompetenzeX Le cpaicitaCompetenze da validare
+	 * Valida il campo Capacità e Competente
+	 * @param capacitaCompetenzeX Le capacitaCompetenze da validare
 	 * @return true se capacitaCompetenzeX rispecchia il formato
 	 * @return false altrimenti
 	 */
@@ -358,7 +357,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 	}
 	
 	/**
-	 * 
+	 * Valida il campo Esperienza Lavorativa
 	 * @param esperienzaLavorativa L'esperienzaLavorativa da validare
 	 * @return true se esperienzaLavorativa rispecchia il formato
 	 * @return false altrimenti
@@ -368,6 +367,12 @@ public class CreaCurriculumStudente extends HttpServlet {
 		return (esperienzaLavorativa.length() <= 200);
 	}
 	
+	/**
+	 * Valida il campo Patenti
+	 * @param strPatenti Patenti da validare
+	 * @return true se esperienzaLavorativa rispecchia il formato
+	 * @return false altrimenti
+	 */
 	private boolean validaPatenti(String strPatenti)
 	{
 		String[] p = strPatenti.trim().split(TOKEN);
@@ -381,11 +386,24 @@ public class CreaCurriculumStudente extends HttpServlet {
 		return true;
 	}
 	
+	/**
+	 * Valida il campo Madre Lingua
+	 * @param madrelingua La Madrelingua da validare
+	 * @return true se madrelingua rispecchia il formato
+	 * @return false altrimenti
+	 */
+
 	private boolean validaMadrelingua(String madrelingua)
 	{
 		return (Pattern.matches("[A-Za-z]{2,20}", madrelingua));
 	}
 	
+	/**
+	 * Valida il campo Altre Lingue
+	 * @param altreLingue L'altreLingue da validare
+	 * @return true se altreLingue rispecchia il formato
+	 * @return false altrimenti
+	 */
 	private boolean validaAltreLingue(String altreLingue)
 	{
 		if (!altreLingue.trim().endsWith(TOKEN))
@@ -396,7 +414,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 	}
 	
 	/**
-	 * 
+	 * Valida il campo ulterioriInformazioni
 	 * @param ulterioriInformazioni Le ulterioriInformazioni da validare
 	 * @return true se le ulterioriInformazioni rispecchia il formato
 	 * @return false altrimenti
@@ -406,6 +424,12 @@ public class CreaCurriculumStudente extends HttpServlet {
 		return (ulterioriInformazioni.length() <= 200);
 	}
 	
+	/**
+	 * Rimuove l'ultima "," nel caso in cui viene messa
+	 * @param str da controllare
+	 * @return String la stringa modificata
+	 */
+
 	private String removeLastToken(String str)
 	{
 		str = str.trim();
@@ -428,12 +452,13 @@ public class CreaCurriculumStudente extends HttpServlet {
 //	}
 	
 	/**
-	 * 
+	 * Controlla se la stringa orig è vuota oppure null
 	 * @param orig la stringa da controllare
 	 * @param replacement la stringa da restituire nel caso orig fosse vuota o nulla  
 	 * @return orig se orig non è ne nulla e ne vuota
 	 * @return replacement se orig è nulla o vuota
 	 */
+	
 	private String replaceIfMissing(String orig, String replacement)
 	{
 		if (orig == null || orig.trim().equals(""))

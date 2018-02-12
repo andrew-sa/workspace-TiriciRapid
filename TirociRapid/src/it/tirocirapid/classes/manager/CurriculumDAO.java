@@ -18,10 +18,10 @@ import it.tirocirapid.eccezioni.TuplaNotFoundException;
 public class CurriculumDAO extends AbstractCurriculumManager {
 
 	/**
-	 * Si occupa dell'interrogazione al database per l'inserimento di un Curriculum nel DB
+	 * Inserisce un Curriculum nel DB
 	 * @param toCreate il Curriculum da inserire
 	 * @param usernameStudente l'username dello studente a cui appartiene il curriculum
-	 * @throws SQLException
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
 	 */
 	@Override
 	public void create(Curriculum toCreate, String usernameStudente) throws MySQLIntegrityConstraintViolationException, SQLException, InsertFailedException
@@ -52,11 +52,11 @@ public class CurriculumDAO extends AbstractCurriculumManager {
 	}
 
 	/**
-	 * Si occupa dell'interrogazione al database per ricavare un'curriculum tramite l'username dello studente
+	 * Cerca nel DB un'curriculum tramite l'username dello studente
 	 * @param L'username l'username dello Studente
 	 * @return Curriculum il curriculum dello studente 
 	 * @throws TuplaNotFoundException il curriculum di quello studente non è presente all'interno del DB 
-	 * @throws SQLException
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
 	 */
 	@Override
 	public Curriculum read(String usernameStudente) throws SQLException, TuplaNotFoundException
@@ -97,7 +97,7 @@ public class CurriculumDAO extends AbstractCurriculumManager {
 	}
 
 	/**
-	 * Si occupa dell'interrogazione al database per modificare un curriculum
+	 * Modifica un curriculum presente nel  DB
 	 * @param toUpdate il curriculum modificato
 	 * @throws InsertFailedException il curriculum di quello studente non è presente all'interno del DB 
 	 * @throws SQLException
@@ -131,9 +131,9 @@ public class CurriculumDAO extends AbstractCurriculumManager {
 	}
 
 	/**
-	 * Si occupa di verificare se per lo studente è presente nel database il curriculum
+	 * Verifica se nel database è presente il curriculum con l'username specificato
 	 * @param username l'username dello studente
-	 * @throws SQLException
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
 	 */
 	@Override
 	public boolean search(String username) throws SQLException

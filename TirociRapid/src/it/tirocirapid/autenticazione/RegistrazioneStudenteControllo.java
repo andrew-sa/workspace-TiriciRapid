@@ -29,7 +29,6 @@ public class RegistrazioneStudenteControllo extends HttpServlet {
      */
     public RegistrazioneStudenteControllo() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -94,13 +93,14 @@ public class RegistrazioneStudenteControllo extends HttpServlet {
 	}
 	
 	/**
-	 * @param password rappresenta l'password dello studente
+	 * Verifica se lo studente è già presente nel DB
+	 * @param password rappresenta la password dello studente
 	 * @param username rappresenta l'username dello studente 
 	 * @return true  
 	 * @return false 
-	 * @throws TuplaNotFoundException 
-	 * @throws SQLException 
-	 * @throws InvalidAttributeValueException 
+	 * @throws TuplaNotFoundException viene lanciata nel caso in cui non viene trovata la tupla nel DB
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore di iterazione con il DB
+	 * @throws InvalidAttributeValueException  viene lanciata nel caso in cui username o password non corrispondono
 	 */
 	private boolean isNewStudente(String username, String password) throws SQLException, TuplaNotFoundException, InvalidAttributeValueException
 	{
@@ -125,7 +125,7 @@ public class RegistrazioneStudenteControllo extends HttpServlet {
 	}
 
 	/**
-	 * 
+	 * Controlla se la stringa orig è vuota o null
 	 * @param orig la stringa da controllare
 	 * @param replacement la stringa da restituire nel caso orig fosse vuota o nulla  
 	 * @return orig se orig non è ne nulla e ne vuota

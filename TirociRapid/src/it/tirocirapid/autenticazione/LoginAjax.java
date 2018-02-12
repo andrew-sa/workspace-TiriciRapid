@@ -34,7 +34,6 @@ public class LoginAjax extends HttpServlet {
 	 */
 	public LoginAjax() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -242,13 +241,13 @@ public class LoginAjax extends HttpServlet {
 	}
 
 	/**
-	 * 
+	 * Esegue il login dello Studente
 	 * @param username username dello studente da caricare
 	 * @param password password dello studente da caricare
 	 * @return true se lo studente è stato caricato conn successo
 	 * @return false se l'username e la pasword non corrispondono
 	 * @throws TuplaNotFoundException se lo studente non è presente nel database
-	 * @throws SQLException 
+	 * @throws SQLException se c'è un errrore nell iterazione con il DB
 	 */
 	private boolean loginStudente(String username, String password) throws SQLException, TuplaNotFoundException
 	{
@@ -257,12 +256,13 @@ public class LoginAjax extends HttpServlet {
 		return managerStudente.search(username, password);
 	}
 	/**
+	 * Esegue il login del Responsabile Approvazioni
 	 * @param partitaIVA PartitaIVA dell'azienda da caricare
 	 * @param password Password dell'azienda da caricare
 	 * @return true se l'azienda è stata caricata con successo
 	 * @return false se la partitaIVA e la pasword non corrispondono
 	 * @throws TuplaNotFoundException se l'azienda non è presente nel database
-	 * @throws SQLException 
+	 * @throws SQLException se c'è un errrore nell iterazione con il DB
 	 */
 	private boolean loginResponsabileAzienda(String partitaIVA, String password) throws SQLException, TuplaNotFoundException
 	{
@@ -271,14 +271,14 @@ public class LoginAjax extends HttpServlet {
 		return managerAzienda.search(partitaIVA, password);
 	}
 	/**
-	 * 
+	 * Esegue il login Professore 
 	 * @param username username del professore da caricare
 	 * @param password password del professore da caricare
 	 * @return 0 se l'username e la pasword non corrispondono
 	 * @return 1 se il professore è presente nel database
 	 * @return 2 se il professore è presente nel database ed è anche ResponsabileApprovazioni
 	 * @throws TuplaNotFoundException se il professore non è presente nel database
-	 * @throws SQLException 
+	 * @throws SQLException se c'è un errrore nell iterazione con il DB 
 	 */
 	private int loginProfessore(String username, String password) throws SQLException, TuplaNotFoundException
 	{
@@ -288,6 +288,7 @@ public class LoginAjax extends HttpServlet {
 	}
 	
 	/**
+	 * Verifica se lo studente è già presente nel DB
 	 * @param password rappresenta l'password dello studente
 	 * @return true  
 	 * @return false 
@@ -310,7 +311,7 @@ public class LoginAjax extends HttpServlet {
 	}
 
 	/**
-	 * 
+	 * Controlla se orig è una stringa vuota o null
 	 * @param orig la stringa da controllare
 	 * @param replacement la stringa da restituire nel caso orig fosse vuota o nulla  
 	 * @return orig se orig non è ne nulla e ne vuota

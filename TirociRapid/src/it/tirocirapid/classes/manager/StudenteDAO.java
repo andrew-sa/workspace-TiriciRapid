@@ -21,7 +21,7 @@ public class StudenteDAO extends AbstractStudenteManager {
 	 * @return true se esiste uno studente avente l'username e la password passati come parametri nel DB
 	 * @return false se esiste uno studente avente l'username passato come parametro, ma la password non corrisponde
 	 * @throws TuplaNotFoundException se non esiste uno studente avente l'username passato come parametro sul DB
-	 * @throws SQLException
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
 	 */
 	@Override
 	public boolean search(String username, String password) throws SQLException, TuplaNotFoundException
@@ -64,7 +64,7 @@ public class StudenteDAO extends AbstractStudenteManager {
 	 * @param username rappresenta l'username dello studente da cercare
 	 * @return Studente lo studente cercato
 	 * @throws TuplaNotFoundException lo studente non è presente all'interno del DB 
-	 * @throws SQLException
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
 	 */
 	@Override
 	public Studente read(String username) throws SQLException, TuplaNotFoundException
@@ -108,7 +108,7 @@ public class StudenteDAO extends AbstractStudenteManager {
 	 * @param username l'username dello studente di cui vogliamo sapere l'email
 	 * @return String rappresenta l'email dello studente con quel username 
 	 * @throws TuplaNotFoundException lo studente con l'username specificato non è presente all'interno del DB 
-	 * @throws SQLException
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
 	 */
 	@Override
 	public String readEmail(String username) throws SQLException, TuplaNotFoundException

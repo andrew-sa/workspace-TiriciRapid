@@ -17,13 +17,13 @@ import it.tirocirapid.eccezioni.TuplaNotFoundException;
 public class ProfessoreDAO extends AbstractProfessoreManager {
 
 	/**
-	 * Si occupa dell'interrogazione al database per verificare se il professore con quel username e password è presente nel DB
+	 * Verifica se un professore con quel username e password è presente nel DB
 	 * @param username rappresenta l'username del professore da cercare
 	 * @param password rappresenta la password del professore da cercare
 	 * @return true se esiste un professore avente l'username e la password passati come parametri nel DB
 	 * @return false se esiste un professore avente l'username passato come parametro, ma la password non corrisponde
-	 * @throws TuplaNotFoundException se non esiste un professore avente l'username passato come parametro sul DB
-	 * @throws SQLException
+	 * @throws TuplaNotFoundException viene lanciata se non esiste un professore avente l'username passato come parametro sul DB
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
 	 */
 	@Override
 	public int search(String username, String password) throws SQLException, TuplaNotFoundException
@@ -73,11 +73,11 @@ public class ProfessoreDAO extends AbstractProfessoreManager {
 	}
 
 	/**
-	 * Si occupa dell'interrogazione al database per ricavare il professore tramite l'username
+	 * Cerca un professore nel DB tramite l'username
 	 * @param username rappresenta l'username del professore da cercare
 	 * @return Professore il professore cercato
-	 * @throws TuplaNotFoundException il professore non è presente all'interno del DB 
-	 * @throws SQLException
+	 * @throws TuplaNotFoundException viene lanciata se il professore non è presente all'interno del DB 
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
 	 */
 	@Override
 	public Professore read(String username) throws SQLException, TuplaNotFoundException
@@ -112,9 +112,9 @@ public class ProfessoreDAO extends AbstractProfessoreManager {
 	}
 
 	/**
-	 * Si occupa dell'interrogazione al database per caricare tutti i professori presenti
+	 * Cerca tutti i professori presenti nel DB
 	 * @return ArrayList<Professore> rappresentano tutti i professori 
-	 * @throws SQLException
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
 	 */
 	@Override
 	public ArrayList<Professore> readAll() throws SQLException
@@ -143,11 +143,11 @@ public class ProfessoreDAO extends AbstractProfessoreManager {
 	}
 
 	/**
-	 * Si occupa dell'interrogazione al database per ricavare l'email di un professore tramite l'username 
+	 * Cerca nel DB l'email di un professore tramite l'username 
 	 * @param username l'username del professore di cui vogliamo sapere l'email
 	 * @return String rappresenta l'email del professore con quel username
-	 * @throws TuplaNotFoundException l'azienda con la partita IVA specificata non è presente all'interno del DB 
-	 * @throws SQLException
+	 * @throws TuplaNotFoundException viene lanciata se l'azienda con la partita IVA specificata non è presente all'interno del DB 
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
 	 */
 	@Override
 	public String readEmail(String username) throws SQLException, TuplaNotFoundException

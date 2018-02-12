@@ -36,7 +36,6 @@ public class RecuperaPasswordAzienda extends HttpServlet {
      */
     public RecuperaPasswordAzienda() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -97,11 +96,11 @@ public class RecuperaPasswordAzienda extends HttpServlet {
 	}
 	
 	/**
-	 * 
-	 * @param emailAzienda
-	 * @param passwordRecuperata
-	 * @throws AddressException
-	 * @throws MessagingException
+	 * Si occupa dell'invio di una mail per il recupero della password
+	 * @param emailAzienda rappresenta la mail dell'azienda
+	 * @param passwordRecuperata rappresenta la password da recuperare
+	 * @throws AddressException viene lanciata nel caso in cui l'address è sbagliato
+	 * @throws MessagingException viene lanciata in caso di errori nel Messaging
 	 */
 	private void inviaEmail(String emailAzienda, String passwordRecuperata) throws AddressException, MessagingException
 	{
@@ -138,7 +137,7 @@ public class RecuperaPasswordAzienda extends HttpServlet {
 	}
 	
 	/**
-	 * 
+	 * Controlla se orig è vuota oppure null
 	 * @param orig la stringa da controllare
 	 * @param replacement la stringa da restituire nel caso orig fosse vuota o nulla  
 	 * @return orig se orig non è ne nulla e ne vuota
