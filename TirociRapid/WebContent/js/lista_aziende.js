@@ -40,40 +40,42 @@ function AziendaStudenteHTML(partitaIVA, nome, ambito, sede, email, telefono)
 	this.wrapper.append(this.wrapper2);
 }
 
-function AziendaResponsabiliApprovazioniHTML(partitaIVA, nome, ambito, sede, email, telefono, stato)
+function AziendaResponsabileApprovazioniHTML(partitaIVA, nome, ambito, sede, email, telefono, stato)
 {
 	this.wrapper = $('<div class="responsabile-approvazione-azienda-profilo"></div>');
 	
 	this.title = $('<h2 style="text-align: center;"></h2>');
 	this.infoWrapper = $('<div class="tabella-info-azienda"></div>');
-	//RICOMINCIARE DA QUI
-	this.ambito = $('<p></p>');
-	this.sede = $('<p></p>');
-	this.email = $('<p></p>');
-	this.telefono = $('<p></p>');
+	this.partitaIVA = $('<div class="parametri-azienda"></div>');
+	this.sede = $('<div class="parametri-azienda"></div>');
+	this.email = $('<div class="parametri-azienda"></div>');
+	this.telefono = $('<div class="parametri-azienda"></div>');
+	this.ambito = $('<div class="parametri-azienda"></div>');
+	this.stato = $('<div class="parametri-azienda"></div>');
 	
-	this.buttonWrapper = $('<div class="col-md-3 cta-button"></div>');
+	this.title.html('<span>' + nome + '</span>');
+	this.partitaIVA.html('<div class="elemento-parametri-azienda">PartitaIVA:</div>' + 
+			'<div class="elemento-parametri-azienda">' + partitaIVA + '</div>');
+	this.sede.html('<div class="elemento-parametri-azienda">Sede:</div>' + 
+			'<div class="elemento-parametri-azienda">' + sede + '</div>');
+	this.email.html('<div class="elemento-parametri-azienda">Sede:</div>' + 
+			'<div class="elemento-parametri-azienda">' + sede + '</div>');
+	this.telefono.html('<div class="elemento-parametri-azienda">Numero di telefono:</div>' + 
+			'<div class="elemento-parametri-azienda">' + telefono + '</div>');
+	this.ambito.html('<div class="elemento-parametri-azienda">Descrizione Ambito:</div>' + 
+			'<div class="elemento-parametri-azienda">' + ambito + '</div>');
+	this.stato.html('<div class="elemento-parametri-azienda">Stato:</div>' + 
+			'<div class="elemento-parametri-azienda">' + stato + '</div>');
 	
-	this.title.html(nome);
-	this.ambito.html('<span class="parametri-azienda">Ambito: </span>' + ambito);
-	this.sede.html('<span class="parametri-azienda">Sede: </span>' + sede);
-	this.email.html('<span class="parametri-azienda">Email: </span>' + email);
-	this.telefono.html('<span class="parametri-azienda">Telefono: </span>' + telefono);
-	
-	this.buttonWrapper.html('<a href="tirocini_azienda?partitaIVA=' + partitaIVA + '" class="btn btn-lg btn-block btn-default">Visualizza Tirocini</a>');
-	
-	this.infoWrapper.append(this.ambito);
+	this.infoWrapper.append(this.partitaIVA);
 	this.infoWrapper.append(this.sede);
 	this.infoWrapper.append(this.email);
 	this.infoWrapper.append(this.telefono);
+	this.infoWrapper.append(this.ambito);
+	this.infoWrapper.append(this.stato);
 	
-	this.contentWrapper.append(this.title);
-	this.contentWrapper.append(this.infoWrapper);
-	
-	this.wrapper3.append(this.contentWrapper);
-	this.wrapper3.append(this.buttonWrapper);
-	this.wrapper2.append(this.wrapper3);
-	this.wrapper.append(this.wrapper2);
+	this.wrapper.append(this.title);
+	this.wrapper.append(this.infoWrapper);
 }
 
 function mostraNumeroPagine()
