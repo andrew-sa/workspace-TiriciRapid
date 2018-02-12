@@ -174,7 +174,7 @@ public class ConvalidaRichiestaTirocinio extends HttpServlet {
 	{
 		if (reqTir.getStato().equals(statesReqTir.get(1))) // stato == "ConfAz"
 		{
-			String subject = "TirociRapid: Decisione dell'azienda sulla tua richiesta di tirocinio" + reqTir.getStudente().getEmail();
+			String subject = "TirociRapid: Decisione dell'azienda sulla tua richiesta di tirocinio" + reqTir.getStudente().getUsername();
 			String messageText = "";
 			if (isAccept)
 			{
@@ -201,7 +201,7 @@ public class ConvalidaRichiestaTirocinio extends HttpServlet {
 	{
 		if (reqTir.getStato().equals(statesReqTir.get(3))) // stato == "ConfTut"
 		{
-			String subjectResponsabileApprovazioni = "TirociRapid: Nuova richiesta di tirocinio dallo studente " + reqTir.getStudente().getEmail();
+			String subjectResponsabileApprovazioni = "TirociRapid: Nuova richiesta di tirocinio dallo studente " + reqTir.getStudente().getUsername();
 			String subjectStudente = "TirociRapid: Aggiornamento stato richiesta tirocinio";
 			String messageTextResponsabileApprovazioni = "Lo studente " + reqTir.getStudente().getUsername() + " vorrebbe effettuare il tirocinio " + reqTir.getTirocinio().getNome() + " presso l'azienda " + reqTir.getTirocinio().getPartitaIVAAzienda() + "./n";
 			String messageTextStudente = "";
@@ -232,7 +232,7 @@ public class ConvalidaRichiestaTirocinio extends HttpServlet {
 	{
 		if (reqTir.getStato().equals(statesReqTir.get(4))) // stato == "ConfResp"
 		{
-			String subject = "TirociRapid: Decisione finale richiesta tirocinio studente " + reqTir.getStudente().getEmail();
+			String subject = "TirociRapid: Decisione finale richiesta tirocinio studente " + reqTir.getStudente().getUsername();
 			String subjectStudente = "TirociRapid: Decisione finale richiesta tirocinio";
 			String messageText = "";
 			String messageTextStudente = "";

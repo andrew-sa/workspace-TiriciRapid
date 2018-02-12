@@ -321,7 +321,7 @@ public class CreaPropostaTirocinio extends HttpServlet {
 //		String to = emailAzienda;
 		String from = "tirocirapid@gmail.com";
 		String subject = "Tirocirapid: Nuova Proposta di Tirocinio"; 
-		String messageText = "L'Azienda " + tirocinio.getPartitaIVAAzienda() + "richiede una convalida per la Proposta di Tirocinio " + tirocinio.getNome() + "\n";
+		String messageText = "L'Azienda " + tirocinio.getPartitaIVAAzienda() + " richiede una convalida per la Proposta di Tirocinio " + tirocinio.getNome() + "\n";
 		final String username = "tirocirapid@gmail.com";
 		final String password = "TirociRapid2018";
 		

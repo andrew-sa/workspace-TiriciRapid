@@ -106,6 +106,7 @@ function validateCurriculum(form) {
 				"Non puoi scrivere pi\u00F9 di 200 caratteri");
 		document.getElementById(1).innerHTML = "Non puoi scrivere pi\u00F9 di 200 caratteri";
 		contr = 1;
+		console.log("errore ccr");
 	}
 	if (!((form["capacitaCompetenzeTecniche"].value.trim().length) <= 200)) {
 		form["capacitaCompetenzeTecniche"].setAttribute("title",
@@ -143,8 +144,8 @@ function validateCurriculum(form) {
 		document.getElementById(7).innerHTML = "Non puoi scrivere pi\u00F9 di 200 caratteri";
 		contr = 1;
 	}
-	if (!(form["madreLingua"].value.trim().match(/^[A-Za-z]{2,20}$/))) {
-		form["madreLingua"]
+	if (!(form["madrelingua"].value.trim().match(/^[A-Za-z]{2,20}$/))) {
+		form["madrelingua"]
 				.setAttribute("title",
 						"La tua madreLingua non pu\u00F2 essere formata da una sola lettera");
 		document.getElementById(8).innerHTML = "La tua madreLingua non pu\u00F2 essere formata da una sola lettera";
