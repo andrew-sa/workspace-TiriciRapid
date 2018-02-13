@@ -79,7 +79,7 @@
 							<h3>Tirocinio:</h3>
 							<p>
 								<%=reqTir.getTirocinio().getNome() %>
-								<a href="carica_tirocinio?partitaIVA=<%=reqTir.getTirocinio().getPartitaIVAAzienda()%>&nomeTirocinio=<%=reqTir.getTirocinio().getNome() %>"><button class="bottoni-conferma-professore">Visualizza
+								<a href="info_tirocinio?partitaIVA=<%=reqTir.getTirocinio().getPartitaIVAAzienda()%>&nomeTirocinio=<%=reqTir.getTirocinio().getNome() %>"><button class="bottoni-conferma-professore">Visualizza
 									informazioni tirocinio</button></a>
 							</p>
 						</div>

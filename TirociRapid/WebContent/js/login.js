@@ -39,7 +39,7 @@ function readResultLogin()
 			}
 			else if(tipo == "ResponsabileAzienda")
 			{
-				window.location.href = "dati_azienda";
+				window.location.href = "richieste";
 			}
 			else if(tipo =="Professore")
 			{

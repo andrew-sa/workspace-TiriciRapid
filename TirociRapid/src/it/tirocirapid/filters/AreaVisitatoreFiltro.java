@@ -50,19 +50,19 @@ public class AreaVisitatoreFiltro implements Filter {
 			String page = "/";
 			if (user.getTipo().equals(userTypes.get("Stud")))
 			{
-				page = "/"; //HomeStudente
+				page = "/richieste"; //HomeStudente
 			}
 			else if (user.getTipo().equals(userTypes.get("Prof")))
 			{
-				page = "/"; //HomeProfessore
+				page = "/richieste"; //HomeProfessore
 			}
 			else if (user.getTipo().equals(userTypes.get("RespAppr")))
 			{
-				page = "/"; //HomeResponsabileApprovazioni
+				page = "/richieste"; //HomeResponsabileApprovazioni
 			}
 			else if (user.getTipo().equals(userTypes.get("RespAz")))
 			{
-				page = "/"; //HomeResponsabileAzienda
+				page = "/richieste"; //HomeResponsabileAzienda
 			}
 			request.setAttribute("errore", "Questa sezione &egrave; accedibile solo se non si &egrave; autenticati");
 			RequestDispatcher dispatcher = req.getRequestDispatcher(page);

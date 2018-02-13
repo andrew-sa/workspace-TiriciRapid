@@ -58,7 +58,7 @@ function RichiestaHTML(usernameStudente, partitaIVAAzienda, nomeTirocinio, stato
 	this.title.html('Richiesta');
 	this.studente.html(usernameStudente + ' ' + '<a href="profilo_studente?username=' + usernameStudente + '"><button class="bottoni-conferma-professore" >Visualizza curriculum</button></a>');
 	this.azienda.html(partitaIVAAzienda + ' ' + '<a href="dati_azienda?partitaIVA=' + partitaIVAAzienda + '"><button class="bottoni-conferma-professore">Visualizza informazioni azienda</button></a>');
-	this.tirocinio.html(nomeTirocinio + ' ' + '<a href="carica_tirocinio?partitaIVA=' + partitaIVAAzienda + '&nomeTirocinio=' + nomeTirocinio + '"><button class="bottoni-conferma-professore">Visualizza informazioni tirocinio</button></a>');
+	this.tirocinio.html(nomeTirocinio + ' ' + '<a href="info_tirocinio?partitaIVA=' + partitaIVAAzienda + '&nomeTirocinio=' + nomeTirocinio + '"><button class="bottoni-conferma-professore">Visualizza informazioni tirocinio</button></a>');
 	
 	this.statoWrapper.html('<h1>Stato:</h1> <h3>' + stringaStato(stato) + '</h3>');
 	

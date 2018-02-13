@@ -56,7 +56,7 @@ public class CaricaProposteTirocinio extends HttpServlet {
 			request.setAttribute("errore", "Si &egrave; verificato un errore durante l'interazione col database, si prega di riprovare");
 		}
 		RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher
-				("/responsabile_approvazioni_richieste_nuovi_tirocini.jsp"); //Alla schermata delle richieste dei nuovi tirocini del responsabile approvazioni
+				("/responsabile_approvazioni_nuove_proposte_tirocinio.jsp"); //Alla schermata delle richieste dei nuovi tirocini del responsabile approvazioni
 		dispatcher.forward(request, response);
 
 	}

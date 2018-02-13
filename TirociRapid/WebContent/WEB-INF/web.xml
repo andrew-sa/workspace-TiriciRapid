@@ -22,7 +22,12 @@
     <url-pattern>/login</url-pattern>
     <url-pattern>/recupera_password</url-pattern>
     <url-pattern>/registrazione_azienda</url-pattern>
-    <url-pattern>/registrazione_studente</url-pattern>
+    <!-- JSP Login-->
+    <url-pattern>/index.jsp</url-pattern>
+    <!-- JSP Registrazioni -->
+    <url-pattern>/azienda_iscrizione.jsp</url-pattern>
+    <!-- JSP Recupero dati registrazione -->
+    <url-pattern>recupera_password_azienda.jsp</url-pattern>
   </filter-mapping>
   <filter>
     <filter-name>AreaRiservataFiltro</filter-name>
@@ -33,19 +38,46 @@
     <url-pattern>/logout</url-pattern>
     <url-pattern>/dati_azienda</url-pattern>
     <url-pattern>/tirocini_azienda</url-pattern>
+    <url-pattern>/info_tirocino</url-pattern>
     <url-pattern>/elimina_tirocinio</url-pattern>
     <url-pattern>/modifica_dati_azienda</url-pattern>
     <url-pattern>/profilo_studente</url-pattern>
     <url-pattern>/modifica_curriculum</url-pattern>
+    <url-pattern>/carica_proposte_tirocinio</url-pattern>
     <url-pattern>/convalida_proposta_tirocinio</url-pattern>
     <url-pattern>/lista_aziende</url-pattern>
     <url-pattern>/lista_professori</url-pattern>
+    <url-pattern>/richieste</url-pattern>
+    <url-pattern>/storico_richieste</url-pattern>
     <url-pattern>/convalida_richiesta_tirocinio</url-pattern>
     <url-pattern>/invia_richiesta</url-pattern>
     <url-pattern>/elimina_richiesta_tirocinio</url-pattern>
     <url-pattern>/scegli_tutor</url-pattern>
-    <url-pattern>/richieste</url-pattern>
-    <url-pattern>/storico_richieste</url-pattern>
+    <!-- JSP Azienda -->
+    <url-pattern>/azienda_aggiunta_tirocinio.jsp</url-pattern>
+    <url-pattern>/azienda_profilo.jsp</url-pattern>
+    <url-pattern>/azienda_richieste.jsp</url-pattern>
+    <url-pattern>/azienda_visualizza_tirocini.jsp</url-pattern>
+    <!-- JSP Professore -->
+    <url-pattern>/professore.jsp</url-pattern>
+    <!-- JSP Responsabile Approvazioni -->
+    <url-pattern>/responsabile_approvazioni_aziende.jsp</url-pattern>
+    <url-pattern>/responsabile_approvazioni_conferma_finale.jsp</url-pattern>
+    <url-pattern>/responsabile_approvazioni_nuove_proposte_tirocinio.jsp</url-pattern>
+    <url-pattern>/responsabile_approvazioni_richieste_di_tutorato.jsp</url-pattern>
+    <!-- JSP Storico Richieste -->
+    <url-pattern>/storico_richieste.jsp</url-pattern>
+    <!-- JSP Studente -->
+    <url-pattern>/studente_aziende.jsp</url-pattern>
+    <url-pattern>/studente_curriculum.jsp</url-pattern>
+    <url-pattern>/studente_professori.jsp</url-pattern>
+    <url-pattern>/studente_profilo.jsp</url-pattern>
+    <url-pattern>/studente_richieste.jsp</url-pattern>
+    <!-- JSP Visualizza informazioni utenti -->
+    <url-pattern>visualizza_curriculum.jsp</url-pattern>
+    <url-pattern>visualizza_informazioni_azienda.jsp</url-pattern>
+    <url-pattern>visualizza_informazioni_tirocinio.jsp</url-pattern>
+    <url-pattern>visualizza_tirocini_azienda.jsp</url-pattern>
   </filter-mapping>
   <filter>
     <filter-name>NonProfessoreFiltro</filter-name>
@@ -57,12 +89,31 @@
     <url-pattern>/elimina_tirocinio</url-pattern>
     <url-pattern>/modifica_dati_azienda</url-pattern>
     <url-pattern>/modifica_curriculum</url-pattern>
+    <url-pattern>/carica_proposte_tirocinio</url-pattern>
     <url-pattern>/convalida_proposta_tirocinio</url-pattern>
     <url-pattern>/lista_aziende</url-pattern>
     <url-pattern>/lista_professori</url-pattern>
     <url-pattern>/invia_richiesta</url-pattern>
     <url-pattern>/elimina_richiesta_tirocinio</url-pattern>
     <url-pattern>/scegli_tutor</url-pattern>
+    <!-- JSP Azienda -->
+    <url-pattern>/azienda_aggiunta_tirocinio.jsp</url-pattern>
+    <url-pattern>/azienda_profilo.jsp</url-pattern>
+    <url-pattern>/azienda_richieste.jsp</url-pattern>
+    <url-pattern>/azienda_visualizza_tirocini.jsp</url-pattern>
+    <!-- JSP Responsabile Approvazioni -->
+    <url-pattern>/responsabile_approvazioni_aziende.jsp</url-pattern>
+    <url-pattern>/responsabile_approvazioni_conferma_finale.jsp</url-pattern>
+    <url-pattern>/responsabile_approvazioni_nuove_proposte_tirocinio.jsp</url-pattern>
+    <url-pattern>/responsabile_approvazioni_richieste_di_tutorato.jsp</url-pattern>
+    <!-- JSP Studente -->
+    <url-pattern>/studente_aziende.jsp</url-pattern>
+    <url-pattern>/studente_curriculum.jsp</url-pattern>
+    <url-pattern>/studente_professori.jsp</url-pattern>
+    <url-pattern>/studente_profilo.jsp</url-pattern>
+    <url-pattern>/studente_richieste.jsp</url-pattern>
+    <!-- JSP Visualizza informazioni utenti -->
+    <url-pattern>visualizza_tirocini_azienda.jsp</url-pattern>
   </filter-mapping>
   <filter>
     <filter-name>NonResponsabileApprovazioniFiltro</filter-name>
@@ -77,6 +128,21 @@
     <url-pattern>/invia_richiesta</url-pattern>
     <url-pattern>/elimina_richiesta_tirocinio</url-pattern>
     <url-pattern>/scegli_tutor</url-pattern>
+    <!-- JSP Azienda -->
+    <url-pattern>/azienda_aggiunta_tirocinio.jsp</url-pattern>
+    <url-pattern>/azienda_profilo.jsp</url-pattern>
+    <url-pattern>/azienda_richieste.jsp</url-pattern>
+    <url-pattern>/azienda_visualizza_tirocini.jsp</url-pattern>
+    <!-- JSP Professore -->
+    <url-pattern>/professore.jsp</url-pattern>
+    <!-- JSP Studente -->
+    <url-pattern>/studente_aziende.jsp</url-pattern>
+    <url-pattern>/studente_curriculum.jsp</url-pattern>
+    <url-pattern>/studente_professori.jsp</url-pattern>
+    <url-pattern>/studente_profilo.jsp</url-pattern>
+    <url-pattern>/studente_richieste.jsp</url-pattern>
+    <!-- JSP Visualizza informazioni utenti -->
+    <url-pattern>visualizza_tirocini_azienda.jsp</url-pattern>
   </filter-mapping>
   <filter>
     <filter-name>NonResponsabileAziendaFiltro</filter-name>
@@ -85,12 +151,28 @@
   <filter-mapping>
     <filter-name>NonResponsabileAziendaFiltro</filter-name>
     <url-pattern>/modifica_curriculum</url-pattern>
+    <url-pattern>/carica_proposte_tirocinio</url-pattern>
     <url-pattern>/convalida_proposta_tirocinio</url-pattern>
     <url-pattern>/lista_aziende</url-pattern>
     <url-pattern>/lista_professori</url-pattern>
     <url-pattern>/invia_richiesta</url-pattern>
     <url-pattern>/elimina_richiesta_tirocinio</url-pattern>
     <url-pattern>/scegli_tutor</url-pattern>
+    <!-- JSP Professore -->
+    <url-pattern>/professore.jsp</url-pattern>
+    <!-- JSP Responsabile Approvazioni -->
+    <url-pattern>/responsabile_approvazioni_aziende.jsp</url-pattern>
+    <url-pattern>/responsabile_approvazioni_conferma_finale.jsp</url-pattern>
+    <url-pattern>/responsabile_approvazioni_nuove_proposte_tirocinio.jsp</url-pattern>
+    <url-pattern>/responsabile_approvazioni_richieste_di_tutorato.jsp</url-pattern>
+    <!-- JSP Studente -->
+    <url-pattern>/studente_aziende.jsp</url-pattern>
+    <url-pattern>/studente_curriculum.jsp</url-pattern>
+    <url-pattern>/studente_professori.jsp</url-pattern>
+    <url-pattern>/studente_profilo.jsp</url-pattern>
+    <url-pattern>/studente_richieste.jsp</url-pattern>
+    <!-- JSP Visualizza informazioni utenti -->
+    <url-pattern>visualizza_informazioni_azienda.jsp</url-pattern>
   </filter-mapping>
   <filter>
     <filter-name>NonStudenteFiltro</filter-name>
@@ -100,8 +182,27 @@
     <filter-name>NonStudenteFiltro</filter-name>
     <url-pattern>/elimina_tirocinio</url-pattern>
     <url-pattern>/modifica_dati_azienda</url-pattern>
+    <url-pattern>/carica_proposte_tirocinio</url-pattern>
     <url-pattern>/convalida_proposta_tirocinio</url-pattern>
-    <url-pattern>/convalida_richiesta_tirocinio</url-pattern>
     <url-pattern>/storico_richieste</url-pattern>
+    <url-pattern>/convalida_richiesta_tirocinio</url-pattern>
+    <!-- JSP Azienda -->
+    <url-pattern>/azienda_aggiunta_tirocinio.jsp</url-pattern>
+    <url-pattern>/azienda_profilo.jsp</url-pattern>
+    <url-pattern>/azienda_richieste.jsp</url-pattern>
+    <url-pattern>/azienda_visualizza_tirocini.jsp</url-pattern>
+    <!-- JSP Professore -->
+    <url-pattern>/professore.jsp</url-pattern>
+    <!-- JSP Responsabile Approvazioni -->
+    <url-pattern>/responsabile_approvazioni_aziende.jsp</url-pattern>
+    <url-pattern>/responsabile_approvazioni_conferma_finale.jsp</url-pattern>
+    <url-pattern>/responsabile_approvazioni_nuove_proposte_tirocinio.jsp</url-pattern>
+    <url-pattern>/responsabile_approvazioni_richieste_di_tutorato.jsp</url-pattern>
+    <!-- JSP Storico Richieste -->
+    <url-pattern>/storico_richieste.jsp</url-pattern>
+    <!-- JSP Visualizza informazioni utenti -->
+    <url-pattern>visualizza_curriculum.jsp</url-pattern>
+    <!-- <url-pattern>visualizza_informazioni_azienda.jsp</url-pattern>
+    <url-pattern>visualizza_informazioni_tirocinio.jsp</url-pattern> -->
   </filter-mapping>
 </web-app>

@@ -20,7 +20,7 @@ import it.tirocirapid.factory.DAOFactory;
 /**
  * Servlet che si occupa della registrazione dello studente
  */
-@WebServlet("/registrazione_studente")
+//@WebServlet("/registrazione_studente")
 public class RegistrazioneStudenteControllo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

@@ -24,7 +24,7 @@ import it.tirocirapid.factory.DAOFactory;
 /**
  * Servlet implementation class CaricaTirocinio
  */
-@WebServlet("/carica_tirocinio")
+@WebServlet("/info_tirocinio")
 public class CaricaTirocinio extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

@@ -6,7 +6,7 @@
 		<ul class="nav nav-tabs">
 
 			<li role="presentation"><a id="item_richieste_di_tutorato_responsabile" href="richieste?action=tutor">Richieste di tutorato</a></li>
-			<li role="presentation"><a id="item_richieste_nuovi_tirocini_responsabile" href="carica_proposte_tirocinio">Richieste nuovi tirocini</a></li>
+			<li role="presentation"><a id="item_richieste_nuovi_tirocini_responsabile" href="carica_proposte_tirocinio">Nuove Proposte Tiricnio</a></li>
 			<li role="presentation"><a id="item_conferma_finale_responsabile" href="richieste?action=all">Conferma finale</a></li>
 			<li role="presentation"><a id="item_storico_responsabile" href="storico_richieste.jsp">Storico richieste</a></li>
 			<li role="presentation"><a id="item_lista_aziende_responsabile" href="responsabile_approvazioni_aziende.jsp">Aziende</a></li>

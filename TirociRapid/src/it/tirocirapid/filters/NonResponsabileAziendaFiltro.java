@@ -47,8 +47,8 @@ public class NonResponsabileAziendaFiltro implements Filter {
 		
 		if (((UserLoggato) session.getAttribute("user")).equals(userTypes.get("RespAz")))
 		{
-			request.setAttribute("errore", "Per poter accedere a questa sezione devi essere autenticato come Responsabile Azienda");
-			RequestDispatcher dispatcher = req.getRequestDispatcher("/"); //LoginAzienda
+			request.setAttribute("errore", "Non puoi accedere a questa sezione");
+			RequestDispatcher dispatcher = req.getRequestDispatcher("/richieste"); //HomeDoveVisualizzaLeRichieste
 			dispatcher.forward(request, response);
 		}
 		else

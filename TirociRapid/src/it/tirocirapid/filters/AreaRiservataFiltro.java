@@ -47,7 +47,7 @@ public class AreaRiservataFiltro implements Filter {
 		if (session.getAttribute("user") == null)
 		{
 			request.setAttribute("errore", "Per poter accedere a questa sezione devi essere autenticato");
-			RequestDispatcher dispatcher = req.getRequestDispatcher("/"); //Login
+			RequestDispatcher dispatcher = req.getRequestDispatcher("/index.jsp"); //Login
 			dispatcher.forward(request, response);
 		}
 		else
