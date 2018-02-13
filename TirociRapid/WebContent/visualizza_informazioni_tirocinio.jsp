@@ -40,7 +40,13 @@
 		<%@ include file="nav_azienda.jsp"%>
 	<%
 	}
-	%>	
+	else if(user.getTipo().equals("Studente"))
+	{
+	%>
+		<%@ include file="nav_studente.jsp"%>
+	<%
+	}
+	%>
 	<div class="container">
 	<%
 	if (request.getAttribute("errore") != null)

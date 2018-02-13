@@ -63,7 +63,7 @@
                    <div class="row">
                        <div class="col-md-9 cta-contents">
                            <h1 class="cta-title">
-                      			<%= reqTir.getTirocinio().getNome() %>
+                      			Richiesta
                            </h1>
                            <div class="cta-desc">
                            
@@ -103,11 +103,26 @@
                            
                            %>
                                <p><span class="parametri-richiesta">Stato:</span> <%= statoAttuale %></p>
+                               <p>
+                               	<span class="parametri-richiesta">Azienda:</span>
+                               		<a href="dati_azienda?partitaIVA=<%=reqTir.getTirocinio().getPartitaIVAAzienda()%>">
+                               			<button class="bottoni-info">Visualizza informazioni azienda</button>
+                               		</a>
+                               </p>	
+                               		
+                               <p>
+                               	<span class="parametri-richiesta">Tirocinio:</span>
+                               		<a href="info_tirocinio?partitaIVA=<%=reqTir.getTirocinio().getPartitaIVAAzienda()%>&nomeTirocinio=<%=reqTir.getTirocinio().getNome() %>">
+                               			<button class="bottoni-info">Visualizza informazioni tirocinio</button>
+                               		</a>
+                               </p>	
+                               		 						
                                <%
                                		String stato = reqTir.getStato();
                                		if (states.get(3).equals(stato)||states.get(4).equals(stato) || states.get(5).equals(stato) || states.get(-4).equals(stato))
                                		{
                                %>
+                               
                               <p> <span class="parametri-richiesta">Tutor interno:</span> <%=reqTir.getTutorInterno().getUsername()%></p>
                                <%
                                		}

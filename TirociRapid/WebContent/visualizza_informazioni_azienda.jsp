@@ -35,6 +35,12 @@
 		<%@ include file="nav_responsabile_approvazioni.jsp"%>
 	<%
 	}
+	else if(user.getTipo().equals("Studente"))
+	{
+	%>
+		<%@ include file="nav_studente.jsp"%>
+	<%
+	}
 	%>
 	
 		<div class="container">

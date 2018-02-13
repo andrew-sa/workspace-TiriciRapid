@@ -11,7 +11,11 @@ function selectedItemStudente()
 		$("#item_richieste_studente").addClass("attiva");
 		return;
 	}
-	
+	if (path.includes("dati_azienda"))
+	{
+		$("#item_richieste_studente").addClass("attiva");
+		return;
+	}
 	switch(path)
 	{
 		case "/TirociRapid/studente_aziende.jsp": 
