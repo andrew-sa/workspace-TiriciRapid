@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,10 +13,13 @@ import org.junit.jupiter.api.Test;
 import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.ResultSet;
 import com.mysql.jdbc.Statement;
+import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 
 import it.tirocirapid.classes.manager.AziendaDAO;
+import it.tirocirapid.classes.manager.RichiestaTirocinioDAO;
 import it.tirocirapid.classes.manager.TirocinioDAO;
 import it.tirocirapid.classes.model.Azienda;
+import it.tirocirapid.classes.model.RichiestaTirocinio;
 import it.tirocirapid.classes.model.Tirocinio;
 import it.tirocirapid.database.DriverManagerConnectionPool;
 import it.tirocirapid.eccezioni.InsertFailedException;
@@ -133,7 +137,6 @@ public class TestTirocinioDAO extends TestCase{
 			e.printStackTrace();
 		}
 	}	
-
 	@Test
 	public void testUpdate1() {
 		TirocinioDAO tirocinioDAOUp= new TirocinioDAO();
@@ -210,10 +213,18 @@ public class TestTirocinioDAO extends TestCase{
 						}	
 		        
 	}
-	
 	@Test
-	public void testIsNewKey() {
-		fail("Not yet implemented");
+	public void testUpdate3() {
+		try {
+			TirocinioDAO tDAOUpdate = new TirocinioDAO();
+			tDAOUpdate.update("a", "a", "a");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (TuplaNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	@Test
@@ -264,7 +275,7 @@ public class TestTirocinioDAO extends TestCase{
 	}
 	
 	@Test
-	public void testDelete() {
+	public void testDelete1() {
 		TirocinioDAO tirocinioDAOdelete= new TirocinioDAO();
 		Tirocinio t;
 		
@@ -294,20 +305,108 @@ public class TestTirocinioDAO extends TestCase{
 			e.printStackTrace();
 		}
 	}
-	
+	@Test
+	public void testDelete2() {
+		try {
+			TirocinioDAO tDAOReadAllTirociniAzienda = new TirocinioDAO();
+			tDAOReadAllTirociniAzienda.delete("aaa", "bbbb");
+		} catch (MySQLIntegrityConstraintViolationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InsertFailedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	@Test
 	public void testReadAllTirociniAzienda() {
-		fail("Not yet implemented");
+		try {
+			ArrayList<Tirocinio> richieste = new ArrayList<>();
+			ArrayList<Tirocinio> richiesteTest = new ArrayList<>();
+			TirocinioDAO tDAOReadAllTirociniAzienda = new TirocinioDAO();
+			richieste = tDAOReadAllTirociniAzienda.readAllTirociniAzienda("06653061215");
+			Tirocinio testt1= new Tirocinio("06653061215", "Tirocinio di C", "Studiare come usare c per creare un sito web.", "C", "TirRif");
+			Tirocinio testt2= new Tirocinio("06653061215", "Tirocinio di PHP", "Due mesi di studio e creazione di siti web di interfaccia di applicazioni per cellulare.", "PHP, CSS, HTML, JQUERY", "TirConf");
+			richiesteTest.add(testt1);
+			richiesteTest.add(testt2);
+			System.out.println(richieste);
+			for(int i=0; i<= richieste.size()-1; i++) {
+				assertEquals(richieste.get(i).getPartitaIVAAzienda(), richiesteTest.get(i).getPartitaIVAAzienda());
+				assertEquals(richieste.get(i).getNome(), richiesteTest.get(i).getNome());
+				assertEquals(richieste.get(i).getDescrizione(), richiesteTest.get(i).getDescrizione());
+				assertEquals(richieste.get(i).getOffertaFormativa(), richiesteTest.get(i).getOffertaFormativa());
+				assertEquals(richieste.get(i).getStato(), richiesteTest.get(i).getStato());
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Test
-	public void testReadAllTirociniDisponibiliAzienda() {
-		fail("Not yet implemented");
+	public void testReadAllTirociniDisponibiliAzienda1() {
+		try {
+			ArrayList<Tirocinio> richieste = new ArrayList<>();
+			ArrayList<Tirocinio> richiesteTest = new ArrayList<>();
+			TirocinioDAO tDAOReadAllTirociniDisponibiliAzienda = new TirocinioDAO();
+			richieste = tDAOReadAllTirociniDisponibiliAzienda.readAllTirociniDisponibiliAzienda("06653061215");
+			Tirocinio testt1= new Tirocinio("06653061215", "Tirocinio di PHP", "Due mesi di studio e creazione di siti web di interfaccia di applicazioni per cellulare.", "PHP, CSS, HTML, JQUERY", "TirConf");
+			richiesteTest.add(testt1);
+			System.out.println(richieste);
+			for(int i=0; i<= richieste.size()-1; i++) {
+				assertEquals(richieste.get(i).getPartitaIVAAzienda(), richiesteTest.get(i).getPartitaIVAAzienda());
+				assertEquals(richieste.get(i).getNome(), richiesteTest.get(i).getNome());
+				assertEquals(richieste.get(i).getDescrizione(), richiesteTest.get(i).getDescrizione());
+				assertEquals(richieste.get(i).getOffertaFormativa(), richiesteTest.get(i).getOffertaFormativa());
+				assertEquals(richieste.get(i).getStato(), richiesteTest.get(i).getStato());
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (TuplaNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
-
+	@Test
+	public void testReadAllTirociniDisponibiliAzienda2() {
+		try {
+			ArrayList<Tirocinio> richieste = new ArrayList<>();
+			TirocinioDAO tDAOReadAllTirociniDisponibiliAzienda = new TirocinioDAO();
+			richieste = tDAOReadAllTirociniDisponibiliAzienda.readAllTirociniDisponibiliAzienda("01281201218");
+			assertTrue(richieste.isEmpty());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (TuplaNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	@Test
 	public void testReadAllTirociniInAttesaApprovazione() {
-		fail("Not yet implemented");
+		try {
+			ArrayList<Tirocinio> richieste = new ArrayList<>();
+			ArrayList<Tirocinio> richiesteTest = new ArrayList<>();
+			TirocinioDAO tDAOReadAllTirociniInAttesaApprovazione = new TirocinioDAO();
+			richieste = tDAOReadAllTirociniInAttesaApprovazione.readAllTirociniInAttesaApprovazione();
+			Tirocinio testt1= new Tirocinio("01281201218", "Tirocinio di Java applicata", "Passa due mesi con noi a vedere come si può applicare java all'edilizia tramite l'utilizzo di programmi specifici.", "JAVA applicata", "TirProp");
+			richiesteTest.add(testt1);
+			System.out.println(richieste);
+			for(int i=0; i<= richieste.size()-1; i++) {
+				assertEquals(richieste.get(i).getPartitaIVAAzienda(), richiesteTest.get(i).getPartitaIVAAzienda());
+				assertEquals(richieste.get(i).getNome(), richiesteTest.get(i).getNome());
+				assertEquals(richieste.get(i).getDescrizione(), richiesteTest.get(i).getDescrizione());
+				assertEquals(richieste.get(i).getOffertaFormativa(), richiesteTest.get(i).getOffertaFormativa());
+				assertEquals(richieste.get(i).getStato(), richiesteTest.get(i).getStato());
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	@Test

@@ -91,7 +91,20 @@ public class TestRichiestaTirocinioDAO extends TestCase{
 		try {
 			RichiestaTirocinioDAO rtDAODelete = new RichiestaTirocinioDAO();
 			rtDAODelete.delete("m.evangelista", "06653061215", "Tirocinio di PHP");
-			rtDAODelete.delete("c.iandolo", "06653061215", "Tirocinio di PHP");
+			
+		} catch (MySQLIntegrityConstraintViolationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (TuplaNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			RichiestaTirocinioDAO rtDAODelete2 = new RichiestaTirocinioDAO();
+			rtDAODelete2.delete("c.iandolo", "06653061215", "Tirocinio di PHP");
 		} catch (MySQLIntegrityConstraintViolationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
