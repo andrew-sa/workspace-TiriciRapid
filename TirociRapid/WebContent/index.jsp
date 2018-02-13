@@ -28,7 +28,7 @@
 			<input id="tipo" type="hidden" name="type" value="studente">
 			<div>
 				<input name="id" type="text" id="username"
-					placeholder="Esse3 Username">
+					placeholder="Esse3 Username Studente">
 			</div>
 			<div>
 				<input name="password" type="password" id="password"
