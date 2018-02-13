@@ -656,7 +656,7 @@ public class TestAziendaDAO extends TestCase{
 	}
 	
 	@Test
-	public void testUpdateStato1()  {
+	public void testUpdateStato()  {
 		AziendaDAO aziendaDAOUpStato= new AziendaDAO();
 				try(Connection connection=DriverManagerConnectionPool.getIstance().getConnection();)
 		        {

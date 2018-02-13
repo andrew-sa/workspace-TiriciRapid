@@ -1605,7 +1605,7 @@ public class TestCurriculumDAO extends TestCase{
 		public void testRead1() {
 			CurriculumDAO curriculumDAOread= new CurriculumDAO();
 			
-			String fax="0934 999451";
+			String fax="09349994511";
 			String Capacit‡CompetenzeRelazionali="Sono un attimo collega, e lo dimostrano gli ottimi voti conseguiti negli esami di gruppo che abbiamo dato nei precedenti anni universitari.";
 			String Capacit‡CompetenzeTecniche="Conoscenza approfondita di Java e Javascript, oltre che alla maggior parte dei linguaggi utili per la programmazione web.";
 			String Capacit‡CompetenzeArtistiche="Utilizzo da almeno due anni Photoshop a livelli alti.";
