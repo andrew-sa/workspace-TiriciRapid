@@ -91,9 +91,9 @@ public class CaricaProfiloStudente extends HttpServlet {
 		{
 //			response.sendRedirect(referer);
 			request.setAttribute("errore", "Non hai selezionato alcun studente");
-		}
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/"); //Alla schermata del profilo dello studente
-		dispatcher.forward(request, response);
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp"); //Alla schermata di Home
+			dispatcher.forward(request, response);
+		}		
 	}
 
 	/**
