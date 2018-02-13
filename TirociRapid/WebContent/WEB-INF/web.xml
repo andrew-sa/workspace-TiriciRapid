@@ -27,7 +27,7 @@
     <!-- JSP Registrazioni -->
     <url-pattern>/azienda_iscrizione.jsp</url-pattern>
     <!-- JSP Recupero dati registrazione -->
-    <url-pattern>recupera_password_azienda.jsp</url-pattern>
+    <url-pattern>/recupera_password_azienda.jsp</url-pattern>
   </filter-mapping>
   <filter>
     <filter-name>AreaRiservataFiltro</filter-name>
@@ -74,10 +74,10 @@
     <url-pattern>/studente_profilo.jsp</url-pattern>
     <url-pattern>/studente_richieste.jsp</url-pattern>
     <!-- JSP Visualizza informazioni utenti -->
-    <url-pattern>visualizza_curriculum.jsp</url-pattern>
-    <url-pattern>visualizza_informazioni_azienda.jsp</url-pattern>
-    <url-pattern>visualizza_informazioni_tirocinio.jsp</url-pattern>
-    <url-pattern>visualizza_tirocini_azienda.jsp</url-pattern>
+    <url-pattern>/visualizza_curriculum.jsp</url-pattern>
+    <url-pattern>/visualizza_informazioni_azienda.jsp</url-pattern>
+    <url-pattern>/visualizza_informazioni_tirocinio.jsp</url-pattern>
+    <url-pattern>/visualizza_tirocini_azienda.jsp</url-pattern>
   </filter-mapping>
   <filter>
     <filter-name>NonProfessoreFiltro</filter-name>
@@ -113,7 +113,7 @@
     <url-pattern>/studente_profilo.jsp</url-pattern>
     <url-pattern>/studente_richieste.jsp</url-pattern>
     <!-- JSP Visualizza informazioni utenti -->
-    <url-pattern>visualizza_tirocini_azienda.jsp</url-pattern>
+    <url-pattern>/visualizza_tirocini_azienda.jsp</url-pattern>
   </filter-mapping>
   <filter>
     <filter-name>NonResponsabileApprovazioniFiltro</filter-name>
@@ -142,7 +142,7 @@
     <url-pattern>/studente_profilo.jsp</url-pattern>
     <url-pattern>/studente_richieste.jsp</url-pattern>
     <!-- JSP Visualizza informazioni utenti -->
-    <url-pattern>visualizza_tirocini_azienda.jsp</url-pattern>
+    <url-pattern>/visualizza_tirocini_azienda.jsp</url-pattern>
   </filter-mapping>
   <filter>
     <filter-name>NonResponsabileAziendaFiltro</filter-name>
@@ -172,7 +172,7 @@
     <url-pattern>/studente_profilo.jsp</url-pattern>
     <url-pattern>/studente_richieste.jsp</url-pattern>
     <!-- JSP Visualizza informazioni utenti -->
-    <url-pattern>visualizza_informazioni_azienda.jsp</url-pattern>
+    <url-pattern>/visualizza_informazioni_azienda.jsp</url-pattern>
   </filter-mapping>
   <filter>
     <filter-name>NonStudenteFiltro</filter-name>
@@ -201,7 +201,7 @@
     <!-- JSP Storico Richieste -->
     <url-pattern>/storico_richieste.jsp</url-pattern>
     <!-- JSP Visualizza informazioni utenti -->
-    <url-pattern>visualizza_curriculum.jsp</url-pattern>
+    <url-pattern>/visualizza_curriculum.jsp</url-pattern>
     <!-- <url-pattern>visualizza_informazioni_azienda.jsp</url-pattern>
     <url-pattern>visualizza_informazioni_tirocinio.jsp</url-pattern> -->
   </filter-mapping>
