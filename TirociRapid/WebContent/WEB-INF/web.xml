@@ -25,7 +25,7 @@
     <!-- JSP Login-->
     <url-pattern>/index.jsp</url-pattern>
     <!-- JSP Registrazioni -->
-    <url-pattern>/azienda_iscrizione.jsp</url-pattern>
+    <!-- <url-pattern>/azienda_iscrizione.jsp</url-pattern> -->
     <!-- JSP Recupero dati registrazione -->
     <url-pattern>/recupera_password_azienda.jsp</url-pattern>
   </filter-mapping>
@@ -69,7 +69,7 @@
     <url-pattern>/storico_richieste.jsp</url-pattern>
     <!-- JSP Studente -->
     <url-pattern>/studente_aziende.jsp</url-pattern>
-    <url-pattern>/studente_curriculum.jsp</url-pattern>
+    <!-- <url-pattern>/studente_curriculum.jsp</url-pattern> -->
     <url-pattern>/studente_professori.jsp</url-pattern>
     <url-pattern>/studente_profilo.jsp</url-pattern>
     <url-pattern>/studente_richieste.jsp</url-pattern>
@@ -98,6 +98,7 @@
     <url-pattern>/scegli_tutor</url-pattern>
     <!-- JSP Azienda -->
     <url-pattern>/azienda_aggiunta_tirocinio.jsp</url-pattern>
+    <url-pattern>/azienda_iscrizione.jsp</url-pattern>
     <url-pattern>/azienda_profilo.jsp</url-pattern>
     <url-pattern>/azienda_richieste.jsp</url-pattern>
     <url-pattern>/azienda_visualizza_tirocini.jsp</url-pattern>
@@ -130,6 +131,7 @@
     <url-pattern>/scegli_tutor</url-pattern>
     <!-- JSP Azienda -->
     <url-pattern>/azienda_aggiunta_tirocinio.jsp</url-pattern>
+    <url-pattern>/azienda_iscrizione.jsp</url-pattern>
     <url-pattern>/azienda_profilo.jsp</url-pattern>
     <url-pattern>/azienda_richieste.jsp</url-pattern>
     <url-pattern>/azienda_visualizza_tirocini.jsp</url-pattern>
@@ -188,6 +190,7 @@
     <url-pattern>/convalida_richiesta_tirocinio</url-pattern>
     <!-- JSP Azienda -->
     <url-pattern>/azienda_aggiunta_tirocinio.jsp</url-pattern>
+    <url-pattern>/azienda_iscrizione.jsp</url-pattern>
     <url-pattern>/azienda_profilo.jsp</url-pattern>
     <url-pattern>/azienda_richieste.jsp</url-pattern>
     <url-pattern>/azienda_visualizza_tirocini.jsp</url-pattern>
