@@ -9,7 +9,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-<title>Iscrizione</title>
+<title>Dati aziendali</title>
 
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/errorcheck.css">
@@ -128,7 +128,7 @@
 						  <option value="NonAccettaRichieste">Non Accetta Richieste</option>
 						</select>
 					</div>
-					<p id="3" class="col-md-4 errorform"></p>
+					<p id="1" class="col-md-4 errorform"></p>
 				</div>
 				
 				
@@ -160,12 +160,19 @@
 				</div>
 
 				<!-- Numero Telefono-->
+				<%
+				String numero ="";
+				if(loggato)
+				{				
+				numero = (azienda.getNumeroTelefono()).replace("+39", "");
+				}
+				%>
 				<div class="form-group">
 					<label class="col-md-4 control-label" for="numeroTelefono">Numero
 						di Telefono </label>
 					<div class="col-md-4">
 						<input id="numeroTelefono" name="numeroTelefono" type="text"
-							class="form-control input-md" maxlength="13" value=<%if(loggato){%><%=azienda.getNumeroTelefono() %><% }%>>
+							class="form-control input-md" maxlength="13" value=<%=numero%>>
 					</div>
 					<p id="5" class="col-md-4 errorform"></p>
 				</div>

@@ -56,12 +56,12 @@
 			}
 			if (request.getAttribute("errore") != null) {
 		%>
-		<h1 class="erroreTop"><%= request.getAttribute("errore") %> <i class="fa fa-times" aria-hidden="true" onclick="clearMessaggiTop()"></i></h1>
+		<h1 class="erroreTop"><%= request.getAttribute("errore") %></h1>
 		<%
 			}
 			else if (request.getAttribute("successo") != null) {
 		%>
-		<h1 class="successoTop"><%= request.getAttribute("successo") %> <i class="fa fa-times" aria-hidden="true" onclick="clearMessaggiTop()"></i></h1>
+		<h1 class="successoTop"><%= request.getAttribute("successo") %></h1>
 		<%
 			}
 		%>

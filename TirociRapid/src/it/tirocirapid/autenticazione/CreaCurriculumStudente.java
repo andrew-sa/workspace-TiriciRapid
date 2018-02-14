@@ -310,7 +310,7 @@ public class CreaCurriculumStudente extends HttpServlet {
 		{
 			e.printStackTrace();
 			request.setAttribute("errore", "L'username dello studente immesso non &egrave; presente nel database");
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/studente_curriculum.jsp"); //CreaCurriculum
+			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/studente_curriculum.jsp"); //CreaCurriculum
 			dispatcher.forward(request, response);
 		}
 		catch (SQLException e)
