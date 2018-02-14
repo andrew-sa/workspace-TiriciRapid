@@ -49,6 +49,26 @@
 				ArrayList<Tirocinio> tirocini = (ArrayList<Tirocinio>) request.getAttribute("tirocini");
 				for (Tirocinio t : tirocini) 
 				{
+					  
+                      String statoAttuale = t.getStato();
+                      switch (statoAttuale)
+                      {
+          					case "TirProp":
+          						statoAttuale = "Necessita di conferma di un responsabile delle approvazioni ";
+          						break;
+          					case "TirConf":
+          						statoAttuale = "Confermato dal responsabile delle approvazioni e che pu&ograve; essere scelto dagli studenti"; 
+          						break;
+          					case "TirRif":
+          						statoAttuale = "Rifiutato dal Responsabile Approvazioni, in attesa di rimozione dal Responsabile dell'azienda";
+          						break;
+          					case "TirNDisp":
+          						statoAttuale = "Eliminato dal responsabile dell'azienda, che resta visibile per gli studenti che hanno già avviato questo tirocinio";
+          						break;
+          					default:
+          						break;
+                      }
+                      
 		%>
 		<div class="col-sm-12">
 
@@ -58,7 +78,7 @@
 						<h1 class="cta-title"><%=t.getNome() %></h1>
 						<div class="cta-desc">
 							<p>
-								<span class="parametri-azienda">Stato:</span> <%=t.getStato() %>
+								<span class="parametri-azienda">Stato:</span> <%=statoAttuale %>
 							</p>
 							<p>
 								<span class="parametri-azienda">Descrizione:</span> <%=t.getDescrizione() %>

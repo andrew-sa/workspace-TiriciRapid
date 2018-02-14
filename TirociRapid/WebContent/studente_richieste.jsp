@@ -99,8 +99,6 @@
                					default:
                						break;
                            }
-                           
-                           
                            %>
                                <p><span class="parametri-richiesta">Stato:</span> <%= statoAttuale %></p>
                                <p>
