@@ -45,7 +45,7 @@ public class NonResponsabileAziendaFiltro implements Filter {
 		HttpSession session = req.getSession();
 		HashMap<String, String> userTypes = (HashMap<String, String>) request.getServletContext().getAttribute("userTypes");
 		
-		if (((UserLoggato) session.getAttribute("user")).equals(userTypes.get("RespAz")))
+		if ((((UserLoggato) session.getAttribute("user"))!=null) && ((UserLoggato) session.getAttribute("user")).equals(userTypes.get("RespAz")))
 		{
 			request.setAttribute("errore", "Non puoi accedere a questa sezione");
 			RequestDispatcher dispatcher = req.getRequestDispatcher("/richieste"); //HomeDoveVisualizzaLeRichieste
