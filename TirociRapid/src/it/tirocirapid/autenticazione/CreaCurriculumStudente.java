@@ -82,7 +82,9 @@ public class CreaCurriculumStudente extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		String pathHome = request.getServletContext().getContextPath() + "/index.jsp";
+		response.getWriter().println("<h1>Il servizio richiesto non &egrave; disponibile</h1>");
+		response.getWriter().println("<a href=\""+ pathHome + "\"><button>Torna alla Home</button></a>");
 	}
 
 	/**
