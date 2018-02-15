@@ -38,7 +38,7 @@
     <url-pattern>/logout</url-pattern>
     <url-pattern>/dati_azienda</url-pattern>
     <url-pattern>/tirocini_azienda</url-pattern>
-    <url-pattern>/info_tirocino</url-pattern>
+    <url-pattern>/info_tirocinio</url-pattern>
     <url-pattern>/elimina_tirocinio</url-pattern>
     <url-pattern>/modifica_dati_azienda</url-pattern>
     <url-pattern>/profilo_studente</url-pattern>
