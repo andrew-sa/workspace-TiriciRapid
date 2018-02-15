@@ -18,5 +18,5 @@ public abstract class AbstractAziendaManager {
 	public abstract String readPassword(String partitaIVA) throws SQLException, TuplaNotFoundException;
 	public abstract void updateStato(String partitaIVA, String statoToUpdate) throws SQLException, InsertFailedException;
 	public abstract ArrayList<Azienda> readDisponibili() throws SQLException;
-	
+	public abstract boolean isNewKey(String partitaIVA) throws SQLException;
 }

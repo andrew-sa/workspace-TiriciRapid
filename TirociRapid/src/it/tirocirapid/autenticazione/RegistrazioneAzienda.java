@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import it.tirocirapid.classes.manager.AbstractAziendaManager;
+import it.tirocirapid.classes.manager.AbstractCurriculumManager;
 import it.tirocirapid.classes.model.Azienda;
 import it.tirocirapid.eccezioni.InsertFailedException;
 import it.tirocirapid.factory.AbstractManagerFactory;
@@ -96,7 +97,7 @@ public class RegistrazioneAzienda extends HttpServlet {
 				else
 				{
 					request.setAttribute("errore", "Il campo " + param + " non pu&ograve; superare 50 caratteri");
-					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/azienda_iscrizione.jsp"); //RegistrazioneAzienda
+					RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/azienda_iscrizione.jsp"); //RegistrazioneAzienda
 					dispatcher.forward(request, response);
 					return;
 				}
@@ -109,6 +110,25 @@ public class RegistrazioneAzienda extends HttpServlet {
 			{
 				if (validaPartitaIVA(request.getParameter(param)))
 				{
+					AbstractManagerFactory factory = new DAOFactory();
+					AbstractAziendaManager managerAzienda = factory.createAziendaManager();
+					try 
+					{
+						if(!managerAzienda.isNewKey(request.getParameter(param)))
+						{
+							request.setAttribute("errore", "La partitaIVA: "+request.getParameter(param)+" &egrave; gi&agrave; nel DB");
+							RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/azienda_iscrizione.jsp"); //RegistrazioneAzienda
+							dispatcher.forward(request, response);
+							return;
+						}
+					} 
+					catch (SQLException e) 
+					{
+						request.setAttribute("errore", "Si &egrave; verificato un errore con l'interazione con il DB ");
+						RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/azienda_iscrizione.jsp"); //RegistrazioneAzienda
+						dispatcher.forward(request, response);
+						return;
+					}
 					azienda.setPartitaIVA(request.getParameter(param));
 				}
 				else

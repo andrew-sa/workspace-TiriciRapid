@@ -125,6 +125,34 @@ public class AziendaDAO extends AbstractAziendaManager {
 		stm.close();
 		return true;
 	}
+	
+	/**
+	 * Verifica se partitaIVA è già presente nel DB
+	 * @param partitaIVA la partitaIVA dell'azienda da inserire
+	 * @throws SQLException viene lanciata nel caso in cui avviene un errore con la DB
+	 * @return true se la partita iva non è presente nel DB 
+	 * @return false altrimenti
+	 */
+	public boolean isNewKey(String partitaIVA) throws SQLException
+	{
+		Connection con = DriverManagerConnectionPool.getIstance().getConnection();
+		Statement stm = con.createStatement();
+		ResultSet rs = stm.executeQuery(READ_ALL_KEY);
+		while (rs.next())
+		{
+			if (rs.getString(1).equalsIgnoreCase(partitaIVA))
+			{
+				con.commit();
+				rs.close();
+				stm.close();
+				return false;
+			}
+		}
+		con.commit();
+		rs.close();
+		stm.close();
+		return true;
+	}
 
 	/**
 	 * Cerca un' azienda tramite la partita IVA all'interno del DB
