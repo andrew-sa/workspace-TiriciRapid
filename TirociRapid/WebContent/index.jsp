@@ -24,18 +24,17 @@
 
 	<div id="contenitore_login">
 		<div id="messaggio"></div>
-		<form>
+		<form onkeypress="inviaRichiesta(event, this);">
 			<input id="tipo" type="hidden" name="type" value="studente">
 			<div>
-				<input name="id" type="text" id="username"
+				<input name="id" type="text" id="username" 
 					placeholder="Esse3 Username Studente">
 			</div>
 			<div>
 				<input name="password" type="password" id="password"
 					placeholder="Password">
 			</div>
-			<button id="pulsante_login" type="button"
-				onclick="sendRequestLogin(this.form);">Entra</button>
+			<button id="pulsante_login" type="button" onclick="sendRequestLogin(this.form);">Entra</button>
 
 		</form>
 

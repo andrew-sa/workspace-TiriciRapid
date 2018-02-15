@@ -274,10 +274,10 @@ function validateCurriculum(form) {
 function validateAggiuntaTirocinio(form){
 	var contr = 0;
 	resetInput(form);
-	if (!((form["nome"].value.trim().length) <= 50)) {
+	if (!(((form["nome"].value.trim().length) <= 50) && (form["nome"].value.trim().match(/^([a-zA-Z0-9]*(\s)?)*$/)))) {
 		form["nome"].setAttribute("nome",
 				"Non puoi scrivere pi\u00F9 di 50 caratteri");
-		document.getElementById(1).innerHTML = "Non puoi scrivere pi\u00F9 di 50 caratteri";
+		document.getElementById(1).innerHTML = "Non puoi scrivere pi\u00F9 di 50 caratteri o caretteri speciali.";
 		contr = 1;
 	}
 	if (!((form["offertaFormativa"].value.trim().length) <= 500)) {

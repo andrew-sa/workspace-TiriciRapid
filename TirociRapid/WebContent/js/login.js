@@ -76,3 +76,12 @@ function sendRequestLogin(form)
 	xhttp.onreadystatechange = readResultLogin;
 	xhttp.send(null); }
 }
+
+
+function inviaRichiesta(event, form)
+{
+    if ((event).keyCode == 13)
+    {
+    	sendRequestLogin(form);
+    }
+}
