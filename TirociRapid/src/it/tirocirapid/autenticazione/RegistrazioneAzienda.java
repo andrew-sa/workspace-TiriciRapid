@@ -116,7 +116,7 @@ public class RegistrazioneAzienda extends HttpServlet {
 					{
 						if(!managerAzienda.isNewKey(request.getParameter(param)))
 						{
-							request.setAttribute("errore", "La partitaIVA: "+request.getParameter(param)+" &egrave; gi&agrave; nel DB");
+							request.setAttribute("errore", "La partitaIVA: "+ request.getParameter(param) +" &egrave; gi&agrave; presente nel database");
 							RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/azienda_iscrizione.jsp"); //RegistrazioneAzienda
 							dispatcher.forward(request, response);
 							return;
